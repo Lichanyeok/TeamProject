@@ -1,0 +1,63 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import vo.MemberBean;
+
+public class MemberDAO {
+	private MemberDAO() {
+		
+	}
+	
+	private static MemberDAO instance;
+	
+	public static MemberDAO getInstance() {
+		System.out.println("getConnection");
+		if(instance == null) {
+			instance = new MemberDAO();
+		}
+		
+		return instance;
+	}
+
+	Connection con;
+	
+	public void setConnection(Connection con) {
+		System.out.println("setConnection");
+		this.con = con;
+	}
+
+	public boolean selectMember(MemberBean bean) {
+		System.out.println("selectMember()");
+		boolean isLoginSuccess = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			 String sql = "SELECT pass,nickname FROM project_member WHERE id=?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, bean.getId());
+	         
+	         // 4단계. SQL 구문 실행 및 결과 처리
+	         rs = pstmt.executeQuery();
+	         
+	         // if문을 사용하여 ResultSet 객체의 조회 결과 존재 여부 판별
+	         if(rs.next()) {
+	            // 조회된 결과(레코드)가 존재할 경우
+	            // => pass 컬럼 데이터를 입력받은 패스워드(pass)와 비교하여
+	            //    일치하면 isLoginSccuess 변수에 true 값 저장(아니면 기본값 false 사용)
+	            if(bean.getPass().equals(rs.getString("pass"))) {
+	            	bean.setNickName(rs.getString("nickname"));
+	            	isLoginSuccess = true; // 패스워드 일치
+	            } 
+	         }
+		} catch (SQLException e) {
+			System.out.println("selectMember sql 오류!");
+			e.printStackTrace();
+		}
+		
+		return isLoginSuccess;
+	}
+}
