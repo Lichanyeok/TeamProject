@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import vo.ActionForward;
 
 /**
  * Servlet implementation class MemberFrontController
  */
-@WebServlet("*.me")
-public class MemberFrontController extends HttpServlet {
+@WebServlet("*.do")
+public class FrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -26,17 +27,25 @@ public class MemberFrontController extends HttpServlet {
 		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
-		if(command.equals("/MemberLoginFormAction.me")) {
+		if(command.equals("/MemberLoginFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
 			forward.setRedriect(false);
-		}else if(command.equals("/MemberJoinFormAction.me")) {
+		}else if(command.equals("/MemberJoinFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberJoin.jsp");
 			forward.setRedriect(false);
-		}else if(command.equals("/MemberJoinPro.me")) {
-			
-		}else if(command.equals("/MemberLoginProAction.me")) {
+		}else if(command.equals("/MemberJoinProAction.do")) {
+			System.out.println("/MemberJoinProAction - controller");
+			action = new MemberJoinProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberLoginProAction.do")) {
+			System.out.println("MemberLoginProAction-cotroller");
 			action = new MemberLoginProAction();
 			try {
 				forward = action.execute(request, response);

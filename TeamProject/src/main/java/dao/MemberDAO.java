@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import vo.MemberBean;
-
+import static db.jdbcUtil.*;
 public class MemberDAO {
+	
+	
+	
 	private MemberDAO() {
 		
 	}
@@ -60,4 +63,40 @@ public class MemberDAO {
 		
 		return isLoginSuccess;
 	}
+
+	public boolean insertMember(MemberBean bean) {
+		System.out.println("insertMember - DAO");
+		boolean isInsertSuccess=false;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql="INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,now())";
+			
+			pstmt = con.prepareStatement(sql);
+	
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getNickName());
+			pstmt.setInt(3, bean.getAge());
+			pstmt.setString(4, bean.getId());
+			pstmt.setString(5, bean.getPass());
+			pstmt.setString(6, bean.getEmail());
+			pstmt.setString(7, bean.getMobile());
+			pstmt.setString(8, bean.getGender());
+			pstmt.setInt(9, 1);
+			
+			int result = pstmt.executeUpdate();
+//			System.out.println(result);
+			if(result>0) {
+				isInsertSuccess = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return isInsertSuccess;
+	}
+	
 }

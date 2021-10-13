@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Welcome, This is MatZip</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -19,7 +19,7 @@
               <%
               String nickName = (String)session.getAttribute("sId");
               if(nickName==null) {%>
-              <li><a href="MemberLoginFormAction.me">로그인</a></li>
+              <li><a href="MemberLoginFormAction.do">로그인</a></li>
               <%}else{ %>
               <li><a><%=nickName %>님</a>&nbsp;<a href="./member/logout.jsp">로그아웃</a></li>
               <%} %>
@@ -27,12 +27,12 @@
         </div>
         <div class = "border_bottom"></div>
         <div class="header_bottom clearfix">
-            <div class="logo"><a href="#">logo</a></div>   
+            <div class="logo"><a href="#">LOGO</a></div>   
             <ul class="nav_bottom">
-                <li><a href="#">에약관리</a></li>
-                <li><a href="#">리뷰</a></li>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="#">고객문의</a></li>
+                <li><a href="Reserve.do">예약관리</a></li>
+                <li><a href="Review.do">리뷰</a></li>
+                <li><a href="Notice.do">공지사항</a></li>
+                <li><a href="CustomerCenter.do">고객문의</a></li>
                
                 
             </ul>
