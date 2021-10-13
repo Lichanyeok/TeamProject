@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f383ef475bb19570dea5b82fb8869783&libraries=services"></script>
 </head>
 <body>
+<form id="frm" name="frm" action="write.jsp" method="post">
 <div id="wrapper">
 <div id="menu_wrap" class="bg_white">
 	<div class="option">
@@ -247,6 +248,7 @@
     <input type="text" id="latclick" name="latclick" value=""> 
     <input type="text" id="lngclick" name="lngclick" value=""> 
     </div>
-    </div>  
+    </div>
+</form>   
 </body>
 </html>
