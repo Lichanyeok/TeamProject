@@ -117,42 +117,24 @@
 		        // 마커와 검색결과 항목에 mouseover 했을때
 		        // 해당 장소에 인포윈도우에 장소명을 표시합니다
 		        // mouseout 했을 때는 인포윈도우를 닫습니다
-		        (function(marker, pname, praddress, paddress, plat, plng) {
+		        (function(marker, title) {
 		            kakao.maps.event.addListener(marker, 'mouseover', function() {
-		                displayInfowindow(marker, pname);
+		                displayInfowindow(marker, title);
 		            });
-		
-		            kakao.maps.event.addListener(map, 'mouseout', function() {
+
+		            kakao.maps.event.addListener(marker, 'mouseout', function() {
 		                infowindow.close();
 		            });
-		            
-		            // 리스트의 아이템을 클릭하면 정보들을 hidden 영역으로 전송
-		            itemEl.onclick = function() {
-		                if (praddress) {
-		                document.getElementById('fulladdress').value = "[" + pname + "]" + praddress;
-		                } else {
-		                document.getElementById('fulladdress').value = "[" + pname + "]" + paddress;
-		                }
-		            	
-		            	document.getElementById('pname').value = pname;            	
-		                if (praddress) {
-		                	document.getElementById('paddress').value = praddress;
-		                } else {
-		                	document.getElementById('paddress').value = paddress; 
-		                }
-		            	document.getElementById('latclick').value = plat;
-		            	document.getElementById('lngclick').value = plng;
-		            };
-		
+
 		            itemEl.onmouseover =  function () {
-		                displayInfowindow(marker, pname);
+		                displayInfowindow(marker, title);
 		            };
-		
+
 		            itemEl.onmouseout =  function () {
 		                infowindow.close();
 		            };
-		        })(marker, places[i].place_name, places[i].road_address_name, places[i].address_name, places[i].y, places[i].x);
-		
+		        })(marker, places[i].place_name);
+
 		        fragment.appendChild(itemEl);
 		    }
 		

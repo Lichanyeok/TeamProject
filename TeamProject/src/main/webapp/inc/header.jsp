@@ -29,7 +29,7 @@
         <div class="header_bottom clearfix">
             <div class="logo"><a href="#">logo</a></div>   
             <ul class="nav_bottom">
-                <li><a href="#">에약관리</a></li>
+                <li><a href="#">예약관리</a></li>
                 <li><a href="#">리뷰</a></li>
                 <li><a href="#">공지사항</a></li>
                 <li><a href="#">고객문의</a></li>
