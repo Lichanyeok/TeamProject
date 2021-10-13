@@ -10,34 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberLoginProAction;
+import action.MatzipListAction;
+
 import vo.ActionForward;
 
 /**
  * Servlet implementation class MemberFrontController
  */
-@WebServlet("*.me")
-public class MemberFrontController extends HttpServlet {
+@WebServlet("*.mz")
+public class MatzipFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getServletPath();
-		System.out.println("MemberFrontController");
-		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
-		if(command.equals("/MemberLoginFormAction.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/memberLogin.jsp");
-			forward.setRedriect(false);
-		}else if(command.equals("/MemberJoinFormAction.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/memberJoin.jsp");
-			forward.setRedriect(false);
-		}else if(command.equals("/MemberJoinPro.me")) {
-			
-		}else if(command.equals("/MemberLoginProAction.me")) {
-			action = new MemberLoginProAction();
+		if(command.equals("/MatzipList.mz")) {
+			action = new MatzipListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -45,6 +34,9 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
 		
 		if(forward!=null){
 			if(forward.isRedriect()) {
