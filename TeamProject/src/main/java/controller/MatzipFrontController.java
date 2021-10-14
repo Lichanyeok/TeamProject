@@ -22,6 +22,7 @@ public class MatzipFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+//		System.out.println("aaa");
 		String command = request.getServletPath();
 		ActionForward forward = null;
 		Action action = null;
