@@ -6,6 +6,7 @@ header {
     height: 100px;
     width: 100%;
     background-color: #fff;
+    position: relative;
     
 }
 
@@ -16,10 +17,10 @@ header {
     position: relative;
     
 }
-
 .border_bottom {
     border-bottom: 1px solid #C3BCBC;
 }
+
 
 .nav_top {
     display: flex;

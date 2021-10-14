@@ -34,29 +34,9 @@
                 <li><a href="Review.do">리뷰</a></li>
                 <li><a href="Notice.do">공지사항</a></li>
                 <li><a href="CustomerCenter.do">고객문의</a></li>
-
-                <li><a href="#">예약관리</a></li>
-                <li><a href="#">리뷰</a></li>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="#">고객문의</a></li>
 			</ul>
         </div>
-    </header>
-
-    <!-- 헤더영역 -->
-    
-
-    
-<!--     <main> -->
         
-<!--     </main> -->
-<!--     <section></section> -->
-<!--     <div class = "sec1"></div> -->
-<!--     <div class = "sec2"></div> -->
-<!--     <div class = "sec3"></div> -->
-    
-<!--     <footer></footer> -->
-    
-     
+    </header>
 </body>
 </html>
