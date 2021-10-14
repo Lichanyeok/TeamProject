@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/style.css">
+<link rel="stylesheet" href="/TeamProject/css/map.css">
 </head>
 <body>
 	<main>
