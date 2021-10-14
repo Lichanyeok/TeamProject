@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<script src="../js/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-
-</script>
 <body>
    
     <header>
@@ -19,7 +15,19 @@
           <ul class = "nav_top">
               <li><a href="#">고객센터</a></li>
               <li><a href="#">관심상품</a></li>
-              <li><a href="#">마이페이지</a></li>
+              <%
+              String grade = (String)session.getAttribute("grade");
+              if(grade!=null){
+            	  if(grade.equals("5")){%>
+            	<li><a href="Manager.do">관리자 페이지</a></li>
+            	<%
+            	}else{%>
+            	<li><a href="#">마이페이지</a></li>
+            	
+            	<%} 
+              } %>
+            
+              
               <%
               String nickName = (String)session.getAttribute("sId");
               if(nickName==null) {%>
