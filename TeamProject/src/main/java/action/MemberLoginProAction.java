@@ -32,7 +32,10 @@ public class MemberLoginProAction implements Action {
 		
 		if(isLoginSuccess){
 			HttpSession session = request.getSession();
+			String grade = bean.getGrade()+"";
+			System.out.println(grade);
 			session.setAttribute("sId", bean.getNickName());
+			session.setAttribute("grade", grade);
 			forward.setPath("/");
 			forward.setRedriect(false);
 		}else {

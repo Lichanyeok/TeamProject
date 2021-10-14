@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/map.css">
+
+
 </head>
 <body>
 		<!-- 상위 고정 -->		
@@ -20,7 +22,7 @@
 	    </div>         
     </main>
     <section>
-    	<jsp:include page="/inc/search.jsp"></jsp:include>
+    	<jsp:include page="../inc/search.jsp"></jsp:include>
     </section>
    
     
