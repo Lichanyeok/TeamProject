@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/map.css" rel="stylesheet">
+<link href="css/map.css" rel="stylesheet">
 </head>
 <body>
 		<div id="wrapper">
@@ -150,7 +150,7 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5><a href="../index.jsp?'+
+                '   <h5><a href="./index.jsp?'+
                 '	place_name='+places.place_name+
                 '	&road_address='+places.road_address_name+
                 '   &jiban_address='+places.address_name+

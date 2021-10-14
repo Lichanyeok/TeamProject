@@ -18,7 +18,7 @@ public class MatzipListAction implements Action {
 		
 		
 		forward= new ActionForward();
-		forward.setPath(null);
+		forward.setPath("/search/matzip_search_list.jsp");
 		forward.setRedriect(false);
 		return forward;
 	}

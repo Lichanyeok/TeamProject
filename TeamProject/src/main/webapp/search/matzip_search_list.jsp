@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
+<link rel="stylesheet" href="/TeamProject/css/style.css">
 </head>
 <body>
 	<main>
@@ -20,7 +20,7 @@
         
 	
     <section>
-    	<jsp:include page="/inc/search.jsp"></jsp:include>
+    	<jsp:include page="../inc/search.jsp"></jsp:include>
     </section>
     <footer></footer>
     

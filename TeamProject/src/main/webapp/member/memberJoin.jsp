@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <div class = "join">
         <div class = "join_container">
             <form action="MemberJoinProAction.do" method="POST">
-                <h1><a href="#"><img class ="logo"src="./images/logo.png" alt="logo"></a></h1>
+                <h1><a href="/TeamProject/"><img class ="logo"src="./inc/LOGO.png" alt="logo"></a></h1>
                 <ul class="ingo_top">
                     <li>STEP1.본인인증</li>
                     <li>STEP1.약관동의</li>
