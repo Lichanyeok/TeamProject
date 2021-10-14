@@ -12,7 +12,7 @@
 </head>
 <body>
     <section>
-        <form action="MemberLoginProAction.me" method="post">
+        <form action="MemberLoginProAction.do" method="post">
         <h1>LOGIN</h1>
             <div class="login_wrap">
             <div class="login_input">
@@ -45,7 +45,7 @@
         <ul class="find">
             <li><a href = "#">아이디찾기</a></li>
             <li><a href = "#">비밀번호찾기</a></li>
-            <li><a href = "MemberJoinFormAction.me">회원가입</a></li>
+            <li><a href = "MemberJoinFormAction.do">회원가입</a></li>
         </ul>
 
 

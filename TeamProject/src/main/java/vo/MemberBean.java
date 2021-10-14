@@ -15,7 +15,22 @@ public class MemberBean {
 	private String gender;
 	private int grade;
 	private Date date;
-	
+	public MemberBean() {};
+	public MemberBean(String name, String nickName, int age, String id, String pass, String email,
+			String mobile, String gender) {
+		super();
+
+		this.name = name;
+		this.nickName = nickName;
+		this.age = age;
+		this.id = id;
+		this.pass = pass;
+		this.email = email;
+		this.mobile = mobile;
+		this.gender = gender;
+		this.grade = grade;
+		this.date = date;
+	}
 	public int getIdx() {
 		return idx;
 	}
