@@ -39,7 +39,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			 String sql = "SELECT pass,nickname FROM project_member WHERE id=?";
+			 String sql = "SELECT pass,nickname,grade FROM project_member WHERE id=?";
 	         pstmt = con.prepareStatement(sql);
 	         pstmt.setString(1, bean.getId());
 	         
@@ -53,6 +53,7 @@ public class MemberDAO {
 	            //    일치하면 isLoginSccuess 변수에 true 값 저장(아니면 기본값 false 사용)
 	            if(bean.getPass().equals(rs.getString("pass"))) {
 	            	bean.setNickName(rs.getString("nickname"));
+	            	bean.setGrade(rs.getInt("grade"));
 	            	isLoginSuccess = true; // 패스워드 일치
 	            } 
 	         }
