@@ -19,15 +19,7 @@
           <ul class = "nav_top">
               <li><a href="#">고객센터</a></li>
               <li><a href="#">관심상품</a></li>
-              
-              <%
-              String grade = (String)session.getAttribute("grade");
-              if(grade!=null){
-              if(grade.equals("5")){ %>
-              <li><a href="Manager.do">관리자모드</a></li>
-              <%}else{ %>
-              <li><a href="MyPage.do">마이페이지</a></li>
-              <%}} %>
+              <li><a href="#">마이페이지</a></li>
               <%
               String nickName = (String)session.getAttribute("sId");
               if(nickName==null) {%>
