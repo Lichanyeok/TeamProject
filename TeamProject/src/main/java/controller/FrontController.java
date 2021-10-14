@@ -22,6 +22,7 @@ public class FrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
 		String command = request.getServletPath();
 		System.out.println("MemberFrontController");
 		System.out.println(command);
