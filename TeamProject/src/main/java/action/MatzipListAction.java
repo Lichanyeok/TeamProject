@@ -9,16 +9,15 @@ public class MatzipListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward;
-		
-		
+		ActionForward forward;		
+//		System.out.println("bbb");
 		
 		
 		
 		
 		
 		forward= new ActionForward();
-		forward.setPath(null);
+		forward.setPath("/search/matzip_search_list.jsp");
 		forward.setRedriect(false);
 		return forward;
 	}
