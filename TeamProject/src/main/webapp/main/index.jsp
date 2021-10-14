@@ -10,7 +10,7 @@
 </head>
 <body>
 		<!-- 상위 고정 -->
-        <jsp:include page="inc/header.jsp"></jsp:include>
+        <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
     
     <main>

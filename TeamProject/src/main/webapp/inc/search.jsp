@@ -5,28 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/map.css" rel="stylesheet">
+<link href="../css/map.css" rel="stylesheet">
 </head>
 <body>
-		<div id="wrapper">
-			<div class="map_wrap">	
-			    <div id="menu_wrap" class="bg_white">
-			        <div class="option">
-			            <div>
-			                <form onsubmit="searchPlaces(); return false;">
-			                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-			                    <button type="submit">검색하기</button> 
-			                </form>
-			            </div>
-			        </div>
-			        <hr>
-			        <ul id="placesList"></ul>
-			        <div id="pagination"></div>
-			    </div>	
-			    <div id="map" style="width:500px;height:300px;position:relative;overflow:hidden;"></div>
-		    </div>		
-	</div>
-
+	<div class="map_wrap">	
+		<div id="menu_wrap" class="bg_white">
+			<div class="option">
+				<div>
+				    <form onsubmit="searchPlaces(); return false;">
+			            키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+			            <button type="submit">검색하기</button> 
+			        </form>
+			    </div>
+	        </div>
+	        <hr>
+	        <ul id="placesList"></ul>
+	        <div id="pagination"></div>
+	    </div>	
+	    <div id="map" style="width:500px;height:300px;position:relative;overflow:hidden;"></div>
+    </div>		
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a24286b0f4158288b1be403fc15cbe4&libraries=services"></script>
 <script>
@@ -150,7 +147,7 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5><a href="./index.jsp?'+
+                '   <h5><a href="../main/index.jsp?'+
                 '	place_name='+places.place_name+
                 '	&road_address='+places.road_address_name+
                 '   &jiban_address='+places.address_name+
