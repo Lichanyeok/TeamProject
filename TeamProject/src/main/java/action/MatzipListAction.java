@@ -9,9 +9,8 @@ public class MatzipListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward;
-		
-		
+		ActionForward forward;		
+//		System.out.println("bbb");
 		
 		
 		

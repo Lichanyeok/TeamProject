@@ -7,21 +7,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/style.css">
+<link rel="stylesheet" href="/TeamProject/css/map.css">
 </head>
 <body>
-		<!-- 상위 고정 -->
-        <jsp:include page="../inc/header.jsp"></jsp:include>
-        <!-- 상위 고정 -->
+	<main>
+			<!-- 상위 고정 -->
+	        <jsp:include page="../inc/header.jsp"></jsp:include>
+	        <!-- 상위 고정 -->
+	        <br>
+	         검색: 
+	         <input type="text"> <input type="button" value="버튼">
+	</main>
         
-    <main>    
-    </main>
+	
     <section>
     	<jsp:include page="../inc/search.jsp"></jsp:include>
     </section>
-    <div class = "sec1"></div>    
-    <div class = "sec2"></div>
-    <div class = "sec3"></div>
-    
     <footer></footer>
+    
 </body>
 </html>

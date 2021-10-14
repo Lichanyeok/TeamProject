@@ -35,31 +35,16 @@
         </div>
         <div class = "border_bottom"></div>
         <div class="header_bottom clearfix">
-            <div class="logo"><a href="/TeamProject/"><img src="./inc/LOGO.png"></a></div>   
+            <div class="logo"><a href="/TeamProject/"><img src="../inc/LOGO.png"></a></div>   
             <ul class="nav_bottom">
                 <li><a href="Reserve.do">예약관리</a></li>
                 <li><a href="Review.do">리뷰</a></li>
                 <li><a href="Notice.do">공지사항</a></li>
                 <li><a href="CustomerCenter.do">고객문의</a></li>
-            </ul>
+			</ul>
            
         </div>
-    </header>
-
-    <!-- 헤더영역 -->
-    
-
-    
-<!--     <main> -->
         
-<!--     </main> -->
-<!--     <section></section> -->
-<!--     <div class = "sec1"></div> -->
-<!--     <div class = "sec2"></div> -->
-<!--     <div class = "sec3"></div> -->
-    
-<!--     <footer></footer> -->
-    
-     
+    </header>
 </body>
 </html>
