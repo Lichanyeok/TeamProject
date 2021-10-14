@@ -39,7 +39,7 @@ public class MatzipFrontController extends HttpServlet {
 		
 		
 		if(forward!=null){
-			if(forward.isRedriect()) {
+			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else{
 				RequestDispatcher dispatch = request.getRequestDispatcher(forward.getPath());

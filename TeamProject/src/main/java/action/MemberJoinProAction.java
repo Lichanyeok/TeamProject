@@ -36,7 +36,7 @@ public class MemberJoinProAction implements Action {
 		
 		if(isJoinSuccess) {
 			forward.setPath("/MemberLoginFormAction.do");
-			forward.setRedriect(false);
+			forward.setRedirect(false);
 			return forward;
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
