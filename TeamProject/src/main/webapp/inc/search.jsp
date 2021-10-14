@@ -23,8 +23,7 @@
 			        <ul id="placesList"></ul>
 			        <div id="pagination"></div>
 			    </div>	
-		    
-			    <div id="map" style="width:500px;height:300px;position:relative;overflow:hidden;"></div>
+			    <div id="map"></div>
 		    </div>		
 	</div>
 
