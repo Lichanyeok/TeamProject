@@ -100,4 +100,93 @@ public class MemberDAO {
 		return isInsertSuccess;
 	}
 	
+	public int menagementMember(String pass) {
+        int insertCount = 0;
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM project_member WHERE pass=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, pass);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                insertCount += 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+        return insertCount;
+    }
+
+    public MemberBean selectArticle(String pass) {
+        MemberBean article = null;
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM project_member WHERE pass=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, pass);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                article = new MemberBean();
+                article.setName(rs.getString("name"));
+                article.setNickName(rs.getString("nickName"));
+                article.setGender(rs.getString("gender"));
+                article.setAge(rs.getInt("age"));
+                article.setEmail(rs.getString("email"));
+                article.setId(rs.getString("id"));
+                article.setMobile(rs.getString("mobile"));
+                article.setPass(rs.getString("pass"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(rs);
+            close(pstmt);
+        }
+
+        return article;
+    }
+
+    public int managementMember(MemberBean member) {
+        int updateCount = 0;
+
+        PreparedStatement pstmt = null;
+
+        try {
+            String sql = "UPDATE project_member SET name=?,nickname=?,pass=?,mobile=?,gender=?,age=?,email=? WHERE id=?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member.getName());
+            pstmt.setString(2, member.getNickName());
+            pstmt.setString(3, member.getPass());
+            pstmt.setString(4, member.getMobile());
+            pstmt.setString(5, member.getGender());
+            pstmt.setInt(6, member.getAge());
+            pstmt.setString(7, member.getEmail());
+            pstmt.setString(8, member.getId());
+
+            updateCount = pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("updateArticle() ¿À·ù - " + e.getMessage());
+        } finally {
+            close(pstmt);
+        }
+
+        return updateCount;
+    }
+
 }

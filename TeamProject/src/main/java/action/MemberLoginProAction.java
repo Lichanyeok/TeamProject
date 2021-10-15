@@ -34,10 +34,11 @@ public class MemberLoginProAction implements Action {
 			HttpSession session = request.getSession();
 			String grade = bean.getGrade()+"";
 			System.out.println(grade);
-			session.setAttribute("sId", bean.getNickName());
-			session.setAttribute("grade", grade);
+			session.setAttribute("sNn", bean.getNickName());
+			session.setAttribute("sId", bean.getId());
+			session.setAttribute("sGr", bean.getGrade());
 			forward.setPath("/");
-			forward.setRedriect(false);
+			forward.setRedirect(false);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

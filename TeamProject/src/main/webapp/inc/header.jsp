@@ -15,28 +15,22 @@
           <ul class = "nav_top">
               <li><a href="#">고객센터</a></li>
               <li><a href="#">관심상품</a></li>
-              <%
-              String grade = (String)session.getAttribute("grade");
-              if(grade!=null){
-            	  if(grade.equals("5")){%>
-            	<li><a href="Manager.do">관리자 페이지</a></li>
-            	<%
-            	}else{%>
-            	<li><a href="#">마이페이지</a></li>
-            	
-            	<%} 
-              } %>
-            
-              
-              <%
-              String nickName = (String)session.getAttribute("sId");
-              if(nickName==null) {%>
-              <li><a href="MemberLoginFormAction.do">마이페이지</a></li>
-              <li><a href="MemberLoginFormAction.do">로그인</a></li>
-              <%}else{ %>
-              <li><a><%=nickName %>님</a>&nbsp;<a href="./member/logout.jsp">로그아웃</a></li>
-              <%} %>
-              
+               <%
+                String nickName = (String) session.getAttribute("sNn");
+                int grade = 0;
+                System.out.println("nickName = "+nickName);
+                if (nickName != null) {
+                    grade = (int) session.getAttribute("sGr");
+                    if (grade == 5) { %>
+            <li><a href="MemberManagementFormAction.do">관리페이지</a></li>
+            <li><a><%=nickName %>님</a>&nbsp;<a href="MemberLogoutForm.do">로그아웃</a></li>
+            <% } else {%>
+            <li><a href="MemberManagementFormAction.do">마이페이지</a></li>
+            <li><a><%=nickName %>님</a>&nbsp;<a href="MemberLogoutForm.do">로그아웃</a></li>
+            <%} %>
+            <%} else { %>
+            <li><a href="MemberLoginFormAction.do">로그인</a></li>
+            <%} %>
           </ul>
         </div>
         <div class = "border_bottom"></div>

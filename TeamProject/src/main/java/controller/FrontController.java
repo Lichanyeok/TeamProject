@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
+import action.MemberLogoutAction;
+import action.MemberManagementAction;
+import action.MemberManagementProAction;
 import vo.ActionForward;
 
 /**
@@ -31,11 +34,11 @@ public class FrontController extends HttpServlet {
 		if(command.equals("/MemberLoginFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
-			forward.setRedriect(false);
+			forward.setRedirect(false);
 		}else if(command.equals("/MemberJoinFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberJoin.jsp");
-			forward.setRedriect(false);
+			forward.setRedirect(false);
 		}else if(command.equals("/MemberJoinProAction.do")) {
 			System.out.println("/MemberJoinProAction - controller");
 			action = new MemberJoinProAction();
@@ -54,10 +57,35 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberManagementFormAction.do")) {
+			forward = new ActionForward();
+			forward.setPath("./member/member_management_form.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemberManagementAction.do")) {
+			action = new MemberManagementAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberManagementProAction.do")) {
+			action = new MemberManagementProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberLogoutForm.do")) {
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward!=null){
-			if(forward.isRedriect()) {
+			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			}else{
 				RequestDispatcher dispatch = request.getRequestDispatcher(forward.getPath());
