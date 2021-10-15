@@ -12,7 +12,7 @@
 <body>
 	<main>
 			<!-- 상위 고정 -->
-	        <jsp:include page="../inc/header.jsp"></jsp:include>
+	        <jsp:include page="./inc/header.jsp"></jsp:include>
 	        <!-- 상위 고정 -->
 	        <br>
 	         검색: 
@@ -21,7 +21,7 @@
         
 	
     <section>
-    	<jsp:include page="../inc/search.jsp"></jsp:include>
+    	<jsp:include page="./inc/search.jsp"></jsp:include>
     </section>
     <footer></footer>
     
