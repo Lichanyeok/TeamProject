@@ -5,7 +5,7 @@ public class SearchBean {
 	private String jibun_address;
 	private String category;
 	private String place_name;
-	private float star_scroe;
+	private float star_score;
 	private String tell_number;
 	
 	public String getRoad_address() {
@@ -32,11 +32,11 @@ public class SearchBean {
 	public void setPlace_name(String place_name) {
 		this.place_name = place_name;
 	}
-	public float getStar_scroe() {
-		return star_scroe;
+	public float getStar_score() {
+		return star_score;
 	}
-	public void setStar_scroe(float star_scroe) {
-		this.star_scroe = star_scroe;
+	public void setStar_score(float star_score) {
+		this.star_score = star_score;
 	}
 	public String getTell_number() {
 		return tell_number;
