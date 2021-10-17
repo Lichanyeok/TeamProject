@@ -38,8 +38,8 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/MemberJoinFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberJoin.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/MemberJoinProAction.do")) {
+			forward.setRedirect(true);
+		}else if(command.equals("/member/MemberJoinProAction.do")) {
 			System.out.println("/MemberJoinProAction - controller");
 			action = new MemberJoinProAction();
 			try {

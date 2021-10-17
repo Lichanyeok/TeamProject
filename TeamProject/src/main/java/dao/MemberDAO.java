@@ -189,4 +189,55 @@ public class MemberDAO {
         return updateCount;
     }
 
+	public boolean hasNickName(MemberBean bean) {
+		System.out.println("hasNickName-DAO");
+		boolean hasNickName = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql ="SELECT nickname FROM project_member WHERE nickname=?";
+			pstmt = con.prepareStatement(sql);
+			System.out.println(bean.getNickName());
+			pstmt.setString(1, bean.getNickName());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				hasNickName = true;
+			}else {
+				hasNickName = false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+            close(pstmt);
+        }
+		return hasNickName;
+	}
+
+	public boolean hasId(MemberBean bean) {
+		boolean isDupId = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql ="SELECT id FROM project_member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getId());
+			rs = pstmt.executeQuery();
+			System.out.println(bean.getId());
+			if(rs.next()) {
+				isDupId = false;
+			}else {
+				isDupId = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isDupId;
+	}
 }
