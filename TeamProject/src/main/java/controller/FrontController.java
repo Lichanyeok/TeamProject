@@ -82,8 +82,32 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
+			
+		}else if(command.equals("/Reserve.do")) {
+			forward = new ActionForward();
+			forward.setPath("./reserve/reserve_main.jsp");
+			forward.setRedirect(false);
 		}
 		
+		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------
+		else if(command.equals("/Review.do")) {
+			forward = new ActionForward();
+			forward.setPath("./review/review_main.jsp");
+			forward.setRedirect(false);
+		}
+		//------------------------------ 공지사항 관련 컨트롤러 ---------------------------------
+		else if(command.equals("/Notice.do")) {
+			forward = new ActionForward();
+			forward.setPath("./notice/notice_main.jsp");
+			forward.setRedirect(false);
+		}
+		//----------------------------- 고객센터 관련 컨트롤러 ----------------------------------
+		else if(command.equals("/CustomerCenter.do")) {
+			forward = new ActionForward();
+			forward.setPath(".//customer_center/customer_main.jsp");
+			forward.setRedirect(false);
+		}
 		if(forward!=null){
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
