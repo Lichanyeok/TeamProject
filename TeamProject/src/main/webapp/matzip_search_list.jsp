@@ -21,7 +21,9 @@
         
 	
     <section>
+    	<div>
     	<jsp:include page="./inc/search.jsp"></jsp:include>
+    	</div>
     </section>
     <footer></footer>
     
