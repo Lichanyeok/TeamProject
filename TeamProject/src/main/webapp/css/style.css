@@ -80,22 +80,4 @@ main {
     
 }
 
-section {
-    width: 100%;
-    height: 300px;
-    background-color: salmon;    
-}
-
-
-.sec2{
-    width: 100%;
-    height: 300px;
-    background-color: skyblue;
-}
-
-.sec1{
-    width: 100%;
-    height: 300px;
-    background-color: teal;
-}
 
