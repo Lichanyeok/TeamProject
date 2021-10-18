@@ -1,6 +1,13 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import vo.SearchBean;
+
+import static db.jdbcUtil.*;
 
 public class BoardDAO {
 	
@@ -26,15 +33,15 @@ public class BoardDAO {
 		this.con = con;
 	}
 	
-	public static String getRandomStr(int size) { //난수 발생 메서드 size로 크기 조절
+	public static String getRandomStr(int size) {
 		if(size > 0) {
 			char[] tmp = new char[size];
 			for(int i=0; i<tmp.length; i++) {
 				int div = (int) Math.floor( Math.random() * 2 );
 				
-				if(div == 0) { // 0이면 숫자로
+				if(div == 0) { 
 					tmp[i] = (char) (Math.random() * 10 + '0') ;
-				}else { //1이면 알파벳
+				}else { 
 					tmp[i] = (char) (Math.random() * 26 + 'A') ;
 				}
 			}
@@ -42,5 +49,4 @@ public class BoardDAO {
 		}
 		return "ERROR : Size is required."; 
 	}
-
 }
