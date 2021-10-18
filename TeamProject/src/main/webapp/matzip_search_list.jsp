@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/style.css">
 <link rel="stylesheet" href="/TeamProject/css/map.css">
+<link rel="stylesheet" href="/TeamProject/css/matzip_search_list.css">
 </head>
 <body>
 	<main>
@@ -21,7 +22,7 @@
         
 	
     <section>
-    	<div>
+    	<div class = "search_list">
     	<jsp:include page="./inc/search.jsp"></jsp:include>
     	</div>
     </section>
