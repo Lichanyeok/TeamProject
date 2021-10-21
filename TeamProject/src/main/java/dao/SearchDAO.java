@@ -58,7 +58,7 @@ public class SearchDAO {
 		return listCount;
 	}
 
-	public ArrayList<SearchBean> ArticleList(int page, int maximum) {
+	public ArrayList<SearchBean> ArticleList(int page, int maximum, String category) {
 		ArrayList<SearchBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
@@ -68,10 +68,11 @@ public class SearchDAO {
 		int startRow = (page - 1) * maximum;
 		
 		try {
-			String sql = "SELECT * FROM search LIMIT ?,?";
+			String sql = "SELECT * FROM search WHERE category=? LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow); // 시작행번호
-			pstmt.setInt(2, maximum); // 페이지당 게시물 수
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow); // 시작행번호
+			pstmt.setInt(3, maximum); // 페이지당 게시물 수
 			
 			rs = pstmt.executeQuery();
 			

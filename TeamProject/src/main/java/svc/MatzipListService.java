@@ -26,7 +26,7 @@ public class MatzipListService {
 		return listCount;
 	}
 
-	public ArrayList<SearchBean> getArticleList(int page, int maximum) {
+	public ArrayList<SearchBean> getArticleList(int page, int maximum, String category) {
 		Connection con = getConnection();
 		
 		// 공통작업-2. BoardDAO 클래스로부터 BoardDAO 객체 가져오기
@@ -35,7 +35,7 @@ public class MatzipListService {
 		// 공통작업-3. BoardDAO 객체에 Connection 객체 전달
 		dao.setConnection(con);		
 		
-		ArrayList<SearchBean> articleList = dao.ArticleList(page, maximum);
+		ArrayList<SearchBean> articleList = dao.ArticleList(page, maximum, category);
 		
 		// 공통작업-4. Connection 객체 반환
 		close(con);
