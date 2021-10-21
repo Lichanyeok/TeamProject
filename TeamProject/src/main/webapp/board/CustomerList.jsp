@@ -66,6 +66,6 @@
 	<%} else{%>
 	<section id="emptyArea">등록된 글이 없습니다</section>
 	<%}%>
-	<input type="button" value="글쓰기" onclick="location.href='WriteForm.bo'">
+	<input type="button" value="글쓰기" onclick="location.href='WriteForm.do'">
 </body>
 </html>

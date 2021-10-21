@@ -9,7 +9,7 @@
 <body>
 	 
       <h1>게시판 글 등록</h1>
-      <form action="WriteFormPro.bo" method="post" name="boardForm">
+      <form action="WriteFormPro.do" method="post" name="boardForm">
          <table>
             <tr><td>이름 : <input type="text" name="name"></td></tr>
             <tr><td>제목 : <input type="text" name="subject"></td></tr>
