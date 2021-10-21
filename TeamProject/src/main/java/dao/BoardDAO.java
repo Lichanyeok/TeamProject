@@ -34,7 +34,7 @@ public class BoardDAO {
 		System.out.println("setConnection");
 		this.con = con;
 	}
-	
+	//----------------------------------------------------------
 	public static String getRandomStr(int size) {
 		if(size > 0) {
 			char[] tmp = new char[size];
@@ -51,6 +51,8 @@ public class BoardDAO {
 		}
 		return "ERROR : Size is required."; 
 	}
+	
+	//----------------------------------------------------------
 	public int insertComment(BoardBean board) {
 		int insertCount=0;
 		

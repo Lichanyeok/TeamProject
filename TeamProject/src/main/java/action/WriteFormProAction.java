@@ -40,7 +40,7 @@ public class WriteFormProAction implements Action {
 			out.println("history.back()");			
 			out.println("</script>");
 			forward = new ActionForward();
-			forward.setPath("CustomerCommentList.bo");
+			forward.setPath("CustomerCommentList.do");
 			forward.setRedirect(true);
 		}
 		

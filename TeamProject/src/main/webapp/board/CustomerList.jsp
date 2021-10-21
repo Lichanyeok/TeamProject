@@ -47,21 +47,21 @@
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전">&nbsp;
 	<%} else {%>
-			<input type="button" value="이전" onclick="location.href='BoardList.bo?page=<%=nowPage - 1 %>'">&nbsp;
+			<input type="button" value="이전" onclick="location.href='BoardList.do?page=<%=nowPage - 1 %>'">&nbsp;
 	<%} %>
 	
 	<%for(int i = startPage; i <= endPage; i++) { 
 			if(i == nowPage) { %>
 				[<%=i %>]
 		<%} else { %>
-				<a href="BoardList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href="BoardList.do?page=<%=i %>">[<%=i %>]</a>&nbsp;
 		<%} %>
 	<%} %>
 	
 	<%if(nowPage >= maxPage) { %>
 			<input type="button" value="다음">
 	<%} else { %>
-			<input type="button" value="다음" onclick="location.href='BoardList.bo?page=<%=nowPage + 1 %>'">
+			<input type="button" value="다음" onclick="location.href='BoardList.do?page=<%=nowPage + 1 %>'">
 	<%} %>
 	<%} else{%>
 	<section id="emptyArea">등록된 글이 없습니다</section>

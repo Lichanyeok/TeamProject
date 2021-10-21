@@ -20,7 +20,7 @@
             <input type="submit" value="등록">&nbsp;&nbsp;
             <input type="reset" value="다시쓰기">
             <input type="button" value="취소" onclick="history.back()">
-            <input type="button" value="목록" onclick="location.href='CustomerCommentList.bo'">
+            <input type="button" value="목록" onclick="location.href='CustomerCommentList.do'">
       </form>
   
 </body>
