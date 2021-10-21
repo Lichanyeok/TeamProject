@@ -22,33 +22,29 @@
 <meta charset="UTF-8">
 <title>MVC 게시판</title>
 <style type="text/css">
+	.clear{
+		clear: both;
+	}
 	#listForm {
-		width: 1024px;
-		max-height: 610px;
-		border: 1p solid red;
+		width: auto;
+		max-height: 610px;		
 		margin: auto;
-	}
+	}	
 	
-	h2 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 1024px;
-	}
-	
-	#tr_top {
-		background: orange;
-		text-align: center;
+	#category_list_info{
+		border: 1px dashed red;
+		width: 538px;
+		height: 100px;
+		float: left;
+		margin: 0 auto;		
+		color: black;
 	}
 	
 	#pageList {
-		margin: auto;
+		margin: 0 auto;
 		width: 1024px;
 		text-align: center;
-	}
-	
+	}	
 	#emptyArea {
 		margin: auto;
 		width: 1024px;
@@ -66,35 +62,33 @@
 </head>
 <body>
 	<!-- 게시판 리스트 -->
-	<section id="listForm">
-		
-		<table>
+		<section id="listForm">
+						
 			<%
 			if(articleList != null && listCount > 0) {
 			%>
-				<tr id="tr_top">
-					<td width="200px">업체명</td>
-					<td width="250px">주소</td>
-					<td width="250px">지번주소</td>
-					<td width="90px">업종</td>
-					<td width="70px">별점</td>
-					<td width="140px">전화번호</td>
-				</tr>
+<!-- 			<tr id="tr_top"> -->
+<!-- 				<td width="200px">업체명</td> -->
+<!-- 				<td width="250px">주소</td> -->
+<!-- 				<td width="250px">지번주소</td> -->
+<!-- 				<td width="90px">업종</td> -->
+<!-- 				<td width="70px">별점</td> -->
+<!-- 				<td width="140px">전화번호</td> -->
+<!-- 			</tr> -->
 				<%
 				for(int i = 0; i < articleList.size(); i++) {
 					%>
-					<tr>
-						<td align="center"><%=articleList.get(i).getPlace_name() %></td>
-						<td align="center"><%=articleList.get(i).getRoad_address() %></td>
-						<td align="center"><%=articleList.get(i).getJibun_address()%></td>
-						<td align="center"><%=articleList.get(i).getCategory() %></td>
-						<td align="center"><%=articleList.get(i).getStar_score() %></td>
-						<td align="center"><%=articleList.get(i).getTell_number() %></td>
-					</tr>
-					
-					<%}%>
-		</table>
+					<div id="category_list_info">
+							업체명 : <%=articleList.get(i).getPlace_name() %> | 
+							업종 : <%=articleList.get(i).getCategory() %><br>
+							주소 : 	<%=articleList.get(i).getRoad_address() %>&nbsp;
+							(<%=articleList.get(i).getJibun_address()%>)<br>
+							별점 : <%=articleList.get(i).getStar_score() %> |
+							전화번호 : <%=articleList.get(i).getTell_number() %>
+					</div><%}%>
+		
 	</section>
+	<div class="clear"></div>
 	<br>
 	<section id="pageList">
 	<%if(nowPage <= 1) {%>

@@ -6,6 +6,8 @@
     --main-color:#FF8831;
 }
 
+
+
 .join_container{
     width: 788px;
     margin: 0 auto;
@@ -13,7 +15,8 @@
 
 
 .logo {
-    margin: 100px 0 30px;
+  margin: 0 auto;
+  display: block;
 }
 
 .join_container h1 {
@@ -124,7 +127,7 @@ join_container input{
     font-weight: 400;
     color: #fff;
     display: block;
-    background-color: var(—main-color);
+    background-color: var(--main-color);
     border: none;
     width: 174px;
     height: 36px;
