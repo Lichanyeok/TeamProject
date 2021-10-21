@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BoardListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberManagementAction;
 import action.MemberManagementProAction;
+import action.WriteFormProAction;
 import vo.ActionForward;
 
 /**
@@ -77,6 +79,34 @@ public class FrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MemberLogoutForm.do")) {
 			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/board/WriteForm.bo")) {
+			// 글쓰기 작업을 위한 뷰페이지로 포워딩
+			forward = new ActionForward();
+			forward.setPath("/board/WriteForm.jsp");
+			forward.setRedirect(false); // Dispatcher 방식(기본값이므로 생략 가능)
+		} else if(command.equals("/board/WriteFormPro.bo")) { 
+			action = new WriteFormProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/board/CustomerCommentList.bo")) { 
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/board/BoardList.bo")) { 
+			action = new BoardListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
