@@ -17,6 +17,7 @@ public class MemberLoginProService {
 		boolean isLoginSuccess = dao.selectMember(bean);
 		
 		if(isLoginSuccess) {
+			dao.updateDate(bean);
 			commit(con);
 			isLoginSuccess = true;
 		}else {

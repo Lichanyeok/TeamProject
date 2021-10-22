@@ -11,6 +11,7 @@
     <title>join</title>
     <link rel="stylesheet" href="../css/join.css">
     <script src="../js/jquery-3.6.0.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
   	
    
@@ -109,6 +110,19 @@
 				}
 			});
 		}
+  	
+  		window.onload = function () {
+  	        document.getElementById("address1").addEventListener("click", function () {
+  	            new daum.Postcode({
+  	                oncomplete: function (data) {
+  	                    document.getElementById("address1").value = data.address;
+  	                    document.querySelector("input[id=address2]").focus();
+  	                }
+  	            }).open();
+  	        });
+  	    }
+  	
+  	
   		</script>
     
 </head> 
@@ -156,15 +170,20 @@
                         <td><span id="isIdentical"></span></td> <!-- 경고메세지 -->
                     </tr>
                     <tr>
+                    	<th>이메일</th>
+                    	<td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
                         <th>전화번호</th>
                         <td><input type="text" name="mobile"></td> <!-- 임시구현 -->
 <!--                         <td><span name="mobile">010-1234-****</span></td>  <!— 폰인증후 db로받을시 구현부분 —> -->
                         <td></td> <!-- 경고 메세지 --> 
                     </tr>
                     <tr>
-                    	<th>이메일</th>
-                    	<td><input type="text" name="email"></td>
-                    </tr>
+                    <th>주소</th>
+                    <td><input type="text" readonly="readonly" id="address1"> <input type="text" id="address2"></td>
+                    <td></td> <!-- 경고 메세지 -->
+                	</tr>
                     <tr>
                         <th>성별</th>
                         <td>

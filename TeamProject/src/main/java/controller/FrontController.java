@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberAlignAction;
+import action.MemberDeleteAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberManagementAction;
 import action.MemberManagementProAction;
+import action.ModifyMemberGradeAction;
+import action.PublishAction;
 import vo.ActionForward;
 
 /**
@@ -61,6 +65,10 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./member/member_management_form.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/AdminManagementFormAction.do")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/admin_main.jsp");
+			forward.setRedirect(false);
 		}else if(command.equals("/MemberManagementAction.do")) {
 			action = new MemberManagementAction();
 			try {
@@ -82,6 +90,45 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberAlign.do")) {
+			action = new MemberAlignAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberDeleteAction.do")) {
+			action = new MemberDeleteAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ModifyMemberGrade.do")) {
+			action = new ModifyMemberGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberGift.do")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/gift_coupon.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/PublishCoupon.do")) {
+			action = new PublishAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 			
 		}else if(command.equals("/Reserve.do")) {
