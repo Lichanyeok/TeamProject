@@ -13,14 +13,8 @@
     margin: 0 auto;
 }
 
-
-.logo {
-  margin: 0 auto;
-  display: block;
-}
-
-.join_container h1 {
-    text-align: center;
+.join h1 {
+	  background-color: #000;
 }
 
 join_container input{

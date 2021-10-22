@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>join</title>
-    <link rel="stylesheet" href="./css/join.css">
+    <link rel="stylesheet" href="../css/join.css">
 </head>
 <body>
     <div class = "join">
+    		
+                <h1><a><img class = "logo" src= "../images/LOGO.png" alt="logo"></a></h1>
         <div class = "join_container">
             <form action="MemberJoinProAction.do" method="POST">
-                <h1><a href="/TeamProject/"><img class ="logo"src="./inc/LOGO.png" alt="logo"></a></h1>
                 <ul class="ingo_top">
                     <li>STEP1.본인인증</li>
                     <li>STEP1.약관동의</li>
