@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Welcome, is Matzip</title>
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href=".css/style.css">
 </head>
 <body>
 		<!-- 상위 고정 -->

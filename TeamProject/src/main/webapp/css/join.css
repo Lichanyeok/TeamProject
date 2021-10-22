@@ -13,8 +13,11 @@
     margin: 0 auto;
 }
 
-.join h1 {
-	  background-color: #000;
+.logo {
+    margin: 100px 0 30px}
+
+.join_container h1 {
+    text-align: center;
 }
 
 join_container input{
