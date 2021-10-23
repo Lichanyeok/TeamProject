@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberAlignAction;
 import action.MemberDeleteAction;
+import action.BoardListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
@@ -19,6 +20,7 @@ import action.MemberManagementAction;
 import action.MemberManagementProAction;
 import action.ModifyMemberGradeAction;
 import action.PublishAction;
+import action.WriteFormProAction;
 import vo.ActionForward;
 
 /**
@@ -49,7 +51,7 @@ public class FrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberLoginProAction.do")) {
@@ -129,7 +131,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		// -----------------------------¿¹¾à °ü·Ã ÄÁÆ®·Ñ·¯ ---------------------------------------
+		// -----------------------------ì˜ˆì•½ ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ ---------------------------------------
 			
 		}else if(command.equals("/Reserve.do")) {
 			forward = new ActionForward();
@@ -137,22 +139,49 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}else if(command.equals("/Payment.do")) {
 			forward = new ActionForward();
+		}else if(command.equals("/WriteForm.do")) {
+			// æ¹²ï¿½ï¿½ë²æ¹²ï¿½ ï¿½ì˜‰ï¿½ë¾½ï¿½ì“£ ï¿½ìï¿½ë¸³ é…‰ê³ ëŸ¹ï¿½ì” ï§ï¿½æ¿¡ï¿½ ï¿½ë£·ï¿½ì™ï¿½ëµ«
+			forward = new ActionForward();
+			forward.setPath("/board/WriteForm.jsp");
+			forward.setRedirect(false); // Dispatcher è«›â‘¹ë–‡(æ¹²ê³•ë‚¯åª›ë¯ªì” èª˜ï¿½æ¿¡ï¿½ ï¿½ê¹®ï¿½ì™‚ åª›ï¿½ï¿½ë’«)
+		} else if(command.equals("/WriteFormPro.do")) { 
+			action = new WriteFormProAction();
 			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/CustomerCommentList.do")) { 
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/BoardList.do")) { 
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		// -------------------------------¸®ºä °ü·Ã ÄÁÆ®·Ñ·¯ ------------------------------------
+		// -------------------------------ë¦¬ë·° ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ ------------------------------------
 		else if(command.equals("/Review.do")) {
 			forward = new ActionForward();
 			forward.setPath("./review/review_main.jsp");
 			forward.setRedirect(false);
 		}
-		//------------------------------ °øÁö»çÇ× °ü·Ã ÄÁÆ®·Ñ·¯ ---------------------------------
+		//------------------------------ ê³µì§€ì‚¬í•­ ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ ---------------------------------
 		else if(command.equals("/Notice.do")) {
 			forward = new ActionForward();
 			forward.setPath("./notice/notice_main.jsp");
 			forward.setRedirect(false);
 		}
-		//----------------------------- °í°´¼¾ÅÍ °ü·Ã ÄÁÆ®·Ñ·¯ ----------------------------------
+		//----------------------------- ê³ ê°ì„¼í„° ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ ----------------------------------
 		else if(command.equals("/CustomerCenter.do")) {
 			forward = new ActionForward();
 			forward.setPath(".//customer_center/customer_main.jsp");
