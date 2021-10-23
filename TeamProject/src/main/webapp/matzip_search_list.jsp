@@ -43,7 +43,7 @@
 	    <div id="category_list">	    
 	    </div>
 	    </div>
-	</div>    
+	</div>
 </body>
 </html>
 
