@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/action/BoardListAction.java=UTF-8
 encoding//src/main/java/controller/FrontController.java=UTF-8
+encoding//src/main/java/dao/BoardDAO.java=UTF-8
+encoding//src/main/java/vo/BoardBean.java=UTF-8
 encoding//src/main/java/vo/MemberBean.java=UTF-8

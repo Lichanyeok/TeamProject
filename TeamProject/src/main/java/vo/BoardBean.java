@@ -2,6 +2,7 @@ package vo;
 
 import java.sql.Date;
 /*
+ * 외래키 or DEFAULT '관리자' / 구분번호 / 내용 / 시간 
  create table CustomerComment(
  name varchar(20) not null unique,
  subject varchar(50) not null,
@@ -13,7 +14,7 @@ import java.sql.Date;
  * 
  */
 public class BoardBean {
-	// 게시물 1개 정보를 관리할 BoardBean 클래스 정의
+
 	private String name;
 	private String subject;
 	private String content;

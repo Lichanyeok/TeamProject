@@ -185,7 +185,7 @@
                     </tr>
                     <tr>
                     <th>주소</th>
-                    <td><input type="text" readonly="readonly" id="address1"> <input type="text" id="address2"></td>
+                    <td><input type="text" readonly="readonly" id="address1" name="address1"> <input type="text" id="addressDetail" name="addressDetail"></td>
                     <td></td> <!-- 경고 메세지 -->
                 	</tr>
                     <tr>

@@ -11,6 +11,13 @@
     String loadAddress = storeArr[1];
     String address = storeArr[2];
     String storeNumber = storeArr[3];
+    //세션에 저장된  id로 가정
+    String id = "hyung6";
+    request.setAttribute("id", id);
+    request.setAttribute("storeName", storeName);
+    request.setAttribute("loadAddress", loadAddress);
+    request.setAttribute("address", address);
+    request.setAttribute("storeNumber", storeNumber);
     %>
 <!DOCTYPE html>
 <html>
@@ -24,24 +31,31 @@
 	$(function(){
 		$('#btnOk').on('click',function(){
 // 			alert($('input[type=radio]:checked').val());
+			var info = {
+					"storeName":$('#storeName').text(),
+					"loadAddress":$('#loadAddress').text(),
+					"address":$('#address').text(),
+					"storeNumber":$('#storeNumber').text(),
+					"id":$('#id').text(),
+					"date":$('#date').val(),
+					"time":$('#time option:selected').text(),
+					"people":$('#people option:selected').text(),
+					"customerNeeds":$('#customer_needs').val(),
+					"setA":$('#setA').val(),
+					"setB":$('#setB').val()	
+			};
+			alert(JSON.stringify(info));
 			if($('input[type=radio]:checked').val() > 0){
 				$.ajax({
 					type: "GET",
-					data: {
-						"storeName":storeName,
-						"loadAddress":loadAddress,
-						"address":address,
-						"storeNumber":storeNumber,
-						"date":$('#date').val(),
-						"time":$('#time option:selected').text(),
-						"people":$('#people option:selected').text(),
-						"customerNeeds":$('#customer_needs').val()
-					},
+					data:info,
 					dataType: "text",
 					url:"Payment.do"
 				}).done(function(data) {
 					$('#result').html(data);
-				})
+				}).fail(function() {
+					alert('죄송합니다 조금 후에 이용해주세요');
+				});
 			}else{
 				alert('결제방식을 선택해주세요');
 			}
@@ -56,15 +70,15 @@
         <div id="reserve_list">
         	<h3>예약 상세정보 작성</h3>
         	<h3>넘어온 가게 정보</h3>
-        <form>
         	<ul id="store_list">
-        		<li id="storeName"><%=storeName %></li>
-        		<li id="loadAddress"><%=loadAddress %></li>
-        		<li id="address"><%=address %></li>
-        		<li id="storeNumber"><%=storeNumber%></li>
+        		<li id="storeName">${storeName }</li>
+        		<li id="loadAddress">${loadAddress }</li>
+        		<li id="address">${address }</li>
+        		<li id="storeNumber">${storeNumber }</li>
         	</ul>
+        	예약자명 : <a id="id">${id }</a>
         	날짜 선택
-        	<input type="date"  id="date">
+        	<input type="date"  id="date" >
         	시간 선택
         	<select id="time">
         		<option>11:00</option>
@@ -85,14 +99,18 @@
         		<option>4</option>
         		<option>5</option>
         	</select>
+        	메뉴(변동 가능성 있음)
+        	set A<input type="number" value="setA" name="setA" id="setA">
+        	set B<input type="number"  value="setB" name="setB" id="setB">
         	추가요구사항
         	<textarea rows="5" cols="10" id="customer_needs"></textarea>
         	결제여부
         	<input type="radio" name="payment" value="1" checked="checked">선결제
         	<input type="radio" name="payment" value="0">직접결제
         	<button id="btnOk" value="확인">확인</button>
-        </form>
         </div>
-        <div id="result"></div>
+        <div id="result">
+        	
+        </div>
 </body>
 </html>

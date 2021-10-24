@@ -13,6 +13,7 @@ import action.Action;
 import action.MemberAlignAction;
 import action.MemberDeleteAction;
 import action.BoardListAction;
+import action.GetCouponListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
@@ -21,6 +22,7 @@ import action.MemberManagementProAction;
 import action.ModifyMemberGradeAction;
 import action.PublishAction;
 import action.WriteFormProAction;
+import action.payAction;
 import vo.ActionForward;
 
 /**
@@ -138,7 +140,41 @@ public class FrontController extends HttpServlet {
 			forward.setPath("./reserve/reserve_main.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/Payment.do")) {
+			action = new payAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/GetList.do")) {
+			action = new GetCouponListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------
+		else if(command.equals("/Review.do")) {
 			forward = new ActionForward();
+			forward.setPath("./review/review_main.jsp");
+			forward.setRedirect(false);
+		}
+		//------------------------------ 공지사항 관련 컨트롤러 ---------------------------------
+		else if(command.equals("/Notice.do")) {
+			forward = new ActionForward();
+			forward.setPath("./notice/notice_main.jsp");
+			forward.setRedirect(false);
+		}
+		//----------------------------- 고객센터 관련 컨트롤러 ----------------------------------
+		else if(command.equals("/CustomerCenter.do")) {
+			forward = new ActionForward();
+			forward.setPath("./customer_center/customer_main.jsp");
+			forward.setRedirect(false);
 		}else if(command.equals("/WriteForm.do")) {
 			// 湲��벐湲� �옉�뾽�쓣 �쐞�븳 酉고럹�씠吏�濡� �룷�썙�뵫
 			forward = new ActionForward();
@@ -169,24 +205,6 @@ public class FrontController extends HttpServlet {
 			}
 		}
 		
-		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------
-		else if(command.equals("/Review.do")) {
-			forward = new ActionForward();
-			forward.setPath("./review/review_main.jsp");
-			forward.setRedirect(false);
-		}
-		//------------------------------ 공지사항 관련 컨트롤러 ---------------------------------
-		else if(command.equals("/Notice.do")) {
-			forward = new ActionForward();
-			forward.setPath("./notice/notice_main.jsp");
-			forward.setRedirect(false);
-		}
-		//----------------------------- 고객센터 관련 컨트롤러 ----------------------------------
-		else if(command.equals("/CustomerCenter.do")) {
-			forward = new ActionForward();
-			forward.setPath(".//customer_center/customer_main.jsp");
-			forward.setRedirect(false);
-		}
 		if(forward!=null){
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

@@ -15,7 +15,7 @@ public class BoardListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
-		System.out.println("BoardListAction입니다");
+		System.out.println("BoardListAction");
 		
 		int page=1;
 		int limit = 10;
@@ -38,7 +38,7 @@ public class BoardListAction implements Action {
 		request.setAttribute("articleList", articleList);
 		
 		forward = new ActionForward();
-		forward.setPath("/board/CustomerList.jsp");
+		forward.setPath("./board/CustomerList.jsp");
 		forward.setRedirect(false);
 		
 		
