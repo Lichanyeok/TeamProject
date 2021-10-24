@@ -5,9 +5,12 @@
 .map_wrap, .map_wrap * {padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {width:1081px;height:400px;margin: 0 auto;}
-#menu_wrap {float:left;margin-right:10px;margin-left:10px;left:0;bottom:0;width:auto;height:400px;padding:0px;overflow-y:auto;
+#menu_wrap {float:left;margin-left:10px;left:0;bottom:0;width:auto;height:400px;padding:0px;overflow-y:hidden;
 	background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;
-	border: 1px solid black}
+	border: 2px solid #FF8831;}
+#menu_wrap:hover{
+	overflow-y: auto; 
+}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -39,7 +42,9 @@
 #placesList .item .marker_13 {background-position: 0 -562px;}
 #placesList .item .marker_14 {background-position: 0 -608px;}
 #placesList .item .marker_15 {background-position: 0 -654px;}
-
+.item:hover{
+	background: #bbb;
+}
 
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
@@ -54,7 +59,7 @@
 #searchForm{
 	width: 460px;
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-top: 30px;
 	
 	
 }
@@ -64,7 +69,7 @@
 	font: bold;
 	font-weight: bold;
 	font-size: 16px;
-	border: 3px solid red;	
+	border: 3px solid #FF8831;	
 	float: left;
 	padding-left: 10px;
 }
@@ -72,18 +77,17 @@
 	
 	width: 40px;	
 	height: 46px;
-	border: 3px solid red;
+	border: 3px solid #FF8831;
+	background: #FF8831;
 	float: left;
-/* 	background: radial-gradient(circle,pink 20%,red 21%); */
+
 }
 </style>
-
-
 <div class="map_wrap">
 	<div id="search_wrap">
 		<div id="search_box">
 		<form onsubmit="searchPlaces(); return false;" id="searchForm">
-			<input type="text" value="맛집" id="keyword" size="15">
+			<input type="text" value="피자몰" id="keyword" size="15">
 			<button type="submit" id="mapSearchBtn">검색</button>
 		</form>
 		</div>
@@ -95,10 +99,10 @@
 		<div id="pagination"></div>
 	</div>
 	<div id="map"
-		style="width: auto; height: 400px; position: relative; overflow: hidden;
-		border: 1px solid black;"></div>
+		style="width: 770px; height: 400px; position: relative; overflow: hidden;
+		border: 2px solid #FF8831; border-radius: 10px;float:right;"></div>
 </div>
-
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a24286b0f4158288b1be403fc15cbe4&libraries=services"></script>
 <script>
 // 마커를 담을 배열입니다
@@ -221,9 +225,9 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '<h5><a href="MatzipInfo.mz?'+
-                'jiban_address='+places.address_name+
-                '&phone_num='+places.phone+
+                '<h5><a href="../MatzipInfo.mz?'+
+                'road_address='+places.road_address_name+
+                '&tell_number='+places.phone+
                 '">' + places.place_name + '</a></h5>';
 
     if (places.road_address_name) {
@@ -318,7 +322,16 @@ function removeAllChildNods(el) {
     }
 }
 </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".item").on("click",function(){
+			alert("aaa");
+			alert($("h5").text());
+		});
+	});
+	
 
+</script>
 
 
 

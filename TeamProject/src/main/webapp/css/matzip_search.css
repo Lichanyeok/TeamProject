@@ -25,7 +25,8 @@ body {
 }
 #category_list {
 	border: 1px solid black;
-	margin: 0 auto;
+	margin: auto;
+	
 	width: 1081px;
 	height: auto;
 }

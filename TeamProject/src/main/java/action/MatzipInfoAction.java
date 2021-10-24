@@ -13,18 +13,19 @@ public class MatzipInfoAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward;
 		
-		String jibun_address = request.getParameter("jibun_address");
+		String road_address = request.getParameter("road_address");
 		String tell_number = request.getParameter("tell_number");
-		System.out.println(jibun_address);
+		System.out.println(road_address);
+		System.out.println(tell_number);
 		
 		MatzipinfoService service = new MatzipinfoService();
-		SearchBean info = service.getInfo(jibun_address, tell_number);
-		
+		SearchBean info = service.getInfo(road_address, tell_number);
+		System.out.println(info.getPlace_name());
 
 		request.setAttribute("article", info);
 		
 		forward = new ActionForward();
-		forward.setPath("./search_check.jsp");
+		forward.setPath("./search/search_info.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

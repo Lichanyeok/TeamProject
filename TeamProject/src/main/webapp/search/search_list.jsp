@@ -4,31 +4,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	// 전달받은 request 객체로부터 데이터 가져오기
-	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	ArrayList<SearchBean> articleList = (ArrayList<SearchBean>)request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC 게시판</title>
+<title></title>
 <style type="text/css">
 	.clear{
 		clear: both;
 	}
-	#listForm {
-		width: auto;
-		max-height: 610px;		
-		margin: auto;
-	}	
+ 	#listForm { 
+ 		width: auto; 
+		height: 530px;
+		margin-top: 5px;
+		margin-bottom: 5px;		 
+ 		 
+ 	}	 
 	
 	#category_list_info{
 		border: 1px dashed red;
@@ -39,32 +32,17 @@
 		color: black;
 	}
 	
-	#pageList {
-		margin: 0 auto;
-		width: 1024px;
-		text-align: center;
-	}	
-	#emptyArea {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#buttonArea {
-		margin: auto;
-		width: 1024px;
-		text-align: right;
-	}
+
 	
 	
 </style>
 </head>
 <body>
 	<!-- 게시판 리스트 -->
-		<section id="listForm">
+		<div id="listForm">
 						
 			<%
-			if(articleList != null && listCount > 0) {			
+			if(articleList != null) {			
 				for(int i = 0; i < articleList.size(); i++) {
 					%>
 					<div id="category_list_info">
@@ -76,7 +54,7 @@
 							전화번호 : <%=articleList.get(i).getTell_number() %>
 					</div><%}%>
 		
-	</section>
-	<%} %>
+			<%} %>
+	</div>
 </body>
 </html>
