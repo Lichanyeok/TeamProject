@@ -23,12 +23,10 @@ import action.PublishAction;
 import action.WriteFormProAction;
 import vo.ActionForward;
 
-/**
- * Servlet implementation class MemberFrontController
- */
+
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
-
+	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		

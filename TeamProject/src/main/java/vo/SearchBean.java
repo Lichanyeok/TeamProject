@@ -43,8 +43,6 @@ public class SearchBean {
 	}
 	public void setTell_number(String tell_number) {
 		this.tell_number = tell_number;
-	}
-	
-	
+	}	
 	
 }

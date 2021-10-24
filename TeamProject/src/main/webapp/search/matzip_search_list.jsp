@@ -10,17 +10,17 @@
 <link rel="stylesheet" href="/TeamProject/css/header.css">
 <link rel="stylesheet" href="/TeamProject/css/matzip_search.css">
 
-<script src="./js/jquery-3.6.0.js"></script>
-<script src="./js/matzip_search.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
+<script src="../js/matzip_search.js"></script>
 </head>
 <body>
 	<div id="wrap_search">
 		<!-- 상위 고정 -->
-	    <jsp:include page="./inc/header.jsp"></jsp:include>
+	    <jsp:include page="../inc/header.jsp"></jsp:include>
 	    <!-- 상위 고정 -->
 	    <br>	   
 	    <div class="div_clear"></div>
-	  	<jsp:include page="./inc/search.jsp"/>
+	  	<jsp:include page="../inc/search.jsp"/>
 	    <div class="div_clear"></div>
 	    <div id="category_wrap">
 	    <nav id="category_menu">

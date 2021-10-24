@@ -64,17 +64,7 @@
 		<section id="listForm">
 						
 			<%
-			if(articleList != null && listCount > 0) {
-			%>
-<!-- 			<tr id="tr_top"> -->
-<!-- 				<td width="200px">업체명</td> -->
-<!-- 				<td width="250px">주소</td> -->
-<!-- 				<td width="250px">지번주소</td> -->
-<!-- 				<td width="90px">업종</td> -->
-<!-- 				<td width="70px">별점</td> -->
-<!-- 				<td width="140px">전화번호</td> -->
-<!-- 			</tr> -->
-				<%
+			if(articleList != null && listCount > 0) {			
 				for(int i = 0; i < articleList.size(); i++) {
 					%>
 					<div id="category_list_info">

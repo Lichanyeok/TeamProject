@@ -100,7 +100,7 @@ $(document).ready(function(){
 	         category=$("#cy_7").text();
 	         $.ajax({
 	            type : "GET",
-	            url : "./MatzipList.mz?category="+category,
+	            url : "../MatzipList.mz?category="+category,
 	            success : function(msg) {
 	               $("#category_list").html(msg);   
 	            }         
