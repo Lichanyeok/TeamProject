@@ -27,7 +27,7 @@ public class MatzipFrontController extends HttpServlet {
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/MatzipList.mz")) {
+		if(command.equals("/search/MatzipList.mz")) {
 			action = new MatzipListAction();
 			try {
 				forward = action.execute(request, response);

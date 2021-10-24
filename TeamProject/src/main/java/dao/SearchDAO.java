@@ -32,16 +32,16 @@ public class SearchDAO {
 		this.con = con;
 	}	
 
-	public int ListCount() {
+	public int ListCount(String category) {
 		int listCount = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT COUNT(*) FROM search";
+			String sql = "SELECT COUNT(*) FROM search WHERE category=?";
 			pstmt = con.prepareStatement(sql);
-			
+			pstmt.setString(1, category);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -58,21 +58,20 @@ public class SearchDAO {
 		return listCount;
 	}
 
-	public ArrayList<SearchBean> ArticleList(int page, int maximum, String category) {
+	public ArrayList<SearchBean> ArticleList(String category) {
 		ArrayList<SearchBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		// 조회 시작 게시물(레코드) 번호 계산(= 행 번호 계산)
-		int startRow = (page - 1) * maximum;
+		
 		
 		try {
-			String sql = "SELECT * FROM search WHERE category=? LIMIT ?,?";
+			String sql = "SELECT * FROM search WHERE category=? "
+					+ "ORDER BY star_score DESC LIMIT 0,10";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, category);
-			pstmt.setInt(2, startRow); // 시작행번호
-			pstmt.setInt(3, maximum); // 페이지당 게시물 수
 			
 			rs = pstmt.executeQuery();
 			
