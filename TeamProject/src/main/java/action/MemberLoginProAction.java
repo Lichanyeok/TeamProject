@@ -27,8 +27,7 @@ public class MemberLoginProAction implements Action {
 		bean.setId(id);
 		bean.setPass(pass);
 		
-		boolean isLoginSuccess = service.loginMember(bean);
-		
+		boolean isLoginSuccess = service.loginMember(bean);		
 		
 		if(isLoginSuccess){
 			HttpSession session = request.getSession();
@@ -43,7 +42,7 @@ public class MemberLoginProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('·Î±×ÀÎ ½ÇÆÐ')");
+			out.println("alert('ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½')");
 			out.println("history.back()");
 			out.println("</script>");
 		}

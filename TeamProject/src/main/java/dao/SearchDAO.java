@@ -1,6 +1,6 @@
 package dao;
 
-import static db.jdbcUtil.close;
+import static db.jdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,6 +101,41 @@ public class SearchDAO {
 		
 		return articleList;
 	
+	}
+	public SearchBean Info(String jibun_address, String tell_number) {
+		SearchBean details = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM Search WHERE jibun_address=? OR tell_number=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, jibun_address);
+			pstmt.setString(2, tell_number);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				details = new SearchBean();
+				details.setRoad_address(rs.getString("road_address"));
+				details.setJibun_address(rs.getString("jibun_address"));
+				details.setCategory(rs.getString("category"));
+				details.setPlace_name(rs.getString("place_name"));
+				details.setStar_score(rs.getFloat("star_score"));
+				details.setTell_number(rs.getString("tell_number"));
+				
+				commit(con);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+ 			close(rs);
+ 			close(pstmt);
+		}
+		
+		return details;
 	}
 
 }

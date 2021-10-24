@@ -221,12 +221,10 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5><a href="./search_check.jsp?'+
-                '	place_name='+places.place_name+
-                '	&road_address='+places.road_address_name+
-                '   &jiban_address='+places.address_name+
-                '   &phone_num='+places.phone+
-                '	">' + places.place_name + '</a></h5>';
+                '<h5><a href="MatzipInfo.mz?'+
+                'jiban_address='+places.address_name+
+                '&phone_num='+places.phone+
+                '">' + places.place_name + '</a></h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +

@@ -1,4 +1,3 @@
-
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.SearchBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -65,17 +64,7 @@
 		<section id="listForm">
 						
 			<%
-			if(articleList != null && listCount > 0) {
-			%>
-<!-- 			<tr id="tr_top"> -->
-<!-- 				<td width="200px">업체명</td> -->
-<!-- 				<td width="250px">주소</td> -->
-<!-- 				<td width="250px">지번주소</td> -->
-<!-- 				<td width="90px">업종</td> -->
-<!-- 				<td width="70px">별점</td> -->
-<!-- 				<td width="140px">전화번호</td> -->
-<!-- 			</tr> -->
-				<%
+			if(articleList != null && listCount > 0) {			
 				for(int i = 0; i < articleList.size(); i++) {
 					%>
 					<div id="category_list_info">
@@ -88,35 +77,6 @@
 					</div><%}%>
 		
 	</section>
-	<div class="clear"></div>
-	<br>
-	<section id="pageList">
-	<%if(nowPage <= 1) {%>
-			<input type="button" value="이전">&nbsp;
-	<%} else {%>
-			<input type="button" value="이전" onclick="location.href='BoardList.bo?page=<%=nowPage - 1 %>'">&nbsp;
 	<%} %>
-	
-	<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-				[<%=i %>]
-		<%} else { %>
-				<a href="BoardList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
-		<%} %>
-	<%} %>
-	
-	<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음">
-	<%} else { %>
-			<input type="button" value="다음" onclick="location.href='BoardList.bo?page=<%=nowPage + 1 %>'">
-	<%} %>
-	</section>
-	<%
-	} else {
-	%>
-	<section id="emptyArea">등록된 글이 없습니다</section>
-	<%
-	}
-	%>
 </body>
 </html>

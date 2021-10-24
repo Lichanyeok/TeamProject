@@ -19,10 +19,10 @@ import javax.sql.DataSource;
 
 				Context initCtx = new InitialContext(); 
 				DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/MySQL");
-				// context.xml È®ÀÎ
+				
 				con = ds.getConnection();
 				
-				con.setAutoCommit(false);//AutoCommit ²û
+				con.setAutoCommit(false);
 			} catch (NamingException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
