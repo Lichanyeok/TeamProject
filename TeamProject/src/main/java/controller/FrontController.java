@@ -10,11 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberAlignAction;
+import action.MemberDeleteAction;
+import action.BoardListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberManagementAction;
 import action.MemberManagementProAction;
+import action.ModifyMemberGradeAction;
+import action.PublishAction;
+import action.WriteFormProAction;
 import vo.ActionForward;
 
 /**
@@ -38,14 +44,14 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/MemberJoinFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberJoin.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/MemberJoinProAction.do")) {
+			forward.setRedirect(true);
+		}else if(command.equals("/member/MemberJoinProAction.do")) {
 			System.out.println("/MemberJoinProAction - controller");
 			action = new MemberJoinProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberLoginProAction.do")) {
@@ -60,6 +66,10 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/MemberManagementFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/member_management_form.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/AdminManagementFormAction.do")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/admin_main.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/MemberManagementAction.do")) {
 			action = new MemberManagementAction();
@@ -82,8 +92,101 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberAlign.do")) {
+			action = new MemberAlignAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberDeleteAction.do")) {
+			action = new MemberDeleteAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ModifyMemberGrade.do")) {
+			action = new ModifyMemberGradeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberGift.do")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/gift_coupon.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/PublishCoupon.do")) {
+			action = new PublishAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
+			
+		}else if(command.equals("/Reserve.do")) {
+			forward = new ActionForward();
+			forward.setPath("./reserve/reserve_main.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/Payment.do")) {
+			forward = new ActionForward();
+		}else if(command.equals("/WriteForm.do")) {
+			// 湲��벐湲� �옉�뾽�쓣 �쐞�븳 酉고럹�씠吏�濡� �룷�썙�뵫
+			forward = new ActionForward();
+			forward.setPath("/board/WriteForm.jsp");
+			forward.setRedirect(false); // Dispatcher 諛⑹떇(湲곕낯媛믪씠誘�濡� �깮�왂 媛��뒫)
+		} else if(command.equals("/WriteFormPro.do")) { 
+			action = new WriteFormProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/CustomerCommentList.do")) { 
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/BoardList.do")) { 
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
+		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------
+		else if(command.equals("/Review.do")) {
+			forward = new ActionForward();
+			forward.setPath("./review/review_main.jsp");
+			forward.setRedirect(false);
+		}
+		//------------------------------ 공지사항 관련 컨트롤러 ---------------------------------
+		else if(command.equals("/Notice.do")) {
+			forward = new ActionForward();
+			forward.setPath("./notice/notice_main.jsp");
+			forward.setRedirect(false);
+		}
+		//----------------------------- 고객센터 관련 컨트롤러 ----------------------------------
+		else if(command.equals("/CustomerCenter.do")) {
+			forward = new ActionForward();
+			forward.setPath(".//customer_center/customer_main.jsp");
+			forward.setRedirect(false);
+		}
 		if(forward!=null){
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

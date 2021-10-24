@@ -12,12 +12,13 @@ public class MemberBean {
 	private String pass;
 	private String email;
 	private String mobile;
+	private String address;
 	private String gender;
 	private int grade;
 	private Date date;
 	public MemberBean() {};
 	public MemberBean(String name, String nickName, int age, String id, String pass, String email,
-			String mobile, String gender) {
+			String mobile, String address, String gender) {
 		super();
 
 		this.name = name;
@@ -27,9 +28,17 @@ public class MemberBean {
 		this.pass = pass;
 		this.email = email;
 		this.mobile = mobile;
+		this.address = address;
 		this.gender = gender;
 		this.grade = grade;
 		this.date = date;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getIdx() {
 		return idx;

@@ -22,21 +22,22 @@ public class MemberJoinProAction implements Action {
 		String nickName = request.getParameter("nickName");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
+		String pass = request.getParameter("pass1");
 		String email = request.getParameter("email");
 		String mobile = request.getParameter("mobile");
+		String address = request.getParameter("address1") + request.getParameter("address2");
 		String gender = request.getParameter("gender");
 		Date date = null;
 
-		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, gender );
+		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, gender );
 		
 		MemberJoinService service = new MemberJoinService();
 		
 		boolean isJoinSuccess = service.joinMember(bean);
 		
 		if(isJoinSuccess) {
-			forward.setPath("/MemberLoginFormAction.do");
-			forward.setRedirect(false);
+			forward.setPath("/TeamProject/MemberLoginFormAction.do");
+			forward.setRedirect(true);
 			return forward;
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
     <section>
         <form action="MemberLoginProAction.do" method="post">
-        <h1>LOGIN</h1>
+         <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
             <div class="login_wrap">
             <div class="login_input">
                 <div>
