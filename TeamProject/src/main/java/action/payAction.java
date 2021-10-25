@@ -1,6 +1,7 @@
 package action;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +23,19 @@ public class payAction implements Action {
 		//date 타입으로 변환
 		String strDate = request.getParameter("date");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String id = request.getParameter("id");
+//		String dtDate = format.format(strDate);
 		Date date = format.parse(strDate);
-		String time = request.getParameter("time");
+		String reserve_date = format.format(date);
+		System.out.println(reserve_date);
+		String id = request.getParameter("id");
+		String reserve_time = request.getParameter("time");
 		int people = Integer.parseInt(request.getParameter("people"));
 		String customerNeeds = request.getParameter("customerNeeds");
 		int setA = Integer.parseInt(request.getParameter("setA")); 
 		int setB = Integer.parseInt(request.getParameter("setB"));
+		String total_order_menu = "set A : " + setA + ", set B : " +setB;
 		
-		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, id,date, time, people, customerNeeds, setA, setB);
+		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, id,reserve_date, reserve_time, people, customerNeeds, setA, setB, total_order_menu);
 		System.out.println(reserve.toString());
 		request.setAttribute("reserveBean", reserve);
 		forward.setPath("./reserve/pay_form.jsp");

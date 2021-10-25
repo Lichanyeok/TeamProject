@@ -20,6 +20,7 @@ import action.MemberLogoutAction;
 import action.MemberManagementAction;
 import action.MemberManagementProAction;
 import action.ModifyMemberGradeAction;
+import action.PaymentAction;
 import action.PublishAction;
 import action.WriteFormProAction;
 import action.payAction;
@@ -154,6 +155,14 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/PaymentAction.do")){
+			action = new PaymentAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------

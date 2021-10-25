@@ -8,40 +8,79 @@ public class ReserveBean {
 	private String address;
 	private String storeNumber;
 	private String id;
-	private Date date;
-	private String time;
+	private String reserve_date;
+	private String reserve_time;
 	private int people;
 	private String customerNeeds;
+	private int payment_price;
 	private int setA;
 	private int setB;
+	private String total_order_menu;
 	
 	
 	
+
+	
+
 	@Override
 	public String toString() {
 		return "ReserveBean [storeName=" + storeName + ", loadAddress=" + loadAddress + ", address=" + address
-				+ ", storeNumber=" + storeNumber + ", id="+ id + ", date=" + date + ", time=" + time + ", people=" + people
-				+ ", customerNeeds=" + customerNeeds + ", setA=" + setA + ", setB=" + setB + "]";
+				+ ", storeNumber=" + storeNumber + ", id=" + id + ", reserve_date=" + reserve_date + ", reserve_time="
+				+ reserve_time + ", people=" + people + ", customerNeeds=" + customerNeeds + ", payment_price="
+				+ payment_price + ", setA=" + setA + ", setB=" + setB + ", total_order_menu=" + total_order_menu + "]";
 	}
 
 	public ReserveBean() {};
 	
-	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,Date date, String time,
-			int people, String customerNeeds, int setA, int setB) {
+	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
+			int people, String customerNeeds, int setA, int setB, String total_order_menu) {
 		super();
 		this.id = id;
 		this.storeName = storeName;
 		this.loadAddress = loadAddress;
 		this.address = address;
 		this.storeNumber = storeNumber;
-		this.date = date;
-		this.time = time;
+		this.reserve_date = reserve_date;
+		this.reserve_time = reserve_time;
 		this.people = people;
-		this.customerNeeds = customerNeeds;
+		this.customerNeeds = customerNeeds;	
 		this.setA = setA;
 		this.setB = setB;
+		this.total_order_menu = total_order_menu;
 	}
 	
+	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
+			int people, String customerNeeds, String total_order_menu, int payment_price) {
+		super();
+		this.id = id;
+		this.storeName = storeName;
+		this.loadAddress = loadAddress;
+		this.address = address;
+		this.storeNumber = storeNumber;
+		this.reserve_date = reserve_date;
+		this.reserve_time = reserve_time;
+		this.people = people;
+		this.customerNeeds = customerNeeds;
+		this.payment_price = payment_price;
+		this.total_order_menu = total_order_menu;
+	}
+	
+	public String getTotal_order_menu() {
+		return total_order_menu;
+	}
+
+	public void setTotal_order_menu(String total_order_menu) {
+		this.total_order_menu = total_order_menu;
+	}
+
+	public int getPayment_price() {
+		return payment_price;
+	}
+
+	public void setPayment_price(int payment_price) {
+		this.payment_price = payment_price;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -74,18 +113,23 @@ public class ReserveBean {
 	public void setStoreNumber(String storeNumber) {
 		this.storeNumber = storeNumber;
 	}
-	public Date getDate() {
-		return date;
+	
+	public String getReserve_date() {
+		return reserve_date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+
+	public void setReserve_date(String reserve_date) {
+		this.reserve_date = reserve_date;
 	}
-	public String getTime() {
-		return time;
+
+	public String getReserve_time() {
+		return reserve_time;
 	}
-	public void setTime(String time) {
-		this.time = time;
+
+	public void setReserve_time(String reserve_time) {
+		this.reserve_time = reserve_time;
 	}
+
 	public int getPeople() {
 		return people;
 	}

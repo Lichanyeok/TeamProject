@@ -44,7 +44,7 @@
 					"setA":$('#setA').val(),
 					"setB":$('#setB').val()	
 			};
-			alert(JSON.stringify(info));
+// 			alert(JSON.stringify(info));
 			if($('input[type=radio]:checked').val() > 0){
 				$.ajax({
 					type: "GET",
