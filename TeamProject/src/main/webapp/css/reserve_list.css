@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+body {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+button{
+    border: none;
+}
+
+
+.reserve_list_wrap {
+    width: 1200px;
+    margin: 150px auto;
+}
+
+.reserve_list_wrap h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.reserve_list_wrap button {
+    width: 94px;
+    height: 28px;
+    color: #fff;
+    background-color: #FF8831;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: 500;
+
+}
+
+.reserve_list_wrap table:nth-of-type(1) {
+    border: none;
+    background-color: #F9F3EF;
+}
+
+
+.reserve_list_wrap table{
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+
+
+tbody td {
+    text-align: center;
+}
+
