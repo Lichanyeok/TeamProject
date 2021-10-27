@@ -20,7 +20,7 @@ public class MatzipListService {
 		
 		int listCount = dao.ListCount(category);
 		
-		System.out.println(listCount);
+//		System.out.println(listCount);
 		// 공통작업-4. Connection 객체 반환
 		close(con);	
 		return listCount;

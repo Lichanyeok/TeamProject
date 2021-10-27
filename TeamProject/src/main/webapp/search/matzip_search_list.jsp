@@ -28,11 +28,20 @@ body {
 
 #category_wrap {
 	border: 2px solid #FF8831;
+	border-radius:5px;
 	margin: 0 auto;
 	width: 1080px;
 	height: auto;
 	vertical-align: middle;
 	margin-top: 10px;
+}
+#category_title{
+	width: 500px;
+	height: 40px;
+	margin: 8px 0 8px 10px;
+	font-size: 30px;
+	color: #FF5531;
+	padding-top: 5px;
 }
 #category_list {	
 	margin: auto;	
@@ -57,7 +66,7 @@ body {
 }
 
 </style>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <!-- <script src="../js/matzip_search.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -67,7 +76,7 @@ $(document).ready(function(){
 	if(category==""){
 		$.ajax({
 			type : "GET",
-			url : "./MatzipList.mz?category=실험",
+			url : "MatzipList.mz?category=실험",
 			success : function(msg) {
 				$("#category_list").html(msg);	
 			}			
@@ -84,7 +93,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type : "GET",
-			url : "./MatzipList.mz?category="+category,
+			url : "MatzipList.mz?category="+category,
 			success : function(msg) {
 				$("#category_list").html(msg);	
 			}			
@@ -103,7 +112,7 @@ $(document).ready(function(){
 		$("#cy_2").css('background','#FF6631')
         $.ajax({
            type : "GET",
-           url : "./MatzipList.mz?category="+category,
+           url : "MatzipList.mz?category="+category,
            success : function(msg) {
               $("#category_list").html(msg);   
            }         
@@ -121,7 +130,7 @@ $("#cy_3").on("click", function() {
 	$("#cy_3").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -139,7 +148,7 @@ $("#cy_4").on("click", function() {
 	$("#cy_4").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -157,7 +166,7 @@ $("#cy_5").on("click", function() {
 	$("#cy_5").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -175,7 +184,7 @@ $("#cy_6").on("click", function() {
 	$("#cy_6").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -193,7 +202,7 @@ $("#cy_7").on("click", function() {
 	$("#cy_7").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -211,7 +220,7 @@ $("#cy_8").on("click", function() {
 	$("#cy_8").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -229,7 +238,7 @@ $("#cy_9").on("click", function() {
 	$("#cy_9").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -247,7 +256,7 @@ $("#cy_10").on("click", function() {
 	$("#cy_10").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -265,7 +274,7 @@ $("#cy_11").on("click", function() {
 	$("#cy_11").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -283,7 +292,7 @@ $("#cy_12").on("click", function() {
 	$("#cy_12").css('background','#FF6631')
          $.ajax({
             type : "GET",
-            url : "./MatzipList.mz?category="+category,
+            url : "MatzipList.mz?category="+category,
             success : function(msg) {
                $("#category_list").html(msg);   
             }         
@@ -306,7 +315,9 @@ $("#cy_12").on("click", function() {
 	    <div class="div_clear"></div>
 	  	<jsp:include page="../inc/search.jsp"/>
 	    <div class="div_clear"></div>
+	    
 	    <div id="category_wrap">
+	    <div id="category_title">MATZIP TOP 10</div>
 	    <nav id="category_menu">
 			<ul id="category_menu_ul">
 				<li id="cy_1">한식</li>
@@ -328,6 +339,7 @@ $("#cy_12").on("click", function() {
 	    </div>
 	    <div class="div_clear"></div>	    
 	    </div>
+	    <br>
 	</div>
 </body>
 </html>
