@@ -1,0 +1,27 @@
+@charset "EUC-KR";
+
+
+select {
+	widows: 200px;
+}
+
+
+#reserve_list {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+
+#reserve_list form {
+	widows: 200px;
+	margin: 80px auto;
+	display: flex;
+	
+}
+
+#store_list {
+	text-align: center;
+	width: 240px;
+	margin : 40px auto;
+	
+}
