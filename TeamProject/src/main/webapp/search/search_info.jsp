@@ -15,9 +15,9 @@ SearchBean article = (SearchBean)request.getAttribute("article");
 </head>
 <body>
 <form action="">
-	<nav>
-		<jsp:include page="../inc/header.jsp"></jsp:include>
-	</nav>
+	
+	<jsp:include page="../inc/header.jsp"></jsp:include>	
+	<hr>
 
 <div id="item">
     <div class="item_detail">
