@@ -22,12 +22,16 @@ public class MatzipFrontController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-//		System.out.println("aaa");
 		String command = request.getServletPath();
+//		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/search/MatzipList.mz")) {
+		if(command.equals("/MatzipSearch.mz")) {
+			forward=new ActionForward();
+			forward.setPath("./search/matzip_search_list.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MatzipList.mz")) {			
 			action = new MatzipListAction();
 			try {
 				forward = action.execute(request, response);

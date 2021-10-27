@@ -15,6 +15,8 @@ import action.MemberDeleteAction;
 import action.BoardListAction;
 import action.CheckReserverInfoAction;
 import action.GetCouponListAction;
+import action.MemberDeleteAction;
+import action.BoardListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
@@ -28,6 +30,8 @@ import action.ResCancleAction;
 import action.ReserveListAction;
 import action.WriteFormProAction;
 import action.payAction;
+import action.PublishAction;
+import action.WriteFormProAction;
 import vo.ActionForward;
 
 
@@ -222,6 +226,8 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./customer_center/customer_main.jsp");
 			forward.setRedirect(false);
+			forward = new ActionForward();
+
 		}else if(command.equals("/WriteForm.do")) {
 			// 湲��벐湲� �옉�뾽�쓣 �쐞�븳 酉고럹�씠吏�濡� �룷�썙�뵫
 			forward = new ActionForward();
