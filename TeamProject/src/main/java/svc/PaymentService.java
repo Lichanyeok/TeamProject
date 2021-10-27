@@ -19,6 +19,7 @@ public class PaymentService {
 		if(isPaySuccess) {
 			System.out.println("insertReserve DAO : " + isPaySuccess);
 			boolean isRemoveSuccess = dao.removeCoupon(used_coupon_code);
+			commit(con);
 			if(isRemoveSuccess) {
 				System.out.println("removeCoupon - DAO : " + isRemoveSuccess);
 				isPaySuccess = true;
@@ -34,6 +35,24 @@ public class PaymentService {
 		}
 		
 		return isPaySuccess;
+	}
+
+	public int localPayment(ReserveBean reserve) {
+		int isInsertSuccess = 0;
+		System.out.println("localPayment - Service ");
+		ReserveDAO dao = ReserveDAO.getInstance();
+		Connection con = getConnection();
+		dao.setConnection(con);
+		isInsertSuccess = dao.insertLocalPayment(reserve);
+		if(isInsertSuccess>0) {
+			System.out.println("예약성공");
+			commit(con);
+		}else {
+			rollback(con);
+			System.out.println("예약 실패");
+		}
+		close(con);
+		return isInsertSuccess;
 	}
 
 }

@@ -13,6 +13,69 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+*{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+/* 기본리셋 */
+
+.payform_wrap {
+    width: 750px;
+    margin: 100px auto;
+}
+
+
+
+
+/* 매정정보 */
+
+
+
+.payform_wrap ul {
+    text-align: left;
+    display: flex;
+    margin: 20px 0 60px 0;
+}
+
+.payform_wrap ul li {
+    padding-right: 30px;
+/*     margin: 0px 10px 60px 10px; */
+	margin:auto;
+}
+
+.payform_wrap p {
+    font-size: 13px;
+}
+
+.payment_group label{
+    font-size: 13px;
+}
+.payment_list li{
+	padding: 0;
+	margin: 0;
+}
+h3{
+  width: 170px;
+    font-size: 16px;
+    font-weight: 900;
+} 
+
+#paymentBtn {
+    margin-top: 30PX;
+    border: none;
+    width: 144px;
+    height: 30px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FF8831;
+}
+</style>
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -49,11 +112,17 @@
 			$.ajax({
 				type:"get",
 				data:sendData,
-				dataType:"json",
-				url:"PaymentAction.do"
+				dataType:"text",
+				url:"PaymentAction.do",
+				error:function(request, status, error){
+
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+				}
 			}).done(function(data) {
-				alert('예약이 완료되었습니다.');
-				$('#reserve_success').html(data);
+				 alert('예약 완료!');
+// 				 $('#reserve_success').html(data);
+				location.href='./ReserveList.do';
 			}).fail(function() {
 				alert('죄송합니다 잠시 후에 시도해주세요.');
 			});
@@ -65,7 +134,7 @@
 </script>
 </head>
 <body>
-	<div>
+	<div class="payform_wrap">
 		<h3>선택하신 가게 정보</h3>
 		<ul id="store_info">
 			<li>가게명 : <a><%=reserve.getStoreName() %></a></li>
@@ -97,12 +166,13 @@
 			int totalBPrice = bPrice * reserve.getSetB();
 			int totalPrice = totalAPrice + totalBPrice;
 		%>
-		<ul>
+		<ul class="payment_list">
 		<li> <a id="totalPrice"><%=totalPrice%></a></li>
-		<li id="discount"></li>
-		<li>------------------------------</li>
+		<li>-</li>
+		<li id="discount">0</li>
+		<li>=</li>
 		
-		<li id="resultPrice"></li>
+		<li id="resultPrice"><%=totalPrice%></li>
 		</ul>
 		<button id="paymentBtn">결제하기</button>
 	</div>

@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+/* 기본리셋 */
+
+.reserve_wrap {
+    width: 690px;
+    margin: 100px auto;
+}
+
+
+.store_list tr {
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.store_list tr th {
+    width: 170px;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.store_list tr  td {
+    font-size:15px;
+    
+}
+
+/* 매정정보 */
+
+
+
+.reserve_wrap ul {
+    text-align: left;
+    display: flex;
+    margin: 20px 0 60px 0;
+}
+
+.reserve_wrap ul li {
+    padding-right: 50px;
+}
+
+.requirements p {
+    font-size: 13px;
+}
+
+.payment_group label{
+    font-size: 13px;
+}
+
+
+#btnOk {
+    margin-top: 30PX;
+    border: none;
+    width: 144px;
+    height: 30px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FF8831;
+}

@@ -13,15 +13,19 @@ import action.Action;
 import action.MemberAlignAction;
 import action.MemberDeleteAction;
 import action.BoardListAction;
+import action.CheckReserverInfoAction;
 import action.GetCouponListAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberManagementAction;
 import action.MemberManagementProAction;
+import action.ModiResAction;
 import action.ModifyMemberGradeAction;
 import action.PaymentAction;
 import action.PublishAction;
+import action.ResCancleAction;
+import action.ReserveListAction;
 import action.WriteFormProAction;
 import action.payAction;
 import vo.ActionForward;
@@ -159,6 +163,42 @@ public class FrontController extends HttpServlet {
 			action = new PaymentAction();
 			try {
 				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ReserveList.do")){
+			action = new ReserveListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}else if(command.equals("/EACForm.do")) {
+			forward = new ActionForward();
+			forward.setPath("./reserve/EACform.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/CheckReserveInfo.do")) {
+			action = new CheckReserverInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}else if(command.equals("/reserve/ModiRes.do")) {
+			action = new ModiResAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ResCancle.do")) {
+			action = new ResCancleAction();
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

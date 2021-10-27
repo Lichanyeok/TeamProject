@@ -16,9 +16,9 @@ public class ReserveBean {
 	private int setA;
 	private int setB;
 	private String total_order_menu;
-	
-	
-	
+	private String ran_num;
+	private int reserve_type;
+	private int check_review;
 
 	
 
@@ -32,6 +32,22 @@ public class ReserveBean {
 
 	public ReserveBean() {};
 	
+	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String reserve_date,
+			String reserve_time, int people, String customerNeeds, String total_order_menu,
+			String ran_num) {
+		super();
+		this.storeName = storeName;
+		this.loadAddress = loadAddress;
+		this.address = address;
+		this.storeNumber = storeNumber;
+		this.reserve_date = reserve_date;
+		this.reserve_time = reserve_time;
+		this.people = people;
+		this.customerNeeds = customerNeeds;
+		this.total_order_menu = total_order_menu;
+		this.ran_num = ran_num;
+	}
+
 	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
 			int people, String customerNeeds, int setA, int setB, String total_order_menu) {
 		super();
@@ -65,6 +81,30 @@ public class ReserveBean {
 		this.total_order_menu = total_order_menu;
 	}
 	
+	public int getCheck_review() {
+		return check_review;
+	}
+
+	public void setCheck_review(int check_review) {
+		this.check_review = check_review;
+	}
+
+	public int getReserve_type() {
+		return reserve_type;
+	}
+
+	public void setReserve_type(int reserve_type) {
+		this.reserve_type = reserve_type;
+	}
+
+	public String getRan_num() {
+		return ran_num;
+	}
+
+	public void setRan_num(String ran_num) {
+		this.ran_num = ran_num;
+	}
+
 	public String getTotal_order_menu() {
 		return total_order_menu;
 	}

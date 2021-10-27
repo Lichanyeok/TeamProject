@@ -29,7 +29,10 @@ $('#couponBtn').on('click',function(){
 	<tr>
 		<th>쿠폰코드</th><th>쿠폰명</th><th>쿠폰내용</th><th>할인가격</th><th>사용자명</th><th>발급날짜</th>
 	</tr>
-<%for(int i = 0;i < couponList.size();i++){ %>
+	
+<%
+if(couponList.size()>0){
+for(int i = 0;i < couponList.size();i++){ %>
 
 	<tr id="coupon">
 	<td><input type="radio" name="checkCoupon" value="<%=couponList.get(i).getCoupon_price()%>"><a><%=couponList.get(i).getCoupon_code() %></a></td>
@@ -39,8 +42,12 @@ $('#couponBtn').on('click',function(){
 	<td><%=couponList.get(i).getUser_id() %></td>
 	<td><%=couponList.get(i).getMade_date() %></td>
 	</tr>
+<%	}
+}else{%>
+	<tr>
+		<td colspan="6">보유하신 쿠폰이 없습니다.</td>
+	</tr>
 <%} %>
-
 </table>
 <button id="couponBtn">사용하기</button>
 </body>

@@ -12,7 +12,7 @@
     String address = storeArr[2];
     String storeNumber = storeArr[3];
     //세션에 저장된  id로 가정
-    String id = "hyung6";
+    String id = session.getAttribute("sId").toString();
     request.setAttribute("id", id);
     request.setAttribute("storeName", storeName);
     request.setAttribute("loadAddress", loadAddress);
@@ -26,6 +26,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reserve.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -42,7 +43,8 @@
 					"people":$('#people option:selected').text(),
 					"customerNeeds":$('#customer_needs').val(),
 					"setA":$('#setA').val(),
-					"setB":$('#setB').val()	
+					"setB":$('#setB').val()	,
+					"reserve_type":$('input[type=radio]:checked').val()
 			};
 // 			alert(JSON.stringify(info));
 			if($('input[type=radio]:checked').val() > 0){
@@ -53,11 +55,21 @@
 					url:"Payment.do"
 				}).done(function(data) {
 					$('#result').html(data);
+// 					alert('예약 완료!');
 				}).fail(function() {
 					alert('죄송합니다 조금 후에 이용해주세요');
 				});
 			}else{
-				alert('결제방식을 선택해주세요');
+				$.ajax({
+					type: "GET",
+					data:info,
+					dataType: "text",
+					url:"Payment.do"
+				}).done(function(data) {
+					location.href='ReserveList.do';
+				}).fail(function() {
+					alert('죄송합니다 조금 후에 이용해주세요');
+				});
 			}
 		});
 	});
@@ -65,52 +77,65 @@
 </head>
 <body>
 		<!-- 상위 고정 -->
-        <jsp:include page="/inc/header.jsp"></jsp:include>
+        <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
-        <div id="reserve_list">
-        	<h3>예약 상세정보 작성</h3>
-        	<h3>넘어온 가게 정보</h3>
-        	<ul id="store_list">
-        		<li id="storeName">${storeName }</li>
-        		<li id="loadAddress">${loadAddress }</li>
-        		<li id="address">${address }</li>
-        		<li id="storeNumber">${storeNumber }</li>
-        	</ul>
-        	예약자명 : <a id="id">${id }</a>
-        	날짜 선택
-        	<input type="date"  id="date" >
-        	시간 선택
-        	<select id="time">
-        		<option>11:00</option>
-        		<option>12:00</option>
-        		<option>13:00</option>
-        		<option>14:00</option>
-        		<option>15:00</option>
-        		<option>16:00</option>
-        		<option>17:00</option>
-        		<option>18:00</option>
-        		<option>19:00</option>
-        	</select>
-        	인원선택
-        	<select id="people">
-        		<option>1</option>
-        		<option>2</option>
-        		<option>3</option>
-        		<option>4</option>
-        		<option>5</option>
-        	</select>
-        	메뉴(변동 가능성 있음)
+    <div class="reserve_wrap">
+           <table class = "store_list"> 
+               <tr><th>매장명</th><td id="storeName"><%=storeName %></td></tr>
+               <tr><th>주소</th><td id="loadAddress"><%=loadAddress %></td></tr>
+               <tr><th>도로명주소</th><td id="address"><%=address %></td></tr>
+               <tr><th>매장번호</th><td id="storeNumber"><%=storeNumber%></td></tr>
+           </table>
+
+           <ul>
+		<li>
+		<label>예약자명 : </lable>
+		<a id="id">${id }</a>
+		</li>
+               <li>
+                   <label>날짜선택</label>
+                   <input type="date"  id="date"  min="">
+               </li>
+               <li>
+                   <label>시간선택</label>
+                   <select name="" id="time">
+                       <option value="">11:00</option>
+                       <option value="">12:00</option>
+                       <option value="">13:00</option>
+                       <option value="">14:00</option>
+                       <option value="">15:00</option>
+                       <option value="">16:00</option>
+                       <option value="">17:00</option>
+                       <option value="">18:00</option>
+                       <option value="">19:00</option>
+                    </select>
+                 </li>
+                <li>
+                    <label>인원선택</label>
+                    <select id="people">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </li>
+            </ul>
+
+            <div class = "requirements">
+                <p>추가요구사항</p>
+                <textarea rows="5" cols="50" id="customer_needs"></textarea>
+            </div>
+			메뉴(변동 가능성 있음)
         	set A<input type="number" value="setA" name="setA" id="setA">
         	set B<input type="number"  value="setB" name="setB" id="setB">
-        	추가요구사항
-        	<textarea rows="5" cols="10" id="customer_needs"></textarea>
-        	결제여부
-        	<input type="radio" name="payment" value="1" checked="checked">선결제
-        	<input type="radio" name="payment" value="0">직접결제
-        	<button id="btnOk" value="확인">확인</button>
-        </div>
-        <div id="result">
-        	
-        </div>
-</body>
+            <div class = "payment_group">
+            <input type="radio" name="payment" value="1" checked="checked"><label>선결제</label>
+           <input type="radio" name="payment" value="0"><label>현장결제</label>
+            </div>
+
+            <button id="btnOk" value="확인">예약하기</button>
+     </div>
+     <div id="result"></div>
+ </body>
 </html>

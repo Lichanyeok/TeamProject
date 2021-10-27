@@ -37,9 +37,9 @@ public class PaymentAction implements Action {
 		PaymentService service = new PaymentService();
 		boolean isPaySuccess = service.payAction(reserve,used_coupon_code);
 		if(isPaySuccess) {
-			System.out.println("isPaySuccess : " + isPaySuccess);
+			System.out.println("isPaySuccess : " + isPaySuccess + "결제 성공!");
 			forward = new ActionForward();
-			forward.setPath("../reserve/reserve_list.jsp");
+			forward.setPath("./reserve/reserve_main.jsp");
 			forward.setRedirect(false);
 		}else {
 			 System.out.println("PaymentAction 결제실패");
