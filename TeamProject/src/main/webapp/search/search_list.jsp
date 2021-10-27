@@ -18,8 +18,7 @@
 	}
  	#listForm { 
  		width: auto; 
-		height: 510px;
-					 
+		height: 510px;					 
  	}	 
 	
 	.category_list_info{
