@@ -9,10 +9,16 @@ SearchBean article = (SearchBean)request.getAttribute("article");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/TeamProject/css/check.css">
 <link rel="stylesheet" href="/TeamProject/css/test.css">
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
 </head>
 <body>
+<form action="">
+	<nav>
+		<jsp:include page="../inc/header.jsp"></jsp:include>
+	</nav>
+
 <div id="item">
     <div class="item_detail">
         <ul class="item_detail_left">
@@ -49,12 +55,13 @@ SearchBean article = (SearchBean)request.getAttribute("article");
             </li>
             
             <li id="order_item">
-                <button>장바구니</button>
-                <button >예약하기</button>
+                <button type="button">장바구니</button>
+                <button type="submit">예약하기</button>
                 
             </li>
         </ul>
     </div>
     </div>
+</form>
 </body>
 </html>
