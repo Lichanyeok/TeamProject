@@ -68,6 +68,40 @@
 	});
 </script>
 <style type="text/css">
+/* ---------- 별 모양 css -------------------- */
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+  margin: auto;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating space-x-4 mx-auto {
+text-align: center;
+
+}
+
 #rev_store {
 	text-align: center;
 	font-size: 3em;
@@ -132,7 +166,18 @@
 				<tr>
 					<td rowspan="2" id="rev_score" ><%=Math.round(totalScore*10)/10.0 %></td>
 					<td>
-						<img src="./review/rev_im/<%=(int)(Math.round(totalScore*10)/10.0) %>star.png" width="100" height="20" />
+						<div class="star-rating space-x-4 mx-auto" id="div1">					
+							<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" />
+							<label for="5-stars" class="star" >★</label> <!-- class="star  pr-4" -->
+							<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" />
+							<label for="4-stars" class="star">★</label>
+							<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" />
+							<label for="3-stars" class="star">★</label>
+							<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" />
+							<label for="2-stars" class="star">★</label>
+							<input type="radio" id="1-stars" name="rating" value="1" v-model="ratings" />
+							<label for="1-stars" class="star">★</label>
+						</div>
 					</td>
 				</tr>
 				<tr>

@@ -139,10 +139,10 @@ img {
 		</div><br>
       
          <table>
-            <tr>
-               <td class="td_left"><label for="board_subject">제목</label></td>
-               <td class="td_right"><input type="text" name="rev_subject" required="required" /></td>
-            </tr>
+<!--             <tr> -->
+<!--                <td class="td_left"><label for="board_subject">제목</label></td> -->
+<!--                <td class="td_right"><input type="text" name="rev_subject" required="required" /></td> -->
+<!--             </tr> -->
             <tr>
                <td class="td_left"><label for="board_content">내용</label></td>
                <td class="td_right">

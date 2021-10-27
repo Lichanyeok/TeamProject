@@ -128,6 +128,20 @@ public class Contoller extends HttpServlet {
 				e.printStackTrace();
 	    	  } // try catch 끝 
 	    	  
+	      } else if(command.equals("/ReviewSort.re")) {
+	    	  System.out.println("controller - /ReviewSort.re"); 
+	    	  
+	    	  forward = new ActionForward();
+	    	  forward.setPath("/review/rev_list.jsp");
+	    	  forward.setRedirect(false);
+	    	  
+	      } else if(command.equals("/ReviewLikeScore.re")) {
+	    	  System.out.println("controller - /ReviewLikeScore.re"); 
+	    	  
+	    	  forward = new ActionForward();
+	    	  forward.setPath("/review/rev_like_score.jsp");
+	    	  forward.setRedirect(false);
+	    	  
 	      } 
 	      
 	      

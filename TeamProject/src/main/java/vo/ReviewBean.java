@@ -15,6 +15,7 @@ public class ReviewBean {
 //	rev_pic_origin VARCHAR(250), // 원본 사진 명
 //	rev_menu VARCHAR(30), // 주문한 메뉴 (주문내역 테이블에서 가져와서 저장)
 //	rev_date DATE// 리뷰 작성일
+//	rev_like INT // 좋아요 갯수 저장
 //);
 
 int rev_num;
@@ -29,15 +30,10 @@ String prev_pic;
 String prev_pic_origin;
 String rev_menu;
 Date rev_date;
+int rev_like;
 int listCount; // 리뷰 개수 저장
 float totalScore; // 리뷰 평점 저장
 
-public float getTotalScore() {
-	return totalScore;
-}
-public void setTotalScore(float totalScore) {
-	this.totalScore = totalScore;
-}
 public int getRev_num() {
 	return rev_num;
 }
@@ -110,12 +106,26 @@ public Date getRev_date() {
 public void setRev_date(Date rev_date) {
 	this.rev_date = rev_date;
 }
+public int getRev_like() {
+	return rev_like;
+}
+public void setRev_like(int rev_like) {
+	this.rev_like = rev_like;
+}
 public int getListCount() {
 	return listCount;
 }
 public void setListCount(int listCount) {
 	this.listCount = listCount;
 }
+public float getTotalScore() {
+	return totalScore;
+}
+public void setTotalScore(float totalScore) {
+	this.totalScore = totalScore;
+}
+
+
 
 	
 }
