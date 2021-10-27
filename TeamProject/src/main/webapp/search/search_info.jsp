@@ -51,6 +51,7 @@ SearchBean article = (SearchBean)request.getAttribute("article");
             <li id="order_item">
                 <button>장바구니</button>
                 <button >예약하기</button>
+                
             </li>
         </ul>
     </div>
