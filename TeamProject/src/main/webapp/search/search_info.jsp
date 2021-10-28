@@ -3,6 +3,16 @@
 	pageEncoding="UTF-8"%>
 <%
 SearchBean article = (SearchBean) request.getAttribute("article");
+String store_name = "";
+String load_address = "";
+String address = "";
+String store_number = "";
+if(article!=null){
+	store_name = article.getPlace_name();
+	load_address = article.getRoad_address();
+	address = article.getJibun_address();
+	store_number = article.getTell_number();
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +22,31 @@ SearchBean article = (SearchBean) request.getAttribute("article");
 <link rel="stylesheet" href="/TeamProject/css/test.css">
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/header.css">
+<script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#go_reserve_btn').on('click',function(){
+// 			alert('ㅎㅇ')
+			var sendData = {
+				"store_name":$('#store_name').text(),
+				"load_address":$('#load_address').text(),
+				"address":$('#address').text(),
+				"store_number":$('#store_number').text()
+			};
+// 			alert(JSON.stringify(sendData));
+			$.ajax({
+				type:"get",
+				data:sendData,
+				dataType: "text",
+				url:"GoReserve.mz"
+			}).done(function(data){
+				location.href='Reserve.do';
+			}).fail(function() {
+				alert('잠시 후에 시도하십시오.')
+			});
+		});
+	});
+</script>
 </head>
 <body>
 		<header>
@@ -30,7 +65,7 @@ SearchBean article = (SearchBean) request.getAttribute("article");
 					<li class="item_txt">
 						<p>[ Matzip ]</p>
 						<div>
-							<h2><%=article.getPlace_name()%></h2>
+							<h2 id="store_name"><%=store_name%></h2>
 							<br>
 							<br>
 						</div>
@@ -40,15 +75,15 @@ SearchBean article = (SearchBean) request.getAttribute("article");
 						<ul>
 							<li>
 								<p>주소</p>
-								<p><%=article.getRoad_address()%></p>
+								<p id="load_address"><%=load_address%></p>
 							</li>
 							<li>
 								<p>지번</p>
-								<p><%=article.getJibun_address()%></p>
+								<p id="address"><%=address%></p>
 							</li>
 							<li>
 								<p>번호</p>
-								<p><%=article.getTell_number()%></p>
+								<p id="store_number"><%=store_number%></p>
 							</li>
 						</ul> <br>
 					<br>
@@ -56,7 +91,7 @@ SearchBean article = (SearchBean) request.getAttribute("article");
 
 					<li id="order_item">
 						<button type="button">장바구니</button>
-						<button type="submit">예약하기</button>
+						<button type="button" id="go_reserve_btn">예약하기</button>
 					</li>
 				</ul>
 			</div>

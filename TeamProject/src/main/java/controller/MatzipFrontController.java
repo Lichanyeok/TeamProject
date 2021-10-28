@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.GoReserveAction;
 import action.MatzipListAction;
 import action.MatzipInfoAction;
 import vo.ActionForward;
@@ -23,7 +24,7 @@ public class MatzipFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getServletPath();
-//		System.out.println(command);
+		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
 		
@@ -41,6 +42,14 @@ public class MatzipFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MatzipInfo.mz")) {
 			action = new MatzipInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/GoReserve.mz")) {
+			action = new GoReserveAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

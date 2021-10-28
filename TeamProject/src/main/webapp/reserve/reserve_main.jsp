@@ -1,23 +1,31 @@
+<%@page import="vo.SearchBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%
-    /*
-    만약 가게 정보들을 String 타입 배열로 받아온다 친다 가정
-    request 객체로 받아서 배열로 저장 후 각자의 값 꺼냄
-    */
-    String[] storeArr = {"새마을식당","김해시 인제로 167번길","경상남도 김해시 어방동 106동","051-333-4444"};
-    String storeName = storeArr[0];
-    String loadAddress = storeArr[1];
-    String address = storeArr[2];
-    String storeNumber = storeArr[3];
+<%
+    ArrayList<SearchBean> storeInfo = (ArrayList<SearchBean>)session.getAttribute("storeInfo");
+  	String storeName = "정보가 없습니다";
+    String loadAddress = "정보가 없습니다";
+    String address = "정보가 없습니다";
+    String storeNumber = "정보가 없습니다";
+  	if(storeInfo!=null){
+    	storeName = storeInfo.get(0).getPlace_name();
+    	loadAddress = storeInfo.get(0).getRoad_address();
+    	address = storeInfo.get(0).getJibun_address();
+    	storeNumber = storeInfo.get(0).getTell_number();
+    	
+    	request.setAttribute("storeName", storeName);
+    	request.setAttribute("loadAddress", loadAddress);
+    	request.setAttribute("address", address);
+    	request.setAttribute("storeNumber", storeNumber);
+  	}
+  	
+  	
     //세션에 저장된  id로 가정
     String id = session.getAttribute("sId").toString();
     request.setAttribute("id", id);
-    request.setAttribute("storeName", storeName);
-    request.setAttribute("loadAddress", loadAddress);
-    request.setAttribute("address", address);
-    request.setAttribute("storeNumber", storeNumber);
+   
     %>
 <!DOCTYPE html>
 <html>
