@@ -20,7 +20,6 @@
     request.setAttribute("storeNumber", storeNumber);
     %>
 <!DOCTYPE html>
-<link rel="stylesheet" href="../css/reserve.css">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -60,9 +59,6 @@
 				}).fail(function() {
 					alert('죄송합니다 조금 후에 이용해주세요');
 				});
-				}).done(function(data) {
-					$('#result').html(data);
-				})
 			}else{
 				$.ajax({
 					type: "GET",
@@ -142,48 +138,4 @@
      </div>
      <div id="result"></div>
  </body>
-=======
-        <div id="reserve_list">
-<!--         	<h3>예약 상세정보 작성</H3> -->
-<!--         	<H3>넘어온 가게 정보</H3> -->
-	        <form>
-	        	<ul id="store_list">
-	        		<li id="storeName"><%=storeName %></li>
-	        		<li id="loadAddress"><%=loadAddress %></li>
-	        		<li id="address"><%=address %></li>
-	        		<li id="storeNumber"><%=storeNumber%></li>
-	        	</ul>
-	        	날짜 선택
-	        	<input type="date"  id="date">
-	        	시간 선택
-	        	<select id="time">
-	        		<option>11:00</option>
-	        		<option>12:00</option>
-	        		<option>13:00</option>
-	        		<option>14:00</option>
-	        		<option>15:00</option>
-	        		<option>16:00</option>
-	        		<option>17:00</option>
-	        		<option>18:00</option>
-	        		<option>19:00</option>
-	        	</select>
-	        	인원선택
-	        	<select id="people">
-	        		<option>1</option>
-	        		<option>2</option>
-	        		<option>3</option>
-	        		<option>4</option>
-	        		<option>5</option>
-	        	</select>
-	        	추가요구사항
-	        	<textarea rows="5" cols="10" id="customer_needs"></textarea>
-	        	결제여부
-	        	<input type="radio" name="payment" value="1" checked="checked">선결제
-	        	<input type="radio" name="payment" value="0">직접결제
-	        	<button id="btnOk" value="확인">확인</button>
-	        </form>
-        </div>
-        <div id="result"></div>
-</body>
->>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
 </html>
