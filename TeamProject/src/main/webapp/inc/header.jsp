@@ -14,7 +14,6 @@
         <div class="header_top">
           <ul class = "nav_top">
               <li><a href="#">고객센터</a></li>
-              <li><a href="#">관심상품</a></li>
                <%
                 String nickName = (String) session.getAttribute("sNn");
                 int grade = 0;
