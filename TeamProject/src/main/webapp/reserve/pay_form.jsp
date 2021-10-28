@@ -21,12 +21,21 @@
 
 li{
     list-style: none;
+    font-size: 16px;
+    font-weight: 500;
 }
 
+li a{
+	font-size: 13px;
+    font-weight: 400;
+    font-stretch: normal;
+    display : inline-block; 
+    text-overflow : ellipsis;
+}
 /* 기본리셋 */
 
 .payform_wrap {
-    width: 750px;
+    width: 900px;
     margin: 100px auto;
 }
 
@@ -40,7 +49,7 @@ li{
 .payform_wrap ul {
     text-align: left;
     display: flex;
-    margin: 20px 0 60px 0;
+    margin: 15px 0 20px 0;
 }
 
 .payform_wrap ul li {
@@ -137,22 +146,22 @@ h3{
 	<div class="payform_wrap">
 		<h3>선택하신 가게 정보</h3>
 		<ul id="store_info">
-			<li>가게명 : <a><%=reserve.getStoreName() %></a></li>
-			<li>가게 도로명주소 : <a><%=reserve.getLoadAddress()%></a></li>
-			<li>가게 주소 : <a><%=reserve.getAddress() %></a></li>
-			<li>가게 번호 : <a><%=reserve.getStoreNumber() %></a></li>
+			<li>가게명<br><a><%=reserve.getStoreName() %></a></li>
+			<li>가게 도로명주소<br><a><%=reserve.getLoadAddress()%></a></li>
+			<li>가게 주소<br><a><%=reserve.getAddress() %></a></li>
+			<li>가게 번호<br><a><%=reserve.getStoreNumber() %></a></li>
 		</ul>
 		<h3>예약 세부 사항</h3>
 		<ul id="reserve_info">
-			<li>예약날짜 : <a><%=reserve.getReserve_date()%></a></li>
-			<li>예약시간 : <a><%=reserve.getReserve_time() %></a></li>
-			<li>예약인원 : <a><%=reserve.getPeople() %></a>명</li>
-			<li>세트A(9000원) : <a><%=reserve.getSetA()%></a>인</li>
-			<li>세트B(10000원) : <a><%=reserve.getSetB()%></a>인</li>
-			<li>총 주문 내역 : <a><%=reserve.getTotal_order_menu() %></a>
-			<li>추가사항 : <a><%=reserve.getCustomerNeeds() %></a></li>
+			<li>예약날짜<br><a><%=reserve.getReserve_date()%></a></li>
+			<li>예약시간<br><a><%=reserve.getReserve_time() %></a></li>
+			<li>예약인원<br><a><%=reserve.getPeople() %></a>명</li>
+			<li>세트A(9000원)<br><a><%=reserve.getSetA()%></a>인</li>
+			<li>세트B(10000원)<br><a><%=reserve.getSetB()%></a>인</li>
+			<li>총 주문 내역<br><a><%=reserve.getTotal_order_menu() %></a>
+			<li>추가사항<br><a><%=reserve.getCustomerNeeds() %></a></li>
 		</ul>
-		<h3 id="showList"><a id="id">${id }</a>님이 보유하신 쿠폰 보기</h3>
+		<h3 id="showList"><a id="id">${id }</a>님이<br>보유하신 쿠폰 보기</h3>
 		<div id="couponResult">
 		<div id="couponList"></div>
 		

@@ -8,6 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+tr th {
+    width: 170px;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+tr  td {
+    font-size:15px;
+    
+}
+</style>
 <script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $('#couponBtn').on('click',function(){

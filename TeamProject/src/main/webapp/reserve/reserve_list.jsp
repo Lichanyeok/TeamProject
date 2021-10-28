@@ -22,6 +22,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reserve_list.css">
     <title>reserve_list</title>
+<script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	function copy_code(num){
+		var reserve_code = document.getElementById('reserve_code'+num).innerHTML;
+// 		alert(reserve_code);
+		var code = reserve_code.split('<b')[0];
+// 		alert(code);
+		$('#clip_target').val(code);
+		$('#clip_target').select(); // Use try & catch for unsupported browser 
+		try { // The important part (copy selected text) 
+		var successful = document.execCommand('copy'); 
+		if(successful){
+			alert('복사되었습니다.')
+		}else{
+			alert('복사실패.')
+		}
+		} catch (err) { alert('이 브라우저는 지원하지 않습니다.') }
+
+	}
+</script>
 </head>
 <body>
 		<!-- 상위 고정 -->
@@ -68,7 +88,7 @@
                     </colgroup>
                     <tbody>
                     <%for(int i=0;i<reserveList.size();i++){ %>
-                        <td><%=reserveList.get(i).getRan_num()%></td>
+                        <td id="reserve_code<%=i%>"><%=reserveList.get(i).getRan_num()%><button onclick="copy_code(<%=i%>)">복사</button> </td>
                         <td><%=reserveList.get(i).getId()%></td>
                         <td><%=reserveList.get(i).getReserve_date()%></td>
                         <td><%=reserveList.get(i).getReserve_time()%></td>
@@ -97,6 +117,7 @@
                 </table>
             </tbody>
         </table>
+        <input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>
         <section id="pageList">
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전">&nbsp;

@@ -97,7 +97,7 @@
 
            <ul>
 		<li>
-		<label>예약자명 : </lable>
+		<label>예약자명</lable>
 		<a id="id">${id }</a>
 		</li>
                <li>
