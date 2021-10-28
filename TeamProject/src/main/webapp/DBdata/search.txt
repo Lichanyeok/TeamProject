@@ -17,6 +17,7 @@ insert into search values (
 	5,
 	"1111"
 );
+
 insert into search values (
 	"실험2",
 	"실험2",
@@ -120,6 +121,15 @@ insert into search values (
 	"실험14",
 	4.5,
 	"1414"
+);
+
+insert into search values (
+	"실험15",
+	"실험15",
+	"실험",
+	"실험15",
+	4.7234,
+	"1515"
 );
 
 

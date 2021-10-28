@@ -18,7 +18,7 @@ public class MatzipListAction implements Action {
 		
 		
 		String category=request.getParameter("category");
-		System.out.println(category);
+//		System.out.println(category);
 		
 		MatzipListService service = new MatzipListService();
 		int ListCount = service.getMatzipListCount(category);
@@ -29,7 +29,7 @@ public class MatzipListAction implements Action {
 		
 		
 		forward = new ActionForward();
-		forward.setPath("search_list.jsp");
+		forward.setPath("search/search_list.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

@@ -5,7 +5,7 @@
 .map_wrap, .map_wrap * {padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {width:1081px;height:400px;margin: 0 auto;}
-#menu_wrap {float:left;margin-left:10px;left:0;bottom:0;width:auto;height:400px;padding:0px;overflow-y:hidden;
+#menu_wrap {float:left;left:0;bottom:0;width:auto;height:400px;padding:0px;overflow-y:hidden;
 	background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;
 	border: 2px solid #FF8831;}
 #menu_wrap:hover{
@@ -50,18 +50,17 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 #search_wrap {
-/* 	border: 1px solid black; */
+ 	 
 	margin: 0 auto;
 	width: 1081px;
 	height: 100px;
 	vertical-align: middle;
+	border-radius: 5px;
 }
 #searchForm{
 	width: 460px;
 	margin: 0 auto;
-	margin-top: 30px;
-	
-	
+	margin-top: 30px;	
 }
 #keyword{
 	width: 400px;
@@ -73,8 +72,7 @@
 	float: left;
 	padding-left: 10px;
 }
-#searchForm > button{
-	
+#searchForm > button{	
 	width: 40px;	
 	height: 46px;
 	border: 3px solid #FF8831;
@@ -85,12 +83,12 @@
 </style>
 <div class="map_wrap">
 	<div id="search_wrap">
-		<div id="search_box">
+		
 		<form onsubmit="searchPlaces(); return false;" id="searchForm">
 			<input type="text" value="피자몰" id="keyword" size="15">
 			<button type="submit" id="mapSearchBtn">검색</button>
 		</form>
-		</div>
+		
 	</div>
 	<div id="menu_wrap" class="bg_white">
 		<div class="option"></div>
@@ -99,7 +97,7 @@
 		<div id="pagination"></div>
 	</div>
 	<div id="map"
-		style="width: 770px; height: 400px; position: relative; overflow: hidden;
+		style="width: 775px; height: 400px; position: relative; overflow: hidden;
 		border: 2px solid #FF8831; border-radius: 10px;float:right;"></div>
 </div>
 <script src="../js/jquery-3.6.0.js"></script>
@@ -225,7 +223,7 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '<h5><a href="../MatzipInfo.mz?'+
+                '<h5><a href="./MatzipInfo.mz?'+
                 'road_address='+places.road_address_name+
                 '&tell_number='+places.phone+
                 '">' + places.place_name + '</a></h5>';
