@@ -9,7 +9,6 @@ public class ReviewBean {
 //	rev_store VARCHAR(20), // 매장 이름
 //	rev_name VARCHAR(20), // 리뷰 작성자 이름 or 닉네임
 //	rev_score FLOAT, // 별점 or 평점
-//	rev_subject VARCHAR(20), // 리뷰 제목
 //	rev_content VARCHAR(500), // 리뷰 내용
 //	rev_pic VARCHAR(250), // 사진 명
 //	rev_pic_origin VARCHAR(250), // 원본 사진 명
@@ -22,7 +21,6 @@ int rev_num;
 String rev_store;
 String rev_name;
 float rev_score;
-String rev_subject;
 String rev_content;
 String rev_pic;
 String rev_pic_origin;
@@ -57,12 +55,6 @@ public float getRev_score() {
 }
 public void setRev_score(float rev_score) {
 	this.rev_score = rev_score;
-}
-public String getRev_subject() {
-	return rev_subject;
-}
-public void setRev_subject(String rev_subject) {
-	this.rev_subject = rev_subject;
 }
 public String getRev_content() {
 	return rev_content;

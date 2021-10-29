@@ -7,8 +7,8 @@
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
-	ReviewBean reviewData = (ReviewBean)request.getAttribute("reviewData");
-	double totalScore = reviewData.getTotalScore() / reviewData.getListCount(); // 가져온 리뷰 점수 평균 작업
+    ReviewBean reviewData = (ReviewBean)request.getAttribute("reviewData");
+    double totalScore = reviewData.getTotalScore() / reviewData.getListCount(); // 가져온 리뷰 점수 평균 작업
 	
 	%> 
 <!DOCTYPE html>
@@ -65,44 +65,13 @@
 			
 		});
 		
-		// 마우스 오버 시 빈 리뷰 이미지를 채워진 이미지로 변경 / 클릭 시 리뷰 작성 페이지로 이동		
-		$('#rev_empty img').hover(
-			function() {
-				$(this).attr({src:"./review/rev_im/rev_write.png"});
-				$('#rev_empty span').html('&nbsp;&nbsp;이미지를 눌러 리뷰 쓰러가기');
-			},
-			function() {
-				$(this).attr({src:"./review/rev_im/rev_empty.png"});
-				$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
-			}
-		);
-		$('#rev_empty img').on('click', function() {
-			$(location).attr('href','./ReviewWrite.re');
-		});
-		
-		
-			 
 	});
 </script>
 <style type="text/css">
-#rev_store {
-	text-align: center;
-	font-size: 3em;
-	padding: 0.5em;
-}
 
-#rev_score {
-	text-align: center;
-	font-size: 3em;
-}
-
-#rev_contents {
-	float: right;
-	width: 1000px;
-}
 
 /* -------- 리뷰 목록 css -------- */
-#rev_name, #rev_date {
+#rev_name, #rev_date, #store_name {
 	width: 200px;
 	display: inline-block;
 	margin: 20px;
@@ -119,21 +88,22 @@
 #rev_menu {
 	width: 238px;
 	margin: 20px;
-	display: inline-block;
+/* 	display: inline-block; */
+	float: none;
+	
 	border: 1px solid;
 }
 
-#rev_menu_btn {
+#rev_menu_btn { /* 좋아요 버튼 */
 	width: 238px;
 	margin: 20px;
 /* 	float: right; */
 	display: inline-block;
 	border: 1px solid;
 }
-#rev_empty > span  {
-text-align: center;
-font-style: bold;
-font-size: 2em;
+
+.storeBtn {
+	
 }
 </style>
 </head>
@@ -144,48 +114,9 @@ font-size: 2em;
 		<!-- 본문 메인 이미지  -->
 		<div id="sub_img_center"></div>
 		<!-- 본문 좌측 메뉴 -->
-		<input type="hidden" value="<%=Math.round(totalScore) %>" name="rev_score"/>
 		
-		<nav id="sub_menu">
-			<table>
-				<tr>
-					<th id="rev_store" colspan="2">&nbsp;000 음식점</th>
-				</tr>
-				<tr>
-					<td rowspan="2" id="rev_score" ><%=Math.round(totalScore*10)/10.0 %></td>
-					<td>
-						<%if(totalScore != 0) {  %>
-						<img src="./review/rev_im/<%=(int)(Math.round(totalScore*10)/10.0) %>star.png" width="100" height="20" />
-						<%} else { %>
-						<img src="./review/rev_im/0star.png" width="100" height="20" />
-						<%} %>
-					</td>
-				</tr>
-				<tr>
-					<td><h3>리뷰 <%=reviewData.getListCount() %>개</h3></td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" id="isRev_pic" /> 포토리뷰
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<select id="select">
-							<option disabled="disabled">리뷰 정렬</option>
-							<option value="0">최신순</option>
-							<option value="1">리뷰 도움순</option>
-							<option value="2">별점 높은 순</option>
-							<option value="3">별점 낮은 순</option>
-						</select>
-					</td>
-				</tr>
-			</table>
-		</nav>
 		
 		<!-- 리뷰 게시물 목록 표시 -->
-		<div id="rev_contents">
-		<%if(articleList.size() != 0) { %>
 		<%
 			for(int i = 0; i < articleList.size(); i++) {
 				String str = articleList.get(i).getRev_pic_origin();
@@ -193,28 +124,26 @@ font-size: 2em;
 		%>
 		<input type="hidden" value="<%=rev_score %>" id="setScore"/>
 		
-		
+		<div id="rev_contents">
 		
 				<div id="rev_name">아이디 : <%=articleList.get(i).getRev_name() %></div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>
-				<div id="rev_content"><%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br><%} %><%=articleList.get(i).getRev_content() %></div>
-				<div id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></div><br>
-				<div id="rev_menu_btn"><button type="button" id="rev_like_btn" value="<%=articleList.get(i).getRev_num() %>"><img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-					<span id="likeScore"><%=articleList.get(i).getRev_like() %><!-- 여기에 좋아요 갯수 뿌리기 --></span></button>
+				<div id="rev_content">
+				<%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br> <!-- 리뷰 사진 뿌려짐 -->
+				<%} %><%=articleList.get(i).getRev_content() %> <!-- 리뷰 내용 뿌려짐 -->
 				</div>
-				<div id="rev_menu_btn" align="right">
-					<input type="button" name="rev_modify" value="수정" onclick="location.href='./ReviewModify.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>&nbsp;
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>
-				</div><br>
+				<span id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></span><br>
+				<div id="store_name">
+				<a href="./ReviewStore.re"><!-- 매장이름 불러오기 -->00국밥집</a>&nbsp;&nbsp; <img src="./review/rev_im/rev_star.png" width="15" height="15" /><%=Math.round(totalScore*10)/10.0 %>(<%=reviewData.getListCount() %>)<br>
+				<!-- 매장 연락처 -->051-000-0000<br>
+				<!-- 매장주소 -->부산광역시 00구 00동
+				</div>
+				<span>
+				<input type="button" value="좋아요" class="storeBtn" />
+				<input type="button" value="저장" class="storeBtn" />
+				</span>
+				
 			<%}%>
-		
-		
-	<%} else { %>
-	<div id="rev_empty">
-		<img src="./review/rev_im/rev_empty.png" width="500" height="500" ><br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.</span>
 		</div>
-	<%} %>
-	</div>
 		<div class="clear"></div>
 		<!----------------------- 푸터(Footer) 들어가는 곳 ---------------------->
 		

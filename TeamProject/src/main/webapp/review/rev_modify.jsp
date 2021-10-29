@@ -167,10 +167,6 @@ text-align: center;
       
          <table>
             <tr>
-               <td class="td_left"><label for="board_subject">제목</label></td>
-               <td class="td_right"><input type="text" name="rev_subject" required="required" value="<%=article.getRev_subject() %>" /></td>
-            </tr>
-            <tr>
 				<td class="td_left"><label for="board_pass">비밀번호</label></td>
 				<td class="td_right">
 					<input type="password" name="rev_pass" required="required" />

@@ -156,7 +156,12 @@ img {
             </tr>
             <tr>
                <td class="td_left"><label for="board_file">사진 첨부</label></td>
-               <td class="td_right"><input type="file" accept="image/jpeg, image/png, image/gif" name="rev_pic"  /></td>
+               <td class="td_right">
+<!--                <input type="file" accept="image/jpeg, image/png, image/gif" name="rev_pic"  /><br> -->
+<!--                <input type="file" accept="image/jpeg, image/png, image/gif" name="rev_pic"  /><br> -->
+               <input type="file" accept="image/jpeg, image/png, image/gif" name="rev_pic"  />
+               </td>
+               
             </tr>
          </table>
          <section id="commandCell">

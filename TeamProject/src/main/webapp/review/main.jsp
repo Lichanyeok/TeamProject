@@ -28,7 +28,7 @@
 	<h1>메인페이지</h1>
 	<h2><a href="../ReviewWrite.re">리뷰 쓰기 테스트</a></h2>
 	<h2><a href="../ReviewStore.re">00국밥집 리뷰 테스트</a></h2>
-	<h2><a href="../ReviewList.re">00국밥집 리뷰 목록 테스트</a></h2>
+	<h2><a href="../ReviewByStores.re">매장 별 리뷰 테스트</a></h2>
 	
 	
 </body>

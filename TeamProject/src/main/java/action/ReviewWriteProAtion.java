@@ -50,7 +50,6 @@ public class ReviewWriteProAtion implements Action {
 		board.setRev_store("00국밥집");
 		board.setRev_name(multi.getParameter("rev_name"));
 		board.setRev_score(Integer.parseInt(multi.getParameter("rating")));
-		board.setRev_subject(multi.getParameter("rev_subject"));
 		board.setRev_content(multi.getParameter("rev_content"));
 //		board.setRev_menu(multi.getParameter("rev_menu"));
 		board.setRev_menu("순대국밥 외 2종");
@@ -98,7 +97,7 @@ public class ReviewWriteProAtion implements Action {
 			// => request 객체 유지 불필요, 주소 유지 불필요
 			// => 새로운 요청을 발생시키므로 Redirect 방식 포워딩
 			forward = new ActionForward();
-	    	forward.setPath("./");
+	    	forward.setPath("./review/main.jsp");
 	    	forward.setRedirect(true);
 		}
 		
