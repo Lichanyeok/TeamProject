@@ -70,6 +70,9 @@
 	float: left;
 	padding-left: 10px;
 }
+#keyword:focus{
+	outline: none;
+}
 #searchForm > button{	
 	width: 40px;	
 	height: 46px;
