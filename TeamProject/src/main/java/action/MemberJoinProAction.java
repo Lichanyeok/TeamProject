@@ -25,12 +25,13 @@ public class MemberJoinProAction implements Action {
 		String pass = request.getParameter("pass1");
 		String email = request.getParameter("email");
 		String mobile = request.getParameter("mobile");
-		String address = request.getParameter("address1") + request.getParameter("address2");
+		String address = request.getParameter("address1");
+		String addressDetail = request.getParameter("addressDetail");
 		String gender = request.getParameter("gender");
 		Date date = null;
 
-		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, gender );
-		
+		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, addressDetail, gender );
+		System.out.println(bean.toString());
 		MemberJoinService service = new MemberJoinService();
 		
 		boolean isJoinSuccess = service.joinMember(bean);

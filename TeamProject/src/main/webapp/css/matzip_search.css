@@ -1,7 +1,7 @@
 @charset "EUC-KR";
 
 body {
-	min-width: 1081px;
+	min-width: 1080px;
 	margin: 0 auto;
 }
 
@@ -10,23 +10,22 @@ body {
 }
 
 #wrap_search{
-	border: 1px solid red;
+/* 	border: 1px solid red; */
 	width: auto;
 	margin: 0 auto;
 }
 
 #category_wrap {
-	border: 1px solid black;
+	border: 2px solid #FF8831;
 	margin: 0 auto;
-	width: 1081px;
+	width: 1080px;
 	height: auto;
 	vertical-align: middle;
 	margin-top: 10px;
 }
-#category_list {
-	border: 1px solid black;
-	margin: 0 auto;
-	width: 1081px;
+#category_list {	
+	margin: auto;	
+	width: 1080px;
 	height: auto;
 }
 
@@ -34,13 +33,16 @@ body {
 	text-align: center;	
 }
 
-#category_menu_ul>li{
-	border: 1px solid red;
+#category_menu_ul>li{	
 	float: left;	
-	width: 88px;
+	width: 90px;
 	height: 30px;		
-	color: red;
-	padding-top: 8px;
+	color: #ffffff;	
+	background: #FF8831;
+	padding-top: 10px;
+}
+#category_menu_ul>li:hover {
+	background: #FF6631;
 }
 
 

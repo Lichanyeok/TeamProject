@@ -74,10 +74,10 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql="INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,now(),null)";
+			String sql="INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,?,now(),null)";
 			
 			pstmt = con.prepareStatement(sql);
-	
+			
 			pstmt.setString(1, bean.getName());
 			pstmt.setString(2, bean.getNickName());
 			pstmt.setInt(3, bean.getAge());
@@ -86,8 +86,9 @@ public class MemberDAO {
 			pstmt.setString(6, bean.getEmail());
 			pstmt.setString(7, bean.getMobile());
 			pstmt.setString(8, bean.getAddress());
-			pstmt.setString(9, bean.getGender());
-			pstmt.setInt(10, 1);
+			pstmt.setString(9, bean.getAddressDetail());		
+			pstmt.setString(10, bean.getGender());
+			pstmt.setInt(11, 1);
 			
 			int result = pstmt.executeUpdate();
 //			System.out.println(result);
@@ -469,6 +470,34 @@ public class MemberDAO {
 		}
 		
 		return isSuccess;
+	}
+
+	public ArrayList<CouponBean> getUserCouponList(String id) {
+		ArrayList<CouponBean> couponList = new ArrayList<CouponBean>();
+		System.out.println("getUserCouponList DAO : " + id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CouponBean coupon = null;
+		try {
+			String sql = "SELECT * FROM coupon WHERE user_id =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				coupon = new CouponBean();
+				coupon.setCoupon_name(rs.getString("coupon_name"));
+				coupon.setCoupon_value(rs.getString("coupon_value"));
+				coupon.setCoupon_price(rs.getInt("coupon_price"));
+				coupon.setCoupon_code(rs.getString("coupon_code"));
+				coupon.setUser_id(id);
+				coupon.setMade_date(rs.getDate("made_date"));
+				couponList.add(coupon);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return couponList;
 	}
 }
 

@@ -8,6 +8,132 @@ create table search(
 	tell_number varchar(30) unique not null		
 );
 
+<실험용>
+insert into search values (
+	"실험1",
+	"실험1",
+	"실험",
+	"실험1",
+	5,
+	"1111"
+);
+
+insert into search values (
+	"실험2",
+	"실험2",
+	"실험",
+	"실험2",
+	5,
+	"2222"
+);
+insert into search values (
+	"실험3",
+	"실험3",
+	"실험",
+	"실험3",
+	4.5,
+	"3333"
+);
+insert into search values (
+	"실험4",
+	"실험4",
+	"실험",
+	"실험4",
+	5,
+	"4444"
+);
+insert into search values (
+	"실험5",
+	"실험5",
+	"실험",
+	"실험5",
+	4.5,
+	"5555"
+);
+insert into search values (
+	"실험6",
+	"실험6",
+	"실험",
+	"실험6",
+	5,
+	"6666"
+);
+insert into search values (
+	"실험7",
+	"실험7",
+	"실험",
+	"실험7",
+	3,
+	"7777"
+);
+insert into search values (
+	"실험8",
+	"실험8",
+	"실험",
+	"실험8",
+	4,
+	"8888"
+);
+insert into search values (
+	"실험9",
+	"실험9",
+	"실험",
+	"실험9",
+	4,
+	"9999"
+);
+insert into search values (
+	"실험10",
+	"실험10",
+	"실험",
+	"실험10",
+	2,
+	"1010"
+);
+insert into search values (
+	"실험11",
+	"실험11",
+	"실험",
+	"실험11",
+	5,
+	"1111"
+);
+insert into search values (
+	"실험12",
+	"실험12",
+	"실험",
+	"실험12",
+	4,
+	"1212"
+);
+insert into search values (
+	"실험13",
+	"실험13",
+	"실험",
+	"실험13",
+	3,
+	"1313"
+);
+insert into search values (
+	"실험14",
+	"실험14",
+	"실험",
+	"실험14",
+	4.5,
+	"1414"
+);
+
+insert into search values (
+	"실험15",
+	"실험15",
+	"실험",
+	"실험15",
+	4.7234,
+	"1515"
+);
+
+
+
 < 피자 >
 
 insert into search values (

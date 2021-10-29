@@ -19,7 +19,7 @@
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function() {
-		
+
 		// 이전 리뷰 작성 시 체크했던 별점 불러오기.
 		$('input[name=rev_score]').each(function() {
 			if($(this).val() != 0) {

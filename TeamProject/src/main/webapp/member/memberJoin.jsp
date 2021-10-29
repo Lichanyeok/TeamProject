@@ -13,7 +13,8 @@
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
-  	
+  		
+    
    
     //----------------------------ID 중복 확인 -----------------------------------------
   		function checkNickName(){
@@ -122,8 +123,19 @@
   	        });
   	    }
   	
+  	//----------------------------------생년월일 감지---------------------------------------
+  	function checkAge(){
+  		var age = $('#age').val();
+//   		alert(age);
+  		var ageRegex =/^[0-9]{6}$/;
+  		if(!ageRegex.exec(age)){
+  			alert('올바르지 못한 입력입니다.(ex)yymmdd)');
+  			$('#age').select();
+  		}
+  	};
   	
-  		</script>
+  	
+</script>
     
 </head> 
 <body>
@@ -156,7 +168,7 @@
                     </tr>
                     <tr>
                         <th>생년월일</th>
-                        <td><input type="text" name="age"></td>
+                        <td><input type="text" id="age" name="age" placeholder="ex)yymmdd" onchange="checkAge()"></td>
                     </tr>
                     <tr>
                         <th>아이디</th>
@@ -185,7 +197,7 @@
                     </tr>
                     <tr>
                     <th>주소</th>
-                    <td><input type="text" readonly="readonly" id="address1"> <input type="text" id="address2"></td>
+                    <td><input type="text" readonly="readonly" id="address1" name="address1"> <input type="text" id="addressDetail" name="addressDetail"></td>
                     <td></td> <!-- 경고 메세지 -->
                 	</tr>
                     <tr>
@@ -196,7 +208,7 @@
                         </td>
                     </tr>
                 </table>
-                <a class = "submit"><input type="submit" value="회원가입"></a>
+                <a class = "submit"><input type="submit" value="회원가입" onsubmit="checkForm()"></a>
         </form>
             </div>
         </div>

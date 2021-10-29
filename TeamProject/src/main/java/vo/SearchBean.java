@@ -7,7 +7,18 @@ public class SearchBean {
 	private String place_name;
 	private float star_score;
 	private String tell_number;
-	
+	public SearchBean() {};
+	public SearchBean(String road_address, String jibun_address, String place_name, String tell_number) {
+		super();
+		this.road_address = road_address;
+		this.jibun_address = jibun_address;
+		this.place_name = place_name;
+		this.tell_number = tell_number;
+	}
+	@Override
+	public String toString() {
+		return "SearchBean [road_address=" + road_address + ", jibun_address=" + jibun_address + ", place_name=" + place_name + ", tell_number=" + tell_number + "]";
+	}
 	public String getRoad_address() {
 		return road_address;
 	}

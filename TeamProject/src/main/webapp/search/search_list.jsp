@@ -3,80 +3,90 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
-	// 전달받은 request 객체로부터 데이터 가져오기
-	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	ArrayList<SearchBean> articleList = (ArrayList<SearchBean>)request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC 게시판</title>
+<title></title>
 <style type="text/css">
 	.clear{
 		clear: both;
 	}
-	#listForm {
-		width: auto;
-		max-height: 610px;		
-		margin: auto;
-	}	
+ 	#listForm { 
+ 		width: auto; 
+		height: 510px;					 
+ 	}	 
 	
-	#category_list_info{
-		border: 1px dashed red;
+	.category_list_info{
+		border: 1px solid #FF8831;
 		width: 538px;
 		height: 100px;
 		float: left;
 		margin: 0 auto;		
 		color: black;
+		font-size: 15px;
+		
+		
+	}
+	.category_list_logo{
+		width: 100px;	
+		height: 100px;
+		float: left;
+		margin-right: 10px;
+		
+	}
+	#category_list_ul{
+		margin-top:3px;
+	}
+	#category_list_ul li{
+		line-height: 1.2;
+		
+	}
+	.starImg {
+		width: 12px;
+		height: 12px;		
+	}
+	.list_name{
+		font-weight: bold;
+		font-size: 18px;
+		color: #3CB371;
 	}
 	
-	#pageList {
-		margin: 0 auto;
-		width: 1024px;
-		text-align: center;
-	}	
-	#emptyArea {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
+	.list_link{
+		
 	}
-	
-	#buttonArea {
-		margin: auto;
-		width: 1024px;
-		text-align: right;
-	}
-	
-	
 </style>
 </head>
-<body>
-	<!-- 게시판 리스트 -->
-		<section id="listForm">
-						
-			<%
-			if(articleList != null && listCount > 0) {			
-				for(int i = 0; i < articleList.size(); i++) {
-					%>
-					<div id="category_list_info">
-							업체명 : <%=articleList.get(i).getPlace_name() %> | 
-							업종 : <%=articleList.get(i).getCategory() %><br>
-							주소 : 	<%=articleList.get(i).getRoad_address() %>&nbsp;
-							(<%=articleList.get(i).getJibun_address()%>)<br>
-							별점 : <%=articleList.get(i).getStar_score() %> |
-							전화번호 : <%=articleList.get(i).getTell_number() %>
-					</div><%}%>
-		
-	</section>
-	<%} %>
-</body>
+<body>	
+	<div id="listForm">
+		<%
+			if(articleList != null) {			
+				for(int i = 0; i < articleList.size(); i++) {%>
+				<div class="category_list_info">
+					<img src="./search/img/pizzaHut.png" class="category_list_logo">
+					
+					<ul id="category_list_ul">
+						<li  class="list_name"><%=articleList.get(i).getPlace_name() %>
+						<%
+							double star=Math.round(articleList.get(i).getStar_score()*10)/10.0;
+							int iStar=(int)star;
+				 			double fStar=Math.round((star-iStar)*10)/10.0;
+							for(int j=0;j<iStar;j++){%>
+								<img src="./search/img/star.jpg" class="starImg">
+						<%}%><%=star %></li>
+						<li class="list_category">업종 : <%=articleList.get(i).getCategory() %></li>
+						<li class="list_address">주소 : <%=articleList.get(i).getRoad_address() %></li>
+						<li class="list_tell">전화번호 : <%=articleList.get(i).getTell_number() %></li>
+						<li class="list_rink"><a href="./MatzipInfo.mz?road_address=<%=articleList.get(i).getRoad_address() %>
+							&tell_number=<%=articleList.get(i).getTell_number()%>">상세정보 보기</a></li>
+					</ul>
+				</div>
+				<%}
+			} %>
+	</div>	
+</body>                              
 </html>

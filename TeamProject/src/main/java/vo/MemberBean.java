@@ -13,12 +13,13 @@ public class MemberBean {
 	private String email;
 	private String mobile;
 	private String address;
+	private String addressDetail;
 	private String gender;
 	private int grade;
 	private Date date;
 	public MemberBean() {};
 	public MemberBean(String name, String nickName, int age, String id, String pass, String email,
-			String mobile, String address, String gender) {
+			String mobile, String address, String addressDetail,String gender) {
 		super();
 
 		this.name = name;
@@ -29,11 +30,26 @@ public class MemberBean {
 		this.email = email;
 		this.mobile = mobile;
 		this.address = address;
+		this.addressDetail = addressDetail;
 		this.gender = gender;
 		this.grade = grade;
 		this.date = date;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "MemberBean [idx=" + idx + ", name=" + name + ", nickName=" + nickName + ", age=" + age + ", id=" + id
+				+ ", pass=" + pass + ", email=" + email + ", mobile=" + mobile + ", address=" + address
+				+ ", addressDetail=" + addressDetail + ", gender=" + gender + ", grade=" + grade + ", date=" + date
+				+ "]";
+	}
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
 	public String getAddress() {
 		return address;
 	}

@@ -1,10 +1,4 @@
 $(document).ready(function(){
-		
-		$("#searchBtn").on("click", function(){
-			$("#keyword").val($("#searchInfo").val());
-			$("#")
-
-		});
 	
 		var category="";
 		if(category==""){
@@ -19,6 +13,7 @@ $(document).ready(function(){
 		
 		$("#cy_1").on("click", function() {
 			category=$("#cy_1").text();
+			alert("aaa");
 			$.ajax({
 				type : "GET",
 				url : "./MatzipList.mz?category="+category,
@@ -100,7 +95,7 @@ $(document).ready(function(){
 	         category=$("#cy_7").text();
 	         $.ajax({
 	            type : "GET",
-	            url : "../MatzipList.mz?category="+category,
+	            url : "./MatzipList.mz?category="+category,
 	            success : function(msg) {
 	               $("#category_list").html(msg);   
 	            }         

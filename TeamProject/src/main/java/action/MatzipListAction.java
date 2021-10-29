@@ -14,35 +14,22 @@ public class MatzipListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward;		
-//		System.out.println(request.getParameter("category"));
+		ActionForward forward;
+		
+		
 		String category=request.getParameter("category");
-		int page = 1; 
-		int maximum = 8; 
+//		System.out.println(category);
 		
 		MatzipListService service = new MatzipListService();
-		int ListCount = service.getmatzipListCount();
+		int ListCount = service.getMatzipListCount(category);
 		
-		ArrayList<SearchBean> articleList = service.getArticleList(page, maximum,category);
+		ArrayList<SearchBean> articleList = service.getArticleList(category);
 		
-		int maxPage = (int)((double)ListCount / maximum + 0.925);
-		
-		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
-		
-		int endPage = startPage + 10 - 1;
-		
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, ListCount);
-		
-		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("articleList", articleList);
 		
 		
 		forward = new ActionForward();
-		forward.setPath("./search/search_list.jsp");
+		forward.setPath("search/search_list.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

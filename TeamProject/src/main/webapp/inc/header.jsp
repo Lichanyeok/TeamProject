@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome, This is MatZip</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
    
@@ -14,7 +14,6 @@
         <div class="header_top">
           <ul class = "nav_top">
               <li><a href="#">고객센터</a></li>
-              <li><a href="#">관심상품</a></li>
                <%
                 String nickName = (String) session.getAttribute("sNn");
                 int grade = 0;
@@ -35,9 +34,10 @@
         </div>
         <div class = "border_bottom"></div>
         <div class="header_bottom clearfix">
-            <div class="logo"><a href="/TeamProject/"><img src="../images/LOGO.png"></a></div>   
+            <div class="logo"><a href="/TeamProject/"><img src="./images/LOGO.png"></a></div>   
             <ul class="nav_bottom">
-                <li><a href="Reserve.do">예약관리</a></li>
+             	<li><a href="MatzipSearch.mz">검색</a></li>
+                <li><a href="ReserveList.do">예약관리</a></li>
                 <li><a href="Review.do">리뷰</a></li>
                 <li><a href="Notice.do">공지사항</a></li>
                 <li><a href="CustomerCommentList.do">고객문의</a></li>
