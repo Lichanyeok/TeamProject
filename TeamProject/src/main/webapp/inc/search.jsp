@@ -226,7 +226,7 @@ function getListItem(index, places) {
                 '<h5>' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
-        itemStr += '    <span class= road>' + places.road_address_name + '</span>' +
+        itemStr += '    <span class= "road">' + places.road_address_name + '</span>' +
                     '   <span class="jibun gray">' +  places.address_name  + '</span>';
     } else {
         itemStr += '    <span>' +  places.address_name  + '</span>'; 
