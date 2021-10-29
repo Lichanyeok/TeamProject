@@ -16,8 +16,6 @@
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:0px 0;}  
 #menu_wrap .option button {margin-left:5px;}
-
-
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
 #placesList .item span {display: block;margin-top:4px;}
