@@ -27,6 +27,9 @@
 	
 	int likeScore = dao.getLikeScore(rev_num, prev_like_score);
 	
+	// 확인
+// 	out.print(likeScore);
+	
 	if(likeScore > 0 ) {
 		con.commit();
 		out.print(likeScore);
@@ -39,6 +42,5 @@
 	con.close();
 		
 	%>
-	
 </body>
 </html>

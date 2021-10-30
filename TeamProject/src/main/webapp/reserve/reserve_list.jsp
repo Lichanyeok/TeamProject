@@ -41,6 +41,37 @@
 		} catch (err) { alert('이 브라우저는 지원하지 않습니다.') }
 
 	}
+	
+	function doPost(reserveNum) {
+		
+		// 동적 form - post 처리
+	    var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8"); // post 한글처리
+        form.setAttribute("method", "post");  // post 방식
+        form.setAttribute("action", "ReviewWrite.re"); // 요청 보낼 주소
+
+     	// 예약번호
+        var doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "rev_num");
+        doPost.setAttribute("value", $('.rev_num' + reserveNum).val());
+        form.appendChild(doPost);
+		// 예약 매장명
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "rev_store");
+        doPost.setAttribute("value", $('.rev_store' + reserveNum).val());
+        form.appendChild(doPost);
+   		// 예약 메뉴
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "rev_menu");
+        doPost.setAttribute("value", $('.rev_menu' + reserveNum).val());
+        form.appendChild(doPost);
+
+        document.body.appendChild(form);
+        form.submit();
+	}
 </script>
 </head>
 <body>
@@ -88,6 +119,12 @@
                     </colgroup>
                     <tbody>
                     <%for(int i=0;i<reserveList.size();i++){ %>
+                    <!-------------------- 리뷰 작성에 사용할 값을 저장하는 hidden 태그 작성 -------------------->
+	                    <input type="hidden" class="rev_num<%=i %>" value="<%=reserveList.get(i).getRan_num()%>" />
+	                    <input type="hidden" class="rev_store<%=i %>" value="<%=reserveList.get(i).getStoreName()%>" />
+	                    <input type="hidden" class="rev_menu<%=i %>" value="<%=reserveList.get(i).getTotal_order_menu()%>" />
+                    <!-- ---------------------------------------------------------------------------------------------------- -->
+                    
                         <td id="reserve_code<%=i%>"><%=reserveList.get(i).getRan_num()%><button onclick="copy_code(<%=i%>)">복사</button> </td>
                         <td><%=reserveList.get(i).getId()%></td>
                         <td><%=reserveList.get(i).getReserve_date()%></td>
@@ -108,7 +145,7 @@
 	                        <td>현장결제입니다.</td>
                         <%} %>
                         <%if(reserveList.get(i).getCheck_review()<1){ %>
-                        <td><a><button>리뷰쓰기</button></a></td>
+                        <td id="rev_btn"><a><button onclick="doPost(<%=i %>)">리뷰쓰기</button></a></td>
                         <%}else{ %>
                         <td><a><button>작성한 리뷰 보러가기</button></a></td>
                         <%} %>

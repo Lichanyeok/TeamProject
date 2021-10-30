@@ -50,17 +50,23 @@
 		});
 		
 		// 좋아요 갯수 증가를 위한 ajax 정의
-		$('#rev_like_btn').on('click', function() {
+// 		$('.rev_like_btn').on('click', function() {
+		$('#rev_menu_btn button').on('click', function() {
+// 			alert($(this).find('span').text());
+			a = this.value;
 			$.ajax({
 				type: "GET",
 				url: "./ReviewLikeScore.re",
+				dataType: "TEXT",
 				data : {
-					rev_num : $('#rev_like_btn').val(),
-					prev_like : $('#likeScore').text()
-				},
-				success : function(msg){ //DB접근 후 가져온 데이터
-					$('#likeScore').html(msg);
+					rev_num : this.value,
+					prev_like : $(this).find('span').text()
 				}
+			}).done(function(msg){ //DB접근 후 가져온 데이터
+				$('.rev_like_btn' + a).find('span').html(msg);
+// 				alert('성공');
+			}).fail(function() {
+				alert("한번만 가능합니다.");
 			});
 			
 		});
@@ -198,8 +204,8 @@ font-size: 2em;
 				<div id="rev_name">아이디 : <%=articleList.get(i).getRev_name() %></div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>
 				<div id="rev_content"><%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br><%} %><%=articleList.get(i).getRev_content() %></div>
 				<div id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></div><br>
-				<div id="rev_menu_btn"><button type="button" id="rev_like_btn" value="<%=articleList.get(i).getRev_num() %>"><img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-					<span id="likeScore"><%=articleList.get(i).getRev_like() %><!-- 여기에 좋아요 갯수 뿌리기 --></span></button>
+				<div id="rev_menu_btn"><button type="button" class="rev_like_btn<%=articleList.get(i).getRev_num() %>" value="<%=articleList.get(i).getRev_num() %>"><img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
+					<span class="likeScore" ><%=articleList.get(i).getRev_like() %><!-- 여기에 좋아요 갯수 뿌리기 --></span></button>
 				</div>
 				<div id="rev_menu_btn" align="right">
 					<input type="button" name="rev_modify" value="수정" onclick="location.href='./ReviewModify.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>&nbsp;

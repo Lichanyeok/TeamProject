@@ -19,7 +19,7 @@ import action.ReviewWriteProAtion;
 import vo.ActionForward;
 
 @WebServlet("*.re")
-public class Contoller extends HttpServlet {
+public class ReviewContoller extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		  // POST 방식 요청에 대한 한글 처리(UTF-8)

@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class ReviewBean {
 
-//	CREATE TABLE review(
-//	rev_num INT PRIMARY KEY,// 예약번호 (PK)
+//	CREATE TABLE review (
+//	rev_num INT AUTO_INCREMENT PRIMARY KEY,// 예약번호 (PK)
 //	rev_store VARCHAR(20), // 매장 이름
 //	rev_name VARCHAR(20), // 리뷰 작성자 이름 or 닉네임
 //	rev_score FLOAT, // 별점 or 평점
@@ -13,7 +13,7 @@ public class ReviewBean {
 //	rev_pic VARCHAR(250), // 사진 명
 //	rev_pic_origin VARCHAR(250), // 원본 사진 명
 //	rev_menu VARCHAR(30), // 주문한 메뉴 (주문내역 테이블에서 가져와서 저장)
-//	rev_date DATE// 리뷰 작성일
+//	rev_date DATE,// 리뷰 작성일
 //	rev_like INT // 좋아요 갯수 저장
 //);
 
