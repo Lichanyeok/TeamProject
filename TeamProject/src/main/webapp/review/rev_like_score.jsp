@@ -16,12 +16,13 @@
 <%
 	int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 	int prev_like_score = Integer.parseInt(request.getParameter("prev_like"));
-	
+
 	// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
 	Connection con = jdbcUtil.getConnection();
 	// 공통작업-2. BoardDAO 클래스로부터 BoardDAO 객체 가져오기
 	ReviewDAO dao = ReviewDAO.getInstance();
-
+	out.println(rev_num);
+	out.println(prev_like_score);
 	// 공통작업-3. BoardDAO 객체에 Connection 객체 전달하기
 	dao.setConnection(con);	
 	

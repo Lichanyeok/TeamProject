@@ -139,7 +139,11 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/member/FindId.do")) {
+			System.out.println("find Id controller");
+			forward = new ActionForward();
+			forward.setPath("./find_id_result.jsp");
+			forward.setRedirect(false);
 		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 			
 		}else if(command.equals("/Reserve.do")) {
