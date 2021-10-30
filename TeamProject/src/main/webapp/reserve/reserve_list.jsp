@@ -53,8 +53,8 @@
      	// 예약번호
         var doPost = document.createElement("input");
         doPost.setAttribute("type", "hidden");
-        doPost.setAttribute("name", "rev_num");
-        doPost.setAttribute("value", $('.rev_num' + reserveNum).val());
+        doPost.setAttribute("name", "ran_num");
+        doPost.setAttribute("value", $('.ran_num' + reserveNum).val());
         form.appendChild(doPost);
 		// 예약 매장명
         doPost = document.createElement("input");
@@ -120,7 +120,7 @@
                     <tbody>
                     <%for(int i=0;i<reserveList.size();i++){ %>
                     <!-------------------- 리뷰 작성에 사용할 값을 저장하는 hidden 태그 작성 -------------------->
-	                    <input type="hidden" class="rev_num<%=i %>" value="<%=reserveList.get(i).getRan_num()%>" />
+	                    <input type="hidden" class="ran_num<%=i %>" value="<%=reserveList.get(i).getRan_num()%>" />
 	                    <input type="hidden" class="rev_store<%=i %>" value="<%=reserveList.get(i).getStoreName()%>" />
 	                    <input type="hidden" class="rev_menu<%=i %>" value="<%=reserveList.get(i).getTotal_order_menu()%>" />
                     <!-- ---------------------------------------------------------------------------------------------------- -->

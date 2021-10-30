@@ -55,9 +55,6 @@ public class ReviewContoller extends HttpServlet {
 	      } else if(command.equals("/ReviewStore.re")) {
 	    	  System.out.println("controller - /ReviewStore.re");
 	    	  
-//	    	  forward = new ActionForward();
-//	    	  forward.setPath("/practice/review/rev_store.jsp");
-//	    	  forward.setRedirect(false);
 	    	  action = new ReviewListAction(); // Action 인터페이스로 업캐스팅
 	    	  try {
 	    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
@@ -69,14 +66,7 @@ public class ReviewContoller extends HttpServlet {
 	    	  
 	      } else if(command.equals("/ReviewList.re")) {
 	    	  System.out.println("controller - /ReviewList.re");
-	    	  // 글목록 조회 작업 요청을 위한 비즈니스 로직 수행 필요하므로
-	    	  // Action 클래스(Controller 역할)에 대한 접근을 위해
-	    	  // BoardListAction 클래스 인스턴스 생성 후 execute()
-	    	  // => 파라미터 : request, response
-	    	  // => 리턴타입 : ActionForward
-	    	  // => 위임받은 Exception 예외 처리(try ~ catch) 필요
 	    	  
-//	    	  BoardListAction action = new BoardListAction();
 	    	  action = new ReviewListAction(); // Action 인터페이스로 업캐스팅
 	    	  try {
 	    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
@@ -91,8 +81,6 @@ public class ReviewContoller extends HttpServlet {
 	    	  
 	    	  action = new ReviewModifyFormAction(); // Action 인터페이스로 업캐스팅
 	    	  try {
-	    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
-	    		// Action 타입으로 execute() 메서드 호출 가능함
 				forward = action.execute(request, response);
 	    	  } catch (Exception e) {
 				e.printStackTrace();

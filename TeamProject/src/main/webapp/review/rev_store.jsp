@@ -50,7 +50,6 @@
 		});
 		
 		// 좋아요 갯수 증가를 위한 ajax 정의
-// 		$('.rev_like_btn').on('click', function() {
 		$('#rev_menu_btn button').on('click', function() {
 // 			alert($(this).find('span').text());
 			a = this.value;
@@ -155,7 +154,7 @@ font-size: 2em;
 		<nav id="sub_menu">
 			<table>
 				<tr>
-					<th id="rev_store" colspan="2">&nbsp;000 음식점</th>
+					<th id="rev_store" colspan="2">&nbsp;<%=request.getParameter("rev_store")%></th>
 				</tr>
 				<tr>
 					<td rowspan="2" id="rev_score" ><%=Math.round(totalScore*10)/10.0 %></td>

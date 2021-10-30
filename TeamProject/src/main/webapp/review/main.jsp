@@ -27,7 +27,7 @@
 	</section>
 	<h1>메인페이지</h1>
 	<h2><a href="../ReviewWrite.re">리뷰 쓰기 테스트</a></h2>
-	<h2><a href="../ReviewStore.re">00국밥집 리뷰 테스트</a></h2>
+	<h2><a href="../ReviewStore.re?rev_store=피자몰 홍대점">00매장 리뷰 테스트</a></h2>
 	<h2><a href="../ReviewByStores.re">매장 별 리뷰 테스트</a></h2>
 	
 	

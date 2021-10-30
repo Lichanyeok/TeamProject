@@ -17,16 +17,18 @@ public class ReviewListAction implements Action {
 		
 		// 포워딩 정보 관리를 위한 ActionForward 타입 변수 선언
 		ActionForward forward = null;
-			
-		// BoardListService 클래스 인스턴스 생성 후
-		// getListCount() 메서드를 호출하여 전체 게시물 수 조회 작업 요청
-		// => 파라미터 : 없음, 리턴타입 : int(listCount)
-		ReviewListService svc = new ReviewListService();
-		ReviewBean rb = svc.getListCount();
 		
-		// BoardListService 클래스의 getArticleList( 메서드를 호출하여 전체 게시물 조회 요청
-		// => 파라미터 : page, limit 리턴타입 : ArrayList<BoardBean>(articleList)
-		ArrayList<ReviewBean> articleList = svc.getArticleList();
+		String rev_store = request.getParameter("rev_store");
+		
+		// ReviewListService 클래스 인스턴스 생성 후
+		// getListCount() 메서드를 호출하여 전체 리뷰 수 조회 작업 요청
+		// => 파라미터 : rev_store, 리턴타입 : ReviewBean
+		ReviewListService svc = new ReviewListService();
+		ReviewBean rb = svc.getListCount(rev_store);
+		
+		// ReviewListService 클래스의 getStoreReviewList( 메서드를 호출하여 전체 리뷰 조회 요청
+		// => 파라미터 : rev_store 리턴타입 : ArrayList<ReviewBean>(articleList)
+		ArrayList<ReviewBean> articleList = svc.getStoreReviewList(rev_store);
 		
 		System.out.println("ReviewListAction - articleList : " + articleList);
 		System.out.println("reviewCount : " + rb);

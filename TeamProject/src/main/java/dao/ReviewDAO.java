@@ -85,16 +85,17 @@ public class ReviewDAO {
 			close(pstmt);
 						
 			// 글 등록 작업을 위한 INSERT 작업
-			sql = "INSERT INTO review VALUES (?,?,?,?,?,?,?,?,now(),0)";
+			sql = "INSERT INTO review VALUES (?,?,?,?,?,?,?,?,?,now(),0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 계산된 새 글 번호
-			pstmt.setString(2, rb.getRev_store());
-			pstmt.setString(3, rb.getRev_name());
-			pstmt.setFloat(4, rb.getRev_score());
-			pstmt.setString(5, rb.getRev_content());
-			pstmt.setString(6, rb.getRev_pic());
-			pstmt.setString(7, rb.getRev_pic_origin());
-			pstmt.setString(8, rb.getRev_menu());
+			pstmt.setString(2, rb.getRan_num() + "_" + rb.getRev_name());
+			pstmt.setString(3, rb.getRev_store());
+			pstmt.setString(4, rb.getRev_name());
+			pstmt.setFloat(5, rb.getRev_score());
+			pstmt.setString(6, rb.getRev_content());
+			pstmt.setString(7, rb.getRev_pic());
+			pstmt.setString(8, rb.getRev_pic_origin());
+			pstmt.setString(9, rb.getRev_menu());
 			
 			// INSERT 구문 실행 및 결과 리턴 받기 => insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
@@ -121,8 +122,8 @@ public class ReviewDAO {
 		
 	}
 	
-	// 전체 게시물 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
-	public ReviewBean selectListCount() {
+	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
+	public ReviewBean selectListCount(String rev_store) {
 		System.out.println("ReviewDAO - selectListCount()");
 		ReviewBean rb = new ReviewBean();
 		
@@ -134,8 +135,9 @@ public class ReviewDAO {
 			// 현재 MVC_Board 테이블의 게시물 최대 번호를 조회하여
 			// 조회된 결과 값에 + 1 값을 새 글 번호로 지정
 			// => 만약, 조회된 게시물이 하나도 없을 경우 새 글 번호는 1번 그대로 사용
-			sql = "SELECT SUM(rev_score) FROM review";
+			sql = "SELECT SUM(rev_score) FROM review WHERE rev_store=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rev_store);
 			rs = pstmt.executeQuery();
 			
 			// 조회된 글 번호가 하나라도 존재할 경우
@@ -149,8 +151,9 @@ public class ReviewDAO {
 			
 			// 3단계 SQL 구문 작성 및 전달
 			// => 전체 레코드 갯수를 조회하기 위해 COUNT(*) 함수 사용 (또는 COUNT(num))
-			sql = "SELECT COUNT(*) FROM review";
+			sql = "SELECT COUNT(*) FROM review WHERE rev_store=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rev_store);
 			
 			// 4단계 SQL 구문 실행 및 결과처리
 			rs = pstmt.executeQuery();
@@ -172,7 +175,7 @@ public class ReviewDAO {
 	}
 	
 	// 전체 게시물 조회하여 리턴하는 getArticleList() 메서드 정의
-	public ArrayList<ReviewBean> getArticleList() {
+	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		
 		PreparedStatement pstmt = null;
@@ -188,7 +191,7 @@ public class ReviewDAO {
 			//    LIMIT 시작행번호, 페이지당 게시물 수
 			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
+			pstmt.setString(1, rev_store);
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
@@ -211,6 +214,7 @@ public class ReviewDAO {
 				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
 				rb.setRev_menu(rs.getString("rev_menu"));
 				rb.setRev_like(rs.getInt("rev_like"));
+				rb.setRan_num(rs.getString("ran_num"));
 				
 				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
 				articleList.add(rb);
@@ -289,7 +293,7 @@ public class ReviewDAO {
 			
 			// 3단계 SQL 구문 작성 및 전달
 			// => board_num 에 해당하는 레코드의 board_pass 조회
-			sql = "SELECT password FROM member WHERE id=?";
+			sql = "SELECT password FROM project_member WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rev_name);
 			
@@ -390,7 +394,7 @@ public class ReviewDAO {
 	} // updateArticle() 메서드 끝
 	
 	// 정렬 방식 정의 (최신, 도움, 별점 및 사진)
-	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic) {
+	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic, String rev_store) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		
 		PreparedStatement pstmt = null;
@@ -421,7 +425,7 @@ public class ReviewDAO {
 			}
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
+			pstmt.setString(1, rev_store);
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
