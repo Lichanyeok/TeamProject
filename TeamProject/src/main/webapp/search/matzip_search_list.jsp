@@ -36,12 +36,22 @@ body {
 	margin-top: 10px;
 }
 #category_title{
-	width: 500px;
+	
+	width: 400px;
 	height: 40px;
 	margin: 8px 0 8px 10px;
 	font-size: 30px;
 	color: #FF5531;
 	padding-top: 5px;
+	float: left;
+}
+#category_text{
+  	
+	width: 290px;
+	height: 15px;
+	margin-top: 40px;
+	color: #FF5531;
+	float: right;
 }
 #category_list {	
 	margin: auto;	
@@ -83,13 +93,13 @@ $(document).ready(function(){
 		});
 	}
 	
-	$("#cy_1").on("click", function() {
-		if(id != ""){
-			$(id).css("background","#FF8831");			
+	$("li").on("click", function() {
+		if(category != ""){
+			$("li[value="+category+"]").css("background","#FF8831");			
 		}
-		id="#cy_1";
-		category=$("#cy_1").text();		
-		$("#cy_1").css('background','#FF6631');
+		
+		category=$(this).text();		
+		$(this).css('background','#FF6631');
 		
 		$.ajax({
 			type : "GET",
@@ -102,208 +112,18 @@ $(document).ready(function(){
 		});
 		
 	});
-	
-	$("#cy_2").on("click", function() {
-		if(id != ""){
-			$(id).css("background","#FF8831");			
-		}
-		id="#cy_2";
-        category=$("#cy_2").text();
-		$("#cy_2").css('background','#FF6631')
-        $.ajax({
-           type : "GET",
-           url : "MatzipList.mz?category="+category,
-           success : function(msg) {
-              $("#category_list").html(msg);   
-           }         
-        }).fail(function() {
-           alert('실패!');
-        });
-         
-    });
-$("#cy_3").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_3";
-         category=$("#cy_3").text();
-	$("#cy_3").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_4").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_4";
-         category=$("#cy_4").text();
-	$("#cy_4").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_5").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_5";
-         category=$("#cy_5").text();
-	$("#cy_5").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_6").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_6";
-         category=$("#cy_6").text();
-	$("#cy_6").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-        
-      });
-$("#cy_7").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_7";
-         category=$("#cy_7").text();
-	$("#cy_7").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_8").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_8";
-         category=$("#cy_8").text();
-	$("#cy_8").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_9").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_9";
-         category=$("#cy_9").text();
-	$("#cy_9").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_10").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_10";
-         category=$("#cy_10").text();
-	$("#cy_10").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_11").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_11";
-         category=$("#cy_11").text();
-	$("#cy_11").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
-$("#cy_12").on("click", function() {
-	if(id != ""){
-		$(id).css("background","#FF8831");			
-	}
-	id="#cy_12";
-         category=$("#cy_12").text();
-	$("#cy_12").css('background','#FF6631')
-         $.ajax({
-            type : "GET",
-            url : "MatzipList.mz?category="+category,
-            success : function(msg) {
-               $("#category_list").html(msg);   
-            }         
-         }).fail(function() {
-            alert('실패!');
-         });
-         
-      });
+
+
+	$(".item").on("click",function(){			
+		var tell_number = $(".tel",this).text();
+		var road_address= $(".road",this).text();
+		location.href="MatzipInfo.mz?road_address="+road_address
+				+"&tell_number="+tell_number;
+	});
 
 		
 });
+
 </script>
 </head>
 <body>
@@ -318,20 +138,22 @@ $("#cy_12").on("click", function() {
 	    
 	    <div id="category_wrap">
 	    <div id="category_title">MATZIP TOP 10</div>
+	    <div id="category_text">*이미지 클릭시 상세보기 페이지로 이동</div>
+	    <div class="div_clear"></div>
 	    <nav id="category_menu">
 			<ul id="category_menu_ul">
-				<li id="cy_1">한식</li>
-				<li id="cy_2">양식</li>
-				<li id="cy_3">중식</li>
-				<li id="cy_4">일식</li>
-				<li id="cy_5">치킨</li>
-				<li id="cy_6">피자</li>
-				<li id="cy_7">퓨전</li>
-				<li id="cy_8">찜&탕</li>
-				<li id="cy_9">고깃집</li>
-				<li id="cy_10">족발</li>
-				<li id="cy_11">뷔페</li>
-				<li id="cy_12">코스요리</li>				
+				<li value="한식">한식</li>
+				<li value="양식">양식</li>
+				<li value="중식">중식</li>
+				<li value="일식">일식</li>
+				<li value="치킨">치킨</li>
+				<li value="피자">피자</li>
+				<li value="퓨전">퓨전</li>
+				<li value="찜요리">찜요리</li>
+				<li value="고깃집">고깃집</li>
+				<li value="족발">족발</li>
+				<li value="뷔페">뷔페</li>
+				<li value="코스요리">코스요리</li>				
 			</ul>
 		</nav>
 		<div class="div_clear"></div>

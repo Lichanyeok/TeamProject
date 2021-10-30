@@ -43,7 +43,7 @@
 		margin-top:3px;
 	}
 	#category_list_ul li{
-		line-height: 1.2;
+		line-height: 1.3;
 		
 	}
 	.starImg {
@@ -57,7 +57,7 @@
 	}
 	
 	.list_link{
-		
+		color: #3CB371;
 	}
 </style>
 </head>
@@ -67,7 +67,9 @@
 			if(articleList != null) {			
 				for(int i = 0; i < articleList.size(); i++) {%>
 				<div class="category_list_info">
-					<img src="./search/img/pizzaHut.png" class="category_list_logo">
+					<a href="./MatzipInfo.mz?road_address=<%=articleList.get(i).getRoad_address() %>
+							&tell_number=<%=articleList.get(i).getTell_number()%>">
+					<img src="./search/img/pizzaHut.png" class="category_list_logo"></a>
 					
 					<ul id="category_list_ul">
 						<li  class="list_name"><%=articleList.get(i).getPlace_name() %>
@@ -80,9 +82,7 @@
 						<%}%><%=star %></li>
 						<li class="list_category">업종 : <%=articleList.get(i).getCategory() %></li>
 						<li class="list_address">주소 : <%=articleList.get(i).getRoad_address() %></li>
-						<li class="list_tell">전화번호 : <%=articleList.get(i).getTell_number() %></li>
-						<li class="list_rink"><a href="./MatzipInfo.mz?road_address=<%=articleList.get(i).getRoad_address() %>
-							&tell_number=<%=articleList.get(i).getTell_number()%>">상세정보 보기</a></li>
+						<li class="list_tell">전화번호 : <%=articleList.get(i).getTell_number() %></li>						
 					</ul>
 				</div>
 				<%}

@@ -7,7 +7,7 @@ String store_name = "";
 String load_address = "";
 String address = "";
 String store_number = "";
-if(article!=null){
+if (article != null) {
 	store_name = article.getPlace_name();
 	load_address = article.getRoad_address();
 	address = article.getJibun_address();
@@ -19,28 +19,28 @@ if(article!=null){
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/TeamProject/css/test.css">
+<link rel="stylesheet" href="/TeamProject/css/info.css">
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/header.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$('#go_reserve_btn').on('click',function(){
-// 			alert('ㅎㅇ')
+	$(function() {
+		$('#go_reserve_btn').on('click', function() {
+			// 			alert('ㅎㅇ')
 			var sendData = {
-				"store_name":$('#store_name').text(),
-				"load_address":$('#load_address').text(),
-				"address":$('#address').text(),
-				"store_number":$('#store_number').text()
+				"store_name" : $('#store_name').text(),
+				"load_address" : $('#load_address').text(),
+				"address" : $('#address').text(),
+				"store_number" : $('#store_number').text()
 			};
-// 			alert(JSON.stringify(sendData));
+			// 			alert(JSON.stringify(sendData));
 			$.ajax({
-				type:"get",
-				data:sendData,
-				dataType: "text",
-				url:"GoReserve.mz"
-			}).done(function(data){
-				location.href='Reserve.do';
+				type : "get",
+				data : sendData,
+				dataType : "text",
+				url : "GoReserve.mz"
+			}).done(function(data) {
+				location.href = 'Reserve.do';
 			}).fail(function() {
 				alert('잠시 후에 시도하십시오.')
 			});
@@ -49,12 +49,15 @@ if(article!=null){
 </script>
 </head>
 <body>
-		<header>
+	<header>
 		<div>
-		<jsp:include page="../inc/header.jsp"></jsp:include>
-		<hr>
+			<jsp:include page="../inc/header.jsp"></jsp:include>
+			<hr>
 		</div>
-		</header>
+	</header>
+	<ul>
+		<li id="hr"></li>
+	</ul>
 	<form action="">
 		<div id="item">
 			<div class="item_detail">
@@ -66,8 +69,7 @@ if(article!=null){
 						<p>[ Matzip ]</p>
 						<div>
 							<h2 id="store_name"><%=store_name%></h2>
-							<br>
-							<br>
+							<br> <br>
 						</div>
 					</li>
 					<li id="benefit">
@@ -85,8 +87,7 @@ if(article!=null){
 								<p>번호</p>
 								<p id="store_number"><%=store_number%></p>
 							</li>
-						</ul> <br>
-					<br>
+						</ul>
 					</li>
 
 					<li id="order_item">
@@ -96,6 +97,9 @@ if(article!=null){
 				</ul>
 			</div>
 		</div>
+		<ul>
+			<li id="hr"></li>
+		</ul>
 	</form>
 </body>
 </html>

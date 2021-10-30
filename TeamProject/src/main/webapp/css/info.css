@@ -33,6 +33,9 @@ img {
 	border: 0;
 	max-width: 100%
 }
+#hr{
+	border-top: solid 1px #C3BCBC;
+}
 
 #benefit {
 	border-bottom: solid 1px #efefef;
@@ -43,12 +46,6 @@ img {
 	padding: 4% 0;
 	font-weight: 700;
 	border-top: solid 1px #efefef
-}
-
-#benefit ul::after {
-	content: "";
-	display: block;
-	clear: both
 }
 
 #benefit ul li {
@@ -70,24 +67,12 @@ img {
 	width: 15%
 }
 
-#benefit ul li>p:nth-child(2) {
-	padding-right: 0.5%
-}
-
-#benefit ul li>p:nth-child(2) span {
-	color: #ff503c;
-	font-weight: 700
-}
-
 #item_detail_right {
 	width: 49%;
 	float: right;
 	margin-top: 2%
 }
 
-#item_detail_right .item_txt {
-	margin: 0 0 5%
-}
 
 #item_detail_right .item_txt>p {
 	font-size: 1.5rem;

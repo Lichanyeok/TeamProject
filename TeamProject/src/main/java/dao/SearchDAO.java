@@ -56,16 +56,13 @@ public class SearchDAO {
 		}
 		
 		return listCount;
-	}
+	}	
 
 	public ArrayList<SearchBean> ArticleList(String category) {
 		ArrayList<SearchBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		// 조회 시작 게시물(레코드) 번호 계산(= 행 번호 계산)
-		
+		ResultSet rs = null;		
 		
 		try {
 			String sql = "SELECT * FROM search WHERE category=? "
@@ -101,6 +98,8 @@ public class SearchDAO {
 		return articleList;
 	
 	}
+	
+	
 	public SearchBean Info(String jibun_address, String tell_number) {
 		SearchBean details = null;
 		
@@ -108,7 +107,7 @@ public class SearchDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM Search WHERE jibun_address=? OR tell_number=?";
+			String sql = "SELECT * FROM search WHERE jibun_address=? OR tell_number=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, jibun_address);
 			pstmt.setString(2, tell_number);
@@ -125,6 +124,8 @@ public class SearchDAO {
 				details.setTell_number(rs.getString("tell_number"));
 				
 				commit(con);
+			}else {
+				rollback(con);
 			}
 			
 		} catch (Exception e) {
@@ -136,5 +137,69 @@ public class SearchDAO {
 		
 		return details;
 	}
+	
+	public boolean updateStar(String rev_store) {
+		boolean updateSuccess=false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		float avgStar=0;
+		try {
+			String sql = "SELECT AVG(rev_score) FROM review WHERE rev_store=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rev_store);			
+			rs = pstmt.executeQuery();			
+			if(rs.next()) {				
+				avgStar=rs.getFloat(1);
+			}
+			close(pstmt);
+			sql="UPDATE search SET star_score=? WHERE place_name=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setFloat(1, avgStar);
+			pstmt.setString(2, rev_store);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+ 			close(rs);
+ 			close(pstmt);
+		}
+		
+		return updateSuccess;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
