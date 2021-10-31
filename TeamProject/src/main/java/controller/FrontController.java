@@ -144,6 +144,11 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./find_id_result.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/member/FindPass.do")) {
+			System.out.println("find pass controller");
+			forward = new ActionForward();
+			forward.setPath("./find_pass_result.jsp");
+			forward.setRedirect(false);
 		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 			
 		}else if(command.equals("/Reserve.do")) {

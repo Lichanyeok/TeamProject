@@ -38,7 +38,7 @@
 				type:"get",
 				data:sendData,
 				dataType:"text",
-				url:"../member/find_pass_result.jsp"
+				url:"FindPass.do"
 			}).done(function(data) {
 				alert('성공');
 				$('#result').html(data);

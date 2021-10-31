@@ -529,7 +529,7 @@ public class MemberDAO {
 		boolean isRightInfo = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("getPass id : " + bean.getName() + ", email : " + bean.getPass());
+		System.out.println("getPass id : " + bean.getId() + ", email : " + bean.getEmail());
 		try {
 			String sql = "SELECT pass FROM project_member WHERE id=? AND email=?";
 			pstmt = con.prepareStatement(sql);
@@ -537,7 +537,7 @@ public class MemberDAO {
 			pstmt.setString(2, bean.getEmail());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				bean.setId(rs.getString("pass"));
+				bean.setPass(rs.getString("pass"));
 				isRightInfo = true;
 			}
 		} catch (SQLException e) {
