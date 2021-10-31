@@ -7,11 +7,13 @@ String store_name = "";
 String load_address = "";
 String address = "";
 String store_number = "";
+String logo_img="";
 if (article != null) {
 	store_name = article.getPlace_name();
 	load_address = article.getRoad_address();
 	address = article.getJibun_address();
 	store_number = article.getTell_number();
+	logo_img=article.getLogo_img();
 }
 %>
 <!DOCTYPE html>
@@ -62,7 +64,7 @@ if (article != null) {
 		<div id="item">
 			<div class="item_detail">
 				<ul class="item_detail_left">
-					<li><img src="./search/img/pizzaHut.png"></li>
+					<li><img src="./search/img/<%=logo_img %>"></li>
 				</ul>
 				<ul id="item_detail_right">
 					<li class="item_txt">

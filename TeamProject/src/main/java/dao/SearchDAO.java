@@ -82,6 +82,9 @@ public class SearchDAO {
 				search.setPlace_name(rs.getString("place_name"));
 				search.setStar_score(rs.getFloat("star_score"));
 				search.setTell_number(rs.getString("tell_number"));
+				search.setLogo_img(rs.getString("logo_img"));
+				search.setDate(rs.getDate("date"));
+				search.setRecommend(rs.getInt("recommend"));
 				
 				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
 				articleList.add(search);
@@ -122,6 +125,9 @@ public class SearchDAO {
 				details.setPlace_name(rs.getString("place_name"));
 				details.setStar_score(rs.getFloat("star_score"));
 				details.setTell_number(rs.getString("tell_number"));
+				details.setLogo_img(rs.getString("logo_img"));
+				details.setDate(rs.getDate("date"));
+				details.setRecommend(rs.getInt("recommend"));
 				
 				commit(con);
 			}else {
