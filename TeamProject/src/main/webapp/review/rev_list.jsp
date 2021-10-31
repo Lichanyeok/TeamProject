@@ -20,7 +20,9 @@
 <body>
 <%
 	String selectedOption = request.getParameter("selectedOption");
-	String isCheckedPic = request.getParameter("isCheckedPic"); // 추가
+	String isCheckedPic = request.getParameter("isCheckedPic");
+// 	String rev_store = request.getParameter("rev_store");
+	String rev_store = "피자몰 홍대점";
 
 	// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
 	Connection con = jdbcUtil.getConnection();
@@ -30,8 +32,7 @@
 	// 공통작업-3. BoardDAO 객체에 Connection 객체 전달하기
 	dao.setConnection(con);
 	
-	ArrayList<ReviewBean> articleList = dao.getReviewSort(selectedOption , isCheckedPic); // isCheckedPic 추가
-	
+	ArrayList<ReviewBean> articleList = dao.getReviewSort(selectedOption , isCheckedPic, rev_store); // isCheckedPic 추가
 	
 %>	
 	

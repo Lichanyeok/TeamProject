@@ -110,15 +110,16 @@ img {
 </style>
 </head>
 <body>
-   
    <!-- 게시판 등록 -->
    <section id="writeForm" >
    
-		<h1 id="aa">000 국밥 00지점</h1>
+		<h1 id="aa"><%=request.getParameter("rev_store") %> </h1>
 		
 	<form action="ReviewWritePro.re" method="post" enctype="multipart/form-data" name="boardForm">
-      <!-- 파일 업로드 기능을 사용하려면 cos.jar 라이브러리 등록 필수 -->
-      	<input type="hidden" value="<%=sId %>" name="rev_name"/>
+	<!-- 예약번호 값 넘기기 --> <input type="hidden" name="ran_num" value="<%=request.getParameter("ran_num") %>" />
+	<!-- 리뷰 작성자 값 넘기기 --> <input type="hidden" value="<%=sId %>" name="rev_name"/>
+	<!-- 리뷰 매장명 값 넘기기 --> <input type="hidden" value="<%=request.getParameter("rev_store") %>" name="rev_store"/>
+	<!-- 리뷰 주문메뉴 값 넘기기 --> <input type="hidden" value="<%=request.getParameter("rev_menu") %>" name="rev_menu"/>
      	
 		<div class="star-rating space-x-4 mx-auto" id="div1">
 		
@@ -152,7 +153,7 @@ img {
             </tr>
             <tr>
             	<td class="td_left"><label for="board_file">주문 메뉴</label></td>
-            	<td class="td_right"> 00 외 2종</td> <!-- db에서 가져오기 -->
+            	<td class="td_right"><%=request.getParameter("rev_menu") %></td> <!-- db에서 가져오기 -->
             </tr>
             <tr>
                <td class="td_left"><label for="board_file">사진 첨부</label></td>

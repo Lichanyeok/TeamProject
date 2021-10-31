@@ -72,7 +72,7 @@ public class ReviewDAO {
 			// 현재 MVC_Board 테이블의 게시물 최대 번호를 조회하여
 			// 조회된 결과 값에 + 1 값을 새 글 번호로 지정
 			// => 만약, 조회된 게시물이 하나도 없을 경우 새 글 번호는 1번 그대로 사용
-			sql = "SELECT MAX(rev_num) FROM reviewtest";
+			sql = "SELECT MAX(rev_num) FROM review";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -85,16 +85,17 @@ public class ReviewDAO {
 			close(pstmt);
 						
 			// 글 등록 작업을 위한 INSERT 작업
-			sql = "INSERT INTO reviewtest VALUES (?,?,?,?,?,?,?,?,now(),0)";
+			sql = "INSERT INTO review VALUES (?,?,?,?,?,?,?,?,?,now(),0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 계산된 새 글 번호
-			pstmt.setString(2, rb.getRev_store());
-			pstmt.setString(3, rb.getRev_name());
-			pstmt.setFloat(4, rb.getRev_score());
-			pstmt.setString(5, rb.getRev_content());
-			pstmt.setString(6, rb.getRev_pic());
-			pstmt.setString(7, rb.getRev_pic_origin());
-			pstmt.setString(8, rb.getRev_menu());
+			pstmt.setString(2, rb.getRan_num() + "_" + rb.getRev_name());
+			pstmt.setString(3, rb.getRev_store());
+			pstmt.setString(4, rb.getRev_name());
+			pstmt.setFloat(5, rb.getRev_score());
+			pstmt.setString(6, rb.getRev_content());
+			pstmt.setString(7, rb.getRev_pic());
+			pstmt.setString(8, rb.getRev_pic_origin());
+			pstmt.setString(9, rb.getRev_menu());
 			
 			// INSERT 구문 실행 및 결과 리턴 받기 => insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
@@ -121,8 +122,8 @@ public class ReviewDAO {
 		
 	}
 	
-	// 전체 게시물 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
-	public ReviewBean selectListCount() {
+	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
+	public ReviewBean selectListCount(String rev_store) {
 		System.out.println("ReviewDAO - selectListCount()");
 		ReviewBean rb = new ReviewBean();
 		
@@ -134,8 +135,9 @@ public class ReviewDAO {
 			// 현재 MVC_Board 테이블의 게시물 최대 번호를 조회하여
 			// 조회된 결과 값에 + 1 값을 새 글 번호로 지정
 			// => 만약, 조회된 게시물이 하나도 없을 경우 새 글 번호는 1번 그대로 사용
-			sql = "SELECT SUM(rev_score) FROM reviewtest";
+			sql = "SELECT SUM(rev_score) FROM review WHERE rev_store=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rev_store);
 			rs = pstmt.executeQuery();
 			
 			// 조회된 글 번호가 하나라도 존재할 경우
@@ -149,8 +151,9 @@ public class ReviewDAO {
 			
 			// 3단계 SQL 구문 작성 및 전달
 			// => 전체 레코드 갯수를 조회하기 위해 COUNT(*) 함수 사용 (또는 COUNT(num))
-			sql = "SELECT COUNT(*) FROM reviewtest";
+			sql = "SELECT COUNT(*) FROM review WHERE rev_store=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rev_store);
 			
 			// 4단계 SQL 구문 실행 및 결과처리
 			rs = pstmt.executeQuery();
@@ -172,7 +175,7 @@ public class ReviewDAO {
 	}
 	
 	// 전체 게시물 조회하여 리턴하는 getArticleList() 메서드 정의
-	public ArrayList<ReviewBean> getArticleList() {
+	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		
 		PreparedStatement pstmt = null;
@@ -186,9 +189,9 @@ public class ReviewDAO {
 			//    검색어를 포함하는 제목들만 조회
 			// => 단, 시작행번호부터 페이지당 게시물수 만큼
 			//    LIMIT 시작행번호, 페이지당 게시물 수
-			sql = "SELECT * FROM reviewtest WHERE rev_store=? ORDER BY rev_num DESC";
+			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
+			pstmt.setString(1, rev_store);
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
@@ -211,6 +214,7 @@ public class ReviewDAO {
 				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
 				rb.setRev_menu(rs.getString("rev_menu"));
 				rb.setRev_like(rs.getInt("rev_like"));
+				rb.setRan_num(rs.getString("ran_num"));
 				
 				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
 				articleList.add(rb);
@@ -241,7 +245,7 @@ public class ReviewDAO {
 		try {
 			// 게시물 상세 정보 조회
 			// 3단계 SQL 구문 작성
-			sql = "SELECT * FROM reviewtest WHERE rev_num =?";
+			sql = "SELECT * FROM review WHERE rev_num =?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
 			
@@ -289,7 +293,7 @@ public class ReviewDAO {
 			
 			// 3단계 SQL 구문 작성 및 전달
 			// => board_num 에 해당하는 레코드의 board_pass 조회
-			sql = "SELECT password FROM member WHERE id=?";
+			sql = "SELECT password FROM project_member WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rev_name);
 			
@@ -325,7 +329,7 @@ public class ReviewDAO {
 		
 		try {
 			// 3단계 SQL 구문 작성 및 전달
-			String sql = "DELETE FROM reviewtest WHERE rev_num=?";
+			String sql = "DELETE FROM review WHERE rev_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
 					
@@ -355,7 +359,7 @@ public class ReviewDAO {
 		
 		try {
 			// 글번호(board_num)에 해당하는 레코드의 작성자, 제목, 내용 수정(UPDATE)
-			String sql = "UPDATE reviewtest "
+			String sql = "UPDATE review "
 					+ "SET rev_score=?,rev_content=?,rev_pic=?,rev_pic_origin=? "
 					+ "WHERE rev_num=?";
 			pstmt = con.prepareStatement(sql);
@@ -389,7 +393,8 @@ public class ReviewDAO {
 		return updateCount;
 	} // updateArticle() 메서드 끝
 	
-	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic) {
+	// 정렬 방식 정의 (최신, 도움, 별점 및 사진)
+	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic, String rev_store) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		
 		PreparedStatement pstmt = null;
@@ -397,36 +402,30 @@ public class ReviewDAO {
 		String sql = null;
 		
 		try {
-					
-			// 3단계 SQL 구문 작성 및 전달
-			// => funweb_board 테이블의 레코드 조회(번호num) 컬럼 기준 내림차순 정렬)
-			//    검색어를 포함하는 제목들만 조회
-			// => 단, 시작행번호부터 페이지당 게시물수 만큼
-			//    LIMIT 시작행번호, 페이지당 게시물 수
-			if(isCheckedPic.equals("true")) {
+			if(isCheckedPic.equals("true")) { // 사진 포함한 리뷰 정렬 true
 				if(selectedOption.equals("0")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
+					sql = "SELECT * FROM review WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
 				} else {
-					sql = "SELECT * FROM reviewtest WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
 				}
 			} else {
 				if(selectedOption.equals("0")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store=? ORDER BY rev_num DESC";
+					sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
-					sql = "SELECT * FROM reviewtest WHERE rev_store =? ORDER BY rev_score DESC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store =? ORDER BY rev_score DESC, rev_date DESC";
 				} else {
-					sql = "SELECT * FROM reviewtest WHERE rev_store =? ORDER BY rev_score ASC, rev_date DESC";
+					sql = "SELECT * FROM review WHERE rev_store =? ORDER BY rev_score ASC, rev_date DESC";
 				}
 			}
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
+			pstmt.setString(1, rev_store);
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
@@ -477,7 +476,7 @@ public class ReviewDAO {
 		
 		try {
 			
-			sql = "SELECT MAX(rev_like) FROM reviewtest WHERE rev_num=?";
+			sql = "SELECT MAX(rev_like) FROM review WHERE rev_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
 			rs = pstmt.executeQuery();
@@ -495,7 +494,7 @@ public class ReviewDAO {
 			close(pstmt);
 						
 			// 증가된 좋아요 값 DB에 저장
-			sql = "UPDATE reviewtest SET rev_like=? WHERE rev_num=?";
+			sql = "UPDATE review SET rev_like=? WHERE rev_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 계산된 새 좋아요 점수
 			pstmt.setInt(2, rev_num);
@@ -522,68 +521,6 @@ public class ReviewDAO {
 		
 	}
 	
-	public ArrayList<ReviewBean> getReviewSort2(String isChecked) {
-		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
-		System.out.println("getReviewSort2() - isChecked : " + isChecked);
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		
-		try {
-					
-			// 3단계 SQL 구문 작성 및 전달
-			// => funweb_board 테이블의 레코드 조회(번호num) 컬럼 기준 내림차순 정렬)
-			//    검색어를 포함하는 제목들만 조회
-			// => 단, 시작행번호부터 페이지당 게시물수 만큼
-			//    LIMIT 시작행번호, 페이지당 게시물 수
-			
-			if(isChecked.equals("true")) {
-				sql = "SELECT * FROM reviewtest a WHERE a.rev_store=? AND rev_pic != '' ORDER BY a.rev_num DESC";
-			} else if(isChecked.equals("false")) {
-				sql = "SELECT * FROM reviewtest a WHERE a.rev_store=? ORDER BY a.rev_num DESC";
-			}
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
-			
-			// 4단계. SQL 구문 실행 및 결과 처리
-			rs = pstmt.executeQuery();
-			
-			// 모든 레코드를 저장할 List 객체(ArrayList) 생성
-			articleList = new ArrayList<ReviewBean>();
-			
-			// While 문을 
-			while(rs.next()) {
-				// BoardBena 객체를 생성하여 1개 레코드 정보를 BoardBean 객체에 저장
-				// => 글번호, 작성자, 제목, 날짜, 조회수만 필요
-				//    (답글에 대한 들여쓰기를 위해 board_re_lev 값도 추가)
-				ReviewBean rb = new ReviewBean();
-				rb.setRev_num(rs.getInt("rev_num"));
-				rb.setRev_score(rs.getFloat("rev_score"));
-				rb.setRev_name(rs.getString("rev_name"));
-				rb.setRev_date(rs.getDate("rev_date"));
-				rb.setRev_content(rs.getString("rev_content"));
-				rb.setRev_pic(rs.getString("rev_pic"));
-				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
-				rb.setRev_menu(rs.getString("rev_menu"));
-				rb.setRev_like(rs.getInt("rev_like"));
-			
-				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
-				articleList.add(rb);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// 자원 반환
-			close(rs);
-			close(pstmt);
-		}
-		
-		return articleList;
-	}
-	
 	public ArrayList<ReviewBean> getByStoreList() {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		
@@ -598,7 +535,7 @@ public class ReviewDAO {
 			//    검색어를 포함하는 제목들만 조회
 			// => 단, 시작행번호부터 페이지당 게시물수 만큼
 			//    LIMIT 시작행번호, 페이지당 게시물 수
-			sql = "SELECT * FROM reviewtest WHERE rev_store=? ORDER BY rev_num DESC"; // 매장별 최신 리뷰..
+			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC"; // 매장별 최신 리뷰..
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "00국밥집");
 			
