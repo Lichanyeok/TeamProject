@@ -48,7 +48,7 @@ public class MemberAuthAction implements Action {
 					out.println("</script>");
 
 					forward = new ActionForward();
-					forward.setPath("/MemberLoginFormAction.do");
+					forward.setPath("/TeamProject/MemberLoginFormAction.do");
 					forward.setRedirect(true);
 				} else {
 					jdbcUtil.rollback(con);

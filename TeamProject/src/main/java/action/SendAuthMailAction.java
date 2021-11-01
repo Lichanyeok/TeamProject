@@ -40,7 +40,7 @@ public class SendAuthMailAction implements Action {
 		String receiver = email;
 		String subject = "[맛집] 맛집 가입 인증 메일입니다.";
 		String content = 
-				"<a href=http://localhost:8080/MemberAuth.do?id=" + id +
+				"<a href=http://localhost:8080/TeamProject/MemberAuth.do?id=" + id +
 				"&authCode=" + authCode + "><b>인증하려면 클릭하세요.</b></a>";
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -91,7 +91,7 @@ public class SendAuthMailAction implements Action {
 			con.commit();
 
 			forward = new ActionForward();
-			forward.setPath("/MemberLoginFormAction.do");
+			forward.setPath("../MemberLoginFormAction.do");
 			forward.setRedirect(true);
 		} else {
 			con.rollback();

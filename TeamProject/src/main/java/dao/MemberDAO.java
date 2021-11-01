@@ -721,6 +721,7 @@ public class MemberDAO {
 
 			if(updateCount > 0) {
 				isChangeSuccess = true;
+				System.out.println("changeAuthStatus isChangeSuccess : " + isChangeSuccess);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

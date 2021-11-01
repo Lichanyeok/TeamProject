@@ -177,6 +177,13 @@ public class FrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+		}else if (command.equals("/MemberAuth.do")) {
+                action = new MemberAuthAction();
+                try {
+                    forward = action.execute(request, response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 		}else if(command.equals("/Reserve.do")) {
 			forward = new ActionForward();
 			forward.setPath("./reserve/reserve_main.jsp");
