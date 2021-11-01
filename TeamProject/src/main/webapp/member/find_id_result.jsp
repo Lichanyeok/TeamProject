@@ -31,6 +31,7 @@
 <body>
 	<%if(isRightInfo){ %>
 	<h3><%=name %>님의 아이디는 <%=id %>입니다.</h3>
+	<button onclick="location.href='../MemberLoginFormAction.do'">로그인 하러 가기.</button>
 	<% }else{%>
 	<h3><%=id %></h3>
 	<%} %>

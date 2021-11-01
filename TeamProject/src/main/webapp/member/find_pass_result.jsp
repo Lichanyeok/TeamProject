@@ -93,12 +93,37 @@ function checkRegex(password) {
 	});
 }
 
+function updatePass(){
+	var pass1 = document.getElementById('pass1').value;
+	var pass2 = document.getElementById('pass2').value;
+	var id = document.getElementById('id').value;
+// 	alert(pass1 +','+ pass2 +','+id );
+	if(pass1 == pass2){
+// 		alert('일치');
+		$.ajax({
+			type:"get",
+			data:{
+				"id":id,
+				"pass":pass1
+			},
+			url:"./update_pass.jsp"
+		}).done(function(data) {
+			alert('비밀번호가 변경되었습니다.');
+			location.href='../MemberLoginFormAction.do';
+		}).fail(function() {
+			alert('잠시후에 시도해주세요.')
+		});
+	}else{
+		alert('불일치');
+	}
+}
 
 </script>
 </head>
 <body>
 	<%if(isRightInfo){ %>
 	<div id="join_container">
+	<h3>변경하실 비밀번호를 입력해주세요.</h3>
 	<table>
 	<tr>
        <th>비밀번호</th>
@@ -111,7 +136,7 @@ function checkRegex(password) {
        <td><span id="isIdentical"></span></td> <!-- 경고메세지 -->
        </tr>
        <tr>
-       	<td colspan="2"><button id="btnGo" onclick="updatePass()">확인</button> </td>
+       	<td colspan="2"><button id="goUpdateBtn" onclick="updatePass()" >확인</button> </td>
        </tr>
        </table>
      </div>
@@ -120,4 +145,5 @@ function checkRegex(password) {
 	<%} %>
 	
 </body>
+
 </html>

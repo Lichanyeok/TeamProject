@@ -55,7 +55,7 @@
         <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
     <section>
-         <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
+         <h1><a href="../MemberLoginFormAction.do"><img alt="" src="../images/LOGO.png"></a></h1>
             <div class="login_wrap">
             <div class="login_input">
                 <div>

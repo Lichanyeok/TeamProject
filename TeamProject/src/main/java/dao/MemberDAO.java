@@ -549,5 +549,24 @@ public class MemberDAO {
 		}
 		return isRightInfo;
 	}
+
+	public int updatePass(String pass,String id) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "UPDATE project_member SET pass=? WHERE id=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			updateCount = pstmt.executeUpdate();
+			commit(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);	
+		}
+		return updateCount;
+	}
 }
 

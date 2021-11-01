@@ -33,20 +33,24 @@
 					"id":$('#id').val(),
 					"email":$('#email').val()
 			};
-			alert(JSON.stringify(sendData))
+// 			alert(JSON.stringify(sendData))
 			$.ajax({
 				type:"get",
 				data:sendData,
 				dataType:"text",
 				url:"FindPass.do"
 			}).done(function(data) {
-				alert('성공');
+// 				alert('성공');
 				$('#result').html(data);
 			}).fail(function(){
-				alert('실패');
+				alert('잠시후에 다시 시도해주세요');
 			});
 		});
-	})
+		
+		
+	});
+	
+	
 </script>
     
 </head> 
@@ -55,7 +59,7 @@
         <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
     <section>
-         <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
+         <h1><a href="../MemberLoginFormAction.do"><img alt="" src="../images/LOGO.png"></a></h1>
             <div class="login_wrap">
             <div class="login_input">
                 <div>
