@@ -1,6 +1,7 @@
 package controller;
 
-import java.io.IOException;
+import action.*;
+import vo.ActionForward;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import action.Action;
 import action.MemberAlignAction;
 import action.MemberDeleteAction;
@@ -35,10 +35,12 @@ import action.payAction;
 import action.PublishAction;
 import action.WriteFormProAction;
 import vo.ActionForward;
+import java.io.IOException;
 
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
+
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -168,7 +170,13 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
-			
+		}else if (command.equals("/member/SendAuthMail.do")) {
+            action = new SendAuthMailAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 		}else if(command.equals("/Reserve.do")) {
 			forward = new ActionForward();
 			forward.setPath("./reserve/reserve_main.jsp");
@@ -295,12 +303,13 @@ public class FrontController extends HttpServlet {
 		}
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
+    }
 
 }

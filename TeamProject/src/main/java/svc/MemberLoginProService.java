@@ -9,20 +9,18 @@ import java.sql.Connection;
 
 public class MemberLoginProService {
 
-	public boolean loginMember(MemberBean bean) {
+	public int loginMember(MemberBean bean) {
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.setConnection(con);
 		
-		boolean isLoginSuccess = dao.selectMember(bean);
+		int isLoginSuccess = dao.selectMember(bean);
 		
-		if(isLoginSuccess) {
+		if(isLoginSuccess == 2) {
 			dao.updateDate(bean);
 			commit(con);
-			isLoginSuccess = true;
-		}else {
+		}else if (isLoginSuccess == 0 || isLoginSuccess == 1) {
 			rollback(con);
-			isLoginSuccess = false;
 		}
 		close(con);
 		return isLoginSuccess;

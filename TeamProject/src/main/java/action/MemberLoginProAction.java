@@ -27,9 +27,9 @@ public class MemberLoginProAction implements Action {
 		bean.setId(id);
 		bean.setPass(pass);
 		
-		boolean isLoginSuccess = service.loginMember(bean);		
+		int isLoginSuccess = service.loginMember(bean);
 		
-		if(isLoginSuccess){
+		if(isLoginSuccess == 2){
 			HttpSession session = request.getSession();
 			String grade = bean.getGrade()+"";
 			System.out.println(grade);
@@ -38,11 +38,18 @@ public class MemberLoginProAction implements Action {
 			session.setAttribute("sGr", bean.getGrade());
 			forward.setPath("/");
 			forward.setRedirect(false);
-		}else {
+		} else if (isLoginSuccess == 1) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('·Î±×ÀÎ ½ÇÆĞ!')");
+			out.println("alert('ë©”ì¼ ì¸ì¦ í•„ìˆ˜')");
+			out.println("history.back()");
+			out.println("</script>");
+		} else if (isLoginSuccess == 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('ë¡œê·¸ì¸ ì‹¤íŒ¨')");
 			out.println("history.back()");
 			out.println("</script>");
 		}

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.jdbcUtil;
+import vo.AuthInfoBean;
 import vo.CouponBean;
 import vo.MemberBean;
 import static db.jdbcUtil.*;
@@ -36,13 +38,13 @@ public class MemberDAO {
 		this.con = con;
 	}
 
-	public boolean selectMember(MemberBean bean) {
+	public int selectMember(MemberBean bean) {
 		System.out.println("selectMember()");
-		boolean isLoginSuccess = false;
+		int isLoginSuccess = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			 String sql = "SELECT pass,nickname,grade FROM project_member WHERE id=?";
+			 String sql = "SELECT pass,nickname,grade,auth_status FROM project_member WHERE id=?";
 	         pstmt = con.prepareStatement(sql);
 	         pstmt.setString(1, bean.getId());
 	         
@@ -57,8 +59,14 @@ public class MemberDAO {
 	            if(bean.getPass().equals(rs.getString("pass"))) {
 	            	bean.setNickName(rs.getString("nickname"));
 	            	bean.setGrade(rs.getInt("grade"));
-	            	isLoginSuccess = true; // �н����� ��ġ
-	            } 
+	            	isLoginSuccess = 1; // �н����� ��ġ
+	            }
+
+				if (isLoginSuccess == 1) {
+					if (rs.getString("auth_status").equals("Y")) {
+						isLoginSuccess = 2;
+					}
+				}
 	         }
 		} catch (SQLException e) {
 			System.out.println("selectMember sql ����!");
@@ -74,7 +82,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql="INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,?,now(),null)";
+			String sql="INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,?,now(),null,'N')";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -594,6 +602,7 @@ public class MemberDAO {
 		return updateCount;
 	}
 
+
 	public ArrayList<MemberBean> getMemberDetail(String id, String pass) {
 		ArrayList<MemberBean> list = new ArrayList<MemberBean>();
 		PreparedStatement pstmt = null;
@@ -625,6 +634,128 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public int insertAuthInfo(AuthInfoBean authInfo) {
+		int insertCount = 0;
+
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT auth_code FROM project_auth WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, authInfo.getId());
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				sql = "UPDATE project_auth SET auth_code=? WHERE id=?";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setString(1, authInfo.getAuth_code());
+				pstmt2.setString(2, authInfo.getId());
+				insertCount = pstmt2.executeUpdate();
+				System.out.println("인증코드 갱신 성공!");
+			} else {
+				System.out.println();
+				sql = "INSERT INTO project_auth VALUES(?,?)";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setString(1, authInfo.getId());
+				pstmt2.setString(2, authInfo.getAuth_code());
+				insertCount = pstmt2.executeUpdate();
+				System.out.println("인증코드 등록 성공!");
+			}
+
+		} catch (SQLException e) {
+			System.out.println("인증코드 등록 오류!");
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close(rs);
+			jdbcUtil.close(pstmt);
+			jdbcUtil.close(pstmt2);
+		}
+
+		return insertCount;
+	}
+
+	public boolean selectAuthInfo(AuthInfoBean authInfo) {
+		boolean isAuthenticationSuccess = false;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT id FROM project_auth WHERE id=? AND auth_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, authInfo.getId());
+			pstmt.setString(2, authInfo.getAuth_code());
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				isAuthenticationSuccess = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return isAuthenticationSuccess;
+	}
+
+
+
+	// 인증 정보 일치 시 회원 정보의 인증 상태를 변경하는 메서드 정의
+	public boolean changeAuthStatus(String id) {
+		boolean isChangeSuccess = false;
+
+		PreparedStatement pstmt = null;
+
+		try {
+			// auth_member 테이블 중 id 값과 일치하는 레코드의 auth_status 컬럼값을 'Y' 로 변경
+			String sql = "UPDATE project_member SET auth_status='Y' WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			int updateCount = pstmt.executeUpdate();
+
+			if(updateCount > 0) {
+				isChangeSuccess = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return isChangeSuccess;
+	}
+
+	// 인증정보를 삭제하는 메서드 정의
+	public boolean deleteAuthInfo(String id) {
+		boolean isDeleteSuccess = false;
+
+		PreparedStatement pstmt = null;
+
+		try {
+			// auth_member 테이블 중 id 값과 일치하는 레코드 삭제
+			String sql = "DELETE FROM project_auth WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			int deleteCount = pstmt.executeUpdate();
+
+			if(deleteCount > 0) {
+				isDeleteSuccess = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return isDeleteSuccess;
+
 	}
 }
 
