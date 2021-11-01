@@ -27,26 +27,26 @@ public class PublishAction implements Action {
 		int coupon_target = Integer.parseInt(request.getParameter("coupon_target"));
 		System.out.println(coupon_name + "," + coupon_value + "," + coupon_price + "," + coupon_target);
 		
-		//target À¸·Î project_member Å×ÀÌºí Á¶È¸ÇØ¼­ id °¡Á®¿À±â
+		
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.setConnection(con);
 		ArrayList<String> list = dao.selectMemberCount(coupon_target);
 		ArrayList<CouponBean> couponList = new ArrayList<CouponBean>();
 		
-		String name =""; //ÄíÆù °ªÀ» È®ÀÎÇÏ¿© ÃÊ±âÈ­ÇÒ º¯¼öµé ¼±¾ğ
+		String name =""; 
 		String value="";
 		int price = 0;
-		//°¡Á®¿Â ÄíÆùÀÇ ¹øÈ£¸¦ È®ÀÎÇÏ¿© º§·ù ÁöÁ¤
+		
 		switch (coupon_name) {
-		case 2: name = "¿ì¼ö°í°´ Á¤±â ÇÒÀÎÄíÆù";break;
-		case 3: name = "´Ü°ñ°í°´ Á¤±â ÇÒÀÎÄíÆù";break;
-		case 4: name = "´õ¿ì¼ö°í°´ Á¤±â ÇÒÀÎÄíÆù";break;
+		case 2: name = "ìš°ìˆ˜ê³ ê° ì •ê¸° í• ì¸ì¿ í°";break;
+		case 3: name = "ë‹¨ê³¨ê³ ê° ì •ê¸° í• ì¸ì¿ í°";break;
+		case 4: name = "ë”ìš°ìˆ˜ê³ ê° ì •ê¸° í• ì¸ì¿ í°";break;
 		}
 		switch (coupon_value) {
-		case 2: value = "1000¿ø ÇÒÀÎ";break;
-		case 3: value = "1000¿ø ÇÒÀÎ";break;
-		case 4: value = "1000¿ø ÇÒÀÎ";break;
+		case 2: value = "1000ì› í• ì¸";break;
+		case 3: value = "2000ì› í• ì¸";break;
+		case 4: value = "3000ì› í• ì¸";break;
 		}
 		switch (coupon_price) {
 		case 2: price = 1000;break;
@@ -55,11 +55,11 @@ public class PublishAction implements Action {
 		}
 
 
-		Set<String> arrRandom = new HashSet<String>(); // ÄíÆù¹øÈ£ÀÇ Áßº¹À» ¸·±â À§ÇØ Set °´Ã¼ »ı¼º
+		Set<String> arrRandom = new HashSet<String>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Set ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		while(arrRandom.size()<list.size()) {
 			arrRandom.add(BoardDAO.getRandomStr(8));
 		}
-		System.out.println("³­¼ö °¹¼ö" + arrRandom.size() + " ¾ÆÀÌµğ °¹¼ö " + list.size());
+		System.out.println("ë‚œìˆ˜ í¬ê¸° : " + arrRandom.size() + "ì„ íƒëœ ì¸ì› :  " + list.size());
 		Iterator<String> it = arrRandom.iterator();		
 		CouponBean couponB = null;
 		PublishService service = new PublishService();
@@ -71,7 +71,7 @@ public class PublishAction implements Action {
 		request.setAttribute("couponList", couponList);
 		
 		forward.setPath("./admin/publish_coupon_result.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 

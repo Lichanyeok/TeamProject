@@ -15,10 +15,10 @@ public class MemberManagementAction implements Action {
 
         MemberBean article = new MemberBean();
         String pass = request.getParameter("pass");
-
+        System.out.println("MemberManagementAction pass : " + pass);
         MemberManagementService service = new MemberManagementService();
         boolean isManagementSuccess = service.checkMember(pass);
-
+        
         if (!isManagementSuccess) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();

@@ -625,6 +625,7 @@ public class MemberDAO {
 						bean.setName(rs.getString("name"));
 						bean.setNickName(rs.getString("nickname"));
 						bean.setEmail(rs.getString("email"));
+						bean.setPass(rs.getString("pass"));
 						list.add(bean);
 					}
 				}

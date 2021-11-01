@@ -56,7 +56,7 @@
         <jsp:include page="/inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
         
-        <form>
+        <form action="PublishCoupon.do" method="post">
         	<select id="coupon_name" name="coupon_name">
         		<option disabled="disabled">쿠폰명을 선택해주세요!</option>
         		<option value="2">우수고객 정기 할인쿠폰</option>
@@ -82,7 +82,8 @@
         		<option value="3">우수 회원</option>
         		<option value="4">더우수 회원</option>
         	</select>
-        	<button id="sendCouponBtn">발송</button>
+<!--         	<button id="sendCouponBtn">발송</button> -->
+        	<input type="submit" value="발송">
         </form>
 		<div id="resultArea">
 		-

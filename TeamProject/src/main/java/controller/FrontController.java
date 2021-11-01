@@ -9,31 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import action.Action;
-import action.MemberAlignAction;
-import action.MemberDeleteAction;
-import action.MemberInfoDetailAction;
-import action.BoardListAction;
-import action.CheckReserverInfoAction;
-import action.GetCouponListAction;
-import action.MemberDeleteAction;
-import action.BoardListAction;
-import action.MemberJoinProAction;
-import action.MemberLoginProAction;
-import action.MemberLogoutAction;
-import action.MemberManagementAction;
-import action.MemberManagementProAction;
-import action.ModiResAction;
-import action.ModifyMemberGradeAction;
-import action.PaymentAction;
-import action.PublishAction;
-import action.ResCancleAction;
-import action.ReserveListAction;
-import action.UpdatePassAction;
-import action.WriteFormProAction;
-import action.payAction;
-import action.PublishAction;
-import action.WriteFormProAction;
+
 import vo.ActionForward;
 import java.io.IOException;
 
@@ -136,6 +112,7 @@ public class FrontController extends HttpServlet {
 			forward.setPath("./admin/gift_coupon.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/PublishCoupon.do")) {
+			System.out.println("frontController publishAction");
 			action = new PublishAction();
 			try {
 				forward = action.execute(request, response);
@@ -163,6 +140,14 @@ public class FrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MemberInfoDetail.do")){
 			action = new MemberInfoDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/GetCouponList.do")) {
+			action = new GetListCouponAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
