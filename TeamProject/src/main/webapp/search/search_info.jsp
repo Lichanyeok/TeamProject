@@ -7,13 +7,21 @@ String store_name = "";
 String load_address = "";
 String address = "";
 String store_number = "";
+<<<<<<< HEAD
 String category = "";
+=======
+String logo_img="";
+>>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
 if (article != null) {
 	store_name = article.getPlace_name();
 	load_address = article.getRoad_address();
 	address = article.getJibun_address();
 	store_number = article.getTell_number();
+<<<<<<< HEAD
 	category = article.getCategory();
+=======
+	logo_img=article.getLogo_img();
+>>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
 }
 %>
 <!DOCTYPE html>
@@ -35,7 +43,7 @@ if (article != null) {
 				"address" : $('#address').text(),
 				"store_number" : $('#store_number').text()
 			};
-			// 			alert(JSON.stringify(sendData));
+
 			$.ajax({
 				type : "get",
 				data : sendData,
@@ -64,7 +72,7 @@ if (article != null) {
 		<div id="item">
 			<div class="item_detail">
 				<ul class="item_detail_left">
-					<li><img src="./search/img/pizzaHut.png"></li>
+					<li><img src="./search/img/<%=logo_img %>"></li>
 				</ul>
 				<ul id="item_detail_right">
 					<li class="item_txt">

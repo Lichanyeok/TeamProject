@@ -5,7 +5,7 @@
 .map_wrap, .map_wrap * {padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {width:1081px;height:400px;margin: 0 auto;}
-#menu_wrap {float:left;left:0;bottom:0;width:auto;height:400px;padding:0px;overflow-y:hidden;
+#menu_wrap {float:left;left:0;bottom:0;width:300px;height:400px;padding:0px;overflow-y:hidden;
 	background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;
 	border: 2px solid #FF8831;}
 #menu_wrap:hover{
@@ -73,21 +73,24 @@
 #keyword:focus{
 	outline: none;
 }
-#searchForm > button{	
+#mapSearchBtn{	
 	width: 40px;	
 	height: 46px;
 	border: 3px solid #FF8831;
 	background: #FF8831;
 	float: left;
-
 }
+#mapSearchBtn:hover{
+	cursor: pointer;
+}
+
 </style>
 <div class="map_wrap">
 	<div id="search_wrap">
 		
 		<form onsubmit="searchPlaces(); return false;" id="searchForm">
-			<input type="text" value="피자몰" id="keyword" size="15">
-			<button type="submit" id="mapSearchBtn">검색</button>
+			<input type="text" value="" id="keyword" size="15">
+			<input type="submit" id="mapSearchBtn" value="검색">
 		</form>
 		
 	</div>
@@ -98,7 +101,7 @@
 		<div id="pagination"></div>
 	</div>
 	<div id="map"
-		style="width: 775px; height: 400px; position: relative; overflow: hidden;
+		style="width: 770px; height: 400px; position: relative; overflow: hidden;
 		border: 2px solid #FF8831; border-radius: 10px;float:right;"></div>
 </div>
 
@@ -129,12 +132,12 @@ searchPlaces();
 function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
-    	alert('키워드를 입력해주세요!');
-        return false;
+    	ps.keywordSearch('서면 맛집', placesSearchCB);       
+    }else{
+	    ps.keywordSearch( keyword, placesSearchCB);    	
     }
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -214,11 +217,17 @@ function displayPlaces(places) {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+    
+    $(".item").on("click",function(){		
+		var tell_number = $(".tel",this).text();
+		var road_address= $(".road",this).text();
+		location.href="MatzipInfo.mz?road_address="+road_address
+				+"&tell_number="+tell_number;
+	});		
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-
     var el = document.createElement('li'),
 //     var place_name=places.place_name;
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
@@ -238,6 +247,8 @@ function getListItem(index, places) {
 
     el.innerHTML = itemStr;
     el.className = 'item';
+    
+//     alert(el.innerHTML + ", " + el.className);
 
     return el;
 }

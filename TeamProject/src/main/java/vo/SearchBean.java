@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class SearchBean {
 	private String road_address;
 	private String jibun_address;
@@ -7,6 +9,9 @@ public class SearchBean {
 	private String place_name;
 	private float star_score;
 	private String tell_number;
+	private String logo_img;
+	private Date date;
+	private int recommend;
 	public SearchBean() {};
 	public SearchBean(String road_address, String jibun_address, String place_name, String tell_number) {
 		super();
@@ -17,7 +22,32 @@ public class SearchBean {
 	}
 	@Override
 	public String toString() {
-		return "SearchBean [road_address=" + road_address + ", jibun_address=" + jibun_address + ", place_name=" + place_name + ", tell_number=" + tell_number + "]";
+		return "SearchBean [road_address=" + road_address 
+				+ ", jibun_address=" + jibun_address 
+				+ ", place_name=" + place_name 
+				+ ", tell_number=" + tell_number 
+				+ ", logo_img=" + logo_img
+				+ ", date=" + date
+				+ ", recommend=" + recommend+"]";
+	}
+	 
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+	public String getLogo_img() {
+		return logo_img;
+	}
+	public void setLogo_img(String logo_img) {
+		this.logo_img = logo_img;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public String getRoad_address() {
 		return road_address;

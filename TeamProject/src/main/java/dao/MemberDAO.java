@@ -46,22 +46,22 @@ public class MemberDAO {
 	         pstmt = con.prepareStatement(sql);
 	         pstmt.setString(1, bean.getId());
 	         
-	         // 4´Ü°è. SQL ±¸¹® ½ÇÇà ¹× °á°ú Ã³¸®
+	         // 4ï¿½Ü°ï¿½. SQL ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	         rs = pstmt.executeQuery();
 	         
-	         // if¹®À» »ç¿ëÇÏ¿© ResultSet °´Ã¼ÀÇ Á¶È¸ °á°ú Á¸Àç ¿©ºÎ ÆÇº°
+	         // ifï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ResultSet ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½
 	         if(rs.next()) {
-	            // Á¶È¸µÈ °á°ú(·¹ÄÚµå)°¡ Á¸ÀçÇÒ °æ¿ì
-	            // => pass ÄÃ·³ µ¥ÀÌÅÍ¸¦ ÀÔ·Â¹ÞÀº ÆÐ½º¿öµå(pass)¿Í ºñ±³ÇÏ¿©
-	            //    ÀÏÄ¡ÇÏ¸é isLoginSccuess º¯¼ö¿¡ true °ª ÀúÀå(¾Æ´Ï¸é ±âº»°ª false »ç¿ë)
+	            // ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Úµï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	            // => pass ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½(pass)ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½
+	            //    ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½ isLoginSccuess ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Æ´Ï¸ï¿½ ï¿½âº»ï¿½ï¿½ false ï¿½ï¿½ï¿½)
 	            if(bean.getPass().equals(rs.getString("pass"))) {
 	            	bean.setNickName(rs.getString("nickname"));
 	            	bean.setGrade(rs.getInt("grade"));
-	            	isLoginSuccess = true; // ÆÐ½º¿öµå ÀÏÄ¡
+	            	isLoginSuccess = true; // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 	            } 
 	         }
 		} catch (SQLException e) {
-			System.out.println("selectMember sql ¿À·ù!");
+			System.out.println("selectMember sql ï¿½ï¿½ï¿½ï¿½!");
 			e.printStackTrace();
 		}
 		
@@ -186,7 +186,7 @@ public class MemberDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("updateArticle() ¿À·ù - " + e.getMessage());
+            System.out.println("updateArticle() ï¿½ï¿½ï¿½ï¿½ - " + e.getMessage());
         } finally {
             close(pstmt);
         }
@@ -498,6 +498,75 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return couponList;
+	}
+	
+	public boolean getId(MemberBean bean) {
+		boolean isRightInfo = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("getId name : " + bean.getName() + ", email : " + bean.getEmail());
+		try {
+			String sql = "SELECT id FROM project_member WHERE name=? AND email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getEmail());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean.setId(rs.getString("id"));
+				isRightInfo = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);	
+		}
+		return isRightInfo;
+	}
+	
+	public boolean getPass(MemberBean bean) {
+		boolean isRightInfo = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("getPass id : " + bean.getId() + ", email : " + bean.getEmail());
+		try {
+			String sql = "SELECT pass FROM project_member WHERE id=? AND email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getId());
+			pstmt.setString(2, bean.getEmail());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean.setPass(rs.getString("pass"));
+				isRightInfo = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);	
+		}
+		return isRightInfo;
+	}
+
+	public int updatePass(String pass,String id) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "UPDATE project_member SET pass=? WHERE id=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			updateCount = pstmt.executeUpdate();
+			commit(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);	
+		}
+		return updateCount;
 	}
 }
 

@@ -4,8 +4,9 @@ import java.sql.Date;
 
 public class ReviewBean {
 
-//	CREATE TABLE review(
-//	rev_num INT PRIMARY KEY,// 예약번호 (PK)
+//CREATE TABLE review (
+//	rev_num INT AUTO_INCREMENT PRIMARY KEY,// 예약번호 (PK)
+//	ran_num VARCHAR(36) UNIQUE NOT NULL, // 예약 번호 + 아이디값 (예약번호 15자리, 아이디 20자리, 특수문자'_' 1자리)
 //	rev_store VARCHAR(20), // 매장 이름
 //	rev_name VARCHAR(20), // 리뷰 작성자 이름 or 닉네임
 //	rev_score FLOAT, // 별점 or 평점
@@ -13,22 +14,23 @@ public class ReviewBean {
 //	rev_pic VARCHAR(250), // 사진 명
 //	rev_pic_origin VARCHAR(250), // 원본 사진 명
 //	rev_menu VARCHAR(30), // 주문한 메뉴 (주문내역 테이블에서 가져와서 저장)
-//	rev_date DATE// 리뷰 작성일
+//	rev_date DATE,// 리뷰 작성일
 //	rev_like INT // 좋아요 갯수 저장
 //);
 
 int rev_num;
+String ran_num;
 String rev_store;
 String rev_name;
 float rev_score;
 String rev_content;
 String rev_pic;
 String rev_pic_origin;
-String prev_pic;
-String prev_pic_origin;
 String rev_menu;
 Date rev_date;
 int rev_like;
+String prev_pic;
+String prev_pic_origin;
 int listCount; // 리뷰 개수 저장
 float totalScore; // 리뷰 평점 저장
 
@@ -37,6 +39,12 @@ public int getRev_num() {
 }
 public void setRev_num(int rev_num) {
 	this.rev_num = rev_num;
+}
+public String getRan_num() {
+	return ran_num;
+}
+public void setRan_num(String ran_num) {
+	this.ran_num = ran_num;
 }
 public String getRev_store() {
 	return rev_store;
@@ -74,18 +82,6 @@ public String getRev_pic_origin() {
 public void setRev_pic_origin(String rev_pic_origin) {
 	this.rev_pic_origin = rev_pic_origin;
 }
-public String getPrev_pic() {
-	return prev_pic;
-}
-public void setPrev_pic(String prev_pic) {
-	this.prev_pic = prev_pic;
-}
-public String getPrev_pic_origin() {
-	return prev_pic_origin;
-}
-public void setPrev_pic_origin(String prev_pic_origin) {
-	this.prev_pic_origin = prev_pic_origin;
-}
 public String getRev_menu() {
 	return rev_menu;
 }
@@ -104,6 +100,18 @@ public int getRev_like() {
 public void setRev_like(int rev_like) {
 	this.rev_like = rev_like;
 }
+public String getPrev_pic() {
+	return prev_pic;
+}
+public void setPrev_pic(String prev_pic) {
+	this.prev_pic = prev_pic;
+}
+public String getPrev_pic_origin() {
+	return prev_pic_origin;
+}
+public void setPrev_pic_origin(String prev_pic_origin) {
+	this.prev_pic_origin = prev_pic_origin;
+}
 public int getListCount() {
 	return listCount;
 }
@@ -116,8 +124,5 @@ public float getTotalScore() {
 public void setTotalScore(float totalScore) {
 	this.totalScore = totalScore;
 }
-
-
-
 	
 }

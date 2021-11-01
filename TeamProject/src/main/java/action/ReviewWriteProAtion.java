@@ -44,17 +44,16 @@ public class ReviewWriteProAtion implements Action {
 		);
 		
 		// BoardBean 객체에 전달받은 파라미터 저장
-		ReviewBean board = new ReviewBean();
-//		board.setRev_num(multi.getParameter("rev_num"));
-//		board.setRev_store(multi.getParameter("rev_store"));
-		board.setRev_store("00국밥집");
-		board.setRev_name(multi.getParameter("rev_name"));
-		board.setRev_score(Integer.parseInt(multi.getParameter("rating")));
-		board.setRev_content(multi.getParameter("rev_content"));
-//		board.setRev_menu(multi.getParameter("rev_menu"));
-		board.setRev_menu("순대국밥 외 2종");
+		ReviewBean rb = new ReviewBean();
+		rb.setRan_num(multi.getParameter("ran_num"));
+		rb.setRev_store(multi.getParameter("rev_store"));
+		rb.setRev_name(multi.getParameter("rev_name"));
+		rb.setRev_score(Integer.parseInt(multi.getParameter("rating")));
+		rb.setRev_content(multi.getParameter("rev_content"));
+		rb.setRev_menu(multi.getParameter("rev_menu"));
 		
-		System.out.println(multi.getParameter("rating"));
+//		System.out.println(multi.getParameter("rating"));
+//		System.out.println("action_ranNum : " + multi.getParameter("ran_num"));
 		
 		// 주의! 파일 정보를 가져올 때 multi.getParameter("board_file") 사용 금지!
 		// 파일명을 활용하여 실제 파일에 접근하기
@@ -65,8 +64,8 @@ public class ReviewWriteProAtion implements Action {
 		String file = multi.getFileNames().nextElement().toString();
 		String rev_pic = multi.getFilesystemName(file);
 		String rev_pic_origin = multi.getOriginalFileName(file);
-		board.setRev_pic(rev_pic);
-		board.setRev_pic_origin(rev_pic_origin);
+		rb.setRev_pic(rev_pic);
+		rb.setRev_pic_origin(rev_pic_origin);
 		System.out.println("rev_pic : " + rev_pic + ", rev_pic_origin : " + rev_pic_origin);
 		
 		// Action 클래스에서 비즈니스 로직 처리를 위한 작업 요청
@@ -78,7 +77,7 @@ public class ReviewWriteProAtion implements Action {
 		
 		// 2) BoardWriteProService 인스턴스의 registArticle() 메서드 호출하여 게시물 등록 요청
 		//    => 파라미터 : BoardBean 객체, 리턴타입 : boolean(isWriteSuccess)
-		boolean isWriteSuccess = svc.registReview(board);
+		boolean isWriteSuccess = svc.registReview(rb);
 		
 		System.out.println("ReviewWriteProAtion : " + isWriteSuccess);
 		

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
+
     <section>
         <form action="MemberLoginProAction.do" method="post">
          <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
@@ -42,8 +43,8 @@
             </div>
         </div>
         <ul class="find">
-            <li><a href = "#">아이디찾기</a></li>
-            <li><a href = "#">비밀번호찾기</a></li>
+            <li><a href = "./member/find_id.jsp">아이디찾기</a></li>
+            <li><a href = "./member/find_pass.jsp">비밀번호찾기</a></li>
             <li><a href = "MemberJoinFormAction.do">회원가입</a></li>
         </ul>
 

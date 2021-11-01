@@ -57,7 +57,6 @@ public class ReviewModifyProAction implements Action {
 		ReviewBean rb = new ReviewBean();
 		rb.setRev_num(rev_num);
 		rb.setRev_score(Integer.parseInt(multi.getParameter("rating")));
-		rb.setRev_subject(multi.getParameter("rev_subject"));
 		rb.setRev_content(multi.getParameter("rev_content"));
 		
 		System.out.println(multi.getParameter("rating"));

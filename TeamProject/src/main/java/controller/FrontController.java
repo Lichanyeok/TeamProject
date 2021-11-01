@@ -28,6 +28,7 @@ import action.PaymentAction;
 import action.PublishAction;
 import action.ResCancleAction;
 import action.ReserveListAction;
+import action.UpdatePassAction;
 import action.WriteFormProAction;
 import action.payAction;
 import action.PublishAction;
@@ -139,7 +140,24 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/member/FindId.do")) {
+			System.out.println("find Id controller");
+			forward = new ActionForward();
+			forward.setPath("./find_id_result.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/member/FindPass.do")) {
+			System.out.println("find pass controller");
+			forward = new ActionForward();
+			forward.setPath("./find_pass_result.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/member/UpdatePass.do")) {
+			action = new UpdatePassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 			
 		}else if(command.equals("/Reserve.do")) {

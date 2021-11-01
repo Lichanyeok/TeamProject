@@ -73,6 +73,7 @@ body {
 }
 #category_menu_ul>li:hover {
 	background: #FF6631;
+	cursor: pointer;
 }
 
 </style>
@@ -93,7 +94,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	$("li").on("click", function() {
+	$("#category_menu_ul>li").on("click", function() {
 		if(category != ""){
 			$("li[value="+category+"]").css("background","#FF8831");			
 		}
@@ -109,19 +110,8 @@ $(document).ready(function(){
 			}			
 		}).fail(function() {
 			alert('실패!');
-		});
-		
+		});		
 	});
-
-
-	$(".item").on("click",function(){			
-		var tell_number = $(".tel",this).text();
-		var road_address= $(".road",this).text();
-		location.href="MatzipInfo.mz?road_address="+road_address
-				+"&tell_number="+tell_number;
-	});
-
-		
 });
 
 </script>
@@ -162,6 +152,7 @@ $(document).ready(function(){
 	    <div class="div_clear"></div>	    
 	    </div>
 	    <br>
+	    <footer></footer>
 	</div>
 </body>
 </html>
