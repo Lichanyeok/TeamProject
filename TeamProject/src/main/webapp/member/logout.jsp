@@ -11,5 +11,6 @@
 session.invalidate();
 response.sendRedirect("/TeamProject/");
 %>
+<%-- 테스트 --%>
 </body>
 </html>
