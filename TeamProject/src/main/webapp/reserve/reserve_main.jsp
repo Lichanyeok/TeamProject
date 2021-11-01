@@ -23,9 +23,13 @@
   	
   	
     //세션에 저장된  id로 가정
-    String id = session.getAttribute("sId").toString();
-    request.setAttribute("id", id);
-   
+    String id = null;
+    id = session.getAttribute("sId").toString();
+    if(id!=null){
+    	request.setAttribute("id", id);
+    }else{
+    	response.sendRedirect("./MemberLoginFormAction.do");
+    }
     %>
 <!DOCTYPE html>
 <html>

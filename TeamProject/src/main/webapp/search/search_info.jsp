@@ -35,7 +35,7 @@ if (article != null) {
 				"address" : $('#address').text(),
 				"store_number" : $('#store_number').text()
 			};
-			// 			alert(JSON.stringify(sendData));
+
 			$.ajax({
 				type : "get",
 				data : sendData,
