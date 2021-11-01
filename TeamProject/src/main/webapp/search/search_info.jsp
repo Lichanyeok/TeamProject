@@ -7,11 +7,13 @@ String store_name = "";
 String load_address = "";
 String address = "";
 String store_number = "";
+String category = "";
 if (article != null) {
 	store_name = article.getPlace_name();
 	load_address = article.getRoad_address();
 	address = article.getJibun_address();
 	store_number = article.getTell_number();
+	category = article.getCategory();
 }
 %>
 <!DOCTYPE html>
@@ -75,6 +77,20 @@ if (article != null) {
 					<li id="benefit">
 						<p>상세 내용</p> <br>
 						<ul>
+							<li class="list_name">
+								<p>별점</p>
+								<%
+								double star = Math.round(article.getStar_score() * 10) / 10.0;
+								int iStar = (int) star;
+								double fStar = Math.round((star - iStar) * 10) / 10.0;
+								for (int j = 0; j < iStar; j++) {
+								%> <img src="./search/img/star.jpg" class="starImg"> 
+								<%}%>&nbsp;&nbsp;<%=star%>
+							</li>
+							<li>
+								<p>업종</p>
+								<p id="load_address"><%=category%></p>
+							</li>
 							<li>
 								<p>주소</p>
 								<p id="load_address"><%=load_address%></p>
@@ -97,9 +113,14 @@ if (article != null) {
 				</ul>
 			</div>
 		</div>
-		<ul>
-			<li id="hr"></li>
-		</ul>
 	</form>
+	<div id="item_description">
+		<div class="item_description_tab">
+			<ul class="tabs-nav">
+				<li><a href="#work01">업체 인기 메뉴</a></li>
+				<li><a href="#work02">리뷰</a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
