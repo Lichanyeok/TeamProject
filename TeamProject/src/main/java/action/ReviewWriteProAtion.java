@@ -1,6 +1,7 @@
 package action;
 
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,7 @@ public class ReviewWriteProAtion implements Action {
 		rb.setRev_score(Integer.parseInt(multi.getParameter("rating")));
 		rb.setRev_content(multi.getParameter("rev_content"));
 		rb.setRev_menu(multi.getParameter("rev_menu"));
-		
+		System.out.println("asdasdasdasdasdasd ---------- : " + multi.getParameter("rev_name"));
 //		System.out.println(multi.getParameter("rating"));
 //		System.out.println("action_ranNum : " + multi.getParameter("ran_num"));
 		
@@ -95,9 +96,10 @@ public class ReviewWriteProAtion implements Action {
 			// ActionForward 객체를 생성하여 BoardList.bo 서블릿 주소 요청
 			// => request 객체 유지 불필요, 주소 유지 불필요
 			// => 새로운 요청을 발생시키므로 Redirect 방식 포워딩
+			String nickName = URLEncoder.encode(multi.getParameter("rev_name"), "UTF-8"); // url 한글처리
 			forward = new ActionForward();
-	    	forward.setPath("./review/main.jsp");
-	    	forward.setRedirect(true);
+			forward.setPath("./Review.re?nickName=" + nickName);
+			forward.setRedirect(true);
 		}
 		
 		// ActionForward 객체 리턴

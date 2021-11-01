@@ -43,7 +43,7 @@
 				
 	<div id="rev_contents">
 		<input type="hidden" value="<%=rating %>" id="rev_star"/>
-		<div id="rev_name">아이디 : <%=articleList.get(i).getRev_name() %></div><br>
+		<div id="rev_name">닉네임 : <%=articleList.get(i).getRev_name() %></div><br>
 		<div id="rev_subject">
 			<img src="./review/rev_im/<%=rating %>star.png" width="100" height="20" />
 		</div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>

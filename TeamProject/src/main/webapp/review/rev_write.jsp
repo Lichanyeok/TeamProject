@@ -27,8 +27,8 @@
 		
 </script>
 <%
-// session 객체에 저장된 id 값("sId" 속성) 가져오기
-String sId = (String)session.getAttribute("sId"); // Object -> String 다운캐스팅
+// session 객체에 저장된 nickName 값("nickName" 속성) 가져오기
+String nickName = (String)session.getAttribute("sNn"); // Object -> String 다운캐스팅
 
 %>
 <style type="text/css">
@@ -43,7 +43,7 @@ String sId = (String)session.getAttribute("sId"); // Object -> String 다운캐�
       text-align: center;
    }
    
-   table {
+   #writeTable {
       margin: auto;
       width: 450px;
    }
@@ -104,12 +104,15 @@ text-align: center;
 }
 
 
-img {
+#div1 > img {
 	visibility: hidden;
 }
 </style>
 </head>
 <body>
+	<!-- 상위 고정 -->
+   	<jsp:include page="../inc/header.jsp"></jsp:include>
+   	<!-- 상위 고정 -->
    <!-- 게시판 등록 -->
    <section id="writeForm" >
    
@@ -117,7 +120,7 @@ img {
 		
 	<form action="ReviewWritePro.re" method="post" enctype="multipart/form-data" name="boardForm">
 	<!-- 예약번호 값 넘기기 --> <input type="hidden" name="ran_num" value="<%=request.getParameter("ran_num") %>" />
-	<!-- 리뷰 작성자 값 넘기기 --> <input type="hidden" value="<%=sId %>" name="rev_name"/>
+	<!-- 리뷰 작성자 값 넘기기 --> <input type="hidden" value="<%=nickName %>" name="rev_name"/>
 	<!-- 리뷰 매장명 값 넘기기 --> <input type="hidden" value="<%=request.getParameter("rev_store") %>" name="rev_store"/>
 	<!-- 리뷰 주문메뉴 값 넘기기 --> <input type="hidden" value="<%=request.getParameter("rev_menu") %>" name="rev_menu"/>
      	
@@ -139,11 +142,7 @@ img {
 			<label for="1-stars" class="star">★</label>
 		</div><br>
       
-         <table>
-<!--             <tr> -->
-<!--                <td class="td_left"><label for="board_subject">제목</label></td> -->
-<!--                <td class="td_right"><input type="text" name="rev_subject" required="required" /></td> -->
-<!--             </tr> -->
+         <table id="writeTable">
             <tr>
                <td class="td_left"><label for="board_content">내용</label></td>
                <td class="td_right">

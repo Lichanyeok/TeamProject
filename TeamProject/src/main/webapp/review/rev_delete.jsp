@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String rev_name = "admin";
+String rev_name = (String) session.getAttribute("sNn");
 int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 
 %>
@@ -22,7 +22,7 @@ int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 		text-align: center;
 	}
 	
-	table {
+	#deleteTable {
 		width: 300px;
 		margin: auto;
 		text-align: center;
@@ -31,14 +31,16 @@ int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 </style>
 </head>
 <body>
+	<!-- 상위 고정 -->
+   	<jsp:include page="../inc/header.jsp"></jsp:include>
+   	<!-- 상위 고정 -->
 	<!-- 게시판 글 삭제 -->
 	<h2>리뷰 삭제</h2>
 	<section id="passForm">
 		<form action="./ReviewDeletePro.re?rev_name=<%=rev_name %>&rev_num=<%=rev_num %>" name="deleteForm" method="post">
-<%-- 			<input type="hidden" name="page" value="<%=nowPage %>" /> --%>
-			<table>
+			<table id="deleteTable">
 				<tr>
-					<td><label>글 비밀번호 : </label></td>
+					<td><label>비밀번호 : </label></td>
 					<td><input type="password" name="rev_pass" required="required"></td>
 				</tr>
 				<tr>

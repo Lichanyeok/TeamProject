@@ -51,8 +51,7 @@
 		
 </script>
 <%
-// session 객체에 저장된 id 값("sId" 속성) 가져오기
-String sId = (String)session.getAttribute("sId"); // Object -> String 다운캐스팅
+String nickName = (String) session.getAttribute("sNn");
 
 %>
 <style type="text/css">
@@ -67,7 +66,7 @@ String sId = (String)session.getAttribute("sId"); // Object -> String 다운캐�
       text-align: center;
    }
    
-   table {
+   #modifyTable {
       margin: auto;
       width: 450px;
    }
@@ -134,15 +133,18 @@ text-align: center;
 </style>
 </head>
 <body>
+	<!-- 상위 고정 -->
+    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <!-- 상위 고정 -->
    
    <!-- 게시판 등록 -->
    <section id="writeForm" >
    
-		<h1>000 국밥 00지점</h1>
+		<h1><%=article.getRev_store() %></h1>
 		
 	<form action="ReviewModifyPro.re" method="post" enctype="multipart/form-data" name="boardForm">
       <!-- 파일 업로드 기능을 사용하려면 cos.jar 라이브러리 등록 필수 -->
-      	<input type="hidden" value="admin" name="rev_name"/>
+      	<input type="hidden" value="<%=nickName %>" name="rev_name"/>
       	<input type="hidden" value="<%=rev_num %>" name="rev_num"/>
       	<input type="hidden" value="<%=rev_score %>" name="rev_score"/>
      	
@@ -165,7 +167,7 @@ text-align: center;
 			
 		</div><br>
       
-         <table>
+         <table id="modifyTable">
             <tr>
 				<td class="td_left"><label for="board_pass">비밀번호</label></td>
 				<td class="td_right">
@@ -181,7 +183,7 @@ text-align: center;
             </tr>
             <tr>
             	<td class="td_left"><label for="board_file">주문 메뉴</label></td>
-            	<td class="td_right"> 00 외 2종</td> <!-- db에서 가져오기 -->
+            	<td class="td_right"><%=article.getRev_menu() %></td>
             </tr>
             <tr>
             	<%

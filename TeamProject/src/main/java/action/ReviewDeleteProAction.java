@@ -1,6 +1,7 @@
 package action;
 
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,8 +53,9 @@ public class ReviewDeleteProAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			} else { // 작업 결과가 true 일 경우
+				String nickName = URLEncoder.encode(rev_name, "UTF-8"); // url 한글처리
 				forward = new ActionForward();
-				forward.setPath("./ReviewStore.re");
+				forward.setPath("./Review.re?nickName=" + nickName);
 				forward.setRedirect(true);
 			}
 		}

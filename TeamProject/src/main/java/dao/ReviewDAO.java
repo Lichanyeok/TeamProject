@@ -174,6 +174,42 @@ public class ReviewDAO {
 		return rb;
 	}
 	
+	// 작성한 총 리뷰 수를 조회하여 리턴하는 selectMyListCount() 메서드 정의
+	public int selectMyListCount(String nickName) {
+		System.out.println("ReviewDAO - selectMyListCount()");
+		
+		int myListCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			// 파라미터로 넘겨 받은 id에 해당하는 총 리뷰 수 구하기
+			sql = "SELECT COUNT(*) FROM review WHERE rev_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			
+			// 4단계 SQL 구문 실행 및 결과처리
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				myListCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		
+		return myListCount;
+	}
+	
 	// 전체 게시물 조회하여 리턴하는 getArticleList() 메서드 정의
 	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
@@ -232,19 +268,64 @@ public class ReviewDAO {
 		return articleList;
 	}
 	
+	// 작성한 리뷰를 조회하여 리턴하는 getMyReviewList() 메서드 정의
+	public ArrayList<ReviewBean> getMyReviewList(String nickName) {
+		ArrayList<ReviewBean> myReviewList = null; // 게시물을 저장할 객체 생성
+		System.out.println("ReviewDAO - getMyReviewList()");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			sql = "SELECT * FROM review WHERE rev_name=? ORDER BY rev_num DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			
+			// 4단계. SQL 구문 실행 및 결과 처리
+			rs = pstmt.executeQuery();
+			
+			// 모든 레코드를 저장할 List 객체(ArrayList) 생성
+			myReviewList = new ArrayList<ReviewBean>();
+			
+			while(rs.next()) {
+				ReviewBean rb = new ReviewBean();
+				rb.setRev_num(rs.getInt("rev_num"));
+				rb.setRev_score(rs.getFloat("rev_score"));
+				rb.setRev_store(rs.getString("rev_store"));
+				rb.setRev_date(rs.getDate("rev_date"));
+				rb.setRev_content(rs.getString("rev_content"));
+				rb.setRev_pic(rs.getString("rev_pic"));
+				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
+				rb.setRev_menu(rs.getString("rev_menu"));
+				rb.setRev_like(rs.getInt("rev_like"));
+				rb.setRan_num(rs.getString("ran_num"));
+				
+				// 1개 레코드가 저장된 ReviewBean 객체를 List 객체에 추가
+				myReviewList.add(rb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		
+		return myReviewList;
+	}
+	
 	public ReviewBean selectReview(int rev_num) {
 		System.out.println("ReviewDAO - selectReview()");
-		ReviewBean rb = null; // 1개 게시물 상세 정보를 저장하는 BoardBean 타입 변수 선언
+		ReviewBean rb = null; // 1개 리뷰 상세 정보를 저장하는 ReviewBean 타입 변수 선언
 			
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		
-		
-		
 		try {
-			// 게시물 상세 정보 조회
-			// 3단계 SQL 구문 작성
 			sql = "SELECT * FROM review WHERE rev_num =?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
@@ -259,6 +340,7 @@ public class ReviewDAO {
 				
 				// 조회된 게시물 1개 정보를 BoardBean 객체에 저장
 				rb.setRev_score(rs.getInt("rev_score"));
+				rb.setRev_store(rs.getString("rev_store"));
 				rb.setRev_name(rs.getString("rev_name"));
 				rb.setRev_date(rs.getDate("rev_date"));
 				rb.setRev_content(rs.getString("rev_content"));
@@ -284,16 +366,14 @@ public class ReviewDAO {
 	
 	public boolean isArticleWriter(String rev_name, String rev_pass) {
 		boolean isArticleWriter = false;
+		System.out.println("isArticleWriter id : " + rev_name + " pass : " + rev_pass);
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		
 		try {
-			
-			// 3단계 SQL 구문 작성 및 전달
-			// => board_num 에 해당하는 레코드의 board_pass 조회
-			sql = "SELECT password FROM project_member WHERE id=?";
+			sql = "SELECT pass FROM project_member WHERE nickName=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rev_name);
 			
