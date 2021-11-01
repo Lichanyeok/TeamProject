@@ -1,11 +1,15 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static db.jdbcUtil.*;
+
+import dao.MemberDAO;
 import svc.MemberJoinService;
 import vo.ActionForward;
 import vo.MemberBean;
@@ -17,7 +21,6 @@ public class MemberJoinProAction implements Action {
 		System.out.println("MemberJoinProAction - Aciton");
 		ActionForward forward = new ActionForward();
 		
-
 		String name = request.getParameter("name");
 		String nickName = request.getParameter("nickName");
 		int age = Integer.parseInt(request.getParameter("age"));
@@ -33,11 +36,22 @@ public class MemberJoinProAction implements Action {
 		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, addressDetail, gender );
 		System.out.println(bean.toString());
 		MemberJoinService service = new MemberJoinService();
+
+		Connection con = getConnection();
+		MemberDAO dao = MemberDAO.getInstance();
+		dao.setConnection(con);
 		
 		boolean isJoinSuccess = service.joinMember(bean);
-		
+
 		if(isJoinSuccess) {
-			forward.setPath("/TeamProject/MemberLoginFormAction.do");
+			con.commit();
+
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('인증메일발송')");
+			out.println("</script>");
+			forward.setPath("SendAuthMail.do?id=" + bean.getId() + "&email=" + bean.getEmail());
 			forward.setRedirect(true);
 			return forward;
 		}else {

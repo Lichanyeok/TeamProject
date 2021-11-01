@@ -656,6 +656,11 @@ public class ReviewDAO {
 		
 		return articleList;
 	}
-	
-	
+
+
+    public ReviewBean selectListCount() {
+		ReviewBean reviewBean = null;
+		
+		return reviewBean;
+    }
 } // BoardDAO 클래스 끝
