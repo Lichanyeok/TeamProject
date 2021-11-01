@@ -3,11 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Welcome, is Matzip</title>
+	
 </head>
 <body>
-	<h1>확인</h1>
-	<form action="MemberManagementAction.do" method="post" name="managementForm">
+		<!-- 상위 고정 -->
+        <jsp:include page="../inc/header.jsp"></jsp:include>
+        <!-- 상위 고정 -->
+    
+
+	<form action="MemberInfoDetail.do" method="post" name="managementForm">
 		<table border="1">
 			<tr>
 				<td>아이디</td>

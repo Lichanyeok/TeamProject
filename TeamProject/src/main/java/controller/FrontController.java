@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberAlignAction;
 import action.MemberDeleteAction;
+import action.MemberInfoDetailAction;
 import action.BoardListAction;
 import action.CheckReserverInfoAction;
 import action.GetCouponListAction;
@@ -152,6 +153,14 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}else if(command.equals("/member/UpdatePass.do")) {
 			action = new UpdatePassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberInfoDetail.do")){
+			action = new MemberInfoDetailAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

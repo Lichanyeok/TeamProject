@@ -500,6 +500,30 @@ public class MemberDAO {
 		return couponList;
 	}
 	
+	public int couponCount(String id) {
+		int couponCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql ="SELECT count(*) FROM coupon WHERE user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				couponCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		return couponCount;
+	}
+	
 	public boolean getId(MemberBean bean) {
 		boolean isRightInfo = false;
 		PreparedStatement pstmt = null;
@@ -520,7 +544,8 @@ public class MemberDAO {
 			e.printStackTrace();
 		}finally {
 			close(rs);
-			close(pstmt);	
+			close(pstmt);
+			
 		}
 		return isRightInfo;
 	}
@@ -567,6 +592,39 @@ public class MemberDAO {
 			close(pstmt);	
 		}
 		return updateCount;
+	}
+
+	public ArrayList<MemberBean> getMemberDetail(String id, String pass) {
+		ArrayList<MemberBean> list = new ArrayList<MemberBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberBean bean = new MemberBean();
+		try {
+			String sql = "SELECT pass FROM project_member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(pass)) {
+					close(pstmt);
+					close(rs);
+					sql = "SELECT * FROM project_member WHERE id=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						bean.setName(rs.getString("name"));
+						bean.setNickName(rs.getString("nickname"));
+						bean.setEmail(rs.getString("email"));
+						list.add(bean);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
 

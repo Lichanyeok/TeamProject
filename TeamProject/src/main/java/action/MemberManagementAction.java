@@ -23,7 +23,7 @@ public class MemberManagementAction implements Action {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>");
-            out.println("alert('±ÇÇÑ ¾øÀ½')");
+            out.println("alert('ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì •ë³´ì…ë‹ˆë‹¤')");
             out.println("history.back()");
             out.println("</script>");
         } else {

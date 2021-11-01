@@ -1,0 +1,44 @@
+
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+#member_wrap {
+    width: 1200px;
+    margin: 150px auto;
+}
+
+#member_wrap h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+
+#member_wrap table:nth-of-type(1) {
+    border: none;
+    background-color: #F9F3EF;
+}
+
+
+#member_wrap table{
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+
+
+tbody td {
+    text-align: center;
+}
