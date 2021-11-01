@@ -217,11 +217,17 @@ function displayPlaces(places) {
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+    
+    $(".item").on("click",function(){		
+		var tell_number = $(".tel",this).text();
+		var road_address= $(".road",this).text();
+		location.href="MatzipInfo.mz?road_address="+road_address
+				+"&tell_number="+tell_number;
+	});		
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-
     var el = document.createElement('li'),
 //     var place_name=places.place_name;
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
@@ -241,6 +247,8 @@ function getListItem(index, places) {
 
     el.innerHTML = itemStr;
     el.className = 'item';
+    
+//     alert(el.innerHTML + ", " + el.className);
 
     return el;
 }
