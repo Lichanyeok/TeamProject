@@ -117,7 +117,7 @@ private ReserveDAO() {
 		ReserveBean bean = null;
 		int startRow = (page - 1) * limit;
 		try {
-			String sql ="SELECT * FROM reserve WHERE reserve_user=? ORDER BY date DESC LIMIT ?,?";
+			String sql ="SELECT * FROM reserve WHERE reserve_user=? ORDER BY reserve_date DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sId);
 			pstmt.setInt(2, startRow);
@@ -329,10 +329,10 @@ private ReserveDAO() {
 			if(deleteCount>0) {
 				commit(con);
 				isCancleSuccess = true;
-				System.out.println("»èÁ¦ ¼º°ø");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}else {
 				rollback(con);
-				System.out.println("»èÁ¦ ½ÇÆÐ");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
