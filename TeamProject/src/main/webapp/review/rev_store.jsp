@@ -74,7 +74,7 @@
 		$('#rev_empty img').hover(
 			function() {
 				$(this).attr({src:"./review/rev_im/rev_write.png"});
-				$('#rev_empty span').html('&nbsp;&nbsp;이미지를 눌러 리뷰 쓰러가기');
+				$('#rev_empty span').html('&nbsp;&nbsp;예약하러 가기(이미지 클릭)');
 			},
 			function() {
 				$(this).attr({src:"./review/rev_im/rev_empty.png"});
@@ -82,7 +82,7 @@
 			}
 		);
 		$('#rev_empty img').on('click', function() {
-			$(location).attr('href','./ReviewWrite.re');
+			$(location).attr('href','javascript:history.back()');
 		});
 		
 		
@@ -144,8 +144,8 @@ font-size: 2em;
 </head>
 <body>
 	<div id="wrap">
-		<!----------------------- 헤더(hearder) 포함 --------------------->
-		<jsp:include page="./Top.jsp"/>
+		<!-- inc 폴더 내의 top.jsp 페이지를 현재 위치에 포함시키기 -->
+		<jsp:include page="../inc/header.jsp"></jsp:include>
 		<!-- 본문 메인 이미지  -->
 		<div id="sub_img_center"></div>
 		<!-- 본문 좌측 메뉴 -->
@@ -196,22 +196,35 @@ font-size: 2em;
 				String str = articleList.get(i).getRev_pic_origin();
 				int rev_score = (int)articleList.get(i).getRev_score();
 		%>
-		<input type="hidden" value="<%=rev_score %>" id="setScore"/>
-		
-		
-		
-				<div id="rev_name">아이디 : <%=articleList.get(i).getRev_name() %></div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>
-				<div id="rev_content"><%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br><%} %><%=articleList.get(i).getRev_content() %></div>
-				<div id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></div><br>
-				<div id="rev_menu_btn"><button type="button" class="rev_like_btn<%=articleList.get(i).getRev_num() %>" value="<%=articleList.get(i).getRev_num() %>"><img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-					<span class="likeScore" ><%=articleList.get(i).getRev_like() %><!-- 여기에 좋아요 갯수 뿌리기 --></span></button>
+				<input type="hidden" value="<%=rev_score %>" id="setScore"/>
+				<div id="rev_name">
+					닉네임 : <%=articleList.get(i).getRev_name() %>
 				</div>
-				<div id="rev_menu_btn" align="right">
-					<input type="button" name="rev_modify" value="수정" onclick="location.href='./ReviewModify.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>&nbsp;
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>
+				<div id="rev_date">
+					<%=articleList.get(i).getRev_date() %>
+				</div>
+				<div id="rev_subject">
+					<img src="./review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
+				</div>
+				<div id="rev_content">
+					<%if(articleList.get(i).getRev_pic_origin() != null) { %>
+					<img src="./upload/<%=str %>" width="300" height="300" /><br>
+					<%} %><%=articleList.get(i).getRev_content() %>
+				</div>
+				<div id="rev_menu">
+					주문메뉴 : <%=articleList.get(i).getRev_menu() %>
+				</div>
+				<div id="rev_menu_btn">
+					<button type="button" class="rev_like_btn<%=articleList.get(i).getRev_num() %>" value="<%=articleList.get(i).getRev_num() %>">
+						<img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
+						<span class="likeScore" >
+							<!-- 여기에 좋아요 갯수 뿌리기 -->
+							<%=articleList.get(i).getRev_like() %>
+						</span>
+					</button>
 				</div><br>
 			<%}%>
-		
+			
 		
 	<%} else { %>
 	<div id="rev_empty">

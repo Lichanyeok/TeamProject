@@ -125,7 +125,7 @@ if (article != null) {
 		<div class="item_description_tab">
 			<ul class="tabs-nav">
 				<li><a href="#work01">업체 인기 메뉴</a></li>
-				<li><a href="#work02">리뷰</a></li>
+				<li><a href="./ReviewStore.re?rev_store=<%=store_name%>">리뷰</a></li>
 			</ul>
 		</div>
 	</div>
