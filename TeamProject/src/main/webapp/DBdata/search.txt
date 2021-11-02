@@ -13,6 +13,7 @@ create table search(
 alter table search add logo_img varchar(30) not null;
 alter table search add date date not null;
 alter table search add recommend int default 0;
+delete from search where place_name ='파인드라이브 진구점 퓨전통상';
 
 한식 : 15개
 양식 : 14개
@@ -26,6 +27,7 @@ alter table search add recommend int default 0;
 족발 : 12개 
 뷔페: 12개
 코스요리 : 11개
+
 
 insert into search values (
 "부산 부산진구 가야대로 785",
@@ -698,17 +700,7 @@ insert into search values (
 now(),
 0
 );
-insert into search values (
-"부산 부산진구 새싹로 59",
-"부산 부산진구 부암동 669-4",
-"퓨전",
-"파인드라이브 진구점 퓨전통상",
-0,
-"051-623-0538",
-"파인드라이브 진구점 퓨전통상.jpg",
-now(),
-0
-);
+
 insert into search values (
 "부산 부산진구 서면로 19-7",
 "부산 부산진구 부전동 522-9",
