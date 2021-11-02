@@ -34,12 +34,16 @@
         </div>
         <div class = "border_bottom"></div>
         <div class="header_bottom clearfix">
-            <div class="logo"><a href="/TeamProject/"><img src="./images/LOGO.png"></a></div>   
+            <div class="logo"><a href="/TeamProject/"><img src="/TeamProject/images/LOGO.png"></a></div>   
             <ul class="nav_bottom">
              	<li><a href="MatzipSearch.mz">검색
              	</a>
              	</li>
+             	<%if(nickName!=null){ %>
                 <li><a href="ReserveList.do">예약관리</a></li>
+                <%}else{ %>
+                <li><a href="MemberLoginFormAction.do">예약관리</a></li>
+                <%} %>
                 <li><a href="Review.re?nickName=<%=nickName%>">리뷰</a></li>
 <!--                 <li><a href="Notice.do">공지사항</a></li> -->
                 <li><a href="CustomerCommentList.do">고객문의</a></li>

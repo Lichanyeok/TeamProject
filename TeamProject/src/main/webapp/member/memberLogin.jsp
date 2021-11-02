@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-		
-		
-		
+	<!-- 상위 고정 -->
+     <jsp:include page="../inc/header.jsp"></jsp:include>
+    <!-- 상위 고정 -->
+
     <section>
         <form action="MemberLoginProAction.do" method="post">
          <a href="#"><img alt="" src="../images/LOGO.png"></a>

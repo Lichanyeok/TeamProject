@@ -17,9 +17,10 @@
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Calendar c1 = Calendar.getInstance();
 	String today = sdf.format(c1.getTime());
+	
 	
 	
 %>
@@ -135,10 +136,10 @@
 	                    <input type="hidden" class="rev_store<%=i %>" value="<%=reserveList.get(i).getStoreName()%>" />
 	                    <input type="hidden" class="rev_menu<%=i %>" value="<%=reserveList.get(i).getTotal_order_menu()%>" />
                     <!-- ---------------------------------------------------------------------------------------------------- -->
-                    
+                    <%boolean isGone = reserveList.get(i).getReserve_date().compareTo(today) > 0; %>
                         <td id="reserve_code<%=i%>"><%=reserveList.get(i).getRan_num()%><button onclick="copy_code(<%=i%>)">복사</button> </td>
                         <td><%=reserveList.get(i).getId()%></td>
-					 <%if(reserveList.get(i).getReserve_date().compareTo(today)>0){%>
+					 <%if(isGone){%>
                         <td><%=reserveList.get(i).getReserve_date()%></td>
                      <%}else{ %>
                      	<td>기간이 지난 목록입니다</td>
@@ -159,7 +160,9 @@
 	                        <%}else{ %>
 	                        <td>현장결제입니다.</td>
                         <%} %>
-                        <%if(reserveList.get(i).getCheck_review()<1){ %>
+                        <%if(!isGone){ %>
+ 						<td><button disabled="disabled">기간만료</button></td>	
+                        <%}else if(reserveList.get(i).getCheck_review()<1){%>
                         <td id="rev_btn"><a><button onclick="doPost(<%=i %>)">리뷰쓰기</button></a></td>
                         <%}else{ %>
                         <td><a><button>작성한 리뷰 보러가기</button></a></td>
