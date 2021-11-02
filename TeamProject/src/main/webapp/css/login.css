@@ -8,10 +8,23 @@ section {
 }
 
 h1 {
+	
     font-size: 50px;
     font-weight: bold;
    
  	
+}
+
+.login_input  div {
+	margin-bottom:10px;
+}
+
+
+.login_input label {
+	
+	width: 100px;
+	display :inline-block;
+	text-align: left;
 }
 
 
@@ -30,7 +43,7 @@ h1 {
     color: #fff;
     background-color: #FF8831;
     border:none;
-    margin-left:120px;
+    margin-left:94px;
   
     
 }
