@@ -14,7 +14,13 @@ alter table search add logo_img varchar(30) not null;
 alter table search add date date not null;
 alter table search add recommend int default 0;
 delete from search where place_name ='파인드라이브 진구점 퓨전통상';
-
+update search set logo_img='no_img.jpg' where place_name='퓨전 돈까스';
+update search set logo_img='no_img.jpg' where place_name='따오기퓨전포차';
+update search set logo_img='no_img.jpg' where place_name='먹방퓨전포차';
+update search set logo_img='no_img.jpg' where place_name='오늘은찜';
+update search set logo_img='no_img.jpg' where place_name='부전가정식부페';
+update search set logo_img='no_img.jpg' where place_name='계림한식부폐';
+update search set logo_img='no_img.jpg' where place_name='오복잔치뷔페';
 한식 : 15개
 양식 : 14개
 중식 : 15개
