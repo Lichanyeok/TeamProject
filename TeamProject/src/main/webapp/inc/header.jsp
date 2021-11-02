@@ -37,9 +37,6 @@
             <div class="logo"><a href="/TeamProject/"><img src="./images/LOGO.png"></a></div>   
             <ul class="nav_bottom">
              	<li><a href="MatzipSearch.mz">검색
-             		<ul>
-             			<li></li>
-             		</ul>
              	</a>
              	</li>
                 <li><a href="ReserveList.do">예약관리</a></li>
