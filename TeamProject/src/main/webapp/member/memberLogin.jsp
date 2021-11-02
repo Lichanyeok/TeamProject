@@ -10,26 +10,28 @@
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-
+		
+		
+		
     <section>
         <form action="MemberLoginProAction.do" method="post">
-         <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
+         <a href="#"><img alt="" src="../images/LOGO.png"></a>
             <div class="login_wrap">
-            <div class="login_input">
-                <div>
-                    <label>아이디</label>
-                    <input type="text" placeholder="id" name="id">
-                </div>
-                <div>
-                    <label>비밀번호</label>
-                    <input type="password" placeholder="password" name="pass">
-                </div>
-               
-            <div class ="login_btn">
- 				<button type="submit" >로그인</button>
+	            <div class="login_input">
+	                <div>
+	                    <label>아이디</label>
+	                    <input type="text" placeholder="id" name="id">
+	                </div>
+	                <div>
+	                    <label>비밀번호</label>
+	                    <input type="password" placeholder="password" name="pass">
+	                </div>
+	               
+	            </div>
             </div>
-            </div>
-            </div>
+		            <div class ="login_btn">
+		 				<button type="submit" >로그인</button>
+		            </div>
 		</form>
         <div class ="checkbox">
             <div class="id_checkbox">
