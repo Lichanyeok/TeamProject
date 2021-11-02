@@ -12,6 +12,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#show_list tr {
+    display: block;
+    margin: 10px 0;
+}
+
+#show_list tr  td {
+    font-size:15px;
+    text-align: right;
+}
+
+#show_list {
+	width: 240px;
+	margin : 40px 10px 0px 0px;
+	padding: 10px;
+	
+}
+
+button {
+    margin-top: 30PX;
+    border: none;
+    width: 144px;
+    height: 30px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #FF8831;
+}
+
+
+</style>
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -35,8 +70,11 @@
 </head>
 <body>
 <%if(resList!=null){ %>
-	<div class="reserve_wrap">
-		<table class="store_list">
+		<table class="show_list">
+		<tr>
+		<th>예약번호</th><th>가게명</th><th>도로명주소</th><th>지번주소</th><th>예약일</th><th>가게번호</th>
+		<th>예약시간</th><th>예약메뉴</th><th>예약인원</th><th>결제금액</th><th>요청사항</th>
+		</tr>
 			<tr>	
 				<td id="reserveCode"><%=resList.get(0).getRan_num() %></td>
 				<td><%=resList.get(0).getStoreName()%></td> 
@@ -50,17 +88,22 @@
 				<td><%=resList.get(0).getPayment_price() %>원</td>
 				<td><%=resList.get(0).getCustomerNeeds() %>원</td>
 			</tr>
+			<tr>
+				<td colspan="11" >
+				<%if(resList.get(0).getReserve_type()>0){ %>
+					<button style="background-color: gray;" onclick="alert('결제 후 예약하신 고객께서는 취소 후 새로 예약하셔야합니다.')">예약 변경하러 가기</button>
+					<%}else{ %>
+						<button id="editBtn" onclick="location.href='./reserve/modify_reserve.jsp?store_name=<%=resList.get(0).getStoreName()%>&load_address=<%=resList.get(0).getLoadAddress()%>&address=<%=resList.get(0).getAddress()%>&store_number=<%=resList.get(0).getStoreNumber()%>&reserve_code=<%=resList.get(0).getRan_num()%>'">
+						예약 변경</button>
+					<%} %>
+					<button id="res_cancle_btn">예약 취소</button>
+					<%
+					}
+					%>
+				</td>
+			</tr>
 		</table>
-	</div>
-<%if(resList.get(0).getReserve_type()>0){ %>
-<button style="background-color: gray;" onclick="alert('결제 후 예약하신 고객께서는 취소 후 새로 예약하셔야합니다.')">예약 변경하러 가기</button>
-<%}else{ %>
-	<button id="editBtn" onclick="location.href='./reserve/modify_reserve.jsp?store_name=<%=resList.get(0).getStoreName()%>&load_address=<%=resList.get(0).getLoadAddress()%>&address=<%=resList.get(0).getAddress()%>&store_number=<%=resList.get(0).getStoreNumber()%>&reserve_code=<%=resList.get(0).getRan_num()%>'">
-	예약 변경</button>
-<%} %>
-<button id="res_cancle_btn">예약 취소</button>
-<%
-}
-%>
+
+
 </body>
 </html>
