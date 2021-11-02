@@ -21,8 +21,7 @@
 <%
 	String selectedOption = request.getParameter("selectedOption");
 	String isCheckedPic = request.getParameter("isCheckedPic");
-// 	String rev_store = request.getParameter("rev_store");
-	String rev_store = "피자몰 홍대점";
+	String rev_store = request.getParameter("rev_store");
 
 	// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
 	Connection con = jdbcUtil.getConnection();
@@ -38,23 +37,36 @@
 	
 	<% for(int i = 0; i < articleList.size(); i++) {
 		String str = articleList.get(i).getRev_pic_origin(); 
-		int rating = (int)articleList.get(i).getRev_score();
+		int rev_score = (int)articleList.get(i).getRev_score();
 	%>
 				
 	<div id="rev_contents">
-		<input type="hidden" value="<%=rating %>" id="rev_star"/>
-		<div id="rev_name">닉네임 : <%=articleList.get(i).getRev_name() %></div><br>
-		<div id="rev_subject">
-			<img src="./review/rev_im/<%=rating %>star.png" width="100" height="20" />
-		</div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>
-		<div id="rev_content"><%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br><%} %><%=articleList.get(i).getRev_content() %></div>
-		<div id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></div><br>
-		<div id="rev_menu_btn"><button type="button" id="rev_like_btn" value="<%=articleList.get(i).getRev_num() %>"><img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-			<span id="likeScore"><%=articleList.get(i).getRev_like() %><!-- 여기에 좋아요 갯수 뿌리기 --></span></button>
+		<input type="hidden" value="<%=rev_score %>" id="rev_star"/>
+		<div id="rev_name">
+			닉네임 : <%=articleList.get(i).getRev_name() %>
 		</div>
-		<div id="rev_menu_btn" align="right">
-			<input type="button" name="rev_modify" value="수정" onclick="location.href='./ReviewModify.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>&nbsp;
-			<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=articleList.get(i).getRev_num() %>'"/>
+		<div id="rev_date">
+			<%=articleList.get(i).getRev_date() %>
+		</div><br>
+		<div id="rev_subject">
+			<img src="./review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
+		</div>
+		<div id="rev_content">
+			<%if(articleList.get(i).getRev_pic_origin() != null) { %>
+			<img src="./upload/<%=str %>" width="300" height="300" /><br>
+			<%} %><%=articleList.get(i).getRev_content() %>
+		</div>
+		<div id="rev_menu">
+			주문메뉴 : <%=articleList.get(i).getRev_menu() %>
+		</div>
+		<div id="rev_menu_btn">
+			<button type="button" id="rev_like_btn" value="<%=articleList.get(i).getRev_num() %>">
+				<img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
+				<span id="likeScore">
+					<!-- 여기에 좋아요 갯수 뿌리기 -->
+					<%=articleList.get(i).getRev_like() %>
+				</span>
+			</button>
 		</div><br>
 	<%}%>
 	</div>
