@@ -1,9 +1,12 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.ReserveBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	
 	String sId = session.getAttribute("sId").toString();
 	ArrayList<ReserveBean> reserveList = (ArrayList<ReserveBean>)request.getAttribute("reserveList"); 
 	request.setCharacterEncoding("utf-8");
@@ -13,6 +16,12 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	Calendar c1 = Calendar.getInstance();
+	String today = sdf.format(c1.getTime());
+	
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +127,9 @@
                         <col width="172px">
                     </colgroup>
                     <tbody>
-                    <%for(int i=0;i<reserveList.size();i++){ %>
+
+                    <%for(int i=0;i<reserveList.size();i++){%>
+                      
                     <!-------------------- 리뷰 작성에 사용할 값을 저장하는 hidden 태그 작성 -------------------->
 	                    <input type="hidden" class="ran_num<%=i %>" value="<%=reserveList.get(i).getRan_num()%>" />
 	                    <input type="hidden" class="rev_store<%=i %>" value="<%=reserveList.get(i).getStoreName()%>" />
@@ -127,7 +138,11 @@
                     
                         <td id="reserve_code<%=i%>"><%=reserveList.get(i).getRan_num()%><button onclick="copy_code(<%=i%>)">복사</button> </td>
                         <td><%=reserveList.get(i).getId()%></td>
+					 <%if(reserveList.get(i).getReserve_date().compareTo(today)>0){%>
                         <td><%=reserveList.get(i).getReserve_date()%></td>
+                     <%}else{ %>
+                     	<td>기간이 지난 목록입니다</td>
+                     <%} %>
                         <td><%=reserveList.get(i).getReserve_time()%></td>
                         <td>
                         <%=reserveList.get(i).getTotal_order_menu()%><br>
