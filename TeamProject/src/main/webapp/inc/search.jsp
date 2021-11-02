@@ -219,11 +219,25 @@ function displayPlaces(places) {
     map.setBounds(bounds);
     
     $(".item").on("click",function(){		
-		var tell_number = $(".tel",this).text();
 		var road_address= $(".road",this).text();
+		var place_name= $(".placeName",this).text();
 		location.href="MatzipInfo.mz?road_address="+road_address
-				+"&tell_number="+tell_number;
-	});		
+				+"&place_name="+place_name;
+	});	
+		//리스트 db 저장용 		  
+//     $(".item").on("click",function(){		
+// 		var tell = $(".tel",this).text();
+// 		var road= $(".road",this).text();
+// 		var jibun= $(".jibun",this).text();
+// 		var name= $(".placeName",this).text();
+// 		var category=$("#keyword").val();
+				
+// 		location.href="MatzipListInsert.mz?road="+road
+// 				+"&tell="+tell
+// 				+"&jibun="+jibun
+// 				+"&name="+name
+// 				+"&category="+category;
+// 	});	
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
@@ -233,7 +247,7 @@ function getListItem(index, places) {
     // db 파라미터 값 넘기기 , 추후에 주소 바꿔서 컨트롤러 처리
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '<h5>' + places.place_name + '</h5>';
+                '<h5 class="placeName">' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span class= "road">' + places.road_address_name + '</span>' +

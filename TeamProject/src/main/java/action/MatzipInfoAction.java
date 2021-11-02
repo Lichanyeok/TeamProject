@@ -16,12 +16,11 @@ public class MatzipInfoAction implements Action {
 		ActionForward forward=null;
 		
 		String road_address = request.getParameter("road_address");
-		String tell_number = request.getParameter("tell_number");
-		System.out.println(road_address);
-		System.out.println(tell_number);
+		String place_name = request.getParameter("place_name");
+		
 		
 		MatzipinfoService service = new MatzipinfoService();
-		SearchBean info = service.getInfo(road_address, tell_number);
+		SearchBean info = service.getInfo(road_address, place_name);
 		if(info==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

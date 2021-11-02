@@ -81,39 +81,40 @@ body {
 <!-- <script src="../js/matzip_search.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	var category="";
-	var id="";
-	if(category==""){
-		$.ajax({
-			type : "GET",
-			url : "MatzipList.mz?category=실험",
-			success : function(msg) {
-				$("#category_list").html(msg);	
-			}			
-		});
-	}
-	
-	$("#category_menu_ul>li").on("click", function() {
-		if(category != ""){
-			$("li[value="+category+"]").css("background","#FF8831");			
-		}
-		
-		category=$(this).text();		
-		$(this).css('background','#FF6631');
-		
-		$.ajax({
-			type : "GET",
-			url : "MatzipList.mz?category="+category,
-			success : function(msg) {
-				$("#category_list").html(msg);	
-			}			
-		}).fail(function() {
-			alert('실패!');
-		});		
-	});
-});
 
+	var category = "한식";
+
+		$.ajax({
+			type : "GET",
+			url : "MatzipList.mz?category=한식",
+			success : function(msg) {
+				$("#category_list").html(msg);
+			}
+		});
+		$("li[value='한식']").css('background', '#FF6631');
+
+		$("#category_menu_ul>li").on("click", function() {
+			
+			$("li[value=" + category + "]").css("background", "#FF8831");
+			category = $(this).text();
+			$(this).css('background', '#FF6631');
+
+			$.ajax({
+				type : "GET",
+				url : "MatzipList.mz?category=" + category,
+				success : function(msg) {
+					$("#category_list").html(msg);
+				}
+			}).fail(function() {
+				alert('실패!');
+			});
+		});
+
+		$("#aaa").on("click", function() {
+			location.href = "MatzipListSQL.mz?category=" + $("#bbb").val();
+		});
+
+	});
 </script>
 </head>
 <body>
@@ -121,11 +122,13 @@ $(document).ready(function(){
 		<!-- 상위 고정 -->
 	    <jsp:include page="../inc/header.jsp"></jsp:include>
 	    <!-- 상위 고정 -->
-	    <hr>	   
+	    <hr>	
+	    <!-- 리스트 확인용 -->   
+<!-- 	    <input type="text" value="" id="bbb"> -->
+<!-- 	    <input type="button" value="aaa" id="aaa">	     -->
 	    <div class="div_clear"></div>
 	  	<jsp:include page="../inc/search.jsp"/>
 	    <div class="div_clear"></div>
-	    
 	    <div id="category_wrap">
 	    <div id="category_title">MATZIP TOP 10</div>
 	    <div id="category_text">*이미지 클릭시 상세보기 페이지로 이동</div>
@@ -139,7 +142,7 @@ $(document).ready(function(){
 				<li value="치킨">치킨</li>
 				<li value="피자">피자</li>
 				<li value="퓨전">퓨전</li>
-				<li value="찜요리">찜요리</li>
+				<li value="찜">찜</li>
 				<li value="고깃집">고깃집</li>
 				<li value="족발">족발</li>
 				<li value="뷔페">뷔페</li>
@@ -152,6 +155,7 @@ $(document).ready(function(){
 	    <div class="div_clear"></div>	    
 	    </div>
 	    <br>
+	    
 	    <footer></footer>
 	</div>
 </body>

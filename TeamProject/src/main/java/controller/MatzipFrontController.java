@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.GoReserveAction;
 import action.MatzipListAction;
+import action.MatzipListInsertAction;
+import action.MatzipListSQLAction;
 import action.MatzipInfoAction;
 import vo.ActionForward;
 
@@ -50,6 +52,22 @@ public class MatzipFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/GoReserve.mz")) {
 			action = new GoReserveAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MatzipListInsert.mz")) {
+			action = new MatzipListInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MatzipListSQL.mz")) {
+			action = new MatzipListSQLAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
