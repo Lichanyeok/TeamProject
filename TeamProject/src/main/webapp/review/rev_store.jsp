@@ -8,8 +8,8 @@
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	ReviewBean reviewData = (ReviewBean)request.getAttribute("reviewData");
-	double totalScore = reviewData.getTotalScore() / reviewData.getListCount(); // 가져온 리뷰 점수 평균 작업
-	
+	int rev_count = reviewData.getListCount();
+	double totalScore = reviewData.getTotalScore();
 	%> 
 <!DOCTYPE html>
 <html>
@@ -35,9 +35,10 @@
 		// 선택된 옵션 값에 따라 정렬방식 변경
 		$('#select').change(function() {
 			var isCheckedPic = $('#isRev_pic').prop("checked"); // 추가
+			var rev_store = $('#rev_store').text();
 			$.ajax({
 				type: "GET",
-				url: "./ReviewSort.re",
+				url: "./ReviewSort.re?rev_store=" + rev_store,
 				data : {
 					selectedOption : this.value,
 					isCheckedPic : isCheckedPic // 추가
@@ -52,17 +53,22 @@
 		// 좋아요 갯수 증가를 위한 ajax 정의
 		$('#rev_menu_btn button').on('click', function() {
 // 			alert($(this).find('span').text());
-			a = this.value;
+			var a = this.value; // 해당 리뷰 번호
+			var b = $('input[name=likeScore]').val(); // 해당 리뷰의 좋아요 수
+			
 			$.ajax({
 				type: "GET",
 				url: "./ReviewLikeScore.re",
-				dataType: "TEXT",
 				data : {
-					rev_num : this.value,
-					prev_like : $(this).find('span').text()
+					rev_num : a,
+					prev_like : b
 				}
 			}).done(function(msg){ //DB접근 후 가져온 데이터
-				$('.rev_like_btn' + a).find('span').html(msg);
+				if(b == c) {
+					$('.rev_like_btn' + a).find('span').html(msg);
+				} else {
+					$('.rev_like_btn' + a).find('span').html(c);
+				}
 // 				alert('성공');
 			}).fail(function() {
 				alert("한번만 가능합니다.");
@@ -154,7 +160,7 @@ font-size: 2em;
 		<nav id="sub_menu">
 			<table>
 				<tr>
-					<th id="rev_store" colspan="2">&nbsp;<%=request.getParameter("rev_store")%></th>
+					<th id="rev_store" colspan="2"><%=request.getParameter("rev_store")%></th>
 				</tr>
 				<tr>
 					<td rowspan="2" id="rev_score" ><%=Math.round(totalScore*10)/10.0 %></td>
@@ -167,7 +173,7 @@ font-size: 2em;
 					</td>
 				</tr>
 				<tr>
-					<td><h3>리뷰 <%=reviewData.getListCount() %>개</h3></td>
+					<td><h3>리뷰 <%=rev_count %>개</h3></td>
 				</tr>
 				<tr>
 					<td>
@@ -197,6 +203,7 @@ font-size: 2em;
 				int rev_score = (int)articleList.get(i).getRev_score();
 		%>
 				<input type="hidden" value="<%=rev_score %>" id="setScore"/>
+				<input type="hidden" value="<%=articleList.get(i).getRev_like() %>" name="likeScore" />
 				<div id="rev_name">
 					닉네임 : <%=articleList.get(i).getRev_name() %>
 				</div>
@@ -217,9 +224,9 @@ font-size: 2em;
 				<div id="rev_menu_btn">
 					<button type="button" class="rev_like_btn<%=articleList.get(i).getRev_num() %>" value="<%=articleList.get(i).getRev_num() %>">
 						<img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-						<span class="likeScore" >
+						<span>
 							<!-- 여기에 좋아요 갯수 뿌리기 -->
-							<%=articleList.get(i).getRev_like() %>
+						<%=articleList.get(i).getRev_like() %>
 						</span>
 					</button>
 				</div><br>
