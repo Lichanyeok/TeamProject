@@ -44,7 +44,7 @@ public class ReviewWriteProAtion implements Action {
 				new DefaultFileRenamePolicy() // 동일한 파일명에 대한 중복 처리 담당 객체
 		);
 		
-		// BoardBean 객체에 전달받은 파라미터 저장
+		// ReviewBean 객체에 전달받은 데이터 파라미터 저장
 		ReviewBean rb = new ReviewBean();
 		rb.setRan_num(multi.getParameter("ran_num"));
 		rb.setRev_store(multi.getParameter("rev_store"));
@@ -52,16 +52,8 @@ public class ReviewWriteProAtion implements Action {
 		rb.setRev_score(Integer.parseInt(multi.getParameter("rating")));
 		rb.setRev_content(multi.getParameter("rev_content"));
 		rb.setRev_menu(multi.getParameter("rev_menu"));
-		System.out.println("asdasdasdasdasdasd ---------- : " + multi.getParameter("rev_name"));
-//		System.out.println(multi.getParameter("rating"));
-//		System.out.println("action_ranNum : " + multi.getParameter("ran_num"));
 		
-		// 주의! 파일 정보를 가져올 때 multi.getParameter("board_file") 사용 금지!
-		// 파일명을 활용하여 실제 파일에 접근하기
-		// => MultipartRequest 객체의 getFileNames().nextElement() 메서드 결과를 문자열로 변환 후
-		//    MultipartRequest 객체의 getXXXName() 메서드를 통해 파일명 가져오기
-		//    1) getFilesystemName() 메서드 : 업로드 된 실제 파일명(중복 처리 후의 이름)
-		//    2) getOriginalFileName() 메서드 : 원본 파일명
+		// ReviewBean 객체에 전달받은 사진 파라미터 저장
 		String file = multi.getFileNames().nextElement().toString();
 		String rev_pic = multi.getFilesystemName(file);
 		String rev_pic_origin = multi.getOriginalFileName(file);
@@ -69,11 +61,6 @@ public class ReviewWriteProAtion implements Action {
 		rb.setRev_pic_origin(rev_pic_origin);
 		System.out.println("rev_pic : " + rev_pic + ", rev_pic_origin : " + rev_pic_origin);
 		
-		// Action 클래스에서 비즈니스 로직 처리를 위한 작업 요청
-		// => 단, BoardDAO 객체에 직접 접근하는 것이 아니라
-		//    비즈니스 로직 처리를 담당할 Service 객체에 작업 요청만 수행하면
-		//    Service 객체가 DAO 객체와 상호작용을 통해 비즈니스 로직을 처리함
-		// 1) BoardWriteProService 클래스 인스턴스 생성
 		ReviewWriteProService svc = new ReviewWriteProService();
 		
 		// 2) BoardWriteProService 인스턴스의 registArticle() 메서드 호출하여 게시물 등록 요청
@@ -91,11 +78,13 @@ public class ReviewWriteProAtion implements Action {
 			out.println("alert('게시물 등록 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
+			
 		} else { // 작업 결과가 true 일 경우
 			// 2) 성공 시 ActionForward 객체를 통해 BoardList.bo 경로, Redirect 방식 포워딩 설정
 			// ActionForward 객체를 생성하여 BoardList.bo 서블릿 주소 요청
 			// => request 객체 유지 불필요, 주소 유지 불필요
 			// => 새로운 요청을 발생시키므로 Redirect 방식 포워딩
+			
 			String nickName = URLEncoder.encode(multi.getParameter("rev_name"), "UTF-8"); // url 한글처리
 			forward = new ActionForward();
 			forward.setPath("./Review.re?nickName=" + nickName);

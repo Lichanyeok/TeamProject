@@ -9,6 +9,7 @@ import static db.jdbcUtil.*; // 끝판왕
 
 import java.sql.Connection;
 
+import dao.ReserveDAO;
 import dao.ReviewDAO;
 import vo.ReviewBean;
 
@@ -21,20 +22,19 @@ public class ReviewWriteProService {
 			// 1. 글쓰기 작업 요청 처리 결과를 저장할 boolean 타입 변수 선언
 			boolean isWriteSuccess = false; // 글쓰기 작업 결과를 저장할 변수
 			System.out.println("registArticle");
-			// 2. JdbcUtil 객체로부터 Connection Pool 에 저장된 Connection 객체 가져오기(공통)
-//			Connection con = JdbcUtil.getConnection();
 			Connection con = getConnection();
 			
-			// 3. BoardDAO 클래스로부터 생성된 BoardDAO 객체 가져오기(공통)
+			// 3. ReviewDAO 클래스로부터 생성된 BoardDAO 객체 가져오기(공통)
 			ReviewDAO dao = ReviewDAO.getInstance();
 			
-			// 4. BoardDAO 객체에서 DB 작업을 수행하기 위해 Connection 객체를 전달하기(공통)
+			// 4. ReviewDAO 객체에서 DB 작업을 수행하기 위해 Connection 객체를 전달하기(공통)
 			dao.setConnection(con);
 			
-			// 5. BoardDAO 객체의 메서드를 호출하여 XXX 작업 수행 및 결과 리턴받기
+			// 5. ReviewDAO 객체의 메서드를 호출하여 XXX 작업 수행 및 결과 리턴받기
 			// 글쓰기 작업을 수행하기 위해 insertArticle() 메서드 호출
 			// => 파라미터 : BoardBean 객체, 리턴타입 : int(insertCount)
-			int insertCount = dao.insertReview(rb);
+			int insertCount = dao.insertReview(rb); // 리뷰 작성
+			                  dao.isReviewWrite(rb);  // 리뷰 작성 여부를 예약DB에 저장
 			System.out.println("rb.getRev_pic() : " + rb.getRev_pic());
 			System.out.println("Service - insertCount : " + insertCount);
 			
@@ -83,7 +83,7 @@ public class ReviewWriteProService {
 			close(con);
 			
 			
-			System.out.println("BoardWriteProService : " + isWriteSuccess);
+			System.out.println("ReviewWriteProService : " + isWriteSuccess);
 			// 8. Action 클래스로 글쓰기 작업 결과 리턴
 			return isWriteSuccess;
 		}

@@ -88,7 +88,7 @@ public class ReviewDAO {
 			sql = "INSERT INTO review VALUES (?,?,?,?,?,?,?,?,?,now(),0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 계산된 새 글 번호
-			pstmt.setString(2, rb.getRan_num() + "_" + rb.getRev_name());
+			pstmt.setString(2, rb.getRan_num());
 			pstmt.setString(3, rb.getRev_store());
 			pstmt.setString(4, rb.getRev_name());
 			pstmt.setFloat(5, rb.getRev_score());
@@ -609,15 +609,8 @@ public class ReviewDAO {
 		String sql = null;
 		
 		try {
-					
-			// 3단계 SQL 구문 작성 및 전달
-			// => funweb_board 테이블의 레코드 조회(번호num) 컬럼 기준 내림차순 정렬)
-			//    검색어를 포함하는 제목들만 조회
-			// => 단, 시작행번호부터 페이지당 게시물수 만큼
-			//    LIMIT 시작행번호, 페이지당 게시물 수
-			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC"; // 매장별 최신 리뷰..
+			sql = "SELECT * FROM review GROUP BY rev_store ORDER BY rev_num DESC LIMIT 10"; // 매장 중복 없이 최근 10개 리뷰 불러오기
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "00국밥집");
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
@@ -658,9 +651,81 @@ public class ReviewDAO {
 	}
 
 
-    public ReviewBean selectListCount() {
-		ReviewBean reviewBean = null;
+    public ArrayList<ReviewBean> selectByStoreScore() {
+    	ArrayList<ReviewBean> ByStoreScore = null; // 게시물을 저장할 객체 생성
 		
-		return reviewBean;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			sql = "SELECT rev_store, COUNT(rev_score) AS rev_count, AVG(rev_score) AS rev_score FROM review GROUP BY rev_store ORDER BY rev_num DESC LIMIT 10";
+			pstmt = con.prepareStatement(sql);
+			
+			// 4단계. SQL 구문 실행 및 결과 처리
+			rs = pstmt.executeQuery();
+			
+			// 모든 레코드를 저장할 List 객체(ArrayList) 생성
+			ByStoreScore = new ArrayList<ReviewBean>();
+			
+			// While 문을 
+			while(rs.next()) {
+				// ReviewBean 객체를 생성하여 1개 레코드 정보를 ReviewBean 객체에 저장
+				// => 총 별점 평균, 매장명만 필요
+				ReviewBean rb = new ReviewBean();
+				rb.setRev_score(rs.getFloat("rev_score")); // 매장 별 리뷰 평균 저장
+				rb.setListCount(rs.getInt("rev_count")); // 매장 별 총 리뷰 수 저장
+				rb.setRev_store(rs.getString("rev_store")); // 매장명 저장
+				
+				// 1개 레코드가 저장된 ReviewBean 객체를 List 객체에 추가
+				ByStoreScore.add(rb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		
+		return ByStoreScore;
     }
-} // BoardDAO 클래스 끝
+    
+    // 리뷰 작성 여부를 예약DB에 저장
+	public void isReviewWrite(ReviewBean rb) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		System.out.println("isReviewWrite - ran_num : " + rb.getRan_num());
+		
+		try {
+			sql = "SELECT * FROM review WHERE ran_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rb.getRan_num());
+			
+			// 4단계. SQL 구문 실행 및 결과 처리
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				close(pstmt);
+				System.out.println("예약DB 수정중.");
+				sql = "UPDATE reserve SET check_review=1 WHERE ran_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rb.getRan_num());
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		
+	}
+	
+} // ReviewDAO 클래스 끝
