@@ -2,8 +2,7 @@
 @import url(reset.css);
 
 section {
-    width: 1200px;
-    margin: 500px auto;
+    margin: auto;
     text-align: center;
 }
 
@@ -11,14 +10,10 @@ h1 {
 	
     font-size: 50px;
     font-weight: bold;
-   
- 	
 }
-
 .login_input  div {
 	margin-bottom:10px;
 }
-
 
 .login_input label {
 	

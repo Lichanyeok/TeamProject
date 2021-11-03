@@ -16,10 +16,10 @@
 
     <section>
         <form action="MemberLoginProAction.do" method="post">
-         <a href="#"><img alt="" src="../images/LOGO.png"></a>
+            <div><a href="#"><img alt="" src="../images/LOGO.png"></a></div>
             <div class="login_wrap">
-	            <div class="login_input">
-	                <div>
+                <div class="login_input">
+                    <div>
 	                    <label>아이디</label>
 	                    <input type="text" placeholder="id" name="id">
 	                </div>
