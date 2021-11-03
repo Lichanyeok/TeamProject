@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function() {
 

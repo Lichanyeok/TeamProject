@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/TeamProject/css/reset.css">
-<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/header.css">
 <!-- <link rel="stylesheet" href="/TeamProject/css/matzip_search.css"> -->
 <style type="text/css">
 
@@ -77,7 +77,7 @@ body {
 }
 
 </style>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <!-- <script src="../js/matzip_search.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function(){

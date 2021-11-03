@@ -9,12 +9,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="/TeamProject/css/reset.css">
-<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
 		<!-- 상위 고정 -->
-        <jsp:include page="/inc/header.jsp"></jsp:include>
+        <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
 <div>
 <h1>발급된 쿠폰 목록</h1>

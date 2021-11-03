@@ -26,7 +26,7 @@
 <body>
 
 	<!-- 상위 고정 -->
-    <jsp:include page="/inc/header.jsp"></jsp:include>
+    <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- 상위 고정 -->
 
 	<h1>CustomerCommentlist</h1>
