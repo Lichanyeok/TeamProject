@@ -27,7 +27,6 @@
 	                    <label>비밀번호</label>
 	                    <input type="password" placeholder="password" name="pass">
 	                </div>
-	               
 	            </div>
             </div>
 		            <div class ="login_btn">

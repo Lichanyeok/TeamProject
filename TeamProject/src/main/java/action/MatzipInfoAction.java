@@ -18,7 +18,6 @@ public class MatzipInfoAction implements Action {
 		String road_address = request.getParameter("road_address");
 		String place_name = request.getParameter("place_name");
 		
-		
 		MatzipinfoService service = new MatzipinfoService();
 		SearchBean info = service.getInfo(road_address, place_name);
 		if(info==null) {

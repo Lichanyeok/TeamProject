@@ -1,3 +1,22 @@
+- 예약 -
+CREATE TABLE reserve(
+ran_num VARCHAR(15) PRIMARY KEY,
+reserve_user VARCHAR(25) NOT NULL,
+store_name VARCHAR(25) NOT NULL,
+store_load_adress VARCHAR(40) NOT NULL,
+store_adress VARCHAR(40) NOT NULL,
+store_phone VARCHAR(15) NOT NULL,
+reserve_date VARCHAR(25) NOT NULL,
+reserve_time VARCHAR(25) NOT NULL,
+reserve_people INT NOT NULL,
+reserve_menu VARCHAR(30),
+customer_request VARCHAR(30),
+reserve_type INT(1) NOT NULL,
+payment_price INT(12) DEFAULT 0,
+check_review INT(1) NOT NULL DEFAULT 0,
+date DATETIME NOT NULL
+);
+
 - 검색 -
 create table search(
    road_address varchar(50) PRIMARY KEY,
@@ -11,7 +30,7 @@ create table search(
    recommend int default 0
 );
 
-- 멤버 -
+- 회원 -
 CREATE TABLE project_member(
     idx    int PRIMARY KEY AUTO_INCREMENT,
     name   VARCHAR(15) NOT NULL,
@@ -33,7 +52,7 @@ CREATE TABLE project_member(
 - 메일 인증 -
 CREATE TABLE project_auth(
     id varchar(16) NOT NULL PRIMARY KEY,
-    auth_code varchar(50) NOT NULL
+auth_code varchar(50) NOT NULL
 );
 
 - 리뷰 -
