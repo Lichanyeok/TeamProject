@@ -58,7 +58,10 @@ public class MatzipFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MatzipListInsert.mz")) {
+		}
+		
+		// searchDB 등록
+		else if(command.equals("/MatzipListInsert.mz")) {
 			action = new MatzipListInsertAction();
 			try {
 				forward = action.execute(request, response);

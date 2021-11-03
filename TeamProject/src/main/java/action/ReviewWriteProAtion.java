@@ -52,7 +52,7 @@ public class ReviewWriteProAtion implements Action {
 		rb.setRev_score(Integer.parseInt(multi.getParameter("rating")));
 		rb.setRev_content(multi.getParameter("rev_content"));
 		rb.setRev_menu(multi.getParameter("rev_menu"));
-		
+	
 		// ReviewBean 객체에 전달받은 사진 파라미터 저장
 		String file = multi.getFileNames().nextElement().toString();
 		String rev_pic = multi.getFilesystemName(file);
@@ -66,7 +66,7 @@ public class ReviewWriteProAtion implements Action {
 		// 2) BoardWriteProService 인스턴스의 registArticle() 메서드 호출하여 게시물 등록 요청
 		//    => 파라미터 : BoardBean 객체, 리턴타입 : boolean(isWriteSuccess)
 		boolean isWriteSuccess = svc.registReview(rb);
-		
+		boolean isUpdateSuccess=svc.updateStar(rb);
 		System.out.println("ReviewWriteProAtion : " + isWriteSuccess);
 		
 		// 글쓰기 결과(isWriteSuccess)를 판별 
@@ -84,11 +84,20 @@ public class ReviewWriteProAtion implements Action {
 			// ActionForward 객체를 생성하여 BoardList.bo 서블릿 주소 요청
 			// => request 객체 유지 불필요, 주소 유지 불필요
 			// => 새로운 요청을 발생시키므로 Redirect 방식 포워딩
-			
-			String nickName = URLEncoder.encode(multi.getParameter("rev_name"), "UTF-8"); // url 한글처리
-			forward = new ActionForward();
-			forward.setPath("./Review.re?nickName=" + nickName);
-			forward.setRedirect(true);
+			if(isUpdateSuccess) {
+				String nickName = URLEncoder.encode(multi.getParameter("rev_name"), "UTF-8"); // url 한글처리
+				forward = new ActionForward();
+				forward.setPath("./Review.re?nickName=" + nickName);
+				forward.setRedirect(true);
+			}
+			else{
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('게시물 등록 실패!')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
 		}
 		
 		// ActionForward 객체 리턴
