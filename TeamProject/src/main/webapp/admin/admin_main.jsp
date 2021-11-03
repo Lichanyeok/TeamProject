@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#alignBtn').on('click',function(){
@@ -56,12 +56,12 @@
 
 </script>
 </head>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/style.css">
 
 <body>
 		<!-- 상위 고정 -->
-        <jsp:include page="/inc/header.jsp"></jsp:include>
+        <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
 
         <nav id="sub_menu">

@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/reserve_list.css">
+<link rel="stylesheet" href="../css/reserve_list.css">
 </head>
 <body>
 		<!-- 상위 고정 -->
@@ -61,7 +61,6 @@
                     }else{%>
                    		<h2>발급된 쿠폰이 없습니다.</h2>
                     <%} %>
-            </tbody>
         </table>
         <button onclick="history.back()">돌아가기</button>
     </div>

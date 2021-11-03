@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Review_Test</title>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function() {
 		
@@ -104,7 +104,7 @@
 <body>
 	<div id="wrap">
 		<!----------------------- 헤더(hearder) 포함 --------------------->
-		<jsp:include page="./Top.jsp"/>
+		<jsp:include page="Top.jsp"/>
 		<!-- 본문 메인 이미지  -->
 		<div id="sub_img_center"></div>
 		<!-- 본문 좌측 메뉴 -->

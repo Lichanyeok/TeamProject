@@ -9,7 +9,7 @@
 <body>
 <%
 session.invalidate();
-response.sendRedirect("/TeamProject/");
+response.sendRedirect("./");
 %>
 <%-- 테스트 --%>
 </body>

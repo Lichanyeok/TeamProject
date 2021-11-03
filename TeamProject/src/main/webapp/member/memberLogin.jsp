@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 	<!-- 상위 고정 -->
@@ -45,8 +45,8 @@
             </div>
         </div>
         <ul class="find">
-            <li><a href = "./member/find_id.jsp">아이디찾기</a></li>
-            <li><a href = "./member/find_pass.jsp">비밀번호찾기</a></li>
+            <li><a href = "../member/find_id.jsp">아이디찾기</a></li>
+            <li><a href = "../member/find_pass.jsp">비밀번호찾기</a></li>
             <li><a href = "MemberJoinFormAction.do">회원가입</a></li>
         </ul>
 

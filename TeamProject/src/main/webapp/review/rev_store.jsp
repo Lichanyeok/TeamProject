@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Review_Test</title>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function() {
 
@@ -212,7 +212,7 @@ font-size: 2em;
 					<%=articleList.get(i).getRev_date() %>
 				</div>
 				<div id="rev_subject">
-					<img src="./review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
+					<img src="../review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
 				</div>
 				<div id="rev_content">
 					<%if(articleList.get(i).getRev_pic_origin() != null) { %>
@@ -236,7 +236,7 @@ font-size: 2em;
 		
 	<%} else { %>
 	<div id="rev_empty">
-		<img src="./review/rev_im/rev_empty.png" width="500" height="500" ><br>
+		<img src="../review/rev_im/rev_empty.png" width="500" height="500" ><br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.</span>
 		</div>
 	<%} %>
