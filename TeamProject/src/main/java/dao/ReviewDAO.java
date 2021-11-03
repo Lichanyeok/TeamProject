@@ -96,8 +96,8 @@ public class ReviewDAO {
 		
 	}
 	
-	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
-	public ReviewBean selectListCount(String rev_store) {
+	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의 
+	public ReviewBean selectListCount(String rev_store) { // 필요!
 		System.out.println("ReviewDAO - selectListCount()");
 		ReviewBean rb = new ReviewBean();
 		
@@ -164,52 +164,6 @@ public class ReviewDAO {
 		
 		return myListCount;
 	}
-	
-	// 매장의 총 리뷰를 저장하여 불러오는 getStoreReviewList() 메서드 정의
-	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
-		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		
-		try {
-			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rev_store);
-			
-			rs = pstmt.executeQuery();
-			
-			// 모든 레코드를 저장할 List 객체(ArrayList) 생성
-			articleList = new ArrayList<ReviewBean>();
-			
-			while(rs.next()) {
-				ReviewBean rb = new ReviewBean();
-				rb.setRev_num(rs.getInt("rev_num"));
-				rb.setRev_score(rs.getFloat("rev_score"));
-				rb.setRev_name(rs.getString("rev_name"));
-				rb.setRev_date(rs.getDate("rev_date"));
-				rb.setRev_content(rs.getString("rev_content"));
-				rb.setRev_pic(rs.getString("rev_pic"));
-				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
-				rb.setRev_menu(rs.getString("rev_menu"));
-				rb.setRev_like(rs.getInt("rev_like"));
-				rb.setRan_num(rs.getString("ran_num"));
-				
-				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
-				articleList.add(rb);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// 자원 반환
-			close(rs);
-			close(pstmt);
-		}
-		
-		return articleList;
-	} // getStoreReviewList() 메서드 끝
 	
 	// 작성한 리뷰를 조회하여 리턴하는 getMyReviewList() 메서드 정의
 	public ArrayList<ReviewBean> getMyReviewList(String nickName) {

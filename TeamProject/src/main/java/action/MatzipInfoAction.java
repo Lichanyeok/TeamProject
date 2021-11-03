@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.MatzipinfoService;
 import vo.ActionForward;
+import vo.ReviewBean;
 import vo.SearchBean;
 
 public class MatzipInfoAction implements Action {
@@ -21,6 +22,10 @@ public class MatzipInfoAction implements Action {
 		
 		MatzipinfoService service = new MatzipinfoService();
 		SearchBean info = service.getInfo(road_address, place_name);
+		
+		// 리뷰 갯수 및 평균 가져오기
+		ReviewBean reviewListCount = service.getListCount(place_name);
+		
 		if(info==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -30,7 +35,7 @@ public class MatzipInfoAction implements Action {
 			out.println("</script>");
 		}else {
 			request.setAttribute("article", info);
-			
+			request.setAttribute("reviewListCount", reviewListCount);
 			forward = new ActionForward();
 			forward.setPath("./search/search_info.jsp");
 			forward.setRedirect(false);			

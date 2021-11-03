@@ -5,6 +5,9 @@
 <%@page import="vo.ReviewBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+		ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,30 +21,11 @@
 </script>
 </head>
 <body>
-<%
-	String selectedOption = request.getParameter("selectedOption");
-	String isCheckedPic = request.getParameter("isCheckedPic");
-	String rev_store = request.getParameter("rev_store");
-	
-	// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
-	Connection con = jdbcUtil.getConnection();
-	
-	// 공통작업-2. BoardDAO 클래스로부터 BoardDAO 객체 가져오기
-	ReviewDAO dao = ReviewDAO.getInstance();
-	
-	// 공통작업-3. BoardDAO 객체에 Connection 객체 전달하기
-	dao.setConnection(con);
-	
-	ArrayList<ReviewBean> articleList = dao.getReviewSort(selectedOption, isCheckedPic, rev_store);
-	
-%>	
-	
+
 	<% for(int i = 0; i < articleList.size(); i++) {
 		String str = articleList.get(i).getRev_pic_origin(); 
 		int rev_score = (int)articleList.get(i).getRev_score();
 	%>
-				
-	<div id="rev_contents">
 		<input type="hidden" value="<%=rev_score %>" id="rev_star"/>
 		<div id="rev_name">
 			닉네임 : <%=articleList.get(i).getRev_name() %>
@@ -70,13 +54,6 @@
 			</button>
 		</div><br>
 	<%}%>
-	</div>
-	
-	<%
-		// 공통작업-4. Connection 객체 반환
-		con.close();
-		
-	%>
 	
 </body>
 </html>
