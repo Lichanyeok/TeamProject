@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
     <%
 	ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList"); // 매장 별 리뷰 정보
-    ArrayList<ReviewBean> ByStoreScore = (ArrayList<ReviewBean>)request.getAttribute("reviewData"); // 매장 별 별점 평균 
 	%> 
 <!DOCTYPE html>
 <html>
@@ -142,10 +141,10 @@
 					<a href="./ReviewStore.re">
 						<!-- 매장이름 불러오기 -->
 <%-- 						<%=articleList.get(i).getRev_store() %> --%>
-					<%=ByStoreScore.get(i).getRev_store() %>
+					<%=articleList.get(i).getRev_store() %>
 					</a>&nbsp;&nbsp;
 					<img src="./review/rev_im/rev_star.png" width="15" height="15" />
-					<%=ByStoreScore.get(i).getRev_score() %>(<%=ByStoreScore.get(i).getListCount() %>)<br>
+					<%=articleList.get(i).getRev_score() %>(<%=articleList.get(i).getListCount() %>)<br>
 					<!-- 매장주소 -->
 					부산광역시 00구 00동<br>
 				</div>
