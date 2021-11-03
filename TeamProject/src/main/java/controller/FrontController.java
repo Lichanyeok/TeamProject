@@ -166,7 +166,7 @@ public class FrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-		}else if (command.equals("/MemberAuth.do")) {
+		}else if (command.equals("/TeamProject/MemberAuth.do")) {
                 action = new MemberAuthAction();
                 try {
                     forward = action.execute(request, response);

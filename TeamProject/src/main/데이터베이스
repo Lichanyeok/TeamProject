@@ -1,0 +1,24 @@
+- 멤버 -
+CREATE TABLE project_member(
+    idx    int PRIMARY KEY AUTO_INCREMENT,
+    name   VARCHAR(15) NOT NULL,
+    nickname VARCHAR(20) UNIQUE NOT NULL,
+    age    int NOT NULL,
+    id     VARCHAR(20) UNIQUE NOT NULL,
+    pass   VARCHAR(20) NOT NULL,
+    email  VARCHAR(50) UNIQUE NOT NULL,
+    mobile VARCHAR(20) UNIQUE NOT NULL,
+    address VARCHAR(40) NOT NULL,
+    address_detail VARCHAR(50) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    grade  int(5) NOT NULL,
+    member_date DATE,
+    login_date DATE,
+    auth_status varchar(1) default 'N'
+);
+
+- 메일 인증 -
+CREATE TABLE project_auth(
+    id varchar(16) NOT NULL PRIMARY KEY,
+auth_code varchar(50) NOT NULL
+);
