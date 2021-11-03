@@ -90,7 +90,10 @@ if (article != null) {
 								double fStar = Math.round((star - iStar) * 10) / 10.0;
 								for (int j = 0; j < iStar; j++) {
 								%> <img src="./search/img/star.jpg" class="starImg"> 
-								<%}%>&nbsp;&nbsp;<%=star%>
+								<%}
+								if(fStar>0){%>
+			                	<img src="./search/img/half_star.jpg" class="starImg">
+			                <%}%>&nbsp;&nbsp;(<%=star%>)
 							</li>
 							<li>
 								<p>업종</p>
