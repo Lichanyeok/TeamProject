@@ -56,6 +56,7 @@
 			var a = this.value; // 해당 리뷰 번호
 			var b = $('input[name=likeScore]').val(); // 해당 리뷰의 좋아요 수
 			
+			
 			$.ajax({
 				type: "GET",
 				url: "./ReviewLikeScore.re",
