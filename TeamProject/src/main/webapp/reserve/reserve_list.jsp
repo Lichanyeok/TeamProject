@@ -165,7 +165,7 @@
                         <%}else if(reserveList.get(i).getCheck_review()<1){%>
                         <td id="rev_btn"><a><button onclick="doPost(<%=i %>)">리뷰쓰기</button></a></td>
                         <%}else{ %>
-                        <td><a><button>작성한 리뷰 보러가기</button></a></td>
+                        <td><a href="Review.re?nickName=<%=session.getAttribute("sNn") %>"><button>작성한 리뷰 보러가기</button></a></td>
                         <%} %>
                     </tbody>
                     <%} %>
