@@ -34,7 +34,7 @@
         </div>
         <div class = "border_bottom"></div>
         <div class="header_bottom clearfix">
-            <div class="logo"><a href="/TeamProject/"><img src="/TeamProject/images/LOGO.png"></a></div>   
+            <div class="logo"><a href="/TeamProject/"><img src="../images/LOGO.png"></a></div>
             <ul class="nav_bottom">
              	<li><a href="MatzipSearch.mz">검색
              	</a>
