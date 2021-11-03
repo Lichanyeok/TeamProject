@@ -727,5 +727,9 @@ public class ReviewDAO {
 		}
 		
 	}
-	
+
+    public ReviewBean selectListCount() {
+		ReviewBean reviewBean = null;
+		return reviewBean;
+    }
 } // ReviewDAO 클래스 끝
