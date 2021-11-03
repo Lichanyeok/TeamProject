@@ -26,7 +26,11 @@ public class FrontController extends HttpServlet {
 		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
-		if(command.equals("/MemberLoginFormAction.do")) {
+		if(command.equals("/Matzip.do")) {
+			forward = new ActionForward();
+			forward.setPath("./index.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemberLoginFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
 			forward.setRedirect(false);

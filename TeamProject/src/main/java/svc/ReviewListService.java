@@ -62,7 +62,7 @@ public class ReviewListService {
 		return myListCount;
 	}
 
-	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
+	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {  // 필요함
 		System.out.println("ReviewListService - getArticleList()");
 		
 		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
@@ -86,7 +86,7 @@ public class ReviewListService {
 		return articleList;
 	}
 	
-	public ArrayList<ReviewBean> getMyReviewList(String nickName) {
+	public ArrayList<ReviewBean> getMyReviewList(String nickName) { // 필요함
 		System.out.println("ReviewListService - getMyReviewList()");
 		
 		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기

@@ -1,0 +1,228 @@
+
+create table search(
+	road_address varchar(50) PRIMARY KEY,		
+	jibun_address varchar(50) unique not null,	
+	category varchar(15) not null,			
+	place_name varchar(30) not null,			
+	star_score float,							
+	tell_number varchar(30) unique not null		
+);
+
+<실험용>
+insert into search values (
+	"실험1",
+	"실험1",
+	"실험",
+	"실험1",
+	5,
+	"1111"
+);
+insert into search values (
+	"실험2",
+	"실험2",
+	"실험",
+	"실험2",
+	5,
+	"2222"
+);
+insert into search values (
+	"실험3",
+	"실험3",
+	"실험",
+	"실험3",
+	4.5,
+	"3333"
+);
+insert into search values (
+	"실험4",
+	"실험4",
+	"실험",
+	"실험4",
+	5,
+	"4444"
+);
+insert into search values (
+	"실험5",
+	"실험5",
+	"실험",
+	"실험5",
+	4.5,
+	"5555"
+);
+insert into search values (
+	"실험6",
+	"실험6",
+	"실험",
+	"실험6",
+	5,
+	"6666"
+);
+insert into search values (
+	"실험7",
+	"실험7",
+	"실험",
+	"실험7",
+	3,
+	"7777"
+);
+insert into search values (
+	"실험8",
+	"실험8",
+	"실험",
+	"실험8",
+	4,
+	"8888"
+);
+insert into search values (
+	"실험9",
+	"실험9",
+	"실험",
+	"실험9",
+	4,
+	"9999"
+);
+insert into search values (
+	"실험10",
+	"실험10",
+	"실험",
+	"실험10",
+	2,
+	"1010"
+);
+insert into search values (
+	"실험11",
+	"실험11",
+	"실험",
+	"실험11",
+	5,
+	"1111"
+);
+insert into search values (
+	"실험12",
+	"실험12",
+	"실험",
+	"실험12",
+	4,
+	"1212"
+);
+insert into search values (
+	"실험13",
+	"실험13",
+	"실험",
+	"실험13",
+	3,
+	"1313"
+);
+insert into search values (
+	"실험14",
+	"실험14",
+	"실험",
+	"실험14",
+	4.5,
+	"1414"
+);
+
+
+
+< 피자 >
+
+insert into search values (
+	"서울 강남구 강남대로 432",
+	"서울 강남구 역삼동 815",
+	"피자",
+	"피자몰 강남역점",
+	0,
+	"02-6205-4296"
+);
+
+insert into search values (
+	"서울 마포구 양화로 153",
+	"서울 마포구 도교동 159-12",
+	"피자",
+	"피자몰 홍대점",
+	0,
+	"02-335-4296"
+);	
+insert into search values (
+	"서울 마포구 신촌로 94",
+	"서울 마포구 노고산동 57-1",
+	"피자",
+	"피자몰 신촌점",
+	0,
+	"02-3144-4796"
+);	
+insert into search values (
+	"경기 부천시 송내대로 239",
+	"경기 부천시 상동 539-1",
+	"피자",
+	"피자몰 부천NC백화점",
+	0,
+	"032-203-4296"
+);
+insert into search values (
+	"부산 부산진구 동천로 92",
+	"부산 부산진구 전포동 668-1",
+	"피자",
+	"피자몰 부산서면NC백화점",
+	0,
+	"051-794-7304"
+);
+insert into search values (
+	"서울 서초구 잠원로 51",
+	"서울 서초구 잠원동 70-2",
+	"피자",
+	"피자몰 반포뉴코아아울렛점",
+	0,
+	"02-3476-4296"
+);
+insert into search values (
+	"경기 수원시 권선구 경수대로 270",
+	"경기 수원시 권선구 권선동 1189",
+	"피자",
+	"피자몰 수원터미널NC백화점",
+	0,
+	"031-8065-3877"
+);
+insert into search values (
+	"울산 중구 젊음의2거리 33",
+	"울산 중구 성남동 256-24",
+	"피자",
+	"피자몰 울산점",
+	0,
+	"052-916-4296"
+);
+insert into search values (
+	"전북 전주시 완산구 전주객사5길 35",
+	"전북 전주시 완산구 고사동 96-1",
+	"피자",
+	"피자몰 전주NC웨이브점",
+	0,
+	"063-710-5246"
+);
+insert into search values (
+	"광주 동구 중앙로 163",
+	"광주 동구 충장로4가 29-2",
+	"피자",
+	"피자몰 NC충장점",
+	0,
+	"070-5154-4369"
+);
+insert into search values (
+	"부산 사하구 낙동남로 1413",
+	"부산 사하구 하단동 526-6",
+	"피자",
+	"피자몰 부산하단아트몰링점",
+	0,
+	"051-999-7305"
+);
+
+
+< 치킨 >
+insert into search values (
+	"부산 동래구 사직북로13번길 16",
+	"부산 동래구 사직동 78-19",
+	"치킨",
+	"푸라닭치킨 부산사직점",
+	0,
+	"051-503-9207"
+);

@@ -11,6 +11,7 @@ import java.sql.Connection;
 
 import dao.ReserveDAO;
 import dao.ReviewDAO;
+import dao.SearchDAO;
 import vo.ReviewBean;
 
 //Action 클래스로부터 요청을 받아 DAO 클래스와 상호작용을 통해 
@@ -87,4 +88,45 @@ public class ReviewWriteProService {
 			// 8. Action 클래스로 글쓰기 작업 결과 리턴
 			return isWriteSuccess;
 		}
+		
+		public boolean updateStar(ReviewBean bean) {
+			boolean updateSuccess=false;
+			Connection con = getConnection();
+			SearchDAO dao = SearchDAO.getInstance();
+			dao.setConnection(con);
+			updateSuccess=dao.updateStar(bean);
+			if(updateSuccess) {
+				commit(con);
+			}else {
+				rollback(con);
+			}
+			close(con);
+			return updateSuccess;
+		}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
