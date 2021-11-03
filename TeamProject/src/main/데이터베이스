@@ -1,3 +1,16 @@
+- 검색 -
+create table search(
+   road_address varchar(50) PRIMARY KEY,      
+   jibun_address varchar(50) unique not null,   
+   category varchar(15) not null,         
+   place_name varchar(30) not null,         
+   star_score float,                     
+   tell_number varchar(30),
+   logo_img varchar(30) not null,
+   date DATE not null,
+   recommend int default 0         
+);
+
 - 멤버 -
 CREATE TABLE project_member(
     idx    int PRIMARY KEY AUTO_INCREMENT,
@@ -20,5 +33,20 @@ CREATE TABLE project_member(
 - 메일 인증 -
 CREATE TABLE project_auth(
     id varchar(16) NOT NULL PRIMARY KEY,
-auth_code varchar(50) NOT NULL
+    auth_code varchar(50) NOT NULL
+);
+
+- 리뷰 -
+CREATE TABLE review (
+	rev_num INT AUTO_INCREMENT PRIMARY KEY,
+	ran_num VARCHAR(36) UNIQUE NOT NULL,
+	rev_store VARCHAR(20),
+	rev_name VARCHAR(20),
+	rev_score FLOAT,
+	rev_content VARCHAR(500),
+	rev_pic VARCHAR(250),
+	rev_pic_origin VARCHAR(250),
+	rev_menu VARCHAR(30),
+	rev_date DATE,
+	rev_like INT
 );
