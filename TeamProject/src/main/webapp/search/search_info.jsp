@@ -40,7 +40,8 @@ if (article != null) {
 				"store_name" : $('#store_name').text(),
 				"load_address" : $('#load_address').text(),
 				"address" : $('#address').text(),
-				"store_number" : $('#store_number').text()
+				"store_number" : $('#store_number').text(),
+				"category":$('#category').text()
 			};
 
 			$.ajax({
@@ -137,7 +138,7 @@ if (article != null) {
 							</li>
 							<li>
 								<p>업종</p>
-								<p id="load_address"><%=category%></p>
+								<p id="category"><%=category%></p>
 							</li>
 							<li>
 								<p>주소</p>

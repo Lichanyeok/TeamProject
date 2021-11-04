@@ -19,8 +19,9 @@ public class GoReserveAction implements Action {
 		String load_address = request.getParameter("load_address");
 		String address=request.getParameter("address");
 		String store_number = request.getParameter("store_number");
-		
+		String category = request.getParameter("category");
 		SearchBean bean = new SearchBean(load_address, address, store_name, store_number);
+		bean.setCategory(category);
 		storeInfo.add(bean);
 		HttpSession session = request.getSession();
 		session.setAttribute("storeInfo", storeInfo);
