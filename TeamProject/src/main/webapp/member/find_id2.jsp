@@ -18,7 +18,7 @@
 
     <section>
         <form action="FindId.do" method="post">
-            <div><a>아이디를 찾고 싶으신가요?</a></div>
+
             <br>
             <div class="login_wrap">
                 <div class="login_input">

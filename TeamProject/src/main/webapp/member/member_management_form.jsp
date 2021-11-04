@@ -12,7 +12,7 @@
     <!-- 상위 고정 -->
 
     <section>
-      <div><a>고객님의 상세페이지를 원하시나요?</a></div>
+<!--       <div><a>고객님의 상세페이지를 원하시나요?</a></div> -->
         <form action="MemberInfoDetail.do" method="post">
             <div class="login_wrap">
                 <div class="login_input">

@@ -18,7 +18,6 @@
 
     <section>
         <form action="FindPass.do" method="post">
-            <div><a>비밀번호를 찾고 싶으신가요?</a></div>
             <br>
             <div class="login_wrap">
                 <div class="login_input">
