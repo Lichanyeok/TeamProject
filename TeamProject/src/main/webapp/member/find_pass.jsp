@@ -22,8 +22,8 @@
     height: 36px;
 }
 </style>
-<link rel="stylesheet" href="../css/join.css">
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
 <script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -59,7 +59,6 @@
         <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
     <section>
-         <h1><a href="../MemberLoginFormAction.do"><img alt="" src="../images/LOGO.png"></a></h1>
             <div class="login_wrap">
             <div class="login_input">
                 <div>

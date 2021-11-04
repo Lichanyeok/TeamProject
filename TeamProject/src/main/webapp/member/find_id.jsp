@@ -20,10 +20,33 @@
     border: none;
     width: 174px;
     height: 36px;
+    
+    h1 {
+	
+    font-size: 50px;
+    font-weight: bold;
+}
+.login_input  div {
+	margin-bottom:10px;
+}
+
+.login_input label {
+	
+	width: 100px;
+	display :inline-block;
+	text-align: left;
+}
+
+
+
+.login_input input {
+    width: 276px;
+    height: 38px;
+}
 }
 </style>
-<link rel="stylesheet" href="../css/join.css">
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
 <script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -55,7 +78,7 @@
         <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
     <section>
-         <h1><a href="../MemberLoginFormAction.do"><img alt="" src="../images/LOGO.png"></a></h1>
+<!--          <h1><a href="../MemberLoginFormAction.do"><img alt="" src="../images/LOGO.png"></a></h1> -->
             <div class="login_wrap">
             <div class="login_input">
                 <div>
