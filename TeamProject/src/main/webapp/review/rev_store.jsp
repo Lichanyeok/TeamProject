@@ -31,7 +31,28 @@ $(document).ready(function() {
 			},
 			success : function(msg) {
 				$('#rev_contents').html(msg);
-			}
+				
+				// 좋아요 갯수 증가를 위한 ajax 정의
+				$('#rev_menu_btn button').click(function() {
+					var rev_num = $(this).val();
+					
+					$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
+						type: "POST",
+						cache: false,
+						dataType: "json",
+						data: {
+							rev_num : rev_num
+						},
+						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+						alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like 
+						$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
+						}, 
+						error:
+						function (request, status, error){
+						alert("ajax실패") } 
+					}); 
+				}); // 좋아요 ajax 끝
+			} // ajax success 끝
 		});
 	} else {
 		// 리뷰가 없으므로 이미지와 글 표시
@@ -39,7 +60,7 @@ $(document).ready(function() {
 		$('#rev_empty span').css({'visibility':'visible'});
 		$('#rev_empty img').attr({src:"./review/rev_im/rev_empty.png"});
 		$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
-	}
+	} // 첫 화면 불러오는 ajax 끝
 
 	
 	// 선택된 옵션 값에 따라 정렬방식 변경
@@ -54,6 +75,27 @@ $(document).ready(function() {
 			},
 			success : function(msg){ //DB접근 후 가져온 데이터
 				$('#rev_contents').html(msg); // 초기화 후 정렬 방식에 따라 리뷰 새로 뿌리기
+				
+				// 좋아요 갯수 증가를 위한 ajax 정의
+				$('#rev_menu_btn button').click(function() {
+					var rev_num = $(this).val();
+					
+					$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
+						type: "POST",
+						cache: false,
+						dataType: "json",
+						data: {
+							rev_num : rev_num
+						},
+						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+						alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like 
+						$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
+						}, 
+						error:
+						function (request, status, error){
+						alert("ajax실패") } 
+					}); 
+				}); // 좋아요 ajax 끝
 			}
 		});
 	});	
@@ -73,31 +115,7 @@ $(document).ready(function() {
 		$(location).attr('href','javascript:history.back()');
 	});
 	
-	// 좋아요 갯수 증가를 위한 ajax 정의
-	$('#rev_menu_btn button').on('click', function() {
-		alert($(this).find('span').text());
-		var a = this.value; // 해당 리뷰 번호
-		var b = $('input[name=likeScore]').val(); // 해당 리뷰의 좋아요 수
-		
-		$.ajax({
-			type: "GET",
-			url: "./ReviewLikeScore.re",
-			data : {
-				rev_num : a,
-				prev_like : b
-			}
-		}).done(function(msg){ //DB접근 후 가져온 데이터
-			if(b == c) {
-				$('.rev_like_btn' + a).find('span').html(msg);
-			} else {
-				$('.rev_like_btn' + a).find('span').html(c);
-			}
-//				alert('성공');
-		}).fail(function() {
-			alert("한번만 가능합니다.");
-		});
-	});
-});
+}); // 제이쿼리 끝
 </script>
 <style type="text/css">
 #rev_store {
