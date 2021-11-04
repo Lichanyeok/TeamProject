@@ -49,7 +49,7 @@
 		<table>
 			<tr>
 				<th>이름</th><td> <%=name %> </td>
-				<th>닉네임</th><td><%=nickname %></td>
+				<th>닉네임</th><td><a href="ModifyNickName.do"><%=nickname %></a></td>
 			</tr>
 			<tr>
 				<th>이메일</th><td colspan="3"><%=email %></td>

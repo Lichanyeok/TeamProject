@@ -758,5 +758,24 @@ public class MemberDAO {
 		return isDeleteSuccess;
 
 	}
+
+	public boolean modifyNickName(String id, String nickName) {
+		boolean isUpdateSuccess = false;
+		PreparedStatement pstmt = null;
+		try {
+			String sql="UPDATE project_member SET nickname=? WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			pstmt.setString(2, id);
+			int updateCount = pstmt.executeUpdate();
+			if(updateCount>0) {
+				isUpdateSuccess = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isUpdateSuccess;
+	}
 }
 
