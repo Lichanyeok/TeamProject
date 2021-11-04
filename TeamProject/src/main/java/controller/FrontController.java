@@ -126,14 +126,21 @@ public class FrontController extends HttpServlet {
 			}
 		}else if(command.equals("/member/FindId.do")) {
 			System.out.println("find Id controller");
-			forward = new ActionForward();
-			forward.setPath("./find_id_result.jsp");
-			forward.setRedirect(false);
+			action = new FindIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(command.equals("/member/FindPass.do")) {
-			System.out.println("find pass controller");
-			forward = new ActionForward();
-			forward.setPath("./find_pass_result.jsp");
-			forward.setRedirect(false);
+			action = new FindPassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(command.equals("/member/UpdatePass.do")) {
 			action = new UpdatePassAction();
 			try {
