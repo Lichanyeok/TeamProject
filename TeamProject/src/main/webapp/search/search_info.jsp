@@ -165,22 +165,5 @@ if (article != null) {
 			</div>
 		</div>
 	</form>
-<<<<<<< HEAD
-=======
-	<div id="item_description">
-		<div class="item_description_tab">
-			<br>
-			<ul class="tabs-nav">
-				<li><a href="#work01">업체 인기 메뉴</a></li>
-				<li><a onclick="doPost()">리뷰</a></li>
-			</ul>
-			<br>
-		</div>
-	</div>
-	<input type="hidden" name="rev_store" value="<%=store_name %>" />
-	<input type="hidden" name="score_count" value="<%=reviewListCount.getListCount() %>" />
-	<input type="hidden" name="score_avg" value="<%=star %>" />
-	<input type="hidden" name="forStar" value="<%=iStar %>" />
->>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
 </body>
 </html>
