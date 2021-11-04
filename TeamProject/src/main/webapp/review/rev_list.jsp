@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <%
 		ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
-%>	
+%>
 <!DOCTYPE html>
 <html>
 <head>
