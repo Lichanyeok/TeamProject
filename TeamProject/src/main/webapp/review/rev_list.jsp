@@ -45,9 +45,9 @@
 			주문메뉴 : <%=articleList.get(i).getRev_menu() %>
 		</div>
 		<div id="rev_menu_btn">
-			<button type="button" id="rev_like_btn" value="<%=articleList.get(i).getRev_num() %>">
+			<button type="button" value="<%=articleList.get(i).getRev_num() %>" onclick="return like()">
 				<img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
-				<span id="likeScore">
+				<span class="likeScore<%=articleList.get(i).getRev_num()%>">
 					<!-- 여기에 좋아요 갯수 뿌리기 -->
 					<%=articleList.get(i).getRev_like() %>
 				</span>
