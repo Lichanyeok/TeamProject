@@ -11,82 +11,80 @@
 <head>
 <meta charset="UTF-8">
 <title>Review_Test</title>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
-	$(document).ready(function() {
-		
-		// 첫 화면 뿌리기
-		var rev_store = $('input[name=rev_store]').val();
-		$.ajax({
-			type : "GET",
-			url : "./ReviewSort.re?rev_store=" + rev_store,
-			data : {
-				selectedOption : "0",
-				isCheckedPic : "false"
-			},
-			success : function(msg) {
-				$('#rev_contents').html(msg);
-			}
-		});
+$(document).ready(function() {
+	// 첫 화면 뿌리기
+	var rev_store = $('input[name=rev_store]').val();
+	$.ajax({
+		type : "GET",
+		url : "./ReviewSort.re?rev_store=" + rev_store,
+		data : {
+			selectedOption : "0",
+			isCheckedPic : "false"
+		},
+		success : function(msg) {
+			$('#rev_contents').html(msg);
+		}
+	});
 
-		
-		// 선택된 옵션 값에 따라 정렬방식 변경
-		$('#select').change(function() {
-			var isCheckedPic = $('#isRev_pic').prop("checked");
-			$.ajax({
-				type: "GET",
-				url: "./ReviewSort.re?rev_store=" + rev_store,
-				data : {
-					selectedOption : this.value,
-					isCheckedPic : isCheckedPic
-				},
-				success : function(msg){ //DB접근 후 가져온 데이터
-					$('#rev_contents').html(msg); // 초기화 후 정렬 방식에 따라 리뷰 새로 뿌리기
-				}
-			});
-		});	
-		
-		// 마우스 오버 시 빈 리뷰 이미지를 채워진 이미지로 변경 / 클릭 시 리뷰 작성 페이지로 이동		
-		$('#rev_empty img').hover(
-			function() {
-				$(this).attr({src:"./review/rev_im/rev_write.png"});
-				$('#rev_empty span').html('&nbsp;&nbsp;예약하러 가기(이미지 클릭)');
+	
+	// 선택된 옵션 값에 따라 정렬방식 변경
+	$('#select').change(function() {
+		var isCheckedPic = $('#isRev_pic').prop("checked");
+		$.ajax({
+			type: "GET",
+			url: "./ReviewSort.re?rev_store=" + rev_store,
+			data : {
+				selectedOption : this.value,
+				isCheckedPic : isCheckedPic
 			},
-			function() {
-				$(this).attr({src:"./review/rev_im/rev_empty.png"});
-				$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
+			success : function(msg){ //DB접근 후 가져온 데이터
+				$('#rev_contents').html(msg); // 초기화 후 정렬 방식에 따라 리뷰 새로 뿌리기
 			}
-		);
-		$('#rev_empty img').on('click', function() {
-			$(location).attr('href','javascript:history.back()');
 		});
+	});	
+	
+	// 마우스 오버 시 빈 리뷰 이미지를 채워진 이미지로 변경 / 클릭 시 리뷰 작성 페이지로 이동		
+	$('#rev_empty img').hover(
+		function() {
+			$(this).attr({src:"./review/rev_im/rev_write.png"});
+			$('#rev_empty span').html('&nbsp;&nbsp;예약하러 가기(이미지 클릭)');
+		},
+		function() {
+			$(this).attr({src:"./review/rev_im/rev_empty.png"});
+			$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
+		}
+	);
+	$('#rev_empty img').on('click', function() {
+		$(location).attr('href','javascript:history.back()');
+	});
+	
+	// 좋아요 갯수 증가를 위한 ajax 정의
+	$('#rev_menu_btn button').on('click', function() {
+		alert($(this).find('span').text());
+		var a = this.value; // 해당 리뷰 번호
+		var b = $('input[name=likeScore]').val(); // 해당 리뷰의 좋아요 수
 		
-		// 좋아요 갯수 증가를 위한 ajax 정의
-		$('#rev_menu_btn button').on('click', function() {
-			alert($(this).find('span').text());
-			var a = this.value; // 해당 리뷰 번호
-			var b = $('input[name=likeScore]').val(); // 해당 리뷰의 좋아요 수
-			
-			$.ajax({
-				type: "GET",
-				url: "./ReviewLikeScore.re",
-				data : {
-					rev_num : a,
-					prev_like : b
-				}
-			}).done(function(msg){ //DB접근 후 가져온 데이터
-				if(b == c) {
-					$('.rev_like_btn' + a).find('span').html(msg);
-				} else {
-					$('.rev_like_btn' + a).find('span').html(c);
-				}
-// 				alert('성공');
-			}).fail(function() {
-				alert("한번만 가능합니다.");
-			});
+		$.ajax({
+			type: "GET",
+			url: "./ReviewLikeScore.re",
+			data : {
+				rev_num : a,
+				prev_like : b
+			}
+		}).done(function(msg){ //DB접근 후 가져온 데이터
+			if(b == c) {
+				$('.rev_like_btn' + a).find('span').html(msg);
+			} else {
+				$('.rev_like_btn' + a).find('span').html(c);
+			}
+//				alert('성공');
+		}).fail(function() {
+			alert("한번만 가능합니다.");
 		});
-		
-	}); // 제이쿼리 끝
+	});
+});
 </script>
 <style type="text/css">
 #rev_store {
