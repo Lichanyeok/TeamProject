@@ -28,7 +28,7 @@ public class GoReserveAction implements Action {
 		
 		System.out.println("GoResrveAction : " + bean.toString());
 //		System.out.println(forward);
-		forward.setPath("./reserve/reserve_main.jsp");
+		forward.setPath("./reserve/reserve_main2.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

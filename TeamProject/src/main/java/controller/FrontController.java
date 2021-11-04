@@ -194,7 +194,7 @@ public class FrontController extends HttpServlet {
                 }
 		}else if(command.equals("/Reserve.do")) {
 			forward = new ActionForward();
-			forward.setPath("./reserve/reserve_main.jsp");
+			forward.setPath("./reserve/reserve_main2.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/Payment.do")) {
 			action = new payAction();
