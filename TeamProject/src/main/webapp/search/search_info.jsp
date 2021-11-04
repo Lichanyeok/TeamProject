@@ -85,8 +85,10 @@ if (article != null) {
 							<br> <br>
 						</div>
 					</li>
+					
 					<li id="benefit">
-						<p>상세 내용</p> <br>
+						
+						<p> </p>
 						<ul>
 							<li class="list_name">
 								<p>별점</p>

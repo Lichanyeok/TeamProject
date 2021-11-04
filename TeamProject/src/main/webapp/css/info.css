@@ -15,7 +15,6 @@ body {
 	min-width: 1280px;
 	margin: 0px auto;
 	color: rgb(59, 59, 59);
-	background: url("") 50% 50%/auto no-repeat fixed;
 }
 
 div, ul, li {
@@ -54,11 +53,14 @@ img {
 	-webkit-box-align: center;
 	align-items: center;
 	margin-bottom: 2.5%;
+
 }
 
 #benefit ul li>p {
 	font-weight: 300;
 	color: rgb(0, 0, 0);
+	margin-top: 5px;
+	font-size: 18px;
 }
 
 #benefit ul li>p:first-child {
@@ -232,6 +234,7 @@ img {
 	background: linear-gradient(rgb(255, 171, 35) 5%, rgb(255, 236, 100)
 		100%) rgb(255, 171, 35);
 }
+
 
 #btnReview:active {
 	position: relative;
