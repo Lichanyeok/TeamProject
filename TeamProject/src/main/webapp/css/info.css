@@ -33,7 +33,8 @@ img {
 	border: 0;
 	max-width: 100%
 }
-#hr{
+
+#hr {
 	border-top: solid 1px #C3BCBC;
 }
 
@@ -72,7 +73,6 @@ img {
 	float: right;
 	margin-top: 2%
 }
-
 
 #item_detail_right .item_txt>p {
 	font-size: 1.5rem;
@@ -151,7 +151,7 @@ img {
 #order_item button {
 	display: block;
 	width: 100%;
-	border: solid 1px #ff503c;
+	border: solid 1px #ff8831;
 	border-radius: 5px;
 	font-size: 1.8rem;
 	background-color: #fff;
@@ -161,7 +161,7 @@ img {
 }
 
 #order_item button:last-child {
-	background-color: #ff503c
+	background-color: #ff8831
 }
 
 #order_item button:last-child a {
@@ -169,27 +169,22 @@ img {
 }
 
 #order_item button a {
-	color: #ff503c;
+	color: #ff8831;
 	display: block;
 	width: 250px
 }
 
 .starImg {
-		width: 30px;
-		height: 30px;		
-	}
-	
-	#item_description {
+	width: 30px;
+	height: 30px;
+}
+
+#item_description {
 	position: relative
 }
 
 #item_description .item_description_tab {
 	width: 100%;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 7%;
-	z-index: 2;
-	margin-bottom: 2%;
 	background-color: #fff;
 	border-top: solid 1px #eaeaea;
 	border-bottom: solid 1px #eaeaea
@@ -197,19 +192,14 @@ img {
 
 #item_description .item_description_tab .tabs-nav {
 	width: 100%;
-	max-width: 1200px;
+	max-width: 700px;
 	margin: 0 auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
 	align-items: center
 }
 
 #item_description .item_description_tab .tabs-nav li {
-	width: 25%;
-	max-width: 200px;
+	width: 50%;
 	font-size: 1.5rem;
 	font-weight: 700;
 	color: #3b3b3b;
@@ -218,20 +208,10 @@ img {
 }
 
 #item_description .item_description_tab .tabs-nav li:hover a {
-	border-bottom: solid 2px #ff503c;
-	color: #ff503c
+	border-bottom: solid 2px #ff8831;
+	color: #ff8831
 }
 
 #item_description .item_description_tab .tabs-nav li a {
 	cursor: pointer
-}
-
-#item_description .tabs-panel {
-	display: block;
-	text-align: center;
-	margin-bottom: 5%
-}
-
-#item_description .tabs-panel figure:nth-child(7) {
-	height: 580px
 }

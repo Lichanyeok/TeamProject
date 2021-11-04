@@ -164,10 +164,12 @@ if (article != null) {
 	</form>
 	<div id="item_description">
 		<div class="item_description_tab">
+			<br>
 			<ul class="tabs-nav">
 				<li><a href="#work01">업체 인기 메뉴</a></li>
 				<li><a onclick="doPost()">리뷰</a></li>
 			</ul>
+			<br>
 		</div>
 	</div>
 	<input type="hidden" name="rev_store" value="<%=store_name %>" />
