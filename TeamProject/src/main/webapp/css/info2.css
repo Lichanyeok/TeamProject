@@ -132,7 +132,6 @@ img {
 #item .item_detail .item_detail_left img {
     width: 700px; 
     height: 450px;
-    border-radius: 20px 40px 60px 80px / 80px 60px 40px 20px; 
     padding: 5px;
    display: block;
    

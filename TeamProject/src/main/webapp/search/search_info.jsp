@@ -28,7 +28,7 @@ if (article != null) {
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/TeamProject/css/info.css">
+<link rel="stylesheet" href="/TeamProject/css/info2.css">
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/header.css">
 <script src="./js/jquery-3.6.0.js"></script>
