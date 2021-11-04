@@ -1,8 +1,10 @@
+<%@page import="vo.ReviewBean"%>
 <%@page import="vo.SearchBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 SearchBean article = (SearchBean) request.getAttribute("article");
+ReviewBean reviewListCount = (ReviewBean) request.getAttribute("reviewListCount");
 String store_name = "";
 String load_address = "";
 String address = "";
@@ -38,7 +40,8 @@ if (article != null) {
 				"store_name" : $('#store_name').text(),
 				"load_address" : $('#load_address').text(),
 				"address" : $('#address').text(),
-				"store_number" : $('#store_number').text()
+				"store_number" : $('#store_number').text(),
+				"category":$('#category').text()
 			};
 
 			$.ajax({
@@ -53,6 +56,44 @@ if (article != null) {
 			});
 		});
 	});
+	
+	// 펑션 작업
+	function doPost() {
+      
+      // 동적 form - post 처리
+       var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8"); // post 한글처리
+        form.setAttribute("method", "post");  // post 방식
+        form.setAttribute("action", "ReviewStore.re"); // 요청 보낼 주소
+
+        // 매장명
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "rev_store");
+        doPost.setAttribute("value", $('input[name=rev_store]').val());
+        form.appendChild(doPost);
+        // 매장의 총 리뷰 갯수
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "score_count");
+        doPost.setAttribute("value", $('input[name=score_count]').val());
+        form.appendChild(doPost);
+         // 매장의 평점 평균
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "score_avg");
+        doPost.setAttribute("value", $('input[name=score_avg]').val());
+        form.appendChild(doPost);
+		// 별점 사진용 forStar
+        doPost = document.createElement("input");
+        doPost.setAttribute("type", "hidden");
+        doPost.setAttribute("name", "forStar");
+        doPost.setAttribute("value", $('input[name=forStar]').val());
+        form.appendChild(doPost);
+        
+        document.body.appendChild(form);
+        form.submit();
+   }
 </script>
 </head>
 <body>
@@ -90,11 +131,14 @@ if (article != null) {
 								double fStar = Math.round((star - iStar) * 10) / 10.0;
 								for (int j = 0; j < iStar; j++) {
 								%> <img src="./search/img/star.jpg" class="starImg"> 
-								<%}%>&nbsp;&nbsp;<%=star%>
+								<%}
+								if(fStar>0){%>
+			                	<img src="./search/img/half_star.jpg" class="starImg">
+			                <%}%>&nbsp;&nbsp;(<%=star%>)
 							</li>
 							<li>
 								<p>업종</p>
-								<p id="load_address"><%=category%></p>
+								<p id="category"><%=category%></p>
 							</li>
 							<li>
 								<p>주소</p>
@@ -111,6 +155,7 @@ if (article != null) {
 							<li><input type="submit" value="리뷰" id="btnReview"></li>
 						</ul>
 					</li>
+					
 
 					<li id="order_item">
 						<button type="button">장바구니</button>
@@ -120,5 +165,22 @@ if (article != null) {
 			</div>
 		</div>
 	</form>
+<<<<<<< HEAD
+=======
+	<div id="item_description">
+		<div class="item_description_tab">
+			<br>
+			<ul class="tabs-nav">
+				<li><a href="#work01">업체 인기 메뉴</a></li>
+				<li><a onclick="doPost()">리뷰</a></li>
+			</ul>
+			<br>
+		</div>
+	</div>
+	<input type="hidden" name="rev_store" value="<%=store_name %>" />
+	<input type="hidden" name="score_count" value="<%=reviewListCount.getListCount() %>" />
+	<input type="hidden" name="score_avg" value="<%=star %>" />
+	<input type="hidden" name="forStar" value="<%=iStar %>" />
+>>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
 </body>
 </html>

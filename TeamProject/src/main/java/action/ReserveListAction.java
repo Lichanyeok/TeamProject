@@ -46,18 +46,18 @@ public class ReserveListAction implements Action {
 				forward.setPath("./reserve/reserve_list.jsp");
 				forward.setRedirect(false);
 			}else {
-				System.out.println("°Ë»öµÈ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù");
+				System.out.println("reserveList ì‹¤íŒ¨");
 				request.setAttribute("reserveList",reserveList);
 				forward = new ActionForward();
 				forward.setPath("./reserve/reserve_list.jsp");
 				forward.setRedirect(false);
 			}
 		}else {
-			 System.out.println("PaymentAction °áÁ¦½ÇÆĞ");
+			 System.out.println("PaymentAction ì‹¤íŒ¨");
 			 response.setContentType("text/html; charset=UTF-8");
 	         PrintWriter out = response.getWriter();
 	         out.println("<script>");
-	         out.println("alert('·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä.')");
+	         out.println("alert('ë¡œê·¸ì¸ í•„ìˆ˜')");
 	         out.println("location.href='MemberJoinFormAction.do'");
 	         out.println("</script>");
 		}

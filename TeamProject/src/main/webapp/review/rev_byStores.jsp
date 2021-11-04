@@ -3,13 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-	// 전달받은 request 객체로부터 데이터 가져오기
-	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-	ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
-    ReviewBean reviewData = (ReviewBean)request.getAttribute("reviewData");
-    double totalScore = reviewData.getTotalScore() / reviewData.getListCount(); // 가져온 리뷰 점수 평균 작업
-	
+	ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList"); // 매장 별 리뷰 정보
 	%> 
 <!DOCTYPE html>
 <html>
@@ -126,20 +120,37 @@
 		
 		<div id="rev_contents">
 		
-				<div id="rev_name">아이디 : <%=articleList.get(i).getRev_name() %></div><div id="rev_date"><%=articleList.get(i).getRev_date() %></div>
-				<div id="rev_content">
-				<%if(articleList.get(i).getRev_pic_origin() != null) { %><img src="./upload/<%=str %>" width="300" height="300" /><br> <!-- 리뷰 사진 뿌려짐 -->
-				<%} %><%=articleList.get(i).getRev_content() %> <!-- 리뷰 내용 뿌려짐 -->
+				<div id="rev_name">
+					닉네임 : <%=articleList.get(i).getRev_name() %>
 				</div>
-				<span id="rev_menu">주문메뉴 : <%=articleList.get(i).getRev_menu() %></span><br>
+				<div id="rev_date">
+					<%=articleList.get(i).getRev_date() %>
+				</div>
+				<div id="rev_subject">
+					<img src="./review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
+				</div>
+				<div id="rev_content">
+					<%if(articleList.get(i).getRev_pic_origin() != null) { %>
+					<img src="./upload/<%=str %>" width="300" height="300" /><br>
+					<%} %><%=articleList.get(i).getRev_content() %>
+				</div>
+				<div id="rev_menu">
+					주문메뉴 : <%=articleList.get(i).getRev_menu() %>
+				</div><br>
 				<div id="store_name">
-				<a href="./ReviewStore.re"><!-- 매장이름 불러오기 -->00국밥집</a>&nbsp;&nbsp; <img src="./review/rev_im/rev_star.png" width="15" height="15" /><%=Math.round(totalScore*10)/10.0 %>(<%=reviewData.getListCount() %>)<br>
-				<!-- 매장 연락처 -->051-000-0000<br>
-				<!-- 매장주소 -->부산광역시 00구 00동
+					<a href="./ReviewStore.re">
+						<!-- 매장이름 불러오기 -->
+<%-- 						<%=articleList.get(i).getRev_store() %> --%>
+					<%=articleList.get(i).getRev_store() %>
+					</a>&nbsp;&nbsp;
+					<img src="./review/rev_im/rev_star.png" width="15" height="15" />
+					<%=articleList.get(i).getRev_score() %>(<%=articleList.get(i).getListCount() %>)<br>
+					<!-- 매장주소 -->
+					부산광역시 00구 00동<br>
 				</div>
 				<span>
-				<input type="button" value="좋아요" class="storeBtn" />
-				<input type="button" value="저장" class="storeBtn" />
+					<input type="button" value="좋아요" class="storeBtn" />
+					<input type="button" value="저장" class="storeBtn" />
 				</span>
 				
 			<%}%>

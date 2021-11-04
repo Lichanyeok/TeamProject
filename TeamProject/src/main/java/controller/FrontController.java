@@ -26,7 +26,11 @@ public class FrontController extends HttpServlet {
 		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
-		if(command.equals("/MemberLoginFormAction.do")) {
+		if(command.equals("/Matzip.do")) {
+			forward = new ActionForward();
+			forward.setPath("./index.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MemberLoginFormAction.do")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
 			forward.setRedirect(false);
@@ -122,14 +126,21 @@ public class FrontController extends HttpServlet {
 			}
 		}else if(command.equals("/member/FindId.do")) {
 			System.out.println("find Id controller");
-			forward = new ActionForward();
-			forward.setPath("./find_id_result.jsp");
-			forward.setRedirect(false);
+			action = new FindIdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(command.equals("/member/FindPass.do")) {
-			System.out.println("find pass controller");
-			forward = new ActionForward();
-			forward.setPath("./find_pass_result.jsp");
-			forward.setRedirect(false);
+			action = new FindPassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(command.equals("/member/UpdatePass.do")) {
 			action = new UpdatePassAction();
 			try {
@@ -162,7 +173,7 @@ public class FrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-		}else if (command.equals("/MemberAuth.do")) {
+		}else if (command.equals("/TeamProject/MemberAuth.do")) {
                 action = new MemberAuthAction();
                 try {
                     forward = action.execute(request, response);

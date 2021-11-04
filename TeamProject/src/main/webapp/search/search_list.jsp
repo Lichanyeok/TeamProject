@@ -21,6 +21,8 @@
             width: auto;
             height: 510px;
         }
+        
+        
 
         .category_list_info {
             border: 1px solid #FF8831;
@@ -111,8 +113,12 @@
                     int iStar = (int) star;
                     double fStar = Math.round((star - iStar) * 10) / 10.0;
                     for (int j = 0; j < iStar; j++) {%>
-                <img src="./search/img/star.jpg" class="starImg">
-                <%}%>(<%=star %>)
+               			<img src="./search/img/star.jpg" class="starImg">
+                <%}
+                if(fStar>0){%>
+                	<img src="./search/img/half_star.jpg" class="starImg">
+                <%}%>                
+                (<%=star %>)
             </li>
             <li class="list_category">업종 : <%=articleList.get(i).getCategory() %>
             </li>

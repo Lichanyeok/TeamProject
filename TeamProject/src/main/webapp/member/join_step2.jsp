@@ -38,10 +38,9 @@
     <div class = "join_container">
             <h1><a href="../"><img alt="" src="../images/LOGO.png"></a></h1>
             <ul class="ingo_top">
-                <li>STEP1.본인인증</li>
                 <li class ="active">STEP1.약관동의</li>
-                <li>STEP1.정보입력</li>
-                <li>STEP1.가입완료</li>
+                <li>STEP2.정보입력</li>
+                <li>STEP3.가입완료</li>
             </ul>   
         </div>
         <section class = "agree">

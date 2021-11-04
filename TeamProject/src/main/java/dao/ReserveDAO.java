@@ -41,6 +41,7 @@ private ReserveDAO() {
 		int insertCount=0;
 		String reserve_code = getRandomStr(15);
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			String sql = "INSERT INTO reserve VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,0,now()) ";
 			pstmt = con.prepareStatement(sql);
@@ -59,7 +60,10 @@ private ReserveDAO() {
 			pstmt.setInt(13, reserve.getPayment_price());
 			insertCount = pstmt.executeUpdate();
 			if(insertCount > 0) {
+				System.out.println("reserveInsert 성공");
 				isInsertSuccess = true;
+			}else {
+				System.out.println("reserveInsert 실패!");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -5,29 +5,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String id = request.getParameter("id");
-	String email = request.getParameter("email");
-	
-	boolean isRightInfo = false;
-	MemberBean bean = new MemberBean();
-	Connection con = jdbcUtil.getConnection();
-	MemberDAO dao = MemberDAO.getInstance();
-	dao.setConnection(con);
-	bean.setId(id);
-	bean.setEmail(email);
-	
-	isRightInfo = dao.getPass(bean); 
-	String pass = "정보가 일치하지 않거나 없는 계정입니다.";
-	if(isRightInfo){
-		pass = bean.getPass();
-	}
-
+	String id = request.getAttribute("id").toString();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="/TeamProject/css/login.css">
+    <link rel="stylesheet" href="/TeamProject/css/header.css">
+	<link rel="stylesheet" href="/TeamProject/css/reset.css">
 <script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 function checkRegex(password) {
@@ -92,58 +79,37 @@ function checkRegex(password) {
 		}
 	});
 }
-
-function updatePass(){
-	var pass1 = document.getElementById('pass1').value;
-	var pass2 = document.getElementById('pass2').value;
-	var id = document.getElementById('id').value;
-// 	alert(pass1 +','+ pass2 +','+id );
-	if(pass1 == pass2){
-// 		alert('일치');
-		$.ajax({
-			type:"get",
-			data:{
-				"id":id,
-				"pass":pass1
-			},
-			url:"./update_pass.jsp"
-		}).done(function(data) {
-			alert('비밀번호가 변경되었습니다.');
-			location.href='../MemberLoginFormAction.do';
-		}).fail(function() {
-			alert('잠시후에 시도해주세요.')
-		});
-	}else{
-		alert('불일치');
-	}
-}
-
 </script>
 </head>
 <body>
-	<%if(isRightInfo){ %>
-	<div id="join_container">
-	<h3>변경하실 비밀번호를 입력해주세요.</h3>
-	<table>
-	<tr>
-       <th>비밀번호</th>
-       <td><input type="password" name="pass1" id="pass1" onkeyup="checkRegex(this.value)" ></td>
-       <td><span id="checkPassRegex"></span></td>
-       </tr>
-       <tr>
-       <th>비밀번호확인</th>
-       <td><input type="password" id="pass2" name="pass2" onkeyup="checkIdentical()"></td>
-       <td><span id="isIdentical"></span></td> <!-- 경고메세지 -->
-       </tr>
-       <tr>
-       	<td colspan="2"><button id="goUpdateBtn" onclick="updatePass()" >확인</button> </td>
-       </tr>
-       </table>
-     </div>
-	<% }else{%>
-	<h3><%=pass %></h3>
-	<%} %>
-	
+	<!-- 상위 고정 -->
+     <jsp:include page="../inc/header.jsp"></jsp:include>
+    <!-- 상위 고정 -->
+
+    <section>
+        <form action="UpdatePass.do" method="post">
+        <input type="hidden" name="id" value="<%=id%>">
+            <div><a>변경하실 비밀번호를 입력해주세요</a></div>
+            <br>
+            <div class="login_wrap">
+                <div class="login_input">
+                    <div>
+	                    <label>비밀번호</label>
+	                    <input type="password" placeholder="password" name="pass1" onkeyup="checkRegex(this.value)" >
+	               		<span id="checkPassRegex"></span>
+	                </div>
+	                <div>
+	                    <label>비밀번호확인</label>
+	                    <input type="password" placeholder="password" name="pass2" onkeyup="checkIdentical()">
+	                	<span id="isIdentical"></span>
+	                </div>
+	            </div>
+            </div>
+		        <div class ="login_btn">
+		 			<button type="submit" >변경하기</button>
+		         </div>
+		</form>
+    </section>
 </body>
 
 </html>

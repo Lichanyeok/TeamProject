@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.ReviewAction;
 import action.ReviewDeleteProAction;
+import action.ReviewLikeAction;
 import action.ReviewListAction;
 import action.ReviewByStoresListAction;
 import action.ReviewModifyFormAction;
@@ -56,6 +57,13 @@ public class ReviewContoller extends HttpServlet {
 	      } else if(command.equals("/ReviewStore.re")) {
 	    	  System.out.println("controller - /ReviewStore.re");
 	    	  
+	    	forward=new ActionForward();
+			forward.setPath("/review/rev_store.jsp");
+			forward.setRedirect(false);
+	    	  
+	      } else if(command.equals("/ReviewSort.re")) {
+	    	  System.out.println("controller - /ReviewSort.re");
+//	    	  
 	    	  action = new ReviewListAction(); // Action 인터페이스로 업캐스팅
 	    	  try {
 	    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
@@ -118,19 +126,18 @@ public class ReviewContoller extends HttpServlet {
 				e.printStackTrace();
 	    	  } // try catch 끝 
 	    	  
-	      } else if(command.equals("/ReviewSort.re")) {
-	    	  System.out.println("controller - /ReviewSort.re"); 
-	    	  
-	    	  forward = new ActionForward();
-	    	  forward.setPath("/review/rev_list.jsp");
-	    	  forward.setRedirect(false);
-	    	  
-	      } else if(command.equals("/ReviewLikeScore.re")) {
+	      }  else if(command.equals("/ReviewLikeScore.re")) {
 	    	  System.out.println("controller - /ReviewLikeScore.re"); 
 	    	  
-	    	  forward = new ActionForward();
-	    	  forward.setPath("/review/rev_like_score.jsp");
-	    	  forward.setRedirect(false);
+	    	  action = new ReviewLikeAction();
+	    	  
+	    	  try {
+		    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
+		    		// Action 타입으로 execute() 메서드 호출 가능함
+					forward = action.execute(request, response);
+		    	  } catch (Exception e) {
+					e.printStackTrace();
+		    	  } // try catch 끝 	    	  
 	    	  
 	      } else if(command.equals("/ReviewByStores.re")) { // 매장 별 최신 리뷰 불러오기
 	    	  System.out.println("controller - /ReviewByStores.re"); 

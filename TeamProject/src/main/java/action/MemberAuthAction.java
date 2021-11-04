@@ -31,7 +31,7 @@ public class MemberAuthAction implements Action {
 		System.out.println(id + authCode);
 		
 		boolean isAuthenticationSuccess = dao.selectAuthInfo(authInfo);
-		
+
 		if(isAuthenticationSuccess) {
 			boolean isChangeSuccess = dao.changeAuthStatus(id);
 			
@@ -39,17 +39,18 @@ public class MemberAuthAction implements Action {
 				boolean isDeleteSuccess = dao.deleteAuthInfo(id);
 				
 				if(isDeleteSuccess) {
-					jdbcUtil.commit(con);
 
-					response.setContentType("text/html;charset=UTF-8");
+					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
 					out.println("<script>");
 					out.println("alert('인증 완료')");
 					out.println("</script>");
 
 					forward = new ActionForward();
-					forward.setPath("/TeamProject/MemberLoginFormAction.do");
+					forward.setPath("/MemberLoginFormAction.do");
 					forward.setRedirect(true);
+
+					jdbcUtil.commit(con);
 				} else {
 					jdbcUtil.rollback(con);
 

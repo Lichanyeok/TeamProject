@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import vo.ReviewBean;
 import vo.SearchBean;
 
 public class SearchDAO {
@@ -185,7 +186,7 @@ public class SearchDAO {
 		return details;
 	}
 	
-	public boolean updateStar(String rev_store) {
+	public boolean updateStar(ReviewBean bean)  {
 		boolean updateSuccess=false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -193,7 +194,7 @@ public class SearchDAO {
 		try {
 			String sql = "SELECT AVG(rev_score) FROM review WHERE rev_store=? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rev_store);			
+			pstmt.setString(1, bean.getRev_store());			
 			rs = pstmt.executeQuery();			
 			if(rs.next()) {				
 				avgStar=rs.getFloat(1);
@@ -202,14 +203,17 @@ public class SearchDAO {
 			sql="UPDATE search SET star_score=? WHERE place_name=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setFloat(1, avgStar);
-			pstmt.setString(2, rev_store);
+			pstmt.setString(2, bean.getRev_store());
+			int success=pstmt.executeUpdate();
+			if(success>0) {
+				updateSuccess=true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
  			close(rs);
  			close(pstmt);
 		}
-		
 		return updateSuccess;
 	}
 

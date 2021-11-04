@@ -9,16 +9,19 @@
     String loadAddress = "정보가 없습니다";
     String address = "정보가 없습니다";
     String storeNumber = "정보가 없습니다";
+    String category = "정보가 없습니다";
   	if(storeInfo!=null){
     	storeName = storeInfo.get(0).getPlace_name();
     	loadAddress = storeInfo.get(0).getRoad_address();
     	address = storeInfo.get(0).getJibun_address();
     	storeNumber = storeInfo.get(0).getTell_number();
+    	category = storeInfo.get(0).getCategory();
     	
     	request.setAttribute("storeName", storeName);
     	request.setAttribute("loadAddress", loadAddress);
     	request.setAttribute("address", address);
     	request.setAttribute("storeNumber", storeNumber);
+    	request.setAttribute("category", category);
   	}
   	
   	

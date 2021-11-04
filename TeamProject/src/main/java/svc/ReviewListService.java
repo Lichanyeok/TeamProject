@@ -36,8 +36,8 @@ public class ReviewListService {
 		close(con);
 		
 		return rb;
-	}
-	
+	} // getListCount() 메서드 끝
+	 
 	public int getMyListCount(String nickName) {
 		System.out.println("ReviewListService - getMyListCount()");
 		
@@ -60,33 +60,9 @@ public class ReviewListService {
 		close(con);
 		
 		return myListCount;
-	}
+	} // getMyListCount() 메서드 끝
 
-	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
-		System.out.println("ReviewListService - getArticleList()");
-		
-		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
-		Connection con = getConnection();
-		
-		// 공통작업-2. ReviewBean 클래스로부터 BoardDAO 객체 가져오기
-		ReviewDAO dao = ReviewDAO.getInstance();
-		
-		// 공통작업-3. ReviewBean 객체에 Connection 객체 전달하기
-		dao.setConnection(con);
-		
-		// 리뷰 목록 조회를 수행하는 getStoreReviewList() 메서드 호출
-		// => 파라미터 : 매장명(rev_store)
-		// => 리턴타입 : ArrayList<BoardBean> 객체 (articleList)
-		ArrayList<ReviewBean> articleList = dao.getStoreReviewList(rev_store);
-		System.out.println("getArticleList() - articleList : " + articleList);
-		
-		// 공통작업-4. Connection 객체 반환
-		close(con);
-		
-		return articleList;
-	}
-	
-	public ArrayList<ReviewBean> getMyReviewList(String nickName) {
+	public ArrayList<ReviewBean> getMyReviewList(String nickName) { // 필요함
 		System.out.println("ReviewListService - getMyReviewList()");
 		
 		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
@@ -108,6 +84,58 @@ public class ReviewListService {
 		close(con);
 		
 		return myReviewList;
-	}
+	} // getMyReviewList() 메서드 끝
+	
+	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic, String rev_store) {
+		System.out.println("ReviewListService - getMyReviewList()");
+		
+		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
+		Connection con = getConnection();
+		
+		// 공통작업-2. ReviewBean 클래스로부터 BoardDAO 객체 가져오기
+		ReviewDAO dao = ReviewDAO.getInstance();
+		
+		// 공통작업-3. ReviewBean 객체에 Connection 객체 전달하기
+		dao.setConnection(con);
+		
+		// 리뷰 목록 조회를 수행하는 getStoreReviewList() 메서드 호출
+		// => 파라미터 : 매장명(rev_store)
+		// => 리턴타입 : ArrayList<BoardBean> 객체 (articleList)
+		ArrayList<ReviewBean> reviewSort = dao.getReviewSort(selectedOption, isCheckedPic, rev_store);
+		System.out.println("etReviewSort() - reviewSort : " + reviewSort);
+		
+		// 공통작업-4. Connection 객체 반환
+		close(con);
+		
+		return reviewSort;
+	} // getReviewSort() 메서드 끝
+	
+	public int update_Like(int rev_num) {
+		System.out.println("ReviewListService - update_Like()");
+		
+		// 공통작업-1. Connection Pool 로부터 Connection 객체 가져오기
+		Connection con = getConnection();
+		
+		// 공통작업-2. ReviewBean 클래스로부터 BoardDAO 객체 가져오기
+		ReviewDAO dao = ReviewDAO.getInstance();
+		
+		// 공통작업-3. ReviewBean 객체에 Connection 객체 전달하기
+		dao.setConnection(con);
+		
+		// 좋아요 수 증가 및 증가한 값 리턴
+		int like = dao.update_Like(rev_num);
+		System.out.println("좋아요 수 : " + like);
+		
+		if(like > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		// 공통작업-4. Connection 객체 반환
+		close(con);
+				
+		return like;
+	} // update_Like() 메서드 끝
 
-}
+} // service 끝

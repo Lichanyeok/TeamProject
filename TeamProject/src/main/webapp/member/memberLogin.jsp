@@ -16,10 +16,10 @@
 
     <section>
         <form action="MemberLoginProAction.do" method="post">
-         <a href="#"><img alt="" src="../images/LOGO.png"></a>
+            <div><a href="#"><img alt="" src="../images/LOGO.png"></a></div>
             <div class="login_wrap">
-	            <div class="login_input">
-	                <div>
+                <div class="login_input">
+                    <div>
 	                    <label>아이디</label>
 	                    <input type="text" placeholder="id" name="id">
 	                </div>
@@ -27,7 +27,6 @@
 	                    <label>비밀번호</label>
 	                    <input type="password" placeholder="password" name="pass">
 	                </div>
-	               
 	            </div>
             </div>
 		            <div class ="login_btn">
@@ -46,8 +45,8 @@
             </div>
         </div>
         <ul class="find">
-            <li><a href = "./member/find_id.jsp">아이디찾기</a></li>
-            <li><a href = "./member/find_pass.jsp">비밀번호찾기</a></li>
+            <li><a href = "./member/find_id2.jsp">아이디찾기</a></li>
+            <li><a href = "./member/find_pass2.jsp">비밀번호찾기</a></li>
             <li><a href = "MemberJoinFormAction.do">회원가입</a></li>
         </ul>
 

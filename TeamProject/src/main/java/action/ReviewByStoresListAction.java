@@ -20,15 +20,11 @@ public class ReviewByStoresListAction implements Action {
 		
 		ReviewByStoresListService svc = new ReviewByStoresListService();
 		
-		// ReviewByStoresListService 클래스의 getListCount() 메서드를 호출하여 전체 리뷰의 총점 조회 요청
-		ReviewBean rb = svc.getListCount();
-		
 		// ReviewByStoresListService 클래스의 getByStoreList( 메서드를 호출하여 전체 게시물 조회 요청
 		ArrayList<ReviewBean> articleList = svc.getByStoreList();
 		
 		System.out.println("ReviewListAction - articleList : " + articleList);
 		request.setAttribute("articleList", articleList);
-		request.setAttribute("reviewData", rb);
 		
 		// ActionForward 객체를 생성하여 board 폴더 내의 qna_board_list.jsp 페이지로 포워딩
 		// => 게시물 정보를 request 객체에 담아 전달해야하므로 request 객체`	가 유지되어야하며
