@@ -120,6 +120,10 @@ img {
 }
 
 #item .item_detail .item_detail_left li img {
+    max-width: 100%; 
+    height: auto; 
+    border:1px solid #eaeaea; 
+    padding: 5px;
 	display: block;
 	width: 560px
 }
