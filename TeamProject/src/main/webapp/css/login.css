@@ -36,7 +36,7 @@ h1 {
 
 .login_input label {
    
-   width: 100px;
+   width: 120px;
    display :inline-block;
    text-align: left;
 }
@@ -50,14 +50,14 @@ h1 {
 
 .login_btn button{
     display: inline-block;
-    width: 276px;
+    width: 200px;
     height: 45px;
     font-size: 16px;
     font-weight: 900;
     color: #fff;
     background-color: #FF8831;
     border:none;
-    margin-left:94px;
+      margin-top: 10px;
   
     
 }
