@@ -50,6 +50,131 @@
         }
     });
     </script>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+	$(function(){
+		$('#btnOk').on('click',function(){
+// 			alert($('input[type=radio]:checked').val());
+			var info = {
+					"storeName":$('#storeName').text(),
+					"loadAddress":$('#loadAddress').text(),
+					"address":$('#address').text(),
+					"storeNumber":$('#storeNumber').text(),
+					"category":$('#category').text(),
+					"id":$('#id').text(),
+					"date":$('#date').val(),
+					"time":$('#time option:selected').text(),
+					"people":$('#people option:selected').text(),
+					"customerNeeds":$('#customer_needs').val(),
+					"setA":$('#setA').val(),
+					"setB":$('#setB').val(),
+					"setC":$('#setC').val()	,
+					"reserve_type":$('input[type=radio]:checked').val()
+					
+			};
+// 			alert(JSON.stringify(info));
+			if($('input[type=radio]:checked').val() > 0){
+				$.ajax({
+					type: "GET",
+					data:info,
+					dataType: "text",
+					url:"Payment.do"
+				}).done(function(data) {
+					$('#result').html(data);
+// 					alert('예약 완료!');
+				}).fail(function() {
+					alert('죄송합니다 조금 후에 이용해주세요');
+				});
+			}else{
+				$.ajax({
+					type: "GET",
+					data:info,
+					dataType: "text",
+					url:"Payment.do"
+				}).done(function(data) {
+					location.href='ReserveList.do';
+				}).fail(function() {
+					alert('죄송합니다 조금 후에 이용해주세요');
+				});
+			}
+		});
+		var date = new Date();
+		var yyyy = date.getFullYear();
+		var mm = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + date.getMonth()+1;
+		var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+		var today = yyyy+"-"+mm+"-"+dd;
+		$('#date').val(today);
+		
+		$('#date').on('change',function(){
+			if($('#date').val() < today){
+				alert('선택 불가능.');
+				$('#date').val(today);
+			}
+		});
+		
+		var menu1 = "";
+		var menu2 = "";
+		var menu3 = "";
+		
+		var category = $('#category').text();
+		if(category=="한식") {
+			menu1="제육덮밥";
+			menu2="김치찌개";
+			menu3="삼겹살";
+		}else if(category=="양식") {
+			menu1="파스타";
+			menu2="피자";
+			menu3="샐러드";
+		}else if(category=="중식") {
+			menu1="짜장면";
+			menu2="짬뽕";
+			menu3="탕수육";
+		}else if(category=="일식") {
+			menu1="소바";
+			menu2="초밥";
+			menu3="텐동";
+		}else if(category=="치킨") {
+			menu1="로제크림치킨";
+			menu2="갈릭간장치킨";
+			menu3="크리스피치킨";
+		}else if(category=="피자") {
+			menu1="블랙앵거스 스테이크 피자";
+			menu2="블랙타이거 쉬림프 피자 ";
+			menu3="뉴욕오리진 피자";
+		}else if(category=="퓨전") {
+			menu1="김치주스";
+			menu2="마늘전";
+			menu3="불고기파스타";
+		}else if(category=="찜") {
+			menu1="아구찜";
+			menu2="통큰 뼈 찜";
+			menu3="해물 뼈 찜";
+		}else if(category=="고깃집") {
+			menu1="삼겹살";
+			menu2="목살";
+			menu3="돼지갈비";
+		}else if(category=="족발") {
+			menu1="오리지날 한방 족발";
+			menu2="연잎 보쌈";
+			menu3="불족발";
+		}else if(category=="뷔페") {
+			menu1="런치 샐러드바 1인";
+			menu2="런치 샐러드바&스테이크 2인";
+			menu3="디너 샐러드바 1인";
+		}else if(category=="코스요리") {
+			menu1="런치 샐러드바 1인";
+			menu2="런치 샐러드바&스테이크 2인";
+			menu3="디너 샐러드바 1인";
+		}else {
+			menu1="모듬사시미";
+			menu2="런치세트A";
+			menu3="런치세트B";
+		};
+		$('#menu1').html(menu1);
+		$('#menu2').html(menu2);
+		$('#menu3').html(menu3);
+	});
+</script>
 </head>
 <body>
     <div class = "reserve_wrap">
@@ -69,6 +194,10 @@
             <div>
                 <h2>전화번호</h2>
                 <span id="storeNumber"><%=storeNumber %></span>
+            </div>
+            <div>
+                <h2>카테고리</h2>
+                <span id="category"><%=category %></span>
             </div>
         </div>
 
@@ -113,15 +242,15 @@
         <h2 class = "menu_font">메뉴</h2>
         <ul class = "menu">
             <li>
-                <h3>메뉴1</h3>
+                <h3 id="menu1">메뉴1</h3>
                 <input type="number" value="0" name="setA" id="setA" min="0"> 
             </li>
             <li>
-                <h3>메뉴2</h3>
+                <h3 id="menu2">메뉴2</h3>
                 <input type="number" value="0" name="setB" id="setB" min="0">
             </li>
             <li>
-                <h3>메뉴3</h3>
+                <h3 id="menu3">메뉴3</h3>
                 <input type="number"  value="0" name="setC" id="setC" min="0">
             </li>
         </ul>

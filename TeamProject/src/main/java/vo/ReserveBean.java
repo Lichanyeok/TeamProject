@@ -15,6 +15,7 @@ public class ReserveBean {
 	private int payment_price;
 	private int setA;
 	private int setB;
+	private int setC;
 	private String total_order_menu;
 	private String ran_num;
 	private int reserve_type;
@@ -49,7 +50,7 @@ public class ReserveBean {
 	}
 
 	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
-			int people, String customerNeeds, int setA, int setB, String total_order_menu) {
+			int people, String customerNeeds, int setA, int setB, int setC ,String total_order_menu) {
 		super();
 		this.id = id;
 		this.storeName = storeName;
@@ -62,6 +63,7 @@ public class ReserveBean {
 		this.customerNeeds = customerNeeds;	
 		this.setA = setA;
 		this.setB = setB;
+		this.setC = setC;
 		this.total_order_menu = total_order_menu;
 	}
 	
@@ -193,6 +195,14 @@ public class ReserveBean {
 	}
 	public void setSetB(int setB) {
 		this.setB = setB;
+	}
+
+	public int getSetC() {
+		return setC;
+	}
+
+	public void setSetC(int setC) {
+		this.setC = setC;
 	}
 	
 	
