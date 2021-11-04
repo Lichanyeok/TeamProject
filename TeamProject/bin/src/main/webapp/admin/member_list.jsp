@@ -131,8 +131,7 @@ int listCount = pageInfo.getListCount();
 </script>
 </head>
 <body>
-		
-		<div>
+		<div id="list_wrap">
 		<form>
 		<input type ="button" value="회원삭제" onclick="memberDelete()">		
 			<select id="gradeList" name="gradeList">

@@ -33,7 +33,7 @@
            			<button onclick="location.href='MemberLoginFormAction.do'">맛집 회원이신가요?</button>
             	</c:when>
             	<c:otherwise>
-           			<button onclick="location.href='ReserveList.do'">검색 확인하기</button>
+           			<button onclick="location.href='MatzipSearch.mz'">맛집 찾으러 가기!</button>
            		</c:otherwise>
             </c:choose>
         </div>

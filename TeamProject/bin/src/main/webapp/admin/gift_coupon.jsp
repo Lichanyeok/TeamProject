@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style.css">
+<style type="text/css">k,
+</style>
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -55,7 +57,7 @@
 		<!-- 상위 고정 -->
         <jsp:include page="/inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
-        
+        <div id="coupon_form_wrap">
         <form>
         	<select id="coupon_name" name="coupon_name">
         		<option disabled="disabled">쿠폰명을 선택해주세요!</option>
@@ -84,6 +86,7 @@
         	</select>
         	<button id="sendCouponBtn">발송</button>
         </form>
+        </div>
 		<div id="resultArea">
 		-
 		</div>
