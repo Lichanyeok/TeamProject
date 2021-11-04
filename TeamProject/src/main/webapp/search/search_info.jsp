@@ -54,46 +54,11 @@ if (article != null) {
 			}).fail(function() {
 				alert('잠시 후에 시도하십시오.')
 			});
-		});
+		});		
 	});
 	
-	// 펑션 작업
-	function doPost() {
-      
-      // 동적 form - post 처리
-       var form = document.createElement("form");
-        form.setAttribute("charset", "UTF-8"); // post 한글처리
-        form.setAttribute("method", "post");  // post 방식
-        form.setAttribute("action", "ReviewStore.re"); // 요청 보낼 주소
-
-        // 매장명
-        doPost = document.createElement("input");
-        doPost.setAttribute("type", "hidden");
-        doPost.setAttribute("name", "rev_store");
-        doPost.setAttribute("value", $('input[name=rev_store]').val());
-        form.appendChild(doPost);
-        // 매장의 총 리뷰 갯수
-        doPost = document.createElement("input");
-        doPost.setAttribute("type", "hidden");
-        doPost.setAttribute("name", "score_count");
-        doPost.setAttribute("value", $('input[name=score_count]').val());
-        form.appendChild(doPost);
-         // 매장의 평점 평균
-        doPost = document.createElement("input");
-        doPost.setAttribute("type", "hidden");
-        doPost.setAttribute("name", "score_avg");
-        doPost.setAttribute("value", $('input[name=score_avg]').val());
-        form.appendChild(doPost);
-		// 별점 사진용 forStar
-        doPost = document.createElement("input");
-        doPost.setAttribute("type", "hidden");
-        doPost.setAttribute("name", "forStar");
-        doPost.setAttribute("value", $('input[name=forStar]').val());
-        form.appendChild(doPost);
-        
-        document.body.appendChild(form);
-        form.submit();
-   }
+	
+	
 </script>
 </head>
 <body>
@@ -106,7 +71,7 @@ if (article != null) {
 	<ul>
 		<li id="hr"></li>
 	</ul>
-	<form action="">
+	<form action="ReviewStore.re" method="post">
 		<div id="item">
 			<div class="item_detail">
 				<div class="item_detail_left">
@@ -164,6 +129,23 @@ if (article != null) {
 				</ul>
 			</div>
 		</div>
+		<input type="hidden" name="rev_store" value="<%=store_name%>">
+		<input type="hidden" name="score_avg" value="<%=star%>">
+		<input type="hidden" name="forStar" value="<%=iStar%>">
+		<input type="hidden" name="score_count" value="<%=reviewListCount.getListCount()%>">
 	</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
