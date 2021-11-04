@@ -21,6 +21,8 @@
             width: auto;
             height: 510px;
         }
+        
+        
 
         .category_list_info {
             border: 1px solid #FF8831;

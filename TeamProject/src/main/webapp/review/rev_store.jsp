@@ -16,17 +16,30 @@
 $(document).ready(function() {
 	// 첫 화면 뿌리기
 	var rev_store = $('input[name=rev_store]').val();
-	$.ajax({
-		type : "GET",
-		url : "./ReviewSort.re?rev_store=" + rev_store,
-		data : {
-			selectedOption : "0",
-			isCheckedPic : "false"
-		},
-		success : function(msg) {
-			$('#rev_contents').html(msg);
-		}
-	});
+	
+	// 리뷰 여부 확인 전 이미지 및 글 숨기기
+	$('#rev_empty img').attr({'visibility':'hidden'});
+	$('#rev_empty span').css({'visibility':'hidden'});
+	
+	if($('input[name=score_count]').val() != 0) {
+		$.ajax({
+			type : "GET",
+			url : "./ReviewSort.re?rev_store=" + rev_store,
+			data : {
+				selectedOption : "0",
+				isCheckedPic : "false"
+			},
+			success : function(msg) {
+				$('#rev_contents').html(msg);
+			}
+		});
+	} else {
+		// 리뷰가 없으므로 이미지와 글 표시
+		$('#rev_empty img').css({'visibility':'visible'});
+		$('#rev_empty span').css({'visibility':'visible'});
+		$('#rev_empty img').attr({src:"./review/rev_im/rev_empty.png"});
+		$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
+	}
 
 	
 	// 선택된 옵션 값에 따라 정렬방식 변경
@@ -142,6 +155,7 @@ font-size: 2em;
 <body>
 	<!-- 매장명을 저장할  -->
 	<input type="hidden" name="rev_store" value="<%=request.getParameter("rev_store") %>" />
+	<input type="hidden" name="score_count" value="<%=Integer.parseInt(request.getParameter("score_count")) %>" />
 	<div id="wrap">
 		<!-- inc 폴더 내의 top.jsp 페이지를 현재 위치에 포함시키기 -->
 		<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -164,7 +178,7 @@ font-size: 2em;
 					</td>
 				</tr>
 				<tr>
-					<td><h3>리뷰 <%=Integer.parseInt(request.getParameter("score_count")) %>개</h3></td>
+					<td><h3 id="countReview">리뷰 <%=Integer.parseInt(request.getParameter("score_count")) %>개</h3></td>
 				</tr>
 				
 				<tr>
@@ -186,11 +200,11 @@ font-size: 2em;
 			</table>
 		</nav>
 		
-		<!-- 리뷰 게시물 목록 표시 -->
+<!-- 		리뷰 게시물 목록 표시 -->
 		<div id="rev_contents">
 			<div id="rev_empty">
-				<img src="./review/rev_im/rev_empty.png" width="500" height="500" ><br>
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.</span>
+				<img src="" width="500" height="500"><br>
+				<span></span>
 			</div>
 		</div>
 		<div class="clear"></div>
