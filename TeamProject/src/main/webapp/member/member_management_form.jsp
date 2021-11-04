@@ -3,36 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<title>Welcome, is Matzip</title>
-	
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-		<!-- 상위 고정 -->
-        <jsp:include page="../inc/header.jsp"></jsp:include>
-        <!-- 상위 고정 -->
-    
+	<!-- 상위 고정 -->
+     <jsp:include page="../inc/header.jsp"></jsp:include>
+    <!-- 상위 고정 -->
 
-	<form action="MemberInfoDetail.do" method="post" name="managementForm">
-		<table border="1">
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="id" value="<%=session.getAttribute("sId")%>" readonly="readonly" required="required" size="20"></td>
-			</tr>
-			<tr>
-				<td>패스워드</td>
-				<td>
-					<input type="password" name="pass" required="required" size="20">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="확인">
-					<input type="button" value="취소" onclick="history.back()">
-				</td>
-			</tr>
-		</table>
-	</form>
+    <section>
+      <div><a>고객님의 상세페이지를 원하시나요?</a></div>
+        <form action="MemberInfoDetail.do" method="post">
+            <div class="login_wrap">
+                <div class="login_input">
+                    <div>
+	                    <label>아이디</label>
+	                    <input type="text" name="id" value="<%=session.getAttribute("sId")%>" readonly="readonly" required="required" >
+	                </div>
+	                <div>
+	                    <label>비밀번호</label>
+	                    <input type="password" name="pass" required="required" size="20">
+	                </div>
+	            </div>
+            </div>
+		            <div class ="login_btn">
+		 				<button type="submit" >로그인</button>
+		            </div>
+		</form>
+    </section>
 </body>
-
 </html>

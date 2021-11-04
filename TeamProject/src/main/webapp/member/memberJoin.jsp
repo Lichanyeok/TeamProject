@@ -231,7 +231,7 @@
 </head>
 <body>
 <div class="join">
-    <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
+    <h1><a href="/TeamProject/"><img alt="" src="../images/LOGO.png"></a></h1>
     <div class="join_container">
         <form action="MemberJoinProAction.do" method="POST" onsubmit="return checkForm()">
 
