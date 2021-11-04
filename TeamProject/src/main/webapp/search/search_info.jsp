@@ -68,9 +68,9 @@ if (article != null) {
 	<form action="">
 		<div id="item">
 			<div class="item_detail">
-				<ul class="item_detail_left">
-					<li><img src="./search/img/<%=category %>/<%=logo_img %>"></li>
-				</ul>
+				<div class="item_detail_left">
+					<img src="./search/img/<%=category %>/<%=logo_img %>">
+				</div>
 				<ul id="item_detail_right">
 					<li class="item_txt">
 						<p>[ Matzip ]</p>
@@ -108,6 +108,7 @@ if (article != null) {
 								<p>번호</p>
 								<p id="store_number"><%=store_number%></p>
 							</li>
+							<li><input type="submit" value="리뷰" id="btnReview"></li>
 						</ul>
 					</li>
 
@@ -119,13 +120,5 @@ if (article != null) {
 			</div>
 		</div>
 	</form>
-	<div id="item_description">
-		<div class="item_description_tab">
-			<ul class="tabs-nav">
-				<li><a href="#work01">업체 인기 메뉴</a></li>
-				<li><a href="./ReviewStore.re?rev_store=<%=store_name%>">리뷰</a></li>
-			</ul>
-		</div>
-	</div>
 </body>
 </html>
