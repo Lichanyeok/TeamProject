@@ -28,7 +28,7 @@ if (article != null) {
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/TeamProject/css/info2.css">
+<link rel="stylesheet" href="/TeamProject/css/info.css">
 <link rel="stylesheet" href="/TeamProject/css/reset.css">
 <link rel="stylesheet" href="/TeamProject/css/header.css">
 <script src="./js/jquery-3.6.0.js"></script>
@@ -117,7 +117,7 @@ if (article != null) {
 								<p>번호</p>
 								<p id="store_number"><%=store_number%></p>
 							</li>
-							<li><input type="submit" value="리뷰" id="btnReview"></li>
+							<li id="liReview"><input type="submit" value="리뷰 보기" id="btnReview"></li>
 						</ul>
 					</li>
 					

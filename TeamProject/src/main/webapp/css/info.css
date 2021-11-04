@@ -1,0 +1,243 @@
+* {
+	font-family: "Noto Sans KR", sans-serif;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+html {
+	font-size: 12px;
+	font-weight: 400;
+}
+
+body {
+	min-width: 1280px;
+	margin: 0px auto;
+	color: rgb(59, 59, 59);
+	background: url("") 50% 50%/auto no-repeat fixed;
+}
+
+div, ul, li {
+	font-size: 1.4rem;
+}
+
+button {
+	cursor: pointer;
+	background-color: transparent;
+	color: rgb(59, 59, 59);
+}
+
+img {
+	vertical-align: middle;
+	border: 0px;
+	max-width: 100%;
+}
+
+#hr {
+	border-top: 1px solid rgb(195, 188, 188);
+}
+
+#benefit {
+	border-bottom: 1px solid rgb(155, 145, 145);
+	margin: 5% 0px;
+}
+
+#benefit>p {
+	padding: 4% 0px;
+	font-weight: 700;
+	border-top: 1px solid rgb(155, 145, 145);
+}
+
+#benefit ul li {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	margin-bottom: 2.5%;
+}
+
+#benefit ul li>p {
+	font-weight: 300;
+	color: rgb(0, 0, 0);
+}
+
+#benefit ul li>p:first-child {
+	width: 15%;
+}
+
+#item {
+	position: relative;
+	width: 1280px;
+	height: 500px;
+	margin-left: 16%;
+	margin-top: 160px;
+}
+
+#item .item_detail {
+	width: 100%;
+	margin: 0px auto;
+	display: flex;
+	gap: 4%;
+}
+
+#item_detail_right {
+	width: 500px;
+	height: 450px;
+	float: right;
+	margin-top: 25px;
+}
+
+#item_detail_right .item_txt>p {
+	font-size: 1.5rem;
+	color: rgb(112, 112, 112);
+}
+
+#item_detail_right .item_txt h2 {
+	width: 80%;
+	font-size: 2.3rem;
+	font-weight: 700;
+	float: left;
+	margin-top: 3%;
+}
+
+#item .item_detail::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#item .item_detail .item_detail_left {
+	width: 680px;
+	float: left;
+	margin: 25px;
+}
+
+#item .item_detail .item_detail_left img {
+	width: 700px;
+	height: 450px;
+	padding: 5px;
+	display: block;
+}
+
+#item .item_detail .item_detail_left li:first-child {
+	margin-bottom: 15%;
+}
+
+#item .item_detail .item_detail_left {
+	width: 47%;
+	float: left;
+}
+
+#order_item {
+	width: 100%;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	gap: 5px;
+	margin-top: 5%;
+}
+
+#order_item button {
+	width: 100%;
+	height: 70px;
+	padding: 2%;
+	box-sizing: border-box;
+	box-shadow: rgb(252, 226, 193) 0px 1px 0px 0px inset;
+	background: linear-gradient(rgb(255, 196, 119) 5%, rgb(251, 158, 37)
+		100%) rgb(255, 196, 119);
+	border-radius: 6px;
+	border: 1px solid rgb(238, 180, 79);
+	display: inline-block;
+	cursor: pointer;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: rgb(204, 159, 82) 0px 1px 0px;
+}
+
+#order_item button:hover {
+	background: linear-gradient(rgb(251, 158, 37) 5%, rgb(255, 196, 119)
+		100%) rgb(251, 158, 37);
+}
+
+#order_item button:active {
+	position: relative;
+	top: 1px;
+}
+
+.starImg {
+	width: 30px;
+	height: 30px;
+}
+
+#item_description {
+	position: relative;
+}
+
+#item_description .item_description_tab {
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	border-top: 1px solid rgb(234, 234, 234);
+	border-bottom: 1px solid rgb(234, 234, 234);
+}
+
+#item_description .item_description_tab .tabs-nav {
+	width: 100%;
+	max-width: 700px;
+	margin: 0px auto;
+	display: flex;
+	align-items: center;
+}
+
+#item_description .item_description_tab .tabs-nav li {
+	width: 50%;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: rgb(59, 59, 59);
+	text-align: center;
+	padding: 1.3% 0px;
+}
+
+#item_description .item_description_tab .tabs-nav li:hover a {
+	border-bottom: 2px solid rgb(255, 136, 49);
+	color: rgb(255, 136, 49);
+}
+
+#item_description .item_description_tab .tabs-nav li a {
+	cursor: pointer;
+}
+
+#btnReview {
+	width: 150px;
+	height: 40px;
+	box-shadow: rgb(255, 246, 175) 0px 1px 0px 0px inset;
+	background: linear-gradient(rgb(255, 236, 100) 5%, rgb(255, 171, 35)
+		100%) rgb(255, 236, 100);
+	border-radius: 6px;
+	border: 1px solid rgb(255, 170, 34);
+	cursor: pointer;
+	color: rgb(51, 51, 51);
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: rgb(255, 238, 102) 0px 1px 0px;
+	margin-left: 350px;
+}
+
+#btnReview:hover {
+	background: linear-gradient(rgb(255, 171, 35) 5%, rgb(255, 236, 100)
+		100%) rgb(255, 171, 35);
+}
+
+#btnReview:active {
+	position: relative;
+	top: 1px;
+}
+
+#liReview {
+	width: 500px;
+}
