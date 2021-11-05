@@ -532,8 +532,8 @@ public class MemberDAO {
 		return couponCount;
 	}
 	
-	public boolean getId(MemberBean bean) {
-		boolean isRightInfo = false;
+	public String getId(MemberBean bean) {
+		String id = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		System.out.println("getId name : " + bean.getName() + ", email : " + bean.getEmail());
@@ -544,8 +544,7 @@ public class MemberDAO {
 			pstmt.setString(2, bean.getEmail());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				bean.setId(rs.getString("id"));
-				isRightInfo = true;
+				id = rs.getString("id");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -555,7 +554,7 @@ public class MemberDAO {
 			close(pstmt);
 			
 		}
-		return isRightInfo;
+		return id;
 	}
 	
 	public boolean getPass(MemberBean bean) {
@@ -758,6 +757,25 @@ public class MemberDAO {
 
 		return isDeleteSuccess;
 
+	}
+
+	public boolean modifyNickName(String id, String nickName) {
+		boolean isUpdateSuccess = false;
+		PreparedStatement pstmt = null;
+		try {
+			String sql="UPDATE project_member SET nickname=? WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			pstmt.setString(2, id);
+			int updateCount = pstmt.executeUpdate();
+			if(updateCount>0) {
+				isUpdateSuccess = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isUpdateSuccess;
 	}
 }
 

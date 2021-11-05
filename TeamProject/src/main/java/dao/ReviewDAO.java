@@ -96,8 +96,8 @@ public class ReviewDAO {
 		
 	}
 	
-	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의
-	public ReviewBean selectListCount(String rev_store) {
+	// 매장의 리뷰 총 갯수 조회하여 리턴하는 selectArticleList() 메서드 정의 
+	public ReviewBean selectListCount(String rev_store) { // 필요!
 		System.out.println("ReviewDAO - selectListCount()");
 		ReviewBean rb = new ReviewBean();
 		
@@ -164,52 +164,6 @@ public class ReviewDAO {
 		
 		return myListCount;
 	}
-	
-	// 매장의 총 리뷰를 저장하여 불러오는 getStoreReviewList() 메서드 정의
-	public ArrayList<ReviewBean> getStoreReviewList(String rev_store) {
-		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		
-		try {
-			sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rev_store);
-			
-			rs = pstmt.executeQuery();
-			
-			// 모든 레코드를 저장할 List 객체(ArrayList) 생성
-			articleList = new ArrayList<ReviewBean>();
-			
-			while(rs.next()) {
-				ReviewBean rb = new ReviewBean();
-				rb.setRev_num(rs.getInt("rev_num"));
-				rb.setRev_score(rs.getFloat("rev_score"));
-				rb.setRev_name(rs.getString("rev_name"));
-				rb.setRev_date(rs.getDate("rev_date"));
-				rb.setRev_content(rs.getString("rev_content"));
-				rb.setRev_pic(rs.getString("rev_pic"));
-				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
-				rb.setRev_menu(rs.getString("rev_menu"));
-				rb.setRev_like(rs.getInt("rev_like"));
-				rb.setRan_num(rs.getString("ran_num"));
-				
-				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
-				articleList.add(rb);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// 자원 반환
-			close(rs);
-			close(pstmt);
-		}
-		
-		return articleList;
-	} // getStoreReviewList() 메서드 끝
 	
 	// 작성한 리뷰를 조회하여 리턴하는 getMyReviewList() 메서드 정의
 	public ArrayList<ReviewBean> getMyReviewList(String nickName) {
@@ -474,61 +428,50 @@ public class ReviewDAO {
 		
 	} // getReviewSort() 메서드 끝
 	
-	public int getLikeScore(int rev_num, int prev_like_score) {
-		System.out.println("ReviewDAO - getLikeScore()");
-		int insertCount = 0;
-			
+	public int update_Like(int rev_num) {
+		System.out.println("ReviewDAO - select_Like()"); 
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		int num = 0; // 새 좋아요 갯수를 저장할 변수 선언
+		int like = 0;
 		
 		try {
-			
-			sql = "SELECT MAX(rev_like) FROM review WHERE rev_num=?";
+			// 좋아요 수 증가
+			sql = "UPDATE review SET rev_like = rev_like + 1 WHERE rev_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
+			like = pstmt.executeUpdate();
+			
+			// 업데이트 실패할 경우
+			if(like < 0) {
+				return like;
+			}
+			
+			// 업데이트 후 자원 반환
+			close(pstmt);
+			
+			// 증가한 좋아요 수 리턴
+			sql = "SELECT rev_like FROM review WHERE rev_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_num);
+			
 			rs = pstmt.executeQuery();
 			
-			// 조회된 글 번호가 하나라도 존재할 경우
 			if(rs.next()) {
-				if(prev_like_score == rs.getInt(1)) {
-					num = rs.getInt(1) + 1;
-				} else {
-					return insertCount;
-				}
-			}
-			System.out.println("getLikeScore() - num : " + num);
-			// 다음 작업을 위해 Preparedstatment 객체 반환
-			close(pstmt);
-						
-			// 증가된 좋아요 값 DB에 저장
-			sql = "UPDATE review SET rev_like=? WHERE rev_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num); // 계산된 새 좋아요 점수
-			pstmt.setInt(2, rev_num);
-			
-			// INSERT 구문 실행 및 결과 리턴 받기 => insertCount 에 저장
-			insertCount = pstmt.executeUpdate();
-			
-			if(insertCount > 0 ) {
-				insertCount = num;
-			}
-			System.out.println("ReviewDAO - insertCount : " + insertCount);
-			
+				like = rs.getInt("rev_like");
+			}			
 			
 		} catch (Exception e) {
-			System.out.println("rev_like update 오류 - " + e.getMessage());
+			System.out.println("select_Like() 오류 - " + e.getMessage());
 		} finally {
 			// 자원 반환(주의! connection 객체 DAO에서 반환하지 않도록 해야한다!)
 			if(rs != null) try { rs.close(); } catch(Exception e) {}
 			if(pstmt != null) try { pstmt.close(); } catch(Exception e) {}
 		}
 		
-			return insertCount;
-		
-		
-	}
+		return like;
+	} // update_Like() 메서드 끝
 	
 	// 매장 중복 없이 최근 10개 리뷰 정보를 저장할 getByStoreList() 메서드 정의
 	public ArrayList<ReviewBean> getByStoreList() {

@@ -231,17 +231,16 @@
 </head>
 <body>
 <div class="join">
-    <h1><a href="#"><img alt="" src="../images/LOGO.png"></a></h1>
+    <h1><a href="/TeamProject/"><img alt="" src="../images/LOGO.png"></a></h1>
     <div class="join_container">
         <form action="MemberJoinProAction.do" method="POST" onsubmit="return checkForm()">
 
-            <%--                <h1><a href="/TeamProject/"><img class ="logo"src="../images/LOGO.png" alt="logo"></a></h1>--%>
+<!-- 			<h1><a href="/TeamProject/"><img class ="logo"src="../images/LOGO.png" alt="logo"></a></h1> -->
 
             <ul class="ingo_top">
-                <li>STEP1.본인인증</li>
                 <li>STEP1.약관동의</li>
-                <li class="active">STEP1.정보입력</li>
-                <li>STEP1.가입완료</li>
+                <li class="active">STEP2.정보입력</li>
+                <li>STEP3.가입완료</li>
             </ul>
             <strong>맛집 회원이 되어보세요!</strong>
             <p>회원정보를 입력해주세요</p>

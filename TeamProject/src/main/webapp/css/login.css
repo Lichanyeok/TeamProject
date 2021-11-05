@@ -1,25 +1,44 @@
 @charset "UTF-8";
 @import url(reset.css);
 
+body {
+   width: 100vw;
+   height: 100vh;
+}
+
 section {
-    margin: auto;
+/*    display: flex; */
+/*    justify-content : center; */
+/*    align-items: center; */
+/*     WIDTH: 1200PX; */
+/*     margin: 200px auto; */
     text-align: center;
+    padding-top: 300px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    
 }
 
 h1 {
-	
+   
     font-size: 50px;
     font-weight: bold;
-}
-.login_input  div {
-	margin-bottom:10px;
+   
+    
 }
 
+.login_input  div {
+   margin-bottom:10px;
+}
+
+
 .login_input label {
-	
-	width: 100px;
-	display :inline-block;
-	text-align: left;
+   
+   width: 120px;
+   display :inline-block;
+   text-align: left;
 }
 
 
@@ -31,14 +50,14 @@ h1 {
 
 .login_btn button{
     display: inline-block;
-    width: 276px;
+    width: 200px;
     height: 45px;
     font-size: 16px;
     font-weight: 900;
     color: #fff;
     background-color: #FF8831;
     border:none;
-    margin-left:94px;
+      margin-top: 10px;
   
     
 }

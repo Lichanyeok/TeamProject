@@ -10,15 +10,18 @@
 <meta charset="UTF-8">
 
 <title>Welcome, is Matzip</title>
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/style.css">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/style.css">
 </head>
 	<body>
 		<!-- 상위 고정 -->
-        <jsp:include page="inc/header.jsp"></jsp:include>
+        <jsp:include page="/inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
 		<div class = "main_banner">
         <img src="./images/main_banner.png" >
@@ -39,18 +42,20 @@
 	            <div class = "social">
 	   					<!-- 네이버 아이디로 로그인하는 경로-->
 	                    <div class = "naver_login">
-	                        <img class = "naver" src="images/naver.png">
+	                        <img class = "naver"src="./images/naver.png">
 	                        <span>네이버 아이디로 시작</span>
 
 	                    </div>
 	              		 <!-- 카카오 아이디로 로그인하는 경로-->
 	                	<div  class = "kakao_login">
-	                        <img class = "kakao" src="images/kakao.png" >
+	                        <img class = "kakao"src="./images/kakao.png" >
 	                        <span>카카오 아이디로 시작</span>
 	                    </div>
 	            </div>
 	         </c:when>
         </c:choose>
         </div>
+
+
 </body>
 </html>

@@ -20,23 +20,17 @@ public class ReviewListAction implements Action {
 		
 		String rev_store = request.getParameter("rev_store");
 		
-		// ReviewListService 클래스 인스턴스 생성 후
-		// getListCount() 메서드를 호출하여 전체 리뷰 수 조회 작업 요청
-		// => 파라미터 : rev_store, 리턴타입 : ReviewBean
+		String selectedOption = request.getParameter("selectedOption");
+		String isCheckedPic = request.getParameter("isCheckedPic");
+		System.out.println(rev_store + " , " + selectedOption + " , " + isCheckedPic);
+
 		ReviewListService svc = new ReviewListService();
-		ReviewBean rb = svc.getListCount(rev_store);
 		
-		// ReviewListService 클래스의 getStoreReviewList( 메서드를 호출하여 전체 리뷰 조회 요청
-		// => 파라미터 : rev_store 리턴타입 : ArrayList<ReviewBean>(articleList)
-		ArrayList<ReviewBean> articleList = svc.getStoreReviewList(rev_store);
-		
-		System.out.println("ReviewListAction - articleList : " + articleList);
-		System.out.println("reviewCount : " + rb);
+		ArrayList<ReviewBean> articleList = svc.getReviewSort(selectedOption, isCheckedPic, rev_store); // 체크중
 		request.setAttribute("articleList", articleList);
-		request.setAttribute("reviewData", rb);
 		
 		forward = new ActionForward();
-		forward.setPath("/review/rev_store.jsp");
+		forward.setPath("review/rev_list.jsp");
 		forward.setRedirect(false);
 		
 		return forward;
