@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.BoardBean;
-import vo.SearchBean;
+import vo.ReplyComment;
 
 import static db.jdbcUtil.*;
 
@@ -55,39 +55,35 @@ public class BoardDAO {
 	//----------------------------------------------------------
 	public int insertComment(BoardBean board) {
 		int insertCount=0;
-		
+		System.out.println("DAO의 insertCommnet");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		
 		try {
-			String sql = "SELECT MAX(board_num) FROM mvc_board";
+			
+			String sql = "SELECT MAX(num) FROM CustomerComment";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			
-			// �떎�쓬 �옉�뾽�쓣 �쐞�빐 PreparedStatement 媛앹껜 諛섑솚
-			// �븯�굹�쓽 硫붿꽌�뱶�뿉�꽌 蹂듭닔媛쒖쓽 PreparedStatement 媛� �깮�꽦�릺�뒗 寃껋쓣 諛⑹�
+		
 			close(pstmt);
 			
-			sql = "insert into CustomerComment values(null,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			System.out.println(board.getSubject()+", " + board.getContent() + ", " + board.getName());
-			pstmt.setString(1, board.getName());
-			pstmt.setString(2, board.getSubject());
-			pstmt.setString(3, board.getContent());
-			pstmt.setInt(4, 0); //readCount 0遺��꽣
-			System.out.println("DAO�쓽 insertComment");
-			insertCount = pstmt.executeUpdate();
+		
+				sql = "insert into CustomerComment values(null,?,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, board.getId());
+				pstmt.setString(2, board.getSubject());
+				pstmt.setString(3, board.getContent());
+				pstmt.setInt(4, board.getReadcount()); // readcount 0부터 시작
+				pstmt.setString(5,board.getCheck());
+				insertCount = pstmt.executeUpdate();
+			
 			
 			
 		} catch (SQLException e) {
-			System.out.println("insertComment() �삤瑜� - " + e.getMessage());
+			System.out.println("insertComment() 오류: " + e.getMessage());
 			e.printStackTrace();
 		}finally {
-			// �옄�썝 諛섑솚(二쇱쓽! Connection 媛앹껜�뒗 DAO �뿉�꽌 諛섑솚�븯吏� �븡�룄濡� �빐�빞�븳�떎!)
-//			if(rs != null) try { rs.close(); } catch(Exception e) {}
-//			if(pstmt != null) try { pstmt.close(); } catch(Exception e) {}
 			close(rs);
 			close(pstmt);
 		}
@@ -103,22 +99,18 @@ public class BoardDAO {
 		ResultSet rs = null;
 		
 		try {
-			// 3�떒怨�. SQL 援щЦ �옉�꽦 諛� �쟾�떖
-			// => �쟾泥� �젅肄붾뱶 媛��닔瑜� 議고쉶�븯湲� �쐞�빐 COUNT(*) �븿�닔 �궗�슜(�삉�뒗 COUNT(num))
 			String sql = "SELECT COUNT(*) FROM CustomerComment";
 			pstmt = con.prepareStatement(sql);
 			
-			// 4�떒怨�. SQL 援щЦ �떎�뻾 諛� 寃곌낵 泥섎━
 			rs = pstmt.executeQuery();
 			System.out.println("DAO�쓽 selectListCount");
 			if(rs.next()) {
-				listCount = rs.getInt(1); // �삉�뒗 "COUNT(*)" 吏��젙
+				listCount = rs.getInt(1); 
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// �옄�썝 諛섑솚
 			close(rs);
 			close(pstmt);
 		}
@@ -135,14 +127,13 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//議고쉶 �떆�옉 寃뚯떆臾�(�젅肄붾뱶) 踰덊샇 怨꾩궛(= �뻾 踰덊샇 怨꾩궛)
 		int startRow = (page -1) * limit;
 		
 		try {
 			
 			String sql = "select * from CustomerComment";
 			pstmt = con.prepareStatement(sql);
-			System.out.println("DAO�쓽 getCommentList");
+			System.out.println("DAO의 getCommentList");
 			rs = pstmt.executeQuery();
 			
 			articleList = new ArrayList<BoardBean>();
@@ -151,9 +142,10 @@ public class BoardDAO {
 			{
 				BoardBean board = new BoardBean();
 				board.setNum(rs.getInt("num"));
-				board.setName(rs.getString("name"));
+				board.setId(rs.getString("id"));
 				board.setSubject(rs.getString("subject"));
 				board.setDate(rs.getDate("date"));
+				board.setCheck(rs.getString("check"));
 				board.setReadcount(rs.getInt("readcount"));
 				
 				articleList.add(board);
@@ -162,10 +154,6 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			// �옄�썝 諛섑솚
-//			if(rs != null) try { rs.close(); } catch(Exception e) {}
-//			if(pstmt != null) try { pstmt.close(); } catch(Exception e) {}
-//			if(con != null) try { con.close(); } catch(Exception e) {}
 			close(rs);
 			close(pstmt);
 		
@@ -173,4 +161,133 @@ public class BoardDAO {
 		
 		return articleList;
 	}
+	
+	public BoardBean checkNum(int num) {
+		BoardBean comment = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("DAO의 checkNum, num의 값은"+num);
+		try {
+			
+			String sql = "select * from CustomerComment where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				comment = new BoardBean();
+				comment.setContent(rs.getString("content"));
+				comment.setDate(rs.getDate("date"));
+				comment.setId(rs.getString("id")); // 나중에 자신의 비밀글 확인할때 비교용으로 필요
+				comment.setSubject(rs.getString("subject"));
+				comment.setReadcount(rs.getInt("readcount"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("DAO checkNum에서 오류발생 : " + e.getMessage());
+		}finally {
+			close(rs);
+			close(pstmt);
+		
+		}
+		
+		
+		return comment;
+	}
+	
+		public void updateReadcount(int num) {
+		
+			PreparedStatement pstmt = null;
+		
+			try {
+				String sql ="update CustomerComment set readcount=readcount+1 where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				
+				pstmt.executeUpdate();
+				
+				commit(con);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+		}
+		
+	}
+		public int insertReply(ReplyComment reply, int num)
+		{
+			int insertCount=0;
+			System.out.println("DAO의 insertReply");
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "SELECT MAX(idx) FROM replyComment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+			
+				close(pstmt);
+				
+			
+					sql = "insert into replyComment values(null,?,?,?,now())";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, reply.getId());
+					pstmt.setString(2, reply.getContent());
+					pstmt.setInt(3, num);
+					insertCount = pstmt.executeUpdate();
+				
+				
+				
+			} catch (SQLException e) {
+				System.out.println("insertReply() 오류: " + e.getMessage());
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return insertCount;
+		}
+		
+		public ArrayList<ReplyComment> getReplyComment(int num)
+		{
+			ArrayList<ReplyComment> replycomment=null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				
+				String sql = "select * from replycomment where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				System.out.println("DAO의 getReplyComment");
+				rs = pstmt.executeQuery();
+
+				replycomment = new ArrayList<ReplyComment>();
+			
+				
+				while(rs.next())
+				{
+					ReplyComment reply = new ReplyComment();
+					reply.setId(rs.getString("id"));
+					reply.setContent(rs.getString("content"));
+					reply.setDate(rs.getDate("date"));
+					
+					replycomment.add(reply);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			
+			}
+			
+			return replycomment;
+		}
 }
