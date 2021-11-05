@@ -17,11 +17,30 @@ body {
 
 #category_wrap {
 	border: 2px solid #FF8831;
+	border-radius:5px;
 	margin: 0 auto;
 	width: 1080px;
 	height: auto;
 	vertical-align: middle;
 	margin-top: 10px;
+}
+#category_title{
+	
+	width: 400px;
+	height: 40px;
+	margin: 8px 0 8px 10px;
+	font-size: 30px;
+	color: #FF5531;
+	padding-top: 5px;
+	float: left;
+}
+#category_text{
+  	
+	width: 290px;
+	height: 15px;
+	margin-top: 40px;
+	color: #FF5531;
+	float: right;
 }
 #category_list {	
 	margin: auto;	
@@ -43,11 +62,8 @@ body {
 }
 #category_menu_ul>li:hover {
 	background: #FF6631;
+	cursor: pointer;
 }
-
-
-
-
 
 
 
