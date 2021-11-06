@@ -1,15 +1,29 @@
 
-create table search(
-	id varchar(20) PRIMARY KEY
-	road_address varchar(50) NOT NULL,		
+create table search(	
+	road_address varchar(50) primary key,		
 	jibun_address varchar(50) not null,	
 	category varchar(15) not null,			
 	place_name varchar(30) not null,			
 	star_score float,							
-	tell_number varchar(30),
+	tell_number varchar(30),	
 	logo_img varchar(30) not null,
 	date DATE not null,
 	recommend int default 0			
+);
+
+create table business(	
+	id varchar(20) primary key,
+	place_name varchar(30) not null,
+	business_lisence varchar(15) unique not null,
+	category varchar(15) not null,			
+	tell_number varchar(30) not null,
+	road_address varchar(50) not null,		
+	jibun_address varchar(50) not null,	
+	logo_img varchar(30) default 'no_img.jpg',
+	ori_logo_img varchar(40) default 'no_img.jpg',
+	star_score float,							
+	date DATE not null,
+	recommend int default 0	
 );
 alter table search add logo_img varchar(30) not null;
 alter table search add date date not null;

@@ -3,6 +3,8 @@ package vo;
 import java.sql.Date;
 
 public class SearchBean {
+	private String id;
+	private String business_lisence;
 	private String road_address;
 	private String jibun_address;
 	private String category;
@@ -10,6 +12,7 @@ public class SearchBean {
 	private float star_score;
 	private String tell_number;
 	private String logo_img;
+	private String ori_logo_img;
 	private Date date;
 	private int recommend;
 	public SearchBean() {};
@@ -22,15 +25,30 @@ public class SearchBean {
 	}
 	@Override
 	public String toString() {
-		return "SearchBean [road_address=" + road_address 
-				+ ", jibun_address=" + jibun_address 
-				+ ", place_name=" + place_name 
-				+ ", tell_number=" + tell_number 
-				+ ", logo_img=" + logo_img
-				+ ", date=" + date
-				+ ", recommend=" + recommend+"]";
+		return "SearchBean [id=" + id + ", business_lisence=" + business_lisence + ", road_address=" + road_address
+				+ ", jibun_address=" + jibun_address + ", category=" + category + ", place_name=" + place_name
+				+ ", star_score=" + star_score + ", tell_number=" + tell_number + ", logo_img=" + logo_img
+				+ ", ori_logo_img=" + ori_logo_img + ", date=" + date + ", recommend=" + recommend + "]";
+	}	
+	
+	public String getOri_logo_img() {
+		return ori_logo_img;
 	}
-	 
+	public void setOri_logo_img(String ori_logo_img) {
+		this.ori_logo_img = ori_logo_img;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getBusiness_lisence() {
+		return business_lisence;
+	}
+	public void setBusiness_lisence(String business_lisence) {
+		this.business_lisence = business_lisence;
+	}
 	public int getRecommend() {
 		return recommend;
 	}
