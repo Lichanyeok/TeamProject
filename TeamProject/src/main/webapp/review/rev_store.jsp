@@ -11,8 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Review_Test</title>
-<link rel="stylesheet" href="/TeamProject/css/reset.css">
-<link rel="stylesheet" href="/TeamProject/css/header.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 $(document).ready(function() {
