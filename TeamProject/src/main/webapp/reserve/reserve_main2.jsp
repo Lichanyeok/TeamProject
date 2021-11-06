@@ -25,14 +25,13 @@
   	}
   	
   	
-    //세션에 저장된  id로 가정
-    String id = null;
-    id = session.getAttribute("sId").toString();
-    if(id!=null){
-    	request.setAttribute("id", id);
-    }else{
-    	response.sendRedirect("./MemberLoginFormAction.do");
-    }
+  	 String id = null;
+     id = session.getAttribute("sId").toString();
+     if(id!=null){
+     	request.setAttribute("id", id);
+     }else{
+     	response.sendRedirect("./MemberLoginFormAction.do");
+     }
     %>
 <!DOCTYPE html>
 <html>
@@ -179,6 +178,10 @@
 <body>
     <div class = "reserve_wrap">
         <div class = "store_info">
+        	<div>
+                <h2>예약자명</h2> 
+                <span id="id"><%=id %></span>
+            </div>
             <div>
                 <h2>매장명</h2> 
                 <span id="storeName"><%=storeName %></span>
@@ -267,5 +270,6 @@
         </div>
         <button id="btnOk" value="확인">예약하기</button>
     </div>
+    <div id="result"></div>
 </body>
 </html>

@@ -37,16 +37,16 @@ public class PaymentAction implements Action {
 		PaymentService service = new PaymentService();
 		boolean isPaySuccess = service.payAction(reserve,used_coupon_code);
 		if(isPaySuccess) {
-			System.out.println("isPaySuccess : " + isPaySuccess + "°áÁ¦ ¼º°ø!");
+			System.out.println("isPaySuccess : " + isPaySuccess + "ê²°ì œ ì™„ë£Œ!");
 			forward = new ActionForward();
-			forward.setPath("./reserve/reserve_main.jsp");
+			forward.setPath("./reserve/reserve_main2.jsp");
 			forward.setRedirect(false);
 		}else {
-			 System.out.println("PaymentAction °áÁ¦½ÇÆĞ");
+			 System.out.println("PaymentAction ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			 response.setContentType("text/html; charset=UTF-8");
 	         PrintWriter out = response.getWriter();
 	         out.println("<script>");
-	         out.println("alert('°áÁ¦ ½ÇÆĞ.')");
+	         out.println("alert('ê²°ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.')");
 	         out.println("history.back()");
 	         out.println("</script>");
 		}
