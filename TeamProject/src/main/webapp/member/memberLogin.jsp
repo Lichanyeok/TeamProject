@@ -8,60 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/login.css">
-    <script src="./js/jquery-3.6.0.js"></script>
-    <script type="text/javascript">
-    	$(function(){
-    		var userInputId = getCookie("userInputId");
-    		$('#input[name="id"]').val(userInputId);
-    		
-    		if($('input[name="id"]').val() !=""){
-    			$('#idSaveCheck').attr("checked",true);
-    		}
-    		
-    		$('#idSaveCheck').change(function(){
-    			if($('#idSaveCheck').is(':checked')){
-    				var userInputId = $('input[name="id"]').val();
-    				setCookie("userInputId",userInputId,7);
-    			}else{
-    				deleteCookid("userInputId");
-    			}
-    		});
-    		
-    		$('input[name="id"]').keyup(function(){
-    			if($('#idSaveCheck').is(':checked')){
-    				var userInputId = $('input[name="id"]').val();
-    				setCookie("userInputId",userInputId,7);
-    			}
-    		});
-    	});
-    	
-    	function setCookie(cookieName, value, exdays){
-    		var exdate = new Date();
-    		exdate.setDate(exdate.getDate() + exdays);
-    		var cookieValue = escape(value) +((exdays==null)) ? "" : "; expires=" + exdate.toGMTString();
-    		document.cookie = cookieName + "=" cookieValue;
-    	}
-    	
-    	function deleteCookie() {
-			var expireDate = new Date();
-			expireDate.setDate(expireDate.getDate() -1);
-			document.cookie = cookieName + "= " + "; expires" + expireDate.toGMTString();
-		}
-    	
-    	function getCookie(cookieName){
-    		cookieName = cookieName + '=';
-    		var cookieData = document.cookie;
-    		var start = cookieData.indexOf(cookieName);
-    		var cookieValue ='';
-    		if(start != -1){
-    			start += cookieName.length;
-    			var end = cookieData.indexOf(';',start);
-    			if(end==-1)end = cookieData.length;
-    			cookieValue = cookieData.substring(start, end);
-    		}
-    		return unescape(cookieValue);
-    	}
-    </script>
 </head>
 <body>
 	<!-- 상위 고정 -->
@@ -89,7 +35,7 @@
 		</form>
         <div class ="checkbox">
             <div class="id_checkbox">
-                <input type="checkbox" id="idSaveCheck">
+                <input type="checkbox" id="id">
                 <label for="id">아이디 저장</label>
             </div>
 
@@ -99,8 +45,8 @@
             </div>
         </div>
         <ul class="find">
-            <li><a href = "./member/find_id2.jsp">아이디찾기</a></li>
-            <li><a href = "./member/find_pass2.jsp">비밀번호찾기</a></li>
+            <li><a href = "../member/find_pass.jsp">비밀번호찾기</a></li>
+            <li><a href = "../member/find_id.jsp">아이디찾기</a></li>
             <li><a href = "MemberJoinFormAction.do">회원가입</a></li>
         </ul>
 

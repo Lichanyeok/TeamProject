@@ -1,7 +1,8 @@
 
 create table search(
-	road_address varchar(50) PRIMARY KEY,		
-	jibun_address varchar(50) unique not null,	
+	id varchar(20) PRIMARY KEY
+	road_address varchar(50) NOT NULL,		
+	jibun_address varchar(50) not null,	
 	category varchar(15) not null,			
 	place_name varchar(30) not null,			
 	star_score float,							

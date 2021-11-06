@@ -11,11 +11,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Review_Test</title>
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 $(document).ready(function() {
 	// 첫 화면 뿌리기
 	var rev_store = $('input[name=rev_store]').val();
+	var rev_name = $('input[name=rev_name]').val(); // 닉네임 전달
 	
 	// 리뷰 여부 확인 전 이미지 및 글 숨기기
 	$('#rev_empty img').attr({'visibility':'hidden'});
@@ -24,34 +27,64 @@ $(document).ready(function() {
 	if($('input[name=score_count]').val() != 0) {
 		$.ajax({
 			type : "GET",
-			url : "./ReviewSort.re?rev_store=" + rev_store,
+			url : "./ReviewSort.re",
 			data : {
+				rev_store : rev_store,
 				selectedOption : "0",
-				isCheckedPic : "false"
+				isCheckedPic : "false",
+				rev_name : rev_name
 			},
 			success : function(msg) {
 				$('#rev_contents').html(msg);
-				
-				// 좋아요 갯수 증가를 위한 ajax 정의
-				$('#rev_menu_btn button').click(function() {
-					var rev_num = $(this).val();
-					
-					$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
-						type: "POST",
-						cache: false,
-						dataType: "json",
-						data: {
-							rev_num : rev_num
-						},
-						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
-						alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like 
-						$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
-						}, 
-						error:
-						function (request, status, error){
-						alert("ajax실패") } 
-					}); 
-				}); // 좋아요 ajax 끝
+				if(rev_name != "null") {
+					// 좋아요 갯수 증가를 위한 ajax 정의
+					$('#rev_menu_btn button').click(function() {
+						var rev_num = $(this).val(); // 리뷰 번호 전달
+						$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
+							type: "POST",
+							cache: false,
+							dataType: "json",
+							data: {
+								rev_num : rev_num,
+								rev_name : rev_name
+							},
+							success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
+								// 좋아요 or 취소에 따라 버튼 색상 바꾸기
+								$.ajax({ url: "<%=request.getContextPath()%>/ReviewIsLikeCheked.re",
+									type: "POST",
+									cache: false,
+									dataType: "json",
+									data: {
+										rev_num : rev_num,
+										rev_name : rev_name
+									},
+									success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+										var isClick = data.isCheck;
+										if(isClick > 0){
+											$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_write.png"});
+											alert("'좋아요'가 반영되었습니다!") ;
+										} else {
+											$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_empty.png"});
+											alert("'좋아요'가 취소되었습니다!") ;
+										}
+									}, 
+									error:
+									function (request, status, error){
+									alert("ajax실패") } 
+								});
+								// 좋아요 or 취소 판단 후 좋아요 수 변경
+								$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
+							}, 
+							error:
+							function (request, status, error){
+							alert("ajax실패") } 
+						}); 
+					}); // 좋아요 ajax 끝
+				} else {
+					$('#rev_menu_btn button').click(function() {
+						alert('로그인 후 이용해주세요!');
+					});
+				}
 			} // ajax success 끝
 		});
 	} else {
@@ -62,43 +95,80 @@ $(document).ready(function() {
 		$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
 	} // 첫 화면 불러오는 ajax 끝
 
-	
-	// 선택된 옵션 값에 따라 정렬방식 변경
-	$('#select').change(function() {
-		var isCheckedPic = $('#isRev_pic').prop("checked");
-		$.ajax({
-			type: "GET",
-			url: "./ReviewSort.re?rev_store=" + rev_store,
-			data : {
-				selectedOption : this.value,
-				isCheckedPic : isCheckedPic
-			},
-			success : function(msg){ //DB접근 후 가져온 데이터
-				$('#rev_contents').html(msg); // 초기화 후 정렬 방식에 따라 리뷰 새로 뿌리기
-				
-				// 좋아요 갯수 증가를 위한 ajax 정의
-				$('#rev_menu_btn button').click(function() {
-					var rev_num = $(this).val();
-					
-					$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
-						type: "POST",
-						cache: false,
-						dataType: "json",
-						data: {
-							rev_num : rev_num
-						},
-						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
-						alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like 
-						$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
-						}, 
-						error:
-						function (request, status, error){
-						alert("ajax실패") } 
-					}); 
-				}); // 좋아요 ajax 끝
-			}
-		});
-	});	
+	if($('input[name=score_count]').val() != 0) {
+		// 리뷰 정렬 방식을 선택하는 ajax 정의
+		$('#select').change(function() {
+			var isCheckedPic = $('#isRev_pic').prop("checked");
+			$.ajax({
+				type: "GET",
+				url: "./ReviewSort.re?rev_store=" + rev_store,
+				data : {
+					selectedOption : this.value,
+					isCheckedPic : isCheckedPic,
+					rev_name : rev_name
+				},
+				success : function(msg){ //DB접근 후 가져온 데이터
+					$('#rev_contents').html(msg); // 초기화 후 정렬 방식에 따라 리뷰 새로 뿌리기
+					if(rev_name != "null") {
+						// 좋아요 갯수 증가를 위한 ajax 정의
+						$('#rev_menu_btn button').click(function() {
+							var rev_num = $(this).val();
+							
+							$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
+								type: "POST",
+								cache: false,
+								dataType: "json",
+								data: {
+									rev_num : rev_num,
+									rev_name : rev_name
+								},
+								success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+									// 좋아요 or 취소에 따라 버튼 색상 바꾸기
+									$.ajax({ url: "<%=request.getContextPath()%>/ReviewIsLikeCheked.re",
+										type: "POST",
+										cache: false,
+										dataType: "json",
+										data: {
+											rev_num : rev_num,
+											rev_name : rev_name
+										},
+										success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+											var isClick = data.isCheck;
+											if(isClick > 0){
+												$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_write.png"});
+												alert("'좋아요'가 반영되었습니다!") ;
+											} else {
+												$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_empty.png"});
+												alert("'좋아요'가 취소되었습니다!") ;
+											}
+										}, 
+										error:
+										function (request, status, error){
+										alert("ajax실패") } 
+									});
+									// 좋아요 or 취소 판단 후 좋아요 수 변경
+									$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
+								}, 
+								error:
+								function (request, status, error){
+								alert("ajax실패") } 
+							}); 
+						}); // 좋아요 ajax 끝
+					} else {
+						$('#rev_menu_btn button').click(function() {
+							alert('로그인 후 이용해주세요!');
+						});
+					}
+				}
+			});
+		});	
+	} else {
+		// 리뷰가 없으므로 이미지와 글 표시
+		$('#rev_empty img').css({'visibility':'visible'});
+		$('#rev_empty span').css({'visibility':'visible'});
+		$('#rev_empty img').attr({src:"./review/rev_im/rev_empty.png"});
+		$('#rev_empty span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성된 리뷰가 없습니다.');
+	} // 리뷰 정렬 방식을 선택하는 ajax 끝
 	
 	// 마우스 오버 시 빈 리뷰 이미지를 채워진 이미지로 변경 / 클릭 시 리뷰 작성 페이지로 이동		
 	$('#rev_empty img').hover(
@@ -174,6 +244,7 @@ font-size: 2em;
 	<!-- 매장명을 저장할  -->
 	<input type="hidden" name="rev_store" value="<%=request.getParameter("rev_store") %>" />
 	<input type="hidden" name="score_count" value="<%=Integer.parseInt(request.getParameter("score_count")) %>" />
+	<input type="hidden" name="rev_name" value="<%=session.getAttribute("sNn") %>" />
 	<div id="wrap">
 		<!-- inc 폴더 내의 top.jsp 페이지를 현재 위치에 포함시키기 -->
 		<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -186,17 +257,17 @@ font-size: 2em;
 					<th id="rev_store" colspan="2"><%=request.getParameter("rev_store")%></th>
 				</tr>
 				<tr>
-					<td rowspan="2" id="rev_score" ><%=totalScore %></td>
+					<td rowspan="2" id="rev_score" ><%=totalScore%></td>
 					<td>
-						<%if(!forStar.equals(null)) {  %>
-						<img src="./review/rev_im/<%=forStar %>star.png" width="100" height="20" />
+						<%if(!forStar.equals(null)) { %>
+						<img src="./review/rev_im/<%=forStar%>star.png" width="100" height="20" />
 						<%} else { %>
 						<img src="./review/rev_im/0star.png" width="100" height="20" />
 						<%} %>
 					</td>
 				</tr>
 				<tr>
-					<td><h3 id="countReview">리뷰 <%=Integer.parseInt(request.getParameter("score_count")) %>개</h3></td>
+					<td><h3 id="countReview">리뷰 <%=Integer.parseInt(request.getParameter("score_count"))%>개</h3></td>
 				</tr>
 				
 				<tr>

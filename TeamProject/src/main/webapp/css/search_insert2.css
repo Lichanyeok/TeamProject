@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+:root {
+    --main-color:#FF8831;
+}
+
+#storeInsert{
+    width: 788px;
+    margin: 100px auto;
+}
+
+
+#storeInsert h1 {
+    text-align: center;
+}
+
+#storeInsert input{
+    width: 174px;   
+}
+
+
+#storeInsert strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 30px 0 8px 0;
+
+}
+
+#storeInsert p{
+    font-size: 13px;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    
+}
+
+#storeInsert table tr {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #888;
+    line-height: 40px;
+}
+
+#storeInsert table tr span {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+#storeInsert table tr th {
+    padding-left: 20px;
+    width: 102px;
+    text-align: left;
+    font-size: 13px;
+}
+
+#storeInsert table tr td label{
+    font-size: 11px;
+    margin-right: 3px;
+}
+
+#storeInsert table tr td input{
+    
+    transition: all 0.3s ease-in;
+}
+
+#storeInsert table tr td input:hover {
+    border: 1px solid var(--main-color);
+}
+
+
+#storeInsert table tr td .return_check:hover {
+    background-color: var(--main-color);
+
+}
+
+
+#storeInsert input[type="submit"] {
+    margin: 60px auto;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    display: block;
+    background-color: var(--main-color);
+    border: none;
+    width: 174px;
+    height: 36px;
+}

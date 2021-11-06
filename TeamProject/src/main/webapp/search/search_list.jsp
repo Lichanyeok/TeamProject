@@ -21,9 +21,6 @@
             width: auto;
             height: 510px;
         }
-        
-        
-
         .category_list_info {
             border: 1px solid #FF8831;
             width: 538px;
@@ -32,8 +29,6 @@
             margin: 0 auto;
             color: black;
             font-size: 15px;
-
-
         }
 
         .category_list_logo {
@@ -41,7 +36,6 @@
             height: 100px;
             float: left;
             margin-right: 10px;
-
         }
 
         .category_list_ul {
@@ -127,10 +121,10 @@
             <li class="list_tell">전화번호 : <%=articleList.get(i).getTell_number() %>
             </li>
         </ul>
-        <div class="list_commend">
-            <img src="./search/img/no_img.jpg">
-            <span>추천! (<%=articleList.get(i).getRecommend() %>)</span>
-        </div>
+<!--         <div class="list_commend"> -->
+<!--             <img src="./search/img/no_img.jpg"> -->
+<%--             <span>추천! (<%=articleList.get(i).getRecommend() %>)</span> --%>
+<!--         </div> -->
     </div>
     <%
             }

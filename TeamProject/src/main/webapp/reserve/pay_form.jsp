@@ -86,7 +86,7 @@ h3{
     background-color: #FF8831;
 }
 </style>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#showList').on('click',function(){

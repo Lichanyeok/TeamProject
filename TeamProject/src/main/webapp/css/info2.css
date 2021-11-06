@@ -37,22 +37,26 @@ img {
 	border-top: 1px solid rgb(195, 188, 188);
 }
 
-#benefit {
+#benefit {	
+	border-top:  1px solid rgb(155, 145, 145);
 	border-bottom: 1px solid rgb(155, 145, 145);
-	margin: 5% 0px;
+	margin: 8% 0px;
 }
 
-#benefit>p {
-	padding: 4% 0px;
-	font-weight: 700;
-	border-top: 1px solid rgb(155, 145, 145);
+#benefit>ul {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	
+	
 }
 
 #benefit ul li {
 	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
-	margin-bottom: 2.5%;
+	margin-top:10px;
+	margin-bottom:10px;
+	
 
 }
 
@@ -80,13 +84,13 @@ img {
 	margin: 0px auto;
 	display: flex;
 	gap: 4%;
+	
 }
 
 #item_detail_right {
 	width: 500px;
-	height: 450px;
-	float: right;
-	margin-top: 25px;
+	height: 446px;
+	float: right;	
 }
 
 #item_detail_right .item_txt>p {
@@ -111,14 +115,17 @@ img {
 #item .item_detail .item_detail_left {
 	width: 680px;
 	float: left;
-	margin: 25px;
+	
+	
 }
 
 #item .item_detail .item_detail_left img {
 	width: 700px;
-	height: 450px;
+	height: 440px;
 	padding: 5px;
 	display: block;
+	border: 3px solid #FF8831;
+		
 }
 
 #item .item_detail .item_detail_left li:first-child {
@@ -244,3 +251,19 @@ img {
 #liReview {
 	width: 500px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

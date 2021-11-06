@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/style.css">
-<script src="./js/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		
@@ -53,7 +53,7 @@
 </head>
 <body>
 		<!-- 상위 고정 -->
-        <jsp:include page="/inc/header.jsp"></jsp:include>
+        <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
         
         <form action="PublishCoupon.do" method="post">

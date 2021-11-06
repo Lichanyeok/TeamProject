@@ -356,7 +356,7 @@ public class ReviewDAO {
 	} // updateArticle() 메서드 끝
 	
 	// 정렬 방식 정의 (최신, 도움, 별점 및 사진)
-	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic, String rev_store) {
+	public ArrayList<ReviewBean> getReviewSort(String selectedOption, String isCheckedPic, String rev_store, String rev_name) {
 		ArrayList<ReviewBean> articleList = null; // 게시물을 저장할 객체 생성
 		System.out.println("ReviewDAO - getReviewSort()");
 		
@@ -367,28 +367,37 @@ public class ReviewDAO {
 		try {
 			if(isCheckedPic.equals("true")) { // 사진 포함한 리뷰 정렬 true
 				if(selectedOption.equals("0")) {
-					sql = "SELECT * FROM review WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
-					sql = "SELECT * FROM review WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
-					sql = "SELECT * FROM review WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
 				} else {
-					sql = "SELECT * FROM review WHERE rev_store =? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
 				}
 			} else {
 				if(selectedOption.equals("0")) {
-					sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_num DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
-					sql = "SELECT * FROM review WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
-					sql = "SELECT * FROM review WHERE rev_store =? ORDER BY rev_score DESC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_score DESC, rev_date DESC";
 				} else {
-					sql = "SELECT * FROM review WHERE rev_store =? ORDER BY rev_score ASC, rev_date DESC";
+					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_score ASC, rev_date DESC";
 				}
 			}
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rev_store);
+			pstmt.setString(1, rev_name);
+			pstmt.setString(2, rev_store);
 			
 			rs = pstmt.executeQuery();
 			
@@ -409,6 +418,7 @@ public class ReviewDAO {
 				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
 				rb.setRev_menu(rs.getString("rev_menu"));
 				rb.setRev_like(rs.getInt("rev_like"));
+				rb.setListCount(rs.getInt("isCheck")); // 해당 유저의 좋아요 유무 저장
 			
 				// 1개 레코드가 저장된 ReviewBean 객체를 List 객체에 추가
 				articleList.add(rb);
@@ -428,24 +438,64 @@ public class ReviewDAO {
 		
 	} // getReviewSort() 메서드 끝
 	
-	public int update_Like(int rev_num) {
-		System.out.println("ReviewDAO - select_Like()"); 
+	public int update_Like(int rev_num, String rev_name) {
+		System.out.println("ReviewDAO - update_Like()"); 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		int like = 0;
+		int isCheck = 0; // 좋아요 체크 확인
 		
 		try {
-			// 좋아요 수 증가
-			sql = "UPDATE review SET rev_like = rev_like + 1 WHERE rev_num=?";
+			// 좋아요 체크 확인
+			sql = "SELECT rev_isCheck FROM rev_isLike WHERE rev_num=? AND rev_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
-			like = pstmt.executeUpdate();
+			pstmt.setString(2, rev_name);
+			rs = pstmt.executeQuery();
 			
-			// 업데이트 실패할 경우
-			if(like < 0) {
-				return like;
+			if(rs.next()) { // 좋아요 취소 시 DB 데이터 삭제
+				close(pstmt);
+				sql = "DELETE FROM rev_isLike WHERE rev_num=? AND rev_name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rev_num);
+				pstmt.setString(2, rev_name);
+				int isDelete = pstmt.executeUpdate();
+				if(isDelete > 0) {
+					System.out.println("좋아요 취소 완료");
+				} else {
+					System.out.println("좋아요 취소 실패");
+				}
+			} else { // 좋아요 시 DB에 저장
+				close(pstmt);
+				sql = "INSERT INTO rev_isLike VALUES (?,?,1)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rev_num);
+				pstmt.setString(2, rev_name);
+				isCheck = pstmt.executeUpdate();
+				if(isCheck > 0) {
+					System.out.println("좋아요 완료");
+				} else {
+					System.out.println("좋아요 실패");
+				}
+			}
+			
+			// 리뷰의 좋아요 수 변경(증가, 감소)
+			if(isCheck > 0) {
+				close(rs);
+				// 좋아요 = 좋아요 수 증가
+				sql = "UPDATE review SET rev_like = rev_like + 1 WHERE rev_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rev_num);
+				pstmt.executeUpdate();
+			} else {
+				close(rs);
+				// 좋아요 취소 = 좋아요 수 감소
+				sql = "UPDATE review SET rev_like = rev_like - 1 WHERE rev_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rev_num);
+				pstmt.executeUpdate();
 			}
 			
 			// 업데이트 후 자원 반환
@@ -519,7 +569,7 @@ public class ReviewDAO {
 		}
 		
 		return articleList;
-	}
+	} // getByStoreList() 메서드 끝
     
     // 리뷰 작성 여부를 예약DB에 저장
 	public void isReviewWrite(ReviewBean rb) {
@@ -552,6 +602,35 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		
-	}
-    
+	} // isReviewWrite() 메서드 끝
+	
+	public int isLikeChecked(int rev_num, String rev_name) {
+		int isLikeChecked = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			sql = "SELECT rev_isCheck FROM rev_isLike WHERE rev_num=? AND rev_name=?"; 
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_num);
+			pstmt.setString(2, rev_name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				isLikeChecked = rs.getInt("rev_isCheck");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		return isLikeChecked;
+	} // isLikeCheced() 메서드 끝
+	  
 } // ReviewDAO 클래스 끝

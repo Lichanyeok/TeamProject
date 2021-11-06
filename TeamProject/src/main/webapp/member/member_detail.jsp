@@ -33,10 +33,10 @@
 <head>
 <meta charset="UTF-8">
 <title>상세 페이지</title>
-<link rel="stylesheet" href="/TeamProject/css/member_info.css">
-<link rel="stylesheet" href="/TeamProject/css/info.css">
-<link rel="stylesheet" href="/TeamProject/css/reset.css">
-<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="../css/member_info.css">
+<link rel="stylesheet" href="../css/info.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
 		<!-- 상위 고정 -->

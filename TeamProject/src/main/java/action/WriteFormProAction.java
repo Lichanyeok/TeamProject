@@ -14,12 +14,13 @@ public class WriteFormProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("WriteFormProAction.java");
-		ActionForward forward = null;
 		
+		ActionForward forward = null;
 		BoardBean board = new BoardBean();
-		board.setName(request.getParameter("name"));
+		board.setId(request.getParameter("id"));
 		board.setSubject(request.getParameter("subject"));
 		board.setContent(request.getParameter("content"));
+		board.setCheck(request.getParameter("ischk"));
 		
 		WriteFormProService service = new WriteFormProService();
 		

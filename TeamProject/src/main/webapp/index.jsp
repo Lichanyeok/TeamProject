@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 
 <title>Welcome, is Matzip</title>
-<link rel="stylesheet" href="../css/reset.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/style.css">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@
            			<button onclick="location.href='MemberLoginFormAction.do'">맛집 회원이신가요?</button>
             	</c:when>
             	<c:otherwise>
-           			<button onclick="location.href='MatzipSearch.mz'">맛집 찾으러 가기!</button>
+           			<button onclick="location.href='ReserveList.do'">예약 확인하기</button>
            		</c:otherwise>
             </c:choose>
         </div>
@@ -44,18 +44,18 @@
 	                    <div class = "naver_login">
 	                        <img class = "naver"src="./images/naver.png">
 	                        <span>네이버 아이디로 시작</span>
-	     
+
 	                    </div>
 	              		 <!-- 카카오 아이디로 로그인하는 경로-->
 	                	<div  class = "kakao_login">
 	                        <img class = "kakao"src="./images/kakao.png" >
 	                        <span>카카오 아이디로 시작</span>
-	                    </div> 
+	                    </div>
 	            </div>
 	         </c:when>
         </c:choose>
         </div>
-        
+
 
 </body>
 </html>
