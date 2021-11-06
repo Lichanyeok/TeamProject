@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import vo.ReviewBean;
 import svc.ReviewListService;
@@ -19,14 +20,15 @@ public class ReviewListAction implements Action {
 		ActionForward forward = null;
 		
 		String rev_store = request.getParameter("rev_store");
-		
 		String selectedOption = request.getParameter("selectedOption");
 		String isCheckedPic = request.getParameter("isCheckedPic");
-		System.out.println(rev_store + " , " + selectedOption + " , " + isCheckedPic);
+		String rev_name = request.getParameter("rev_name");
+		
+		System.out.println(rev_store + " , " + selectedOption + " , " + isCheckedPic + " , " + rev_name);
 
 		ReviewListService svc = new ReviewListService();
 		
-		ArrayList<ReviewBean> articleList = svc.getReviewSort(selectedOption, isCheckedPic, rev_store); // 체크중
+		ArrayList<ReviewBean> articleList = svc.getReviewSort(selectedOption, isCheckedPic, rev_store, rev_name);
 		request.setAttribute("articleList", articleList);
 		
 		forward = new ActionForward();

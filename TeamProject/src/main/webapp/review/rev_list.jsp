@@ -8,6 +8,7 @@
 <%
 		ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,11 +43,16 @@
 			<%} %><%=articleList.get(i).getRev_content() %>
 		</div>
 		<div id="rev_menu">
-			주문메뉴 : <%=articleList.get(i).getRev_menu() %>
+			주문메뉴 : <br>
+			<%=articleList.get(i).getRev_menu() %>
 		</div>
 		<div id="rev_menu_btn">
-			<button type="button" value="<%=articleList.get(i).getRev_num() %>" onclick="return like()">
-				<img src="<%=request.getContextPath() %>/review/rev_im/reviewGood.png" width="15" height="15">&nbsp;&nbsp;
+			<button type="button" class="btnLike<%=articleList.get(i).getRev_num() %>" value="<%=articleList.get(i).getRev_num() %>" onclick="return like()">
+					<%if(articleList.get(i).getListCount() <= 0){ %>
+						<img src="<%=request.getContextPath() %>/review/rev_im/rev_empty.png" width="20" height="20"><br>
+					<%}else { %>
+						<img src="<%=request.getContextPath() %>/review/rev_im/rev_write.png" width="20" height="20"><br>
+					<%} %>
 				<span class="likeScore<%=articleList.get(i).getRev_num()%>">
 					<!-- 여기에 좋아요 갯수 뿌리기 -->
 					<%=articleList.get(i).getRev_like() %>

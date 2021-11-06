@@ -13,10 +13,10 @@ public class MatzipListInsertAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward;
 		
-		String road=request.getParameter("road");
-		String jibun=request.getParameter("jibun");
-		String category2=request.getParameter("category");
-		String category=category2.substring(3,category2.length() );
+		String road=request.getParameter("road_address");
+		String jibun=request.getParameter("jibun_address");
+		String category=request.getParameter("category");
+		
 		String name=request.getParameter("name");
 		String tell=request.getParameter("tell");
 		SearchBean bean=new SearchBean();

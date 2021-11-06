@@ -19,13 +19,9 @@
 		<hr>
 			<div id="storeInsert">
 			<form action="" method="post">
-				<strong>맛집 회원이 되어보세요!</strong>
-	            <p>회원정보를 입력해주세요</p>
-	            <table>
-	              	<tr>
-	                    <th>업주명</th>
-	                    <td><input type="text" id="place_name" name="place_name"></td>
-	                </tr>
+				<strong>업체를 등록해보세요!</strong>
+	            <p>업체정보를 입력해주세요</p>
+	            <table>	              	
 	                <tr>
 	                    <th>업체명</th>
 	                    <td><input type="text" id="place_name" name="place_name"></td>
