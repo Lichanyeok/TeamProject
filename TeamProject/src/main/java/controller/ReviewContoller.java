@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.ReviewAction;
 import action.ReviewDeleteProAction;
-//import action.ReviewIsLikeChekedAction;
+import action.ReviewIsLikeChekedAction;
 import action.ReviewLikeAction;
 import action.ReviewListAction;
 import action.ReviewByStoresListAction;
@@ -141,22 +141,20 @@ public class ReviewContoller extends HttpServlet {
 					e.printStackTrace();
 		    	  } // try catch 끝 	    	  
 	    	  
-	      } 
-//	      else if(command.equals("/ReviewIsLikeCheked.re")) {
-//	    	  System.out.println("controller - /ReviewIsLikeCheked.re"); 
-//	    	  
-//	    	  action = new ReviewIsLikeChekedAction();
-//	    	  
-//	    	  try {
-//		    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
-//		    		// Action 타입으로 execute() 메서드 호출 가능함
-//					forward = action.execute(request, response);
-//		    	  } catch (Exception e) {
-//					e.printStackTrace();
-//		    	  } // try catch 끝 	    	  
-//	    	  
-//	      } 
-	      else if(command.equals("/ReviewByStores.re")) { // 매장 별 최신 리뷰 불러오기
+	      } else if(command.equals("/ReviewIsLikeCheked.re")) {
+	    	  System.out.println("controller - /ReviewIsLikeCheked.re"); 
+	    	  
+	    	  action = new ReviewIsLikeChekedAction();
+	    	  
+	    	  try {
+		    		// 업캐스팅 후에도 공통 메서드(상속 받은 메서드)는 호출이 가능하므로
+		    		// Action 타입으로 execute() 메서드 호출 가능함
+					forward = action.execute(request, response);
+		    	  } catch (Exception e) {
+					e.printStackTrace();
+		    	  } // try catch 끝 	    	  
+	    	  
+	      } else if(command.equals("/ReviewByStores.re")) { // 매장 별 최신 리뷰 불러오기
 	    	  System.out.println("controller - /ReviewByStores.re"); 
 	    	  
 	    	  action = new ReviewByStoresListAction(); // Action 인터페이스로 업캐스팅
