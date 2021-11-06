@@ -10,6 +10,8 @@ int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 <head>
 <meta charset="UTF-8">
 <title>리뷰삭제</title>
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
 <style>
 	#passForm {
 		width: 300px;
