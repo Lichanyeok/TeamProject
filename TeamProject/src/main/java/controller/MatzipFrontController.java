@@ -13,7 +13,8 @@ import action.Action;
 import action.GoReserveAction;
 import action.MatzipListAction;
 import action.MatzipListInsertAction;
-import action.MatzipListSQLAction;
+import action.MatzipModifyAction;
+import action.MatzipMyStoreAction;
 import action.MatzipInfoAction;
 import vo.ActionForward;
 
@@ -39,42 +40,49 @@ public class MatzipFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MatzipInfo.mz")) {
 			action = new MatzipInfoAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {				
 				e.printStackTrace();
 			}
 		}else if(command.equals("/GoReserve.mz")) {
 			action = new GoReserveAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {		
 				e.printStackTrace();
 			}
-		}
-		
-		// searchDB 등록
-		else if(command.equals("/MatzipListInsert.mz")) {
+		}else if(command.equals("/MatzipMyStore.mz")) {
+			action = new MatzipMyStoreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {		
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MatzipModify.mz")) {
+			forward=new ActionForward();
+			forward.setPath("./search/search_modify.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MatzipModifyPro.mz")) {
+			action = new MatzipModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {		
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MatzipInsertForm.mz")) {
+			forward=new ActionForward();
+			forward.setPath("./search/search_insert.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/MatzipListInsert.mz")) {
 			action = new MatzipListInsertAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else if(command.equals("/MatzipListSQL.mz")) {
-			action = new MatzipListSQLAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

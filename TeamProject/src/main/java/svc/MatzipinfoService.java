@@ -12,7 +12,7 @@ import dao.SearchDAO;
 
 public class MatzipinfoService {
 
-	public SearchBean getInfo(String road_address, String place_name) {
+	public SearchBean getInfo(String tell_number) {
 		SearchBean details = null;
 		
 		
@@ -26,7 +26,7 @@ public class MatzipinfoService {
 		
 		
 		
-		details = dao.Info(road_address, place_name);
+		details = dao.Info(tell_number);
 		
 		
 		close(con);

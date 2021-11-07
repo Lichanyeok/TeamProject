@@ -16,12 +16,12 @@ public class MatzipInfoAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=null;
 		
-		String road_address = request.getParameter("road_address");
 		String place_name = request.getParameter("place_name");
+		String tell_number = request.getParameter("tell_number");
 		
 		
 		MatzipinfoService service = new MatzipinfoService();
-		SearchBean info = service.getInfo(road_address, place_name);
+		SearchBean info = service.getInfo(tell_number);
 		
 		// 리뷰 갯수 및 평균 가져오기
 		ReviewBean reviewListCount = service.getListCount(place_name);

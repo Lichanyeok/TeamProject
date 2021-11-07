@@ -5,7 +5,7 @@
 }
 
 #storeInsert{
-    width: 788px;
+    width: 900px;
     margin: 100px auto;
 }
 
@@ -50,7 +50,7 @@
 
 #storeInsert table tr th {
     padding-left: 20px;
-    width: 102px;
+    width: 130px;
     text-align: left;
     font-size: 13px;
 }

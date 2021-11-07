@@ -219,9 +219,9 @@ function displayPlaces(places) {
     map.setBounds(bounds);
     
     $(".item").on("click",function(){		
-		var road_address= $(".road",this).text();
+		var tell_number= $(".tel",this).text();
 		var place_name= $(".placeName",this).text();
-		location.href="MatzipInfo.mz?road_address="+road_address
+		location.href="MatzipInfo.mz?tell_number="+tell_number
 				+"&place_name="+place_name;
 	});	
 		//리스트 db 저장용 		  

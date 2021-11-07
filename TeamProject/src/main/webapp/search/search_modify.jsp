@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="./css/search_insert.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -17,20 +20,20 @@
 		<!-- 상위 고정 -->
 		<hr>
 			<div id="storeInsert">
-			<form action="./MatzipListInsert.mz" method="post" enctype="multipart/form-data">				
-				<strong>매장을 등록해보세요!</strong>
-	            <p>매장정보를 입력해주세요</p>
+			<form action="./MatzipModifyPro.mz" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">				
+				<strong>매장정보 수정</strong>
+	            <p>*(필수항목)</p>
 	            <table>	              	
 	                <tr>
-	                    <th>매장명</th>
+	                    <th>*매장명</th>
 	                    <td><input type="text" id="place_name" name="place_name" required="required"></td>
 	                </tr>
 	                <tr>
-	                    <th>사업자 등록번호</th>
+	                    <th>*사업자 등록번호</th>
 	                    <td><input type="text" id="business_license" name="business_license" placeholder="- 제외 숫자 10자리" required="required"></td>
 	                </tr>
 	                <tr>
-	                    <th>업종</th>
+	                    <th>*업종</th>
 	                    <td>
 	                    	<select id="category" name="category">								
 								<option>한식</option>
@@ -50,23 +53,25 @@
 	                    </td>	
 	                </tr>	                
 	                <tr>
-	                    <th>전화번호</th>
+	                    <th>*전화번호</th>
 	                    <td><input type="text" name="tell_number" id="tell_number" required="required"></td> 
 	                </tr>
 	                <tr>
-	                    <th>주소</th>
-	                    <td><input type="text" readonly="readonly" id="road_address" name="road_address">
+	                    <th>*주소</th>
+	                    <td><input type="text" readonly="readonly" id="road_address" name="road_address" required="required">
 	                    <input type="text" id="jibun_address" name="jibun_address" required="required"></td>	                   
 	                </tr>
 	                <tr>
 	                    <th>로고 등록</th>
 	                    <td><input type="file" name="logo" id="logo"></td> 
 	                </tr>
-	              
+	              	
 	            </table>
-	            <input type="submit" value="업체등록">
+	            <input type="submit" value="정보수정">
 			</form>
-		</div>
+<!-- 			<input type="button" id="aa"value="aa" onclick="aa()">  -->
+			
+			</div>
 	</div>
 </body>
 </html>

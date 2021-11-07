@@ -23,7 +23,11 @@
                     if (grade == 5) { %>
             <li><a href="/TeamProject/AdminManagementFormAction.do">관리페이지</a></li>
             <li><a><%=nickName %>님</a>&nbsp;<a href="/TeamProject/MemberLogoutForm.do">로그아웃</a></li>
-            <% } else {%>
+            <% }else if(grade==4) {%>
+	            <li><a href="/TeamProject/MemberManagementFormAction.do">마이페이지</a></li>
+	            <li><a href="/TeamProject/MatzipMyStore.mz">마이스토어</a></li>
+	            <li><a><%=nickName %>님</a>&nbsp;<a href="/TeamProject/MemberLogoutForm.do">로그아웃</a></li>
+            <%} else {%>
             <li><a href="/TeamProject/MemberManagementFormAction.do">마이페이지</a></li>
             <li><a><%=nickName %>님</a>&nbsp;<a href="/TeamProject/MemberLogoutForm.do">로그아웃</a></li>
             <%} %>
