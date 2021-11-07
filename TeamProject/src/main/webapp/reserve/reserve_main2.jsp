@@ -25,14 +25,13 @@
   	}
   	
   	
-    //세션에 저장된  id로 가정
-    String id = null;
-    id = session.getAttribute("sId").toString();
-    if(id!=null){
-    	request.setAttribute("id", id);
-    }else{
-    	response.sendRedirect("./MemberLoginFormAction.do");
-    }
+  	 String id = null;
+     id = session.getAttribute("sId").toString();
+     if(id!=null){
+     	request.setAttribute("id", id);
+     }else{
+     	response.sendRedirect("./MemberLoginFormAction.do");
+     }
     %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +39,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reserve_sub.css">
+    <link rel="stylesheet" href="./css/reserve_main.css">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
@@ -177,8 +176,15 @@
 </script>
 </head>
 <body>
+		<!-- 상위 고정 -->
+        <jsp:include page="../inc/header.jsp"></jsp:include>
+        <!-- 상위 고정 -->
     <div class = "reserve_wrap">
         <div class = "store_info">
+        	<div>
+                <h2>예약자명</h2> 
+                <span id="id"><%=id %></span>
+            </div>
             <div>
                 <h2>매장명</h2> 
                 <span id="storeName"><%=storeName %></span>
@@ -267,5 +273,6 @@
         </div>
         <button id="btnOk" value="확인">예약하기</button>
     </div>
+    <div id="result"></div>
 </body>
 </html>

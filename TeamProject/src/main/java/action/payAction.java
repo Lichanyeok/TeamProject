@@ -1,14 +1,21 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.MemberDAO;
+import dao.ReserveDAO;
+import message.SendMessage;
 import svc.PaymentService;
 import vo.ActionForward;
+import vo.CouponBean;
+import vo.MemberBean;
 import vo.ReserveBean;
 
 public class payAction implements Action {
@@ -97,18 +104,35 @@ public class payAction implements Action {
 		String total_order_menu = menu1+ ":" + setA + ", "+ menu2 + ":"+setB+", " + menu3 + ":"+setC;
 		int reserve_type = Integer.parseInt(request.getParameter("reserve_type"));
 		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, id,reserve_date, reserve_time, people, customerNeeds, setA, setB, setC, total_order_menu);
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = db.jdbcUtil.getConnection();
+		dao.setConnection(con);
+		
+		ArrayList<CouponBean> couponList = dao.getUserCouponList(id);
+		
+		
+		System.out.println("couponList siz : " + couponList.size());
 		System.out.println(reserve.toString());
 		if(reserve_type>0) {
 			request.setAttribute("reserveBean", reserve);
-			forward.setPath("./reserve/pay_form.jsp");
+			request.setAttribute("couponList", couponList);
+			forward.setPath("./reserve/pay_form2.jsp");
 			forward.setRedirect(false);
 		}else {
 			PaymentService service = new PaymentService();
 			int isInsertSuccess = service.localPayment(reserve);
 			if(isInsertSuccess>0) {
+				ReserveDAO rDao = ReserveDAO.getInstance();
+				rDao.setConnection(con);
+				MemberBean bean = rDao.getInfo(id);
+				String mobile = bean.getMobile();
+				String content = storeName + " / " + reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다.";
+				SendMessage.sendMessage(mobile, content);
 				forward.setPath("./reserve/reserve_main.jsp");
 				forward.setRedirect(false);
 			}else {
+				
 				 System.out.println("PayAction local_payment 현장결제");
 				 response.setContentType("text/html; charset=UTF-8");
 		         PrintWriter out = response.getWriter();
@@ -118,6 +142,8 @@ public class payAction implements Action {
 		         out.println("</script>");
 			}
 		}
+		
+		db.jdbcUtil.close(con);
 		return forward;
 	}
 

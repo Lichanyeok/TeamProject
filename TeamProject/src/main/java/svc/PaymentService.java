@@ -26,11 +26,11 @@ public class PaymentService {
 				commit(con);
 				close(con);
 			}else {
-				System.out.println("ÄíÆù »èÁ¦ ½ÇÆÐ");
+				System.out.println("ì¿ í° ì •ë³´ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				rollback(con);
 			}
 		}else {
-			System.out.println("°áÁ¦ ½ÇÆÐ");
+			System.out.println("ì €ìž¥ ì‹¤íŒ¨");
 			rollback(con);
 		}
 		
@@ -45,11 +45,11 @@ public class PaymentService {
 		dao.setConnection(con);
 		isInsertSuccess = dao.insertLocalPayment(reserve);
 		if(isInsertSuccess>0) {
-			System.out.println("¿¹¾à¼º°ø");
+			System.out.println("í˜„ìž¥ê²°ì œ ì™„ë£Œ");
 			commit(con);
 		}else {
 			rollback(con);
-			System.out.println("¿¹¾à ½ÇÆÐ");
+			System.out.println("í˜„ìž¥ê²°ì œ ì‹¤íŒ¨");
 		}
 		close(con);
 		return isInsertSuccess;

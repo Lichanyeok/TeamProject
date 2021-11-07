@@ -1,0 +1,196 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&family=Roboto:wght@300;400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    width: 852px;
+    height: 780px;
+}
+
+li {
+    list-style: none;
+}
+
+table {
+    border-spacing: 0;
+}
+
+/* =======================reset=========================== */
+
+.store_wrap {
+    width: 852px;
+    margin: 0 auto;
+    
+}
+
+.store1{
+    width: 416px;
+    height: 356px;
+    float: left;
+    
+}
+
+.store1 h2 {
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 40px;
+    position: relative;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+/* 
+.store1 h2::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #000;
+} */ 
+
+.store1 {
+    border: 1px solid #dbdbdb
+}
+
+.store1 h2 {
+    background-color: #F1F1F1;
+}
+
+.store1 ul li {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 46px;
+}
+
+.store1 ul li h3 {
+    font-size: 15px;
+    font-weight: 900;
+    width: 154px;
+}
+
+.store1 ul li span {
+    width: 140px;
+    font-size: 11px;
+    text-align: center;
+   
+}
+
+.store2 {
+    width: 416px;
+    height: 356px;
+    float: right;
+    border: 1px solid #dbdbdb
+}
+
+.store2 h2 {
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 40px;
+    background-color:#F1F1F1;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.store2 ul li {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 37px;
+}
+
+.store2 ul li h3{
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    width: 154px;
+}
+
+.store2 ul li span {
+    width: 140px;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* ===============쿠폰===================== */
+
+.coupon {
+    clear: both;
+    padding-top: 80px;
+}
+
+.coupon caption {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 40px;
+    
+}
+
+
+.coupon table tr {
+    text-align: center;
+   
+    
+}
+
+.coupon table tr th {
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 900;
+    
+    
+}
+
+.coupon table tr td {
+    font-size: 11px;
+    line-height: 40px;
+    text-align: center;
+}
+
+/* ==========================결제==================== */
+
+
+.amount {
+    padding-top: 80px;
+}
+
+
+.amount caption {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 40px;
+}
+
+
+.amount table tr th{
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.amount table tr td{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 60px;
+    color: #1b1b1b;
+}
+
+.amount table tr td button {
+    border: none;
+    width: 130px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #FF8831;
+    line-height: 60px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

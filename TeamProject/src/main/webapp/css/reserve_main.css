@@ -1,0 +1,127 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-weight: 500;
+    color: #181818;
+}
+
+li {
+    list-style: none;
+}
+
+.reserve_wrap {
+    width: 852px;
+    margin: 0 auto ;
+    text-align: center;
+} 
+
+.store_info {
+    margin-top: 200px;
+}
+
+.store_info div {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.store_info div h2 {
+    width: 124px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.store_info li span {
+    
+    font-size: 11px;
+}
+
+
+.date_time {
+    width: 280px;
+    margin: 0 auto;
+}
+
+.date_time input , .date_time select{
+    width: 188px;
+    height: 36px;
+    border-radius: 8px;
+}
+
+.date_time div {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.date_time div > label {
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.add_info h2 {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 14px;
+}
+
+.add_info textarea {
+    width: 550px;
+    height: 165px;
+    border-radius: 36px;
+    padding: 14px;
+    margin-bottom: 38px;
+}
+
+.menu_font{
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 16px;
+}
+
+.menu {
+    margin: 0 auto;
+    width: 610px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+
+.menu input {
+    width: 152px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+.payment h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payment .pay {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+
+}
+
+.payment .pay div {
+    padding: 0 30px;
+}
+
+.reserve_wrap button {
+    margin: 30px 0 0;
+    border: none;
+    width: 188px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #FF8831;
+    color: #fff;
+    font-weight: 900;
+}

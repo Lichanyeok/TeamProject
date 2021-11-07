@@ -13,6 +13,7 @@ import static db.jdbcUtil.*;
 public class CheckReserverInfoService {
 
 	public boolean loginMember(MemberBean bean) {
+		System.out.println("loginMember");
 		boolean isLoginSuccess = false;
 		ReserveDAO dao = ReserveDAO.getInstance();
 		Connection con = getConnection();
@@ -25,6 +26,7 @@ public class CheckReserverInfoService {
 	}
 
 	public boolean isRightCode(String reserve_code) {
+		System.out.println("isRightCode");
 		boolean isRightCode = false;
 		ReserveDAO dao = ReserveDAO.getInstance();
 		Connection con = getConnection();
@@ -37,6 +39,7 @@ public class CheckReserverInfoService {
 	}
 
 	public ArrayList<ReserveBean> getResList(String reserve_code) {
+		System.out.println("getReseList");
 		ReserveDAO dao = ReserveDAO.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);

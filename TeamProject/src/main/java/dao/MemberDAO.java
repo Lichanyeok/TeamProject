@@ -777,5 +777,29 @@ public class MemberDAO {
 		}
 		return isUpdateSuccess;
 	}
+	
+	public MemberBean paymentInfo(String id) {
+		MemberBean bean = new MemberBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM project_member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean.setName(rs.getString("name"));
+				bean.setEmail(rs.getString("email"));
+				bean.setAddress(rs.getString("address"));
+				bean.setAddressDetail(rs.getString("address_detail"));
+				bean.setMobile(rs.getString("mobile"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bean;
+	}
 }
 

@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/reserve.css">
+<link rel="stylesheet" href="../css/reserve_main.css">
 <script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -31,7 +31,8 @@
 				"people":$('#people option:selected').text(),
 				"customerNeeds":$('#customer_needs').val(),
 				"setA":$('#setA').val(),
-				"setB":$('#setB').val()				
+				"setB":$('#setB').val(),
+				"setC":$('#setC').val()
 			};
 			$.ajax({
 				type:"get",
@@ -66,24 +67,42 @@
 		<!-- 상위 고정 -->
         <jsp:include page="../inc/header.jsp"></jsp:include>
         <!-- 상위 고정 -->
-    	<div class="reserve_wrap">
-        	<table class = "store_list"> 
-        	   <tr><th>예약번호</th><td id="reserve_code"><%=request.getParameter("reserve_code")%></td></tr>
-               <tr><th>매장명</th><td id="storeName"><%=request.getParameter("store_name")%></td></tr>
-               <tr><th>주소</th><td id="loadAddress"><%=request.getParameter("load_address")%></td></tr>
-               <tr><th>도로명주소</th><td id="address"><%=request.getParameter("address")%></td></tr>
-               <tr><th>매장번호</th><td id="storeNumber"><%=request.getParameter("store_number")%></td></tr>
-       		</table>
+    	<div class = "reserve_wrap">
+        <div class = "store_info">
+        	<div>
+                <h2>예약자명</h2> 
+                <span id="id"><%=id %></span>
+            </div>
+            <div>
+                <h2>매장명</h2> 
+                <span id="storeName"><%=request.getParameter("store_name") %></span>
+            </div>
+            <div>
+                <h2>주소</h2>
+                <span id="address"><%=request.getParameter("address") %></span>
+            </div>
+            <div>
+                <h2>도로명주소</h2>
+                <span id="loadAddress"><%=request.getParameter("load_address")  %></span>
+            </div>
+            <div>
+                <h2>전화번호</h2>
+                <span id="storeNumber"><%=request.getParameter("store_number") %></span>
+            </div>
+            <div>
+                <h2>예약번호</h2>
+                <span id="category"><%=request.getParameter("reserve_code") %></span>
+            </div>
+        </div>
 
-           <ul>
-		   	   <li><label>예약자명 : </lable><a id="id">${sId }</a></li>
-               <li>
-                   <label>날짜선택</label>
-                   <input type="date"  id="date"  name="date">
-               </li>
-               <li>
-                   <label>시간선택</label>
-                   <select name="time" id="time">
+        <div class="date_time">
+            <div>
+                <label for="">날짜선택</label>
+                <input type="date"  id="date" >
+            </div>
+            <div>
+                <label for="">시간선택</label>
+                <select name="" id="time">
                        <option value="">11:00</option>
                        <option value="">12:00</option>
                        <option value="">13:00</option>
@@ -93,28 +112,44 @@
                        <option value="">17:00</option>
                        <option value="">18:00</option>
                        <option value="">19:00</option>
-                    </select>
-                 </li>
-                <li>
-                    <label>인원선택</label>
-                    <select name="people" id="people">
+                </select>
+            </div>
+            <div>
+                <label for="">인원선택</label>
+                <select id="people">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
                         <option>5</option>
-                    </select>
-                </li>
-            </ul>
-
-            <div class = "requirements">
-                <p>추가요구사항</p>
-                <textarea rows="5" cols="50" id="customer_needs"></textarea>
+                </select>
             </div>
-			메뉴(변동 가능성 있음)
-        	set A<input type="number" name="setA" id="setA">
-        	set B<input type="number" name="setB" id="setB">
-            <button id="btnOk" value="확인">예약 변경</button>
-     </div>
+        </div> 
+
+        
+
+        <div class = "add_info">
+            <h2>추가사항</h2>
+            <textarea name="customer_needs" id="customer_needs" cols="30" rows="10"></textarea>
+        </div>
+
+        <h2 class = "menu_font">메뉴</h2>
+        <ul class = "menu">
+            <li>
+                <h3 id="menu1">메뉴1</h3>
+                <input type="number" value="0" name="setA" id="setA" min="0"> 
+            </li>
+            <li>
+                <h3 id="menu2">메뉴2</h3>
+                <input type="number" value="0" name="setB" id="setB" min="0">
+            </li>
+            <li>
+                <h3 id="menu3">메뉴3</h3>
+                <input type="number"  value="0" name="setC" id="setC" min="0">
+            </li>
+        </ul>
+      
+        <button id="btnOk" value="확인">예약하기</button>
+    </div>
  </body>
 </html>

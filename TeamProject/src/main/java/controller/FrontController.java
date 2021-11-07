@@ -257,6 +257,14 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/SendMessage.do")) {
+			action = new SendMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// -------------------------------리뷰 관련 컨트롤러 ------------------------------------

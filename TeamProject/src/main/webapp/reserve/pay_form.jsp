@@ -7,6 +7,7 @@
 	ReserveBean reserve = (ReserveBean)request.getAttribute("reserveBean");
 	//로그인 시 세션으로 저장된 ID
 	request.setAttribute("id", reserve.getId());
+	String id = request.getAttribute("id").toString();
 %>
 <!DOCTYPE html>
 <html>
@@ -137,7 +138,16 @@ h3{
 			});
 		});
 		
-		
+		$('#kakaopay').on('click',function(){
+			var id = $('#id').text();
+			var win = window.open("/TeamProject/reserve/kakaopay.jsp?id="+id, "PopupWin", "width=500,height=600");
+			
+			if(openWin.document.getElementById('paymentSuccess').value == true){
+				alert('suc');
+			}else{
+				alert('fail')
+			}
+		});
 		
 	});
 </script>
@@ -161,7 +171,7 @@ h3{
 			<li>총 주문 내역<br><a><%=reserve.getTotal_order_menu() %></a>
 			<li>추가사항<br><a><%=reserve.getCustomerNeeds() %></a></li>
 		</ul>
-		<h3 id="showList"><a id="id">${id }</a>님이<br>보유하신 쿠폰 보기</h3>
+		<h3 id="showList"><a id="id"><%=id %></a>님이<br>보유하신 쿠폰 보기</h3>
 		<div id="couponResult">
 		<div id="couponList"></div>
 		
@@ -183,6 +193,7 @@ h3{
 		
 		<li id="resultPrice"><%=totalPrice%></li>
 		</ul>
+		<button id="kakaopay">카카오페이로 결제하기</button>
 		<button id="paymentBtn">결제하기</button>
 	</div>
 	<div id="reserve_success"></div>
