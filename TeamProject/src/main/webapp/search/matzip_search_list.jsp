@@ -41,10 +41,6 @@
          });
       });
 
-      //       $("#aaa").on("click", function() {
-      //          location.href = "MatzipListSQL.mz?category=" + $("#bbb").val();
-      //       });
-
    });
 </script>
 </head>
