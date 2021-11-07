@@ -222,14 +222,17 @@ public class SearchDAO {
 		PreparedStatement pstmt = null;	
 		int count=0;
 		try {
-			String sql = "INSERT INTO search VALUES (?,?,?,?,0,?,?,now(),0)";
+			String sql = "INSERT INTO business VALUES (?,?,?,?,?,?,?,?,?,0,now(),0)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getRoad_address());
-			pstmt.setString(2, bean.getJibun_address());
-			pstmt.setString(3, bean.getCategory());
-			pstmt.setString(4, bean.getPlace_name());
+			pstmt.setString(1,bean.getId());
+			pstmt.setString(2, bean.getPlace_name());
+			pstmt.setString(3,bean.getBusiness_lisence());
+			pstmt.setString(4, bean.getCategory());
 			pstmt.setString(5, bean.getTell_number());
-			pstmt.setString(6, bean.getPlace_name()+".jpg");
+			pstmt.setString(6, bean.getRoad_address());
+			pstmt.setString(7, bean.getJibun_address());
+			pstmt.setString(8, bean.getLogo_img());
+			pstmt.setString(9, bean.getOri_logo_img());
 			
 			count =pstmt.executeUpdate();	
 			
