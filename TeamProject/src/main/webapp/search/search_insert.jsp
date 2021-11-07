@@ -9,7 +9,56 @@
 <link rel="stylesheet" href="/TeamProject/css/header.css">
 <link rel="stylesheet" href="./css/search_insert.css">
 <script src="./js/jquery-3.6.0.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
+<script>
+	$(document).ready(function() {
+
+		$("input#tell_number").blur(function() {
+
+			var num = $("#tell_number").val();
+
+			blur(num)
+
+		});
+
+		$("input#tell_number").click(function() {
+
+			var num = $("#tell_number").val();
+
+			focus(num);
+
+		});
+
+	});
+
+	function focus(num) {
+
+		num = num.replace(/[^0-9]/g, '');
+
+		$("#tell_number").val(num);
+
+	}
+
+	function blur(num) {
+
+		num = num.replace(/[^0-9]/g, '');
+
+		var tmp = '';
+
+		tmp += num.substr(0, 3);
+
+		tmp += '-';
+
+		tmp += num.substr(3, 4);
+
+		tmp += '-';
+
+		tmp += num.substr(7);
+
+		$("#tell_number").val(tmp);
+
+	}
+</script>
 </head>
 <body>
 	<div id="wrap">
