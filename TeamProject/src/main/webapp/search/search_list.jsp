@@ -96,10 +96,10 @@
         if (articleList != null) {
             for (int i = 0; i < articleList.size(); i++) {%>
     <div class="category_list_info">
-        <a href="./MatzipInfo.mz?road_address=<%=articleList.get(i).getRoad_address() %>
+        <a href="./MatzipInfo.mz?tell_number=<%=articleList.get(i).getTell_number() %>
 							&place_name=<%=articleList.get(i).getPlace_name()%>">            
             <img src="./search/img/<%=articleList.get(i).getCategory() %>/<%=articleList.get(i).getLogo_img() %>" class="category_list_logo">
-            </a>
+        </a>
         <ul class="category_list_ul">
             <li class="list_name"><%=articleList.get(i).getPlace_name() %>
                 <%

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%
+	String joinCase = request.getParameter("case");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +28,11 @@
    			
    			$('#btnGo').on('click',function(){
    				if($('#agree2').prop('checked')&&$('#agree3').prop('checked')){
-   					location.href='./memberJoin.jsp';
+   					if($('#joinCase').val() == 'customer'){
+   						location.href='./memberJoin.jsp';
+   					}else{
+   						location.href='./memberJoin_business.jsp';
+   					}
    				}else{
    					alert('약관 동의 필수!');
    				}
@@ -34,7 +41,7 @@
    </script>
 </head>
 <body>
-
+	<input type="hidden" id="joinCase" value="<%=joinCase%>">
     <div class = "join_container">
             <h1><a href="../"><img alt="" src="../images/LOGO.png"></a></h1>
             <ul class="ingo_top">

@@ -1,8 +1,8 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,10 +11,14 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import svc.MatzipListInsertService;
+import svc.MatzipModifyService;
+import svc.MatzipMyStoreService;
+import svc.MatzipinfoService;
 import vo.ActionForward;
+import vo.ReviewBean;
 import vo.SearchBean;
 
-public class MatzipListInsertAction implements Action{
+public class MatzipModifyAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,7 +27,6 @@ public class MatzipListInsertAction implements Action{
 		HttpSession session = request.getSession();
 	    String id=(String)session.getAttribute("sNn");
 //	    System.out.println(id);
-		
 		//-----------로고 이미지 업로드
 		String savePath="/upload";
 		String uploadPath=request.getRealPath("/upload");
@@ -67,14 +70,39 @@ public class MatzipListInsertAction implements Action{
 		bean.setLogo_img(fileName);
 		bean.setOri_logo_img(originalFileName);
 		
-		MatzipListInsertService service=new MatzipListInsertService();
-		service.insertList(bean);
-		
-		forward = new ActionForward();
-		forward.setPath("MatzipSearch.mz");
-		forward.setRedirect(true);
+		MatzipModifyService service=new MatzipModifyService();
+		int count =service.updateList(bean);
+		if(count>0) {	
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('정보수정 완료!')");
+			out.println("history.back()");
+			out.println("</script>");
+			forward = new ActionForward();
+			forward.setPath("MatzipMyStore.mz");
+			forward.setRedirect(true);
+		}
 		return forward;
-		
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
