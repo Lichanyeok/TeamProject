@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDAO;
+import dao.ReserveDAO;
+import message.SendMessage;
 import svc.PaymentService;
 import vo.ActionForward;
 import vo.CouponBean;
+import vo.MemberBean;
 import vo.ReserveBean;
 
 public class payAction implements Action {
@@ -107,7 +110,8 @@ public class payAction implements Action {
 		dao.setConnection(con);
 		
 		ArrayList<CouponBean> couponList = dao.getUserCouponList(id);
-		db.jdbcUtil.close(con);
+		
+		
 		System.out.println("couponList siz : " + couponList.size());
 		System.out.println(reserve.toString());
 		if(reserve_type>0) {
@@ -119,9 +123,16 @@ public class payAction implements Action {
 			PaymentService service = new PaymentService();
 			int isInsertSuccess = service.localPayment(reserve);
 			if(isInsertSuccess>0) {
+				ReserveDAO rDao = ReserveDAO.getInstance();
+				rDao.setConnection(con);
+				MemberBean bean = rDao.getInfo(id);
+				String mobile = bean.getMobile();
+				String content = storeName + " / " + reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다.";
+				SendMessage.sendMessage(mobile, content);
 				forward.setPath("./reserve/reserve_main.jsp");
 				forward.setRedirect(false);
 			}else {
+				
 				 System.out.println("PayAction local_payment 현장결제");
 				 response.setContentType("text/html; charset=UTF-8");
 		         PrintWriter out = response.getWriter();
@@ -131,6 +142,8 @@ public class payAction implements Action {
 		         out.println("</script>");
 			}
 		}
+		
+		db.jdbcUtil.close(con);
 		return forward;
 	}
 
