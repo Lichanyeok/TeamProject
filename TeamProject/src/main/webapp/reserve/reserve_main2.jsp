@@ -39,7 +39,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reserve_sub.css">
+    <link rel="stylesheet" href="./css/reserve_main.css">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
@@ -176,6 +176,9 @@
 </script>
 </head>
 <body>
+		<!-- 상위 고정 -->
+        <jsp:include page="../inc/header.jsp"></jsp:include>
+        <!-- 상위 고정 -->
     <div class = "reserve_wrap">
         <div class = "store_info">
         	<div>

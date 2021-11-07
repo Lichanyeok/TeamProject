@@ -333,10 +333,8 @@ private ReserveDAO() {
 			if(deleteCount>0) {
 				commit(con);
 				isCancleSuccess = true;
-				System.out.println("���� ����");
 			}else {
 				rollback(con);
-				System.out.println("���� ����");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -346,4 +344,28 @@ private ReserveDAO() {
 		}
 		return isCancleSuccess;
 	}
+
+	public MemberBean getInfo(String id) {
+		MemberBean bean = new MemberBean();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT mobile FROM project_member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				bean.setMobile(rs.getString(1));
+			}else {
+				bean = null;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return bean;
+	}
+	
 }

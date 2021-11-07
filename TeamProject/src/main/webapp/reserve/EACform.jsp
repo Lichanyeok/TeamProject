@@ -107,7 +107,7 @@ margin: 0px;
 outline: 2px solid #FF8831;
 }
 </style>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#btnOk').on('click',function(){
@@ -126,7 +126,7 @@ outline: 2px solid #FF8831;
 			}).done(function(data) {
 				$('#choice_area').html(data);
 			}).fail(function() {
-				
+				alert('조회 실패, 잠시 후 이용해주세요.')
 			});
 		});
 	});

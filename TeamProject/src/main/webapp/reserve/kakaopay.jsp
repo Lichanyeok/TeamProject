@@ -73,8 +73,18 @@
                     }
                 });
                 //성공시 이동할 페이지
-//                 document.getElementById('payBtn').style.color='red';
                 
+                document.getElementById('payBtn').value=1;
+                alert('결제 완료! 결제완료 버튼을 눌러 결제를 마무리해주세요!')
+                $('#payBtn').on('click',function(){
+                	var sendData = document.getElementById('payBtn').value;
+                	window.opener.document.getElementById('paymentBtn2').value = sendData;
+                	window.opener.document.getElementById('paymentBtn2').style = 'background-color:#FF8831';
+                	
+                	const target = window.opener.document.getElementById('paymentBtn2');
+                	target.disabled = false;
+                	self.close();
+                });
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
@@ -83,9 +93,10 @@
                 alert(msg);
             }
         });
+       
         
     });
     </script>
-<button id="payBtn">결제완료</button>
+<button id="payBtn" value="0">결제완료</button>
 </body>
 </html>

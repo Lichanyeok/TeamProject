@@ -36,23 +36,24 @@ public class ModiResAction implements Action {
 		String customerNeeds = request.getParameter("customerNeeds");
 		int setA = Integer.parseInt(request.getParameter("setA")); 
 		int setB = Integer.parseInt(request.getParameter("setB"));
-		String total_order_menu = "set A : " + setA + ", set B : " +setB;
+		int setC = Integer.parseInt(request.getParameter("setC"));
+		String total_order_menu = "set A : " + setA + ", set B : " +setB +", set C : " + setC;
 		ReserveBean bean = new ReserveBean(store_name, load_address, address, store_number, reserve_date, reserve_time, people, customerNeeds,total_order_menu, reserve_code);
-		System.out.println(bean.toString() + " setA , setB °ª ¾øÀ½");
+		
 		
 		ModiResService service = new ModiResService();
 		
 		boolean isModiSuccess = service.modiResService(bean);
 		if(isModiSuccess) {
-			System.out.println("ModiResAction ¼öÁ¤ ¼º°ø");
+			System.out.println("ModiResAction success");
 			forward.setPath("./modify_reserve.jsp");
 			forward.setRedirect(false);
 		}else {
-			 System.out.println("ModiResAction ¼öÁ¤ ½ÇÆÐ");
+			 System.out.println("ModiResAction fail");
 			 response.setContentType("text/html; charset=UTF-8");
 	         PrintWriter out = response.getWriter();
 	         out.println("<script>");
-	         out.println("alert('¼öÁ¤ ½ÇÆÐ.')");
+	         out.println("alert('ì˜ˆì•½ë³€ê²½ ì‹¤íŒ¨.')");
 	         out.println("history.back()");
 	         out.println("</script>");
 		}

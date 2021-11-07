@@ -28,7 +28,7 @@ public class CheckReserverInfoAction implements Action {
 		
 		
 		if(isLoginSuccess) {
-			System.out.println("¿Ã¹Ù¸¥ À¯Àú Á¤º¸");
+			System.out.println("íšŒì› ì •ë³´ ì¼ì¹˜");
 			boolean isRightCode = service.isRightCode(reserve_code);
 			
 			if(isRightCode) {
@@ -37,11 +37,11 @@ public class CheckReserverInfoAction implements Action {
 				forward.setPath("./reserve/reserver_info_result.jsp");
 				forward.setRedirect(false);
 			}else {
-				System.out.println("Á¸ÀçÇÏÁö ¾Ê´Â ¿¹¾àÄÚµå ÀÔ´Ï´Ù.");
+				System.out.println("ì½”ë“œê°€ í‹€ë¦½ë‹ˆë‹¤");
 			}
 			
 		}else {
-			System.out.println("¿Ã¹Ù¸£Áö ¸øÇÑ À¯ÀúÁ¤º¸ ÀÔ´Ï´Ù");
+			System.out.println("íšŒì›ì •ë³´ ë¶ˆì¼ì¹˜");
 		}
 
 		

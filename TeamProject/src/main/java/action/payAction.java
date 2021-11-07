@@ -1,14 +1,18 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.MemberDAO;
 import svc.PaymentService;
 import vo.ActionForward;
+import vo.CouponBean;
 import vo.ReserveBean;
 
 public class payAction implements Action {
@@ -97,10 +101,19 @@ public class payAction implements Action {
 		String total_order_menu = menu1+ ":" + setA + ", "+ menu2 + ":"+setB+", " + menu3 + ":"+setC;
 		int reserve_type = Integer.parseInt(request.getParameter("reserve_type"));
 		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, id,reserve_date, reserve_time, people, customerNeeds, setA, setB, setC, total_order_menu);
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = db.jdbcUtil.getConnection();
+		dao.setConnection(con);
+		
+		ArrayList<CouponBean> couponList = dao.getUserCouponList(id);
+		db.jdbcUtil.close(con);
+		System.out.println("couponList siz : " + couponList.size());
 		System.out.println(reserve.toString());
 		if(reserve_type>0) {
 			request.setAttribute("reserveBean", reserve);
-			forward.setPath("./reserve/pay_form.jsp");
+			request.setAttribute("couponList", couponList);
+			forward.setPath("./reserve/pay_form2.jsp");
 			forward.setRedirect(false);
 		}else {
 			PaymentService service = new PaymentService();
