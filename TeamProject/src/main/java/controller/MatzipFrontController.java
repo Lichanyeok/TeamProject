@@ -15,6 +15,7 @@ import action.MatzipListAction;
 import action.MatzipListInsertAction;
 import action.MatzipModifyAction;
 import action.MatzipMyStoreAction;
+import action.ReservationListAction;
 import action.MatzipInfoAction;
 import vo.ActionForward;
 
@@ -80,6 +81,13 @@ public class MatzipFrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}else if(command.equals("/MatzipListInsert.mz")) {
 			action = new MatzipListInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ReservationList.mz")) {
+			action = new ReservationListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

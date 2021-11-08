@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.ReserveBean;
 import vo.ReviewBean;
 import vo.SearchBean;
 
@@ -349,7 +350,6 @@ public class SearchDAO {
 				System.out.println("등록 실패 - DAO");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
@@ -358,6 +358,7 @@ public class SearchDAO {
 	}
 
 }
+
 
 
 

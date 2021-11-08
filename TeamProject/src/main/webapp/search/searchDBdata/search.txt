@@ -13,8 +13,3 @@ create table business(
 	recommend int default 0,
 	app_check varchar(2)		
 );
-
-
-
-
-
