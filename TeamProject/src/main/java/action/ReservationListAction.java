@@ -1,13 +1,17 @@
 package action;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import svc.MatzipinfoService;
 import svc.ReservationListService;
+import svc.ReserveListService;
 import vo.ActionForward;
+import vo.PageInfo;
 import vo.ReserveBean;
 import vo.ReviewBean;
 import vo.SearchBean;
@@ -16,33 +20,24 @@ public class ReservationListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward=null;
+	
+		ActionForward forward = null;
+		String store_name=(String)request.getAttribute("store_name");
 		
-		String storeName = request.getParameter("storeName");
-		String storeNumber = request.getParameter("storeNumber");
-		  
-		ReservationListService service = new ReservationListService();
-		ReserveBean ReservationList = service.getReservationList(storeNumber);
+		ReservationListService service=new ReservationListService();
 		
-		ReserveBean ReserveListCount = service.getListCount(storeName);
+		ArrayList<ReserveBean> articleList = service.getReservationList(store_name);
 		
-		if(ReservationList==null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('예약이 불가능 합니다!')");
-			out.println("history.back()");
-			out.println("</script>");
-		}else {
-			request.setAttribute("article", ReservationList);
-			request.setAttribute("reviewListCount", ReserveListCount);
-			forward = new ActionForward();
-			forward.setPath("./search/reservation_list.jsp");
-			forward.setRedirect(false);			
-		}
-
+		request.setAttribute("articleList", articleList);
+			
 		
+		forward=new ActionForward();
+		forward.setPath("search/reservation_list.jsp");
+		forward.setRedirect(false);
 		return forward;
+			
+		
+		
 		
 		
 	}

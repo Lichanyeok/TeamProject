@@ -12,6 +12,7 @@ import static db.jdbcUtil.*;
 
 import vo.MemberBean;
 import vo.ReserveBean;
+import vo.SearchBean;
 
 public class ReserveDAO {
 private ReserveDAO() {
@@ -402,6 +403,46 @@ private ReserveDAO() {
 			e.printStackTrace();
 		}
 		return bossMobile;
+	}
+
+	public ArrayList<ReserveBean> getReservationList(String store_name) {
+		ArrayList<ReserveBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		
+		try {
+			String sql = "SELECT * FROM reserve WHERE store_name=? ORDER BY reserve_date DESC";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, store_name);
+			
+			rs = pstmt.executeQuery();
+			
+			articleList = new ArrayList<ReserveBean>();
+			
+			while(rs.next()) {
+				ReserveBean article = new ReserveBean();
+//				article.setReserve_user(rs.getString("reserve_user"));
+				article.setReserve_date(rs.getString("reserve_date"));
+				article.setReserve_time(rs.getString("reserve_time"));
+				article.setPeople(rs.getInt("reserve_people"));
+				article.setTotal_order_menu(rs.getString("reserve_menu"));
+				article.setCustomerNeeds(rs.getString("customer_request"));
+				article.setReserve_type(rs.getInt("reserve_type"));
+				
+				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
+				articleList.add(article);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+ 		} finally {
+			// 자원 반환
+ 			close(rs);
+ 			close(pstmt);
+		}
+		
+		return articleList;
 	}
 	
 }
