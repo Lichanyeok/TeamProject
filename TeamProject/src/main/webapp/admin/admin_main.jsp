@@ -69,7 +69,7 @@
                 <li><a>관리자메뉴</a></li>
                 <li><a href="AdminManagementFormAction.do">회원관리</a></li>
                 <li><a href="MemberGift.do">쿠폰지급</a></li>
-                <li><a href="#">메뉴3</a></li>
+                <li><a href="RequestAddStore.do">등록신청관리</a></li>
                 <li><a href="#">메뉴4</a></li>
             </ul>
    		</nav>

@@ -21,7 +21,7 @@ public class MatzipListInsertAction implements Action{
 		ActionForward forward=null;
 		
 		HttpSession session = request.getSession();
-	    String id=(String)session.getAttribute("sNn");
+	    String id=(String)session.getAttribute("sId");
 //	    System.out.println(id);
 		
 		//-----------로고 이미지 업로드
