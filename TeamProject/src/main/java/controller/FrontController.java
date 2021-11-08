@@ -177,7 +177,23 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
+		}else if(command.equals("/RequestAddStore.do")) {
+			action = new AddStoreListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/AddStoreAction.do")){
+			action = new AddStoreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 		}else if (command.equals("/member/SendAuthMail.do")) {
             action = new SendAuthMailAction();
             try {
@@ -328,7 +344,15 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/DeleteComment.do")) { 
+			action = new DeleteCommentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 		if(forward!=null){
 			if(forward.isRedirect()) {

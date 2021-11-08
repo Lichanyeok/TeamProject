@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url(reset.css);
-@import url(style.css);
 body {
    width: 100vw;
    height: 100vh;
@@ -35,7 +34,6 @@ h1 {
 
 
 .login_input label {
-   
    width: 120px;
    display :inline-block;
    text-align: left;

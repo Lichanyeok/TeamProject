@@ -5,6 +5,7 @@ import static db.jdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.ReviewBean;
@@ -285,6 +286,75 @@ public class SearchDAO {
 		}
 		
 		return count;		
+	}
+	
+	public ArrayList<SearchBean> getAddStoreList() {
+		ArrayList<SearchBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		
+		try {
+			String sql = "SELECT * FROM business WHERE app_check='N' "
+					+ "ORDER BY star_score DESC LIMIT 0,10";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			articleList = new ArrayList<SearchBean>();
+			
+			while(rs.next()) {
+				SearchBean search = new SearchBean();
+				search.setId(rs.getString("id"));
+				search.setRoad_address(rs.getString("road_address"));
+				search.setJibun_address(rs.getString("jibun_address"));
+				search.setCategory(rs.getString("category"));
+				search.setBusiness_lisence(rs.getString("business_lisence"));
+				search.setPlace_name(rs.getString("place_name"));
+				search.setStar_score(rs.getFloat("star_score"));
+				search.setTell_number(rs.getString("tell_number"));
+				search.setLogo_img(rs.getString("logo_img"));
+				search.setDate(rs.getDate("date"));
+				search.setRecommend(rs.getInt("recommend"));
+				
+				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
+				articleList.add(search);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+ 		} finally {
+			// 자원 반환
+ 			close(rs);
+ 			close(pstmt);
+		}
+		
+		return articleList;
+	
+	}
+
+	public int updateStore(String lisence) {
+		System.out.println("dao : " +lisence);
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "UPDATE business SET app_check='Y' WHERE business_lisence=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, lisence);
+			updateCount = pstmt.executeUpdate();
+			if(updateCount>0) {
+				commit(con);
+				System.out.println("등록 성공 - DAO");
+			}else {
+				rollback(con);
+				System.out.println("등록 실패 - DAO");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
 	}
 
 }

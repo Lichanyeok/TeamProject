@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
 	$(document).ready(function() {
 		$("#chk").on("click", function(){

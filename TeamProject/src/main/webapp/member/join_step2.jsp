@@ -8,8 +8,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-   <link rel="stylesheet" href="../css/style.css">
-   <link rel="stylesheet" href="../css/join_step2.css">
+   <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/join_step2.css">
    <script  src="../js/jquery-3.6.0.js" ></script>
    <script type="text/javascript">
    		$(function(){

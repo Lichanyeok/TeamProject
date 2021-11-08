@@ -29,7 +29,7 @@
  border: 1px solid; 
  } 
 </style>
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 function twosend(num, id, ck) {
 	if(ck==true){
