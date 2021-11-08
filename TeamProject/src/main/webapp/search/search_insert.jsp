@@ -28,6 +28,10 @@
 			focus(num);
 
 		});
+		
+		$("#business_lisence").on('click',function(){
+			alert('aaa');
+		});
 
 	});
 
@@ -58,6 +62,11 @@
 		$("#tell_number").val(tmp);
 
 	}
+	
+	function checkForm(){
+		alert("aaa");
+		return true;
+	} 
 </script>
 </head>
 <body>
@@ -66,7 +75,7 @@
 		<!-- 상위 고정 -->
 		<hr>
 			<div id="storeInsert">
-			<form action="./MatzipListInsert.mz" method="post" enctype="multipart/form-data">				
+			<form action="./MatzipListInsert.mz" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">				
 				<strong>매장을 등록해보세요!</strong>
 	            <p>매장정보를 입력해주세요</p>
 	            <table>	              	
@@ -76,14 +85,14 @@
 	                </tr>
 	                <tr>
 	                    <th>사업자 등록번호</th>
-	                    <td><input type="text" id="business_license" name="business_license" placeholder="- 제외 숫자 10자리" required="required"></td>
+	                    <td><input type="text" id="business_lisence" name="business_lisence" placeholder="- 제외 숫자 10자리" required="required"></td>
 	                </tr>
 	                <tr>
 	                    <th>업종</th>
 	                    <td>
 	                    	<select id="category" name="category">								
 								<option>한식</option>
-								<option>양식</option>
+								<option>양식</option>   
 								<option>중식</option>
 								<option>일식</option>
 								<option>치킨</option>
