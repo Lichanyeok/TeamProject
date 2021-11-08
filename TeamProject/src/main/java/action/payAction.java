@@ -104,7 +104,7 @@ public class payAction implements Action {
 		String total_order_menu = menu1+ ":" + setA + ", "+ menu2 + ":"+setB+", " + menu3 + ":"+setC;
 		int reserve_type = Integer.parseInt(request.getParameter("reserve_type"));
 		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, id,reserve_date, reserve_time, people, customerNeeds, setA, setB, setC, total_order_menu);
-		
+		reserve.setCategory(category);
 		MemberDAO dao = MemberDAO.getInstance();
 		Connection con = db.jdbcUtil.getConnection();
 		dao.setConnection(con);

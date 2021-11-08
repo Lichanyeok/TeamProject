@@ -20,8 +20,8 @@ public class ReserveBean {
 	private String ran_num;
 	private int reserve_type;
 	private int check_review;
-
-	
+	private String reserve_code;
+	private String category;
 
 	@Override
 	public String toString() {
@@ -67,9 +67,10 @@ public class ReserveBean {
 		this.total_order_menu = total_order_menu;
 	}
 	
-	public ReserveBean(String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
+	public ReserveBean(String category,String storeName, String loadAddress, String address, String storeNumber, String id,String reserve_date, String reserve_time,
 			int people, String customerNeeds, String total_order_menu, int payment_price) {
 		super();
+		this.category = category;
 		this.id = id;
 		this.storeName = storeName;
 		this.loadAddress = loadAddress;
@@ -83,6 +84,22 @@ public class ReserveBean {
 		this.total_order_menu = total_order_menu;
 	}
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getReserve_code() {
+		return reserve_code;
+	}
+
+	public void setReserve_code(String reserve_code) {
+		this.reserve_code = reserve_code;
+	}
+
 	public int getCheck_review() {
 		return check_review;
 	}

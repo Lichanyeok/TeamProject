@@ -55,6 +55,7 @@
 		$('#btnOk').on('click',function(){
 // 			alert($('input[type=radio]:checked').val());
 			var info = {
+					"category":$('#category').text(),
 					"storeName":$('#storeName').text(),
 					"loadAddress":$('#loadAddress').text(),
 					"address":$('#address').text(),

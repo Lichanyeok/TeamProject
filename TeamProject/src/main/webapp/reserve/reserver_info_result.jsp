@@ -93,7 +93,7 @@ button {
 				<%if(resList.get(0).getReserve_type()>0){ %>
 					<button style="background-color: gray;" onclick="alert('결제 후 예약하신 고객께서는 취소 후 새로 예약하셔야합니다.')">예약 변경하러 가기</button>
 					<%}else{ %>
-						<button id="editBtn" onclick="location.href='./reserve/modify_reserve.jsp?store_name=<%=resList.get(0).getStoreName()%>&load_address=<%=resList.get(0).getLoadAddress()%>&address=<%=resList.get(0).getAddress()%>&store_number=<%=resList.get(0).getStoreNumber()%>&reserve_code=<%=resList.get(0).getRan_num()%>'">
+						<button id="editBtn" onclick="location.href='./ModifyReserve.do?store_name=<%=resList.get(0).getStoreName()%>&load_address=<%=resList.get(0).getLoadAddress()%>&address=<%=resList.get(0).getAddress()%>&store_number=<%=resList.get(0).getStoreNumber()%>&reserve_code=<%=resList.get(0).getRan_num()%>&category=<%=resList.get(0).getCategory()%>'">
 						예약 변경</button>
 					<%} %>
 					<button id="res_cancle_btn">예약 취소</button>

@@ -23,6 +23,7 @@
 		$('#paymentBtn2').on('click',function(){
 			var sendData = {
 				"reserve_user":$('#id').text(),
+				"category":$('#category').text(),
 				"storeName":$('#storeName').html(),
 				"loadAddress":$('#loadAddress').html(),
 				"address":$('#address').html(),

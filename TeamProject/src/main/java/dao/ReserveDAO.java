@@ -43,21 +43,22 @@ private ReserveDAO() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "INSERT INTO reserve VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,0,now()) ";
+			String sql = "INSERT INTO reserve VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,now()) ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,reserve_code);
 			pstmt.setString(2,reserve.getId());
-			pstmt.setString(3, reserve.getStoreName());
-			pstmt.setString(4, reserve.getLoadAddress());
-			pstmt.setString(5, reserve.getAddress());
-			pstmt.setString(6, reserve.getStoreNumber());
-			pstmt.setString(7, reserve.getReserve_date());
-			pstmt.setString(8, reserve.getReserve_time());
-			pstmt.setInt(9, reserve.getPeople());
-			pstmt.setString(10, reserve.getTotal_order_menu());
-			pstmt.setString(11, reserve.getCustomerNeeds());
-			pstmt.setInt(12, 1);
-			pstmt.setInt(13, reserve.getPayment_price());
+			pstmt.setString(3,reserve.getCategory());
+			pstmt.setString(4, reserve.getStoreName());
+			pstmt.setString(5, reserve.getLoadAddress());
+			pstmt.setString(6, reserve.getAddress());
+			pstmt.setString(7, reserve.getStoreNumber());
+			pstmt.setString(8, reserve.getReserve_date());
+			pstmt.setString(9, reserve.getReserve_time());
+			pstmt.setInt(10, reserve.getPeople());
+			pstmt.setString(11, reserve.getTotal_order_menu());
+			pstmt.setString(12, reserve.getCustomerNeeds());
+			pstmt.setInt(13, 1);
+			pstmt.setInt(14, reserve.getPayment_price());
 			insertCount = pstmt.executeUpdate();
 			if(insertCount > 0) {
 				System.out.println("reserveInsert 성공");
@@ -187,21 +188,22 @@ private ReserveDAO() {
 		String reserve_code = getRandomStr(15);
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "INSERT INTO reserve VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,0,now()) ";
+			String sql = "INSERT INTO reserve VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,now()) ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,reserve_code);
 			pstmt.setString(2,reserve.getId());
-			pstmt.setString(3, reserve.getStoreName());
-			pstmt.setString(4, reserve.getLoadAddress());
-			pstmt.setString(5, reserve.getAddress());
-			pstmt.setString(6, reserve.getStoreNumber());
-			pstmt.setString(7, reserve.getReserve_date());
-			pstmt.setString(8, reserve.getReserve_time());
-			pstmt.setInt(9, reserve.getPeople());
-			pstmt.setString(10, reserve.getTotal_order_menu());
-			pstmt.setString(11, reserve.getCustomerNeeds());
-			pstmt.setInt(12, 0);
-			pstmt.setInt(13, reserve.getPayment_price());
+			pstmt.setString(3, reserve.getCategory());
+			pstmt.setString(4, reserve.getStoreName());
+			pstmt.setString(5, reserve.getLoadAddress());
+			pstmt.setString(6, reserve.getAddress());
+			pstmt.setString(7, reserve.getStoreNumber());
+			pstmt.setString(8, reserve.getReserve_date());
+			pstmt.setString(9, reserve.getReserve_time());
+			pstmt.setInt(10, reserve.getPeople());
+			pstmt.setString(11, reserve.getTotal_order_menu());
+			pstmt.setString(12, reserve.getCustomerNeeds());
+			pstmt.setInt(13, 0);
+			pstmt.setInt(14, reserve.getPayment_price());
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -285,6 +287,7 @@ private ReserveDAO() {
 				bean.setCustomerNeeds(rs.getString("customer_request"));
 				bean.setPayment_price(rs.getInt("payment_price"));
 				bean.setReserve_type(rs.getInt("reserve_type"));
+				bean.setCategory(rs.getString("category"));
 				resList.add(bean);
 			}
 		} catch (SQLException e) {
@@ -302,6 +305,7 @@ private ReserveDAO() {
 		PreparedStatement pstmt = null;
 		String sql="UPDATE reserve SET reserve_date=?,reserve_time=?,reserve_people=?,reserve_menu=?,customer_request=? WHERE ran_num=?";
 		try {
+			System.out.println(bean.getRan_num());
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getReserve_date());
 			pstmt.setString(2, bean.getReserve_time());

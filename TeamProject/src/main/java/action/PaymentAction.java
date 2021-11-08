@@ -17,6 +17,7 @@ public class PaymentAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		String reserve_user = request.getParameter("reserve_user");
+		String category = request.getParameter("category");
 		String storeName = request.getParameter("storeName");
 		String loadAddress = request.getParameter("loadAddress");
 		String address = request.getParameter("address");
@@ -31,7 +32,7 @@ public class PaymentAction implements Action {
 		String used_coupon_code = request.getParameter("used_coupon_code");
 		String total_order_menu =request.getParameter("total_order_menu");
 		
-		ReserveBean reserve = new ReserveBean(storeName, loadAddress, address, storeNumber, reserve_user, reserve_date, reserve_time, reserve_people, reserve_needs, total_order_menu,payment_price);
+		ReserveBean reserve = new ReserveBean(category,storeName, loadAddress, address, storeNumber, reserve_user, reserve_date, reserve_time, reserve_people, reserve_needs, total_order_menu,payment_price);
 		System.out.println(reserve.toString());
 		
 		PaymentService service = new PaymentService();
