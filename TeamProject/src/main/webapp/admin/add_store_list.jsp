@@ -32,6 +32,7 @@
 				url:"AddStoreAction.do"
 			}).done(function(data) {
 				alert('등록 완료!');
+				location.reload();
 			}).fail(function() {
 				alert('등록실패');
 			});

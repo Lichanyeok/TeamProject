@@ -111,7 +111,7 @@ public class payAction implements Action {
 		
 		ArrayList<CouponBean> couponList = dao.getUserCouponList(id);
 		
-		
+	
 		System.out.println("couponList siz : " + couponList.size());
 		System.out.println(reserve.toString());
 		if(reserve_type>0) {
@@ -128,7 +128,11 @@ public class payAction implements Action {
 				MemberBean bean = rDao.getInfo(id);
 				String mobile = bean.getMobile();
 				String content = storeName + " / " + reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다.";
+				
 				SendMessage.sendMessage(mobile, content);
+				content = reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다! 자세한 사항은 마이스토어를 확인하세요.";
+				String bossMobile = rDao.getBossMobile(storeNumber);
+				SendMessage.sendMessage(bossMobile, content);
 				forward.setPath("./reserve/reserve_main.jsp");
 				forward.setRedirect(false);
 			}else {

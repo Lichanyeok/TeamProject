@@ -22,7 +22,7 @@
                     grade = (int) session.getAttribute("sGr");
                     if (grade == 5) { %>
             <li><a href="./AdminManagementFormAction.do">관리페이지</a></li>
-            <li><a><%=nickName %>님</a>&nbsp;<a href="/MemberLogoutForm.do">로그아웃</a></li>
+            <li><a><%=nickName %>님</a>&nbsp;<a href="./MemberLogoutForm.do">로그아웃</a></li>
             <% }else if(grade==4) {%>
 	            <li><a href="./MemberManagementFormAction.do">마이페이지</a></li>
 	            <li><a href="./MatzipMyStore.mz">마이스토어</a></li>
