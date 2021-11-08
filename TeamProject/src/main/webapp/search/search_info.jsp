@@ -33,7 +33,7 @@ double fStar = Math.round((star - iStar) * 10) / 10.0;
 <link rel="stylesheet" href="./css/info2.css">
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#go_reserve_btn').on('click', function() {

@@ -48,7 +48,7 @@
 			}).done(function(data) {
 				 alert('예약 완료!');
 // 				 $('#reserve_success').html(data);
-				location.href='./SendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').html()+'&reserve_date='+$('#reserveDate').html()+'&reserve_time='+$('#reserveTime').html()+'&people='+$('#reserve_people').html();
+				location.href='./SendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').html()+'&reserve_date='+$('#reserveDate').html()+'&reserve_time='+$('#reserveTime').html()+'&people='+$('#reserve_people').html()+'&storeNumber='+$('#storeNumber').html();
 			}).fail(function() {
 				alert('죄송합니다 잠시 후에 시도해주세요.');
 			});

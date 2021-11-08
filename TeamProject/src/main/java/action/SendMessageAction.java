@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import message.SendMessage;
 import svc.GetReserverInfoService;
+import svc.GetStoreInfoService;
 import vo.ActionForward;
 import vo.MemberBean;
 
@@ -30,12 +31,17 @@ public class SendMessageAction implements Action{
     String reserveDate = request.getParameter("reserve_date");
     String reserveTime = request.getParameter("reserve_time");
     String people = request.getParameter("people");
+    String storeNumber = request.getParameter("storeNumber");
     System.out.println(storeName + " / " + reserveDate + " / " + reserveTime + " / " + people + "명 예약되었습니다.");
     
     String content = storeName + " / " + reserveDate + " / " + reserveTime + " / " + people + "명 예약되었습니다.";
     SendMessage.sendMessage(mobile, content);
     
+    GetStoreInfoService service2 = new GetStoreInfoService();
+    String bossMobile = service2.getBossMobile(storeNumber);
+    String content2 = reserveDate+" / "+reserveTime+" / "+people + "명 예약되었습니다! 자세한 사항은 마이스토어를 확인하세요";
     forward.setPath("./ReserveList.do");
+    SendMessage.sendMessage(bossMobile, content2);
     forward.setRedirect(true);
 	return forward;
    }

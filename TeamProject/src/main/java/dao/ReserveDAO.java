@@ -367,5 +367,41 @@ private ReserveDAO() {
 				
 		return bean;
 	}
+
+	public String getBossMobile(String storeNumber) {
+		String bossMobile = "";
+		String bossId="";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT id FROM business WHERE tell_number=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, storeNumber);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bossId = rs.getString(1);
+				System.out.println("BossId : " + bossId);
+				//사업자 id 가져와서 번호 조회
+				close(rs);
+				close(pstmt);
+				sql = "SELECT mobile FROM project_member WHERE id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, bossId);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					bossMobile = rs.getString(1);
+					System.out.println("bossMobile : " + bossMobile);
+				}else {
+					System.out.println("Get Boss Mobile Fail");
+				}
+			}else {
+				System.out.println("Get Boss Id Fail");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bossMobile;
+	}
 	
 }
