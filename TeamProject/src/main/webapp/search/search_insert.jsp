@@ -92,7 +92,7 @@
 	                    <td>
 	                    	<select id="category" name="category">								
 								<option>한식</option>
-								<option>양식</option>
+								<option>양식</option>   
 								<option>중식</option>
 								<option>일식</option>
 								<option>치킨</option>
