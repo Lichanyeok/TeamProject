@@ -20,7 +20,7 @@ public class ReservationListAction implements Action {
 		
 		String storeName = request.getParameter("storeName");
 		String storeNumber = request.getParameter("storeNumber");
-		
+		  
 		ReservationListService service = new ReservationListService();
 		ReserveBean ReservationList = service.getReservationList(storeNumber);
 		
