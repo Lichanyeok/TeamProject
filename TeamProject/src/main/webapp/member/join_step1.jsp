@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/join_step1.css">
+<link rel="stylesheet" href="./css/join_step1.css">
 </head>
 <body>
 

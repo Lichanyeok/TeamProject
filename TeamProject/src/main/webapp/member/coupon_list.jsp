@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/reserve_list.css">
+<link rel="stylesheet" href="./css/reserve_list.css">
 </head>
 <body>
 		<!-- 상위 고정 -->

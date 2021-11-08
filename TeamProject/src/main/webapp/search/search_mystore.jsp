@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Matzip</title>
-<link rel="stylesheet" href="/TeamProject/css/reset.css">
-<link rel="stylesheet" href="/TeamProject/css/header.css">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/search_mystore2.css">
-<script src="./js/jquery-3.6.0.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%
 	SearchBean search=(SearchBean)request.getAttribute("search");

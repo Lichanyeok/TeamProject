@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="/TeamProject/css/search_main.css">
+<link rel="stylesheet" href="./css/search_main.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {

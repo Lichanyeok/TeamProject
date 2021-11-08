@@ -56,8 +56,8 @@
 
 </script>
 </head>
-<link rel="stylesheet" href="../css/reset.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/style.css">
 
 <body>
 		<!-- 상위 고정 -->
