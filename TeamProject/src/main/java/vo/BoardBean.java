@@ -4,24 +4,39 @@ import java.sql.Date;
 /*
  * 제목, 내용, 회원의 id값 ,조회수, 날짜, 글번호, 
  create table CustomerComment(
- subject varchar(50) not null,
+ num int PRIMARY KEY AUTO_INCREMENT,
  id varchar(20),
+ subject varchar(50) not null,
  content varchar(400) not null,
  readcount int not null,
- date date not null,
- num int AUTO_INCREMENT,
+ check varchar(50), -> 이부분에서 sql 오류가 있다는데?
+ date date
  );
+
+-------itwill에서-----
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| num       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| id        | varchar(45)  | YES  |     | NULL    |                |
+| subject   | varchar(45)  | YES  |     | NULL    |                |
+| content   | varchar(400) | YES  |     | NULL    |                |
+| readcount | int(11)      | NO   |     | NULL    |                |
+| check     | varchar(10)  | YES  |     | NULL    |                |
+| date      | date         | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+
 
  */
 public class BoardBean {
 
+	private int num;
 	private String id;
 	private String subject;
 	private String content;
 	private int readcount;
-	private int num;
+	private String check; 
 	private Date date;
-	private String check; // false -> 0, true = 1
 	
 	public String getId()
 	{

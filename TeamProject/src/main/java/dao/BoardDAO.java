@@ -235,11 +235,10 @@ public class BoardDAO {
 				close(pstmt);
 				
 			
-					sql = "insert into replyComment values(null,?,?,?,now())";
+					sql = "insert into replyComment values(null,?,?,now())";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, reply.getId());
 					pstmt.setString(2, reply.getContent());
-					pstmt.setInt(3, num);
 					insertCount = pstmt.executeUpdate();
 				
 				
@@ -261,7 +260,7 @@ public class BoardDAO {
 			ResultSet rs = null;
 			try {
 				
-				String sql = "select * from replycomment where num=?";
+				String sql = "select * from replycomment where idx=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				System.out.println("DAO의 getReplyComment");
@@ -289,5 +288,36 @@ public class BoardDAO {
 			}
 			
 			return replycomment;
+		}
+		public boolean DeleteComment(int num)
+		{
+			System.out.println("DAO의 DeleteComment");
+			PreparedStatement pstmt = null;
+//			ResultSet rs = null; rs가 null값으로 저장되어 있어서 nullpointexception이 발생
+			boolean DeleteSuccess = false;
+			try {
+					String sql = "delete from customercomment where num=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					int DeleteCount = pstmt.executeUpdate();
+					
+					if(DeleteCount>0) {
+						DeleteSuccess=true;
+						commit(con);
+					}else {
+						rollback(con);
+					}
+				System.out.println(DeleteCount);
+				
+				
+			} catch (SQLException e) {
+				System.out.println("DeleteComment() 오류: " + e.getMessage());
+				e.printStackTrace();
+			}finally {
+//				close(rs);
+				close(pstmt);
+				
+			}
+			return DeleteSuccess;
 		}
 }

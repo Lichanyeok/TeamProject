@@ -67,7 +67,10 @@ $(document).ready(function(){
 		});
 	});
 	
-	
+	//deleteComment
+	$("#DeleteComment").on("click",function(){
+		location.href="DeleteComment.do?num="+num;
+	});
 })
 
 
@@ -94,7 +97,9 @@ $(document).ready(function(){
 			</tr>
 			</table>
 		</section>
-		
+		<%if(session.getAttribute("sId")!=null){ //로그인이 안되어 있다면%> 
+			<input type="button" value="삭제" id="DeleteComment">
+		<%} %>
 		<hr>
 
 		<div id= "listData"></div>

@@ -50,3 +50,13 @@ CREATE TABLE review (
 	rev_date DATE,
 	rev_like INT
 );
+
+- 답글 - 
+create table replycomment(
+	 idx int PRIMARY KEY AUTO_INCREMENT,
+	 id varchar(20),
+	 content varchar(500),
+	 date date
+	 );
+
+	 
