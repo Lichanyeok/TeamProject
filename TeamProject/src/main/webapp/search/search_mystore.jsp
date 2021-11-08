@@ -21,7 +21,12 @@
 		});
 		
 		$("#btnCheck").on('click',function(){
-			alert('bbb');
+			var sendData = {
+					"store_name" : $('#store_name').text(),
+					"load_address" : $('#load_address').text(),
+					"address" : $('#address').text(),
+					"store_number" : $('#store_number').text(),
+					"category" : $('#category').text()
 		});
 	});
 
