@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/search_insert.css">
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
@@ -25,25 +25,7 @@
 		}
 		return true;
 	} 
-//  	function openWindow(){
-		
-// // 			document.open("addrSearch.jsp","","width=400,height=300");
-// 			 new daum.Postcode({
-// 			        oncomplete: function(data) {
-// 			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-// 			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-// 			            //->함수에 전달된 파라미터(data 객체)
-// 			            var roadAddress=data.roadAddress;
-// 			            var jibunAddress=data.jibunAddress;
-// 			            var zonecode=data.zonecode;
-// // 			            alert(zonecode+", "+roadAddress+", "+ jibunAddress);
-// 						document.fr.road_address.value=roadAddress;
-// 						document.fr.jibun_address.value=jibunAddress;
-// 			        }
-// 			 }).open();
-		
-		
-// 	}
+
  	window.onload = function () {
         document.getElementById("road_address").addEventListener("click", function () {
             new daum.Postcode({
@@ -54,6 +36,57 @@
             }).open();
         });
     }
+ 	$(document).ready(function() {
+
+		$("input#tell_number").blur(function() {
+
+			var num = $("#tell_number").val();
+
+			blur(num)
+
+		});
+
+		$("input#tell_number").click(function() {
+
+			var num = $("#tell_number").val();
+
+			focus(num);
+
+		});
+		
+		$("#business_lisence").on('click',function(){
+			alert('aaa');
+		});
+
+	});
+
+	function focus(num) {
+
+		num = num.replace(/[^0-9]/g, '');
+
+		$("#tell_number").val(num);
+
+	}
+
+	function blur(num) {
+
+		num = num.replace(/[^0-9]/g, '');
+
+		var tmp = '';
+
+		tmp += num.substr(0, 3);
+
+		tmp += '-';
+
+		tmp += num.substr(3, 4);
+
+		tmp += '-';
+
+		tmp += num.substr(7);
+
+		$("#tell_number").val(tmp);
+
+	}
 </script>
 </head>
 <body>

@@ -73,7 +73,7 @@ double fStar = Math.round((star - iStar) * 10) / 10.0;
 		<div id="item">
 			<div class="item_detail">
 				<div class="item_detail_left">
-					<img src="./search/img/<%=category%>/<%=logo_img%>">
+					<img src="./upload/<%=logo_img%>">
 				</div>
 				<ul id="item_detail_right">
 					<li class="item_txt">

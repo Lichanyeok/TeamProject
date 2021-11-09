@@ -75,7 +75,7 @@ public class BoardDAO {
 				pstmt.setString(2, board.getSubject());
 				pstmt.setString(3, board.getContent());
 				pstmt.setInt(4, board.getReadcount()); // readcount 0부터 시작
-				pstmt.setString(5,board.getCheck());
+				pstmt.setString(5,board.getSecretCheck());
 				insertCount = pstmt.executeUpdate();
 			
 			
@@ -103,7 +103,7 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
-			System.out.println("DAO�쓽 selectListCount");
+			System.out.println("DAO selectListCount");
 			if(rs.next()) {
 				listCount = rs.getInt(1); 
 			}
@@ -127,7 +127,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int startRow = (page -1) * limit;
+//		int startRow = (page -1) * limit;
 		
 		try {
 			
@@ -141,11 +141,12 @@ public class BoardDAO {
 			while(rs.next())
 			{
 				BoardBean board = new BoardBean();
+//				System.out.println(rs.getString("secretCheck"));
 				board.setNum(rs.getInt("num"));
 				board.setId(rs.getString("id"));
 				board.setSubject(rs.getString("subject"));
 				board.setDate(rs.getDate("date"));
-				board.setCheck(rs.getString("check"));
+				board.setSecretCheck(rs.getString("secretCheck"));
 				board.setReadcount(rs.getInt("readcount"));
 				
 				articleList.add(board);
@@ -153,6 +154,7 @@ public class BoardDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("insertComment() 오류: " + e.getMessage());
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -235,10 +237,11 @@ public class BoardDAO {
 				close(pstmt);
 				
 			
-					sql = "insert into replyComment values(null,?,?,now())";
+					sql = "insert into replyComment values(?,?,?,now())";
 					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, reply.getId());
-					pstmt.setString(2, reply.getContent());
+					pstmt.setInt(1, num);
+					pstmt.setString(2, reply.getId());
+					pstmt.setString(3, reply.getContent());
 					insertCount = pstmt.executeUpdate();
 				
 				
@@ -300,6 +303,20 @@ public class BoardDAO {
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, num);
 					int DeleteCount = pstmt.executeUpdate();
+					
+					if(DeleteCount>0) {
+						DeleteSuccess=true;
+						commit(con);
+					}else {
+						rollback(con);
+					}
+					
+					close(pstmt);
+					
+					sql = "delete from replycomment where idx=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					DeleteCount = pstmt.executeUpdate();
 					
 					if(DeleteCount>0) {
 						DeleteSuccess=true;

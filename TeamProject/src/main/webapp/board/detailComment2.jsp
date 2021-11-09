@@ -17,6 +17,7 @@
 			<tr>
 				<td>아이디 : </td><td><%=reply.get(i).getId() %></td>
 				<td>내용 : </td><td><%=reply.get(i).getContent() %></td>
+				<td>날짜 : </td><td><%=reply.get(i).getDate()%></td>
 			</tr>
 		<%} %>
 		</table>

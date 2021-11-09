@@ -63,10 +63,7 @@
 
 	}
 	
-	function checkForm(){
-		alert("aaa");
-		return true;
-	} 
+	
 </script>
 </head>
 <body>

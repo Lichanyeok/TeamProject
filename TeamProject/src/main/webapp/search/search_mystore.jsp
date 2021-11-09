@@ -9,10 +9,11 @@
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/search_mystore2.css">
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%
 	SearchBean search=(SearchBean)request.getAttribute("search");
+	request.setAttribute("store_name", search.getPlace_name());
 %>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -21,12 +22,7 @@
 		});
 		
 		$("#btnCheck").on('click',function(){
-			var sendData = {
-					"store_name" : $('#store_name').text(),
-					"load_address" : $('#load_address').text(),
-					"address" : $('#address').text(),
-					"store_number" : $('#store_number').text(),
-					"category" : $('#category').text()
+			location.href="ReservationList.mz"
 		});
 	});
 
