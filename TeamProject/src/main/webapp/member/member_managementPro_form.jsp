@@ -52,6 +52,14 @@
                     <label>E-Mail</label>
                     <input type="text" name="email" required="required" size="20" value="<%=article.getEmail()%>">
                 </div>
+                <div>
+                    <label>주소</label>
+                    <input type="text" name="email" required="required" size="20" value="<%=article.getEmail()%>">
+                </div>
+                <div>
+                    <label>상세주소</label>
+                    <input type="text" name="email" required="required" size="20" value="<%=article.getEmail()%>">
+                </div>
             </div>
         </div>
         <div class="management_btn">

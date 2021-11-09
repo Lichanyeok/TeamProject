@@ -179,16 +179,15 @@ public class MemberDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String sql = "UPDATE project_member SET name=?,nickname=?,pass=?,mobile=?,gender=?,age=?,email=? WHERE id=?";
+            String sql = "UPDATE project_member SET name=?,nickname=?,pass=?,mobile=?,age=?,email=? WHERE id=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getName());
             pstmt.setString(2, member.getNickName());
             pstmt.setString(3, member.getPass());
             pstmt.setString(4, member.getMobile());
-            pstmt.setString(5, member.getGender());
-            pstmt.setInt(6, member.getAge());
-            pstmt.setString(7, member.getEmail());
-            pstmt.setString(8, member.getId());
+            pstmt.setInt(5, member.getAge());
+            pstmt.setString(6, member.getEmail());
+            pstmt.setString(7, member.getId());
 
             updateCount = pstmt.executeUpdate();
 
