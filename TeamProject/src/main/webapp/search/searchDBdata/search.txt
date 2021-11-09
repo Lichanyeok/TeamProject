@@ -12,4 +12,6 @@ create table business(
 	date DATE not null,
 	recommend int default 0,
 	app_check varchar(2)		
+	
+	
 );
