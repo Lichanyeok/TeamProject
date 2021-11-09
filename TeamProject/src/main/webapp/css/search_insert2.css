@@ -87,3 +87,7 @@
     width: 174px;
     height: 36px;
 }
+
+#modify_btn{
+	cursor: pointer;
+}

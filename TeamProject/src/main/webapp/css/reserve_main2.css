@@ -125,3 +125,6 @@ li {
     color: #fff;
     font-weight: 900;
 }
+#btnOk{	
+    cursor: pointer; 
+}

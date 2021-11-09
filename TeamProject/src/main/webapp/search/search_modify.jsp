@@ -7,22 +7,24 @@
 <title>Matzip</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/search_insert.css">
+<link rel="stylesheet" href="./css/search_insert2.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
+	
 	function checkForm(){
 		var business_lisence_check=/^[0-9]{10}$/;
 		var tell_number_check=/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
 		if(!business_lisence_check.exec(document.getElementById("business_lisence").value)){
-			
+			alert('사업자 등록 실패');
 			return false;
 		}
 		if(!tell_number_check.exec(document.getElementById("tell_number").value)){
 			
 			return false;
 		}
+		alert("매장 정보 수정 완료");
 		return true;
 	} 
 
@@ -53,8 +55,6 @@
 			focus(num);
 
 		});
-		
-		
 
 	});
 
@@ -86,6 +86,8 @@
 			tmp +='-';
 			
 			tmp += num.substr(7);
+		}else {
+			alert('전화번호 등록 실패');
 		}
 	
 		
@@ -147,7 +149,7 @@
 	                </tr>
 	              	
 	            </table>
-	            <input type="submit" value="정보수정">
+	            <input type="submit" value="정보수정" id="modify_btn">
 			</form>
 <!-- 			<input type="button" id="aa"value="aa" onclick="aa()">  -->
 			

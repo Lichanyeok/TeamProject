@@ -39,7 +39,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reserve_main.css">
+    <link rel="stylesheet" href="./css/reserve_main2.css">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
@@ -243,7 +243,7 @@
 
         <div class = "add_info">
             <h2>추가사항</h2>
-            <textarea name="customer_needs" id="customer_needs" cols="30" rows="10"></textarea>
+            <textarea name="customer_needs" id="customer_needs" cols="30" rows="10" maxlength="10"></textarea>
         </div>
 
         <h2 class = "menu_font">메뉴</h2>
