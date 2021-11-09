@@ -137,10 +137,14 @@
             <input type="hidden" class="rev_store<%=i %>" value="<%=reserveList.get(i).getStoreName()%>"/>
             <input type="hidden" class="rev_menu<%=i %>" value="<%=reserveList.get(i).getTotal_order_menu()%>"/>
             <!-- ---------------------------------------------------------------------------------------------------- -->
-            <%boolean isGone = reserveList.get(i).getReserve_date().compareTo(today) > 0; %>
+            <%boolean isGone = reserveList.get(i).getReserve_date().compareTo(today) >= 0; %>
+            <%if(isGone){ %>
             <td id="reserve_code<%=i%>"><%=reserveList.get(i).getRan_num()%>
                 <button onclick="copy_code(<%=i%>)">복사</button>
             </td>
+            <%}else{ %>
+            <td id="reserve_code<%=i%>">이용해주셔서 감사합니다.</td>
+            <%} %>
             <td><%=reserveList.get(i).getId()%>
             </td>
             <%if (isGone) {%>
@@ -168,7 +172,7 @@
             <%} %>
             <%if (!isGone) { %>
             <td>
-                <button disabled="disabled">기간만료</button>
+                <button disabled="disabled" style="background-color: gray;">기간만료</button>
             </td>
             <%} else if (reserveList.get(i).getCheck_review() < 1) {%>
             <td id="rev_btn"><a>

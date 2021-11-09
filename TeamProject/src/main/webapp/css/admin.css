@@ -1,0 +1,63 @@
+@charset "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+select {
+    width: 188px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+
+.admin , .member_list {
+    width: 853px;
+    margin: 200px auto;
+    text-align: center;
+
+}
+
+.select_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select_item select{
+    margin-top: 40px;
+    transition: all 0.4s;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
+    color: #1c1c1c;
+}
+
+
+.select_item select:hover {
+    border: 3px solid #FF8831;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.member_list {
+    margin-top: 40px;
+}
+
+.member_list h2 {
+    margin-top: 140px;
+}
+
+
+.member_list  table thead th {
+    background-color: #F6F1F1;
+    line-height: 40px;
+    border-bottom: 1px solid #888;
+}
+
+.member_list  table tbody td {
+    line-height: 40px;
+    border-bottom: 1px solid #888;
+}

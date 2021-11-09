@@ -62,7 +62,7 @@ public class FrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}else if(command.equals("/AdminManagementFormAction.do")) {
 			forward = new ActionForward();
-			forward.setPath("./admin/admin_main.jsp");
+			forward.setPath("./admin/main_admin.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/MemberManagementAction.do")) {
 			action = new MemberManagementAction();
