@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
 <script src="./js/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="./css/reset.css">
-<link rel="stylesheet" href="./css/header.css">
+<link rel="stylesheet" href="/TeamProject/css/reset.css">
+<link rel="stylesheet" href="/TeamProject/css/header.css">
 <script type="text/javascript">	
 	$(document).ready(function() {
 
@@ -148,8 +148,7 @@ text-align: center;
             <tr>
                <td class="td_left"><label for="board_content">내용</label></td>
                <td class="td_right">
-                  <textarea id="board_content" name="rev_content" cols="40" rows="15" 
-                  required="required" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요."></textarea>
+                  <textarea id="board_content" name="rev_content" cols="40" rows="15" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 250자)" maxlength="250"></textarea>
                </td>
             </tr>
             <tr>

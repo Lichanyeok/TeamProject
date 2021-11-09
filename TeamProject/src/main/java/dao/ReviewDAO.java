@@ -175,9 +175,12 @@ public class ReviewDAO {
 		String sql = null;
 		
 		try {
-			sql = "SELECT * FROM review WHERE rev_name=? ORDER BY rev_num DESC";
+//			sql = "SELECT * FROM review WHERE rev_name=? ORDER BY rev_num DESC";
+			sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
+					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_name=? ORDER BY rev_num DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nickName);
+			pstmt.setString(2, nickName);
 			
 			// 4단계. SQL 구문 실행 및 결과 처리
 			rs = pstmt.executeQuery();
@@ -187,16 +190,28 @@ public class ReviewDAO {
 			
 			while(rs.next()) {
 				ReviewBean rb = new ReviewBean();
+//				rb.setRev_num(rs.getInt("rev_num"));
+//				rb.setRev_score(rs.getFloat("rev_score"));
+//				rb.setRev_store(rs.getString("rev_store"));
+//				rb.setRev_date(rs.getDate("rev_date"));
+//				rb.setRev_content(rs.getString("rev_content"));
+//				rb.setRev_pic(rs.getString("rev_pic"));
+//				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
+//				rb.setRev_menu(rs.getString("rev_menu"));
+//				rb.setRev_like(rs.getInt("rev_like"));
+//				rb.setRan_num(rs.getString("ran_num"));
+				
 				rb.setRev_num(rs.getInt("rev_num"));
 				rb.setRev_score(rs.getFloat("rev_score"));
+				rb.setRev_name(rs.getString("rev_name"));
 				rb.setRev_store(rs.getString("rev_store"));
-				rb.setRev_date(rs.getDate("rev_date"));
+				rb.setDateDiff(rs.getInt("dateDiff")); // 리뷰 작성일 계산
 				rb.setRev_content(rs.getString("rev_content"));
 				rb.setRev_pic(rs.getString("rev_pic"));
 				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
 				rb.setRev_menu(rs.getString("rev_menu"));
 				rb.setRev_like(rs.getInt("rev_like"));
-				rb.setRan_num(rs.getString("ran_num"));
+				rb.setListCount(rs.getInt("isCheck")); // 해당 유저의 좋아요 유무 저장
 				
 				// 1개 레코드가 저장된 ReviewBean 객체를 List 객체에 추가
 				myReviewList.add(rb);
@@ -288,6 +303,41 @@ public class ReviewDAO {
 		return isArticleWriter;
 	} // isArticleWriter() 메서드 끝
 	
+	// 사용자 일치 여부를 확인하기 위한 isArticleWriter() 메서드 정의
+	public boolean isReviewWriter(String rev_name, int rev_num) {
+		boolean isReviewWriter = false;
+		System.out.println("isReviewWriter id : " + rev_name + " rev_num : " + rev_num);
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			sql = "SELECT rev_name FROM review WHERE rev_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rev_name.equals(rs.getString(1))) {
+					isReviewWriter = true;
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 반환
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isReviewWriter;
+	} // isReviewWriter() 메서드 끝
+	
 	// 리뷰 삭제를 위한 deleteArticle() 메서드 정의
 	public int deleteArticle(int rev_num) {
 		System.out.println("ReviewDAO - deleteArticle()");
@@ -364,34 +414,34 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		String sql = null;
 		
-		try {
+		try {			
 			if(isCheckedPic.equals("true")) { // 사진 포함한 리뷰 정렬 true
 				if(selectedOption.equals("0")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score DESC, rev_date DESC";
 				} else {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? AND rev_pic is NOT NULL ORDER BY rev_score ASC, rev_date DESC";
 				}
 			} else {
 				if(selectedOption.equals("0")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_num DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? ORDER BY rev_num DESC";
 				} else if(selectedOption.equals("1")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? ORDER BY rev_like DESC, rev_date DESC";
 				} else if(selectedOption.equals("2")) {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_score DESC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? ORDER BY rev_score DESC, rev_date DESC";
 				} else {
 					sql = "SELECT * , (SELECT IFNULL(B.rev_isCheck,0) FROM rev_isLike B WHERE B.rev_num = A.rev_num"
-    					   + " AND B.rev_name=?) AS isCheck FROM review A WHERE rev_store=? ORDER BY rev_score ASC, rev_date DESC";
+    					   + " AND B.rev_name=?) AS isCheck, DATEDIFF(CURRENT_TIMESTAMP, rev_date) AS dateDiff FROM review A WHERE rev_store=? ORDER BY rev_score ASC, rev_date DESC";
 				}
 			}
 			
@@ -407,19 +457,18 @@ public class ReviewDAO {
 
 			// While 문을 
 			while(rs.next()) {
-				System.out.println("작동 중 .....");
 				ReviewBean rb = new ReviewBean();
 				rb.setRev_num(rs.getInt("rev_num"));
 				rb.setRev_score(rs.getFloat("rev_score"));
 				rb.setRev_name(rs.getString("rev_name"));
-				rb.setRev_date(rs.getDate("rev_date"));
+				rb.setDateDiff(rs.getInt("dateDiff")); // 리뷰 작성일 계산
 				rb.setRev_content(rs.getString("rev_content"));
 				rb.setRev_pic(rs.getString("rev_pic"));
 				rb.setRev_pic_origin(rs.getString("rev_pic_origin"));
 				rb.setRev_menu(rs.getString("rev_menu"));
 				rb.setRev_like(rs.getInt("rev_like"));
 				rb.setListCount(rs.getInt("isCheck")); // 해당 유저의 좋아요 유무 저장
-			
+				
 				// 1개 레코드가 저장된 ReviewBean 객체를 List 객체에 추가
 				articleList.add(rb);
 				System.out.println("articleList : " + articleList);
