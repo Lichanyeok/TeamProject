@@ -20,6 +20,7 @@ public class PaidReserveModifyService {
 			//coupon 복구
 			boolean isRestore = dao.couponRestore(used_coupon_code,reserve_code);
 			System.out.println("쿠폰 복구 : " + isRestore);
+			
 			//coupon 사용
 			if(isRestore) {
 				boolean isUseSuccess = dao.usedCoupon(used_coupon_code,reserve_code);
