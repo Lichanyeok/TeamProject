@@ -93,6 +93,10 @@ public class MatzipFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/ReservationForm.mz")) {
+			forward=new ActionForward();
+			forward.setPath("./search/reservation.jsp");
+			forward.setRedirect(false);
 		}
 		
 		

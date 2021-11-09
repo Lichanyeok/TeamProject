@@ -497,24 +497,24 @@ private ReserveDAO() {
 		return isRestore;
 	}
 
-	public ArrayList<ReserveBean> getReservationList(String store_name) {
+	public ArrayList<ReserveBean> getReservationList(String store_name,String reserve_date) {
 		ArrayList<ReserveBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
 		
 		try {
-			String sql = "SELECT * FROM reserve WHERE store_name=? ORDER BY reserve_date DESC";
+			String sql = "SELECT * FROM reserve WHERE store_name=? AND reserve_date=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, store_name);
-			
+			pstmt.setString(2, reserve_date);
 			rs = pstmt.executeQuery();
 			
 			articleList = new ArrayList<ReserveBean>();
 			
 			while(rs.next()) {
 				ReserveBean article = new ReserveBean();
-//				article.setReserve_user(rs.getString("reserve_user"));
+				article.setId(rs.getString("reserve_user"));
 				article.setReserve_date(rs.getString("reserve_date"));
 				article.setReserve_time(rs.getString("reserve_time"));
 				article.setPeople(rs.getInt("reserve_people"));
@@ -524,6 +524,7 @@ private ReserveDAO() {
 				
 				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
 				articleList.add(article);
+				System.out.println("reserve 성공");
 			}
 			
 		} catch (Exception e) {

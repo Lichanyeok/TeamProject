@@ -8,9 +8,35 @@
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/search_insert.css">
-<script src="../js/jquery-3.6.0.js"></script>
-<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
+<script src="./js/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+function checkForm(){
+	var business_lisence_check=/^[0-9]{10}$/;
+	var tell_number_check=/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+	if(!business_lisence_check.exec(document.getElementById("business_lisence").value)){
+		
+		return false;
+	}
+	if(!tell_number_check.exec(document.getElementById("tell_number").value)){
+		
+		return false;
+	}
+	return true;
+} 
+
+	window.onload = function () {
+    document.getElementById("road_address").addEventListener("click", function () {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                document.getElementById("road_address").value = data.roadAddress;
+                document.getElementById("jibun_address").value = data.jibunAddress;                    
+            }
+        }).open();
+    });
+ }
+
+
 	$(document).ready(function() {
 
 		$("input#tell_number").blur(function() {
@@ -29,9 +55,7 @@
 
 		});
 		
-		$("#business_lisence").on('click',function(){
-			alert('aaa');
-		});
+		
 
 	});
 
@@ -45,20 +69,26 @@
 
 	function blur(num) {
 
+
 		num = num.replace(/[^0-9]/g, '');
 
 		var tmp = '';
 
 		tmp += num.substr(0, 3);
-
+		
 		tmp += '-';
-
-		tmp += num.substr(3, 4);
-
-		tmp += '-';
-
-		tmp += num.substr(7);
-
+		if(num.length==10){
+			tmp += num.substr(3,3); 
+			tmp +='-';
+	
+			tmp += num.substr(6);
+			
+		}else if(num.length==11){
+			tmp += num.substr(3,4);
+			tmp +='-';
+			
+			tmp += num.substr(7);
+		}
 		$("#tell_number").val(tmp);
 
 	}
@@ -74,18 +104,18 @@
 			<div id="storeInsert">
 			<form action="./MatzipListInsert.mz" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">				
 				<strong>매장을 등록해보세요!</strong>
-	            <p>매장정보를 입력해주세요</p>
+	            <p>매장정보를 입력해주세요    *(필수항목)</p>
 	            <table>	              	
 	                <tr>
-	                    <th>매장명</th>
+	                    <th>*매장명</th>
 	                    <td><input type="text" id="place_name" name="place_name" required="required"></td>
 	                </tr>
 	                <tr>
-	                    <th>사업자 등록번호</th>
+	                    <th>*사업자 등록번호</th>
 	                    <td><input type="text" id="business_lisence" name="business_lisence" placeholder="- 제외 숫자 10자리" required="required"></td>
 	                </tr>
 	                <tr>
-	                    <th>업종</th>
+	                    <th>*업종</th>
 	                    <td>
 	                    	<select id="category" name="category">								
 								<option>한식</option>
@@ -105,13 +135,13 @@
 	                    </td>	
 	                </tr>	                
 	                <tr>
-	                    <th>전화번호</th>
+	                    <th>*전화번호</th>
 	                    <td><input type="text" name="tell_number" id="tell_number" required="required"></td> 
 	                </tr>
 	                <tr>
-	                    <th>주소</th>
-	                    <td><input type="text" readonly="readonly" id="road_address" name="road_address">
-	                    <input type="text" id="jibun_address" name="jibun_address" required="required"></td>	                   
+	                    <th>*주소</th>
+	                    <td><input type="text" readonly="readonly" id="road_address" name="road_address" required="required" style="width: 300px;">
+	                    <input type="text" readonly="readonly" id="jibun_address" name="jibun_address" required="required" style="width: 300px;"></td>	                   
 	                </tr>
 	                <tr>
 	                    <th>로고 등록</th>
