@@ -33,7 +33,7 @@ double fStar = Math.round((star - iStar) * 10) / 10.0;
 <link rel="stylesheet" href="./css/info2.css">
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#go_reserve_btn').on('click', function() {
@@ -73,7 +73,7 @@ double fStar = Math.round((star - iStar) * 10) / 10.0;
 		<div id="item">
 			<div class="item_detail">
 				<div class="item_detail_left">
-					<img src="./search/img/<%=category%>/<%=logo_img%>">
+					<img src="./upload/<%=logo_img%>">
 				</div>
 				<ul id="item_detail_right">
 					<li class="item_txt">

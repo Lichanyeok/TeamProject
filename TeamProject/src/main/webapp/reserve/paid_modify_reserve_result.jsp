@@ -9,7 +9,7 @@
 	ReserveBean reserve = (ReserveBean)request.getAttribute("reserveBean");
 	//로그인 시 세션으로 저장된 ID
 	request.setAttribute("id", reserve.getId());
-	String id = request.getAttribute("id").toString();
+// 	String id = request.getAttribute("id").toString();
 	ArrayList<CouponBean> couponList = (ArrayList<CouponBean>)request.getAttribute("couponList");
 %>
 <!DOCTYPE html>
@@ -32,6 +32,7 @@
 				"reserve_time":$('#reserveTime').html(),
 				"reserve_people":$('#reserve_people').html(),
 				"total_order_menu":$('#totalMenu').html(),
+				"reserve_code":$('#reserve_code').text(),
 				"reserve_needs":$('#requestList').html(),
 				"payment_price":$('#resultPrice').html(),
 				"used_coupon_code":$(':input:radio[name=checkCoupon]:checked').next('a').text()
@@ -41,7 +42,7 @@
 				type:"get",
 				data:sendData,
 				dataType:"text",
-				url:"PaymentAction.do",
+				url:"PaidReserveModify.do",
 				error:function(request, status, error){
 					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
@@ -49,7 +50,7 @@
 			}).done(function(data) {
 				 alert('예약 완료!');
 // 				 $('#reserve_success').html(data);
-				location.href='./SendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').html()+'&reserve_date='+$('#reserveDate').html()+'&reserve_time='+$('#reserveTime').html()+'&people='+$('#reserve_people').html()+'&storeNumber='+$('#storeNumber').html();
+				location.href='./ModifySendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').html()+'&reserve_date='+$('#reserveDate').html()+'&reserve_time='+$('#reserveTime').html()+'&people='+$('#reserve_people').html()+'&storeNumber='+$('#storeNumber').html();
 			}).fail(function() {
 				alert('죄송합니다 잠시 후에 시도해주세요.');
 			});
@@ -175,8 +176,7 @@
                     </tr>
                  </c:when>
                  <c:otherwise>
-                  <%for(int i =0;i<couponList.size();i++){ 
-                  		if(couponList.get(i).getUsed_coupon()<1){ %>
+                  <%for(int i =0;i<couponList.size();i++){ %>
 	                    <tr>
 	                        <td><input type="radio" name="checkCoupon" value="<%=couponList.get(i).getCoupon_price()%>"><a><%=couponList.get(i).getCoupon_code() %></a></td>
 	                        <td><%=couponList.get(i).getCoupon_name() %></td>
@@ -184,8 +184,7 @@
 	                        <td><%=couponList.get(i).getUser_id()%></td>
 	                        <td><%=couponList.get(i).getMade_date()%></td>
 	                    </tr>
-                   <%	}
-                  	}%>
+                   <%}%>
                    <tr>
                    <td colspan="5" align="center"><button id="couponBtn">사용</button></td>
                    </tr>
@@ -228,7 +227,7 @@
                         <td id="resultPrice"><%=totalPrice %></td>
                         <td>
                         <button id="kakaopay">카카오페이</button>
-                        <button disabled="disabled" style="background-color: gray;" value="0" id="paymentBtn2">결제완료</button>
+                        <button  style="background-color: gray;" value="0" id="paymentBtn2">결제완료</button>
                         </td>
                         
                     </tr>

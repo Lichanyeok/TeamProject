@@ -1,28 +1,40 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.ModiResService;
+import dao.MemberDAO;
+import dao.ReserveDAO;
+import message.SendMessage;
+import svc.PaymentService;
 import vo.ActionForward;
+import vo.CouponBean;
+import vo.MemberBean;
 import vo.ReserveBean;
 
-
-public class ModiResAction implements Action {
+public class PaidModifyResAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		
-		System.out.println("ModiResAction");
-		String category = request.getParameter("category");
+		System.out.println("PaidModifyResAction");
+		String store_name = request.getParameter("store_name");
+		String load_address = request.getParameter("load_address");
+		String address = request.getParameter("address");
+		String store_number = request.getParameter("store_number");
+		String category = request.getParameter("category");	
+		String id = request.getParameter("reserve_id");
 		String menu1 = "SetA";
 		String menu2 = "SetB";
 		String menu3 = "SetC";
+		
+		//category별 메뉴 명
 		if(category.equals("한식")) {
 			menu1="제육덮밥";
 			menu2="김치찌개";
@@ -76,14 +88,13 @@ public class ModiResAction implements Action {
 			menu2="런치세트A";
 			menu3="런치세트B";
 		};
-		String id = request.getParameter("reserve_id");
 		
-		String reserve_code=request.getParameter("reserve_code");
-		String store_name = request.getParameter("store_name");
-		String load_address = request.getParameter("load_address");
-		String address = request.getParameter("address");
-		String store_number = request.getParameter("store_number");
-		String reserve_date = request.getParameter("date");
+		String strDate = request.getParameter("date");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		String dtDate = format.format(strDate);
+		Date date = format.parse(strDate);
+		String reserve_date = format.format(date);
+		System.out.println(reserve_date);
 		String reserve_time = request.getParameter("reserve_time");
 		int people = Integer.parseInt(request.getParameter("people"));
 		String customerNeeds = request.getParameter("customerNeeds");
@@ -91,36 +102,23 @@ public class ModiResAction implements Action {
 		int setB = Integer.parseInt(request.getParameter("setB"));
 		int setC = Integer.parseInt(request.getParameter("setC"));
 		String total_order_menu = menu1+ ":" + setA + ", "+ menu2 + ":"+setB+", " + menu3 + ":"+setC;
-		ReserveBean bean = new ReserveBean();
-		bean.setId(id);
-		bean.setStoreName(store_name);
-		bean.setStoreNumber(store_number);
-		bean.setReserve_date(reserve_date);
-		bean.setReserve_time(reserve_time);
-		bean.setPeople(people);
-		bean.setCustomerNeeds(customerNeeds);
-		bean.setLoadAddress(load_address);
-		bean.setAddress(address);
-		bean.setReserve_code(reserve_code);
-		bean.setTotal_order_menu(total_order_menu);
-		bean.setRan_num(reserve_code);
+		ReserveBean reserve = new ReserveBean(store_name, load_address, address, store_number, id,reserve_date, reserve_time, people, customerNeeds, setA, setB, setC, total_order_menu);
+		reserve.setCategory(category);
 		
-		ModiResService service = new ModiResService();
+		MemberDAO dao = MemberDAO.getInstance();
+		Connection con = db.jdbcUtil.getConnection();
+		dao.setConnection(con);
 		
-		boolean isModiSuccess = service.modiResService(bean);
-		if(isModiSuccess) {
-			System.out.println("ModiResAction success");
-			forward.setPath("./reserve/modify_reserve.jsp");
-			forward.setRedirect(false);
-		}else {
-			 System.out.println("ModiResAction fail");
-			 response.setContentType("text/html; charset=UTF-8");
-	         PrintWriter out = response.getWriter();
-	         out.println("<script>");
-	         out.println("alert('예약변경 실패.')");
-	         out.println("history.back()");
-	         out.println("</script>");
-		}
+		ArrayList<CouponBean> couponList = dao.getUserCouponList(id);
+		
+		System.out.println("couponList siz : " + couponList.size());
+		System.out.println(reserve.toString());
+
+		request.setAttribute("reserveBean", reserve);
+		request.setAttribute("couponList", couponList);
+		forward.setPath("./reserve/paid_modify_reserve_result.jsp");
+		forward.setRedirect(false);
+		db.jdbcUtil.close(con);
 		return forward;
 	}
 

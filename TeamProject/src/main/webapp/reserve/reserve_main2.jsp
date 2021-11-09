@@ -55,6 +55,7 @@
 		$('#btnOk').on('click',function(){
 // 			alert($('input[type=radio]:checked').val());
 			var info = {
+					"category":$('#category').text(),
 					"storeName":$('#storeName').text(),
 					"loadAddress":$('#loadAddress').text(),
 					"address":$('#address').text(),
@@ -91,7 +92,7 @@
 					dataType: "text",
 					url:"Payment.do"
 				}).done(function(data) {
-					location.href='ReserveList.do';
+					location.href='./SendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').text()+'&reserve_date='+$('#date').val()+'&reserve_time='+$('#time option:selected').text()+'&people='+$('#people option:selected').text()+'&storeNumber='+$('#storeNumber').text();
 				}).fail(function() {
 					alert('죄송합니다 조금 후에 이용해주세요');
 				});

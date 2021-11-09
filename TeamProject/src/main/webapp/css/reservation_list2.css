@@ -1,0 +1,87 @@
+@charset "EUC-KR";
+
+body{
+	min-width: 1150px;
+	margin: 0 auto;
+}
+.clear{
+	clear: both;
+}
+#wrap {
+	width: 1150px;
+	height: auto;
+	margin: 0 auto;
+}
+
+#reservation_list {
+	width: 1150px;
+	height: auto;
+	overflow:hidden;
+	
+}
+#reservation_header{
+	height: 30px;
+	font-family: monospace;
+	font-size: 35px;
+	color: orange;
+	font-weight: 1000;
+	text-shadow:1px 1px 1px #00000075;
+	margin: 30px 10px;
+	text-align: center
+	
+}
+.list{
+	width: 280px;
+	height: 260px;
+	float: left;
+	overflow:hidden;
+	word-wrap:break-word;
+	background: linear-gradient(rgb(255 237 215) 5%, rgb(247 194 124)
+		100%);
+	border: 1px solid rgb(238, 180, 79);
+	margin-top:5px;
+	margin-left:5px;
+	border-radius: 5%;
+}
+
+.list_ul {
+	float: left;
+}
+
+.list_ul > li{
+	float: left;
+	font-size: 15px;
+	margin: 10px 0; 
+	margin-left: 8px;
+	font-family: Arial;
+	width: 255px;
+	
+}
+
+.list_ul> li> p:first-child{
+	float: left;
+	width: 100px;
+}
+
+.list_ul> li> p:last-child{
+	float: left;
+	width: 155px;
+}
+
+.fail{
+	font-size: 20px;
+	color: #df0404;
+	font-weight: 1000;
+	margin-top: 100px;
+	text-shadow:1px 1px 1px #4830307d;
+	text-align: center
+}
+
+#reserve_date{
+	font-size: 17px;
+	border: 2px solid orange;
+	font-weight: 1000;
+	color: orange;
+	border-radius: 30px;;
+	background: #ffdfa633;
+}

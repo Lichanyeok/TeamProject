@@ -29,11 +29,11 @@
  border: 1px solid; 
  } 
 </style>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 function twosend(num, id, ck) {
 	if(ck==true){
-		if(id=='<%=session.getAttribute("sId")%>'){
+		if(id=="<%=session.getAttribute("sId")%>" || '<%=session.getAttribute("sId")%>'=="admin"){
 			alert("돼!");
 	//     // 동적 form - post 처리
 	     var form = document.createElement("form");
@@ -101,10 +101,10 @@ function twosend(num, id, ck) {
 		</tr>
 		
 		<%for(int i = (nowPage*10)-10; i < a; i++) {%>
-		<tr id="twosend" onclick="twosend(<%=articleList.get(i).getNum()%>, '<%=articleList.get(i).getId()%>', <%=articleList.get(i).getCheck()%>)">
+		<tr id="twosend" onclick="twosend(<%=articleList.get(i).getNum()%>, '<%=articleList.get(i).getId()%>', <%=articleList.get(i).getSecretCheck()%>)">
 			<td class="getNum"><%=articleList.get(i).getNum()%></td>
 			<td id="subject">
-			<%if(articleList.get(i).getCheck().equals("true")) {%>
+			<%if(articleList.get(i).getSecretCheck().equals("true")) {%>
 				 	🔒비밀글입니다.		
 			<%} else {%>
 			<%=articleList.get(i).getSubject() %>

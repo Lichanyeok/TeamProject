@@ -41,7 +41,7 @@ public class MatzipModifyAction implements Action {
 				);
 		
 		String place_name=multi.getParameter("place_name");
-		String business_license=multi.getParameter("business_license");
+		String business_lisence=multi.getParameter("business_lisence");
 		String category=multi.getParameter("category");
 		String tell_number=multi.getParameter("tell_number");
 		String road_address=multi.getParameter("road_address");
@@ -62,7 +62,7 @@ public class MatzipModifyAction implements Action {
 		SearchBean bean=new SearchBean();
 		bean.setId(id);
 		bean.setPlace_name(place_name);
-		bean.setBusiness_lisence(business_license);
+		bean.setBusiness_lisence(business_lisence);
 		bean.setCategory(category);
 		bean.setTell_number(tell_number);
 		bean.setRoad_address(road_address);

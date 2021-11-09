@@ -8,11 +8,12 @@
 <title>Matzip</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/search_mystore2.css">
-<script src="../js/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="./css/search_mystore.css">
+<script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%
 	SearchBean search=(SearchBean)request.getAttribute("search");
+	
 %>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -21,7 +22,7 @@
 		});
 		
 		$("#btnCheck").on('click',function(){
-			alert('bbb');
+			location.href="ReservationForm.mz?store_name=<%=search.getPlace_name()%>"
 		});
 	});
 
@@ -35,6 +36,7 @@
 		<hr>
 		<div id="storeInsert">
 			<strong>매장 정보</strong>
+			
 			<hr>
 			<div class="clear"></div>
 			<img src="./upload/<%=search.getLogo_img()%>" id="storeLogo">
@@ -58,7 +60,8 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td><%=search.getRoad_address() %> (<%=search.getJibun_address() %>)
+						<td><%=search.getRoad_address() %> <br>
+						(<%=search.getJibun_address() %>)
 						</td>
 					</tr>
 				</table>

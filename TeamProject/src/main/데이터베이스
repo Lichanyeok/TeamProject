@@ -53,10 +53,21 @@ CREATE TABLE review (
 
 - 답글 - 
 create table replycomment(
-	 idx int PRIMARY KEY AUTO_INCREMENT,
+	 idx int,
 	 id varchar(20),
 	 content varchar(500),
 	 date date
 	 );
+	 
+- 고객문의 -
+create table CustomerComment(
+ num int PRIMARY KEY AUTO_INCREMENT,
+ id varchar(20),
+ subject varchar(50) not null,
+ content varchar(400) not null,
+ readcount int not null,
+ secretCheck varchar(50),
+ date date
+ );
 
 	 

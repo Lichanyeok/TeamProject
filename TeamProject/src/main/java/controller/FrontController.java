@@ -177,7 +177,24 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		// -----------------------------예약 관련 컨트롤러 ---------------------------------------
+		}else if(command.equals("/RequestAddStore.do")) {
+			action = new AddStoreListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/AddStoreAction.do")){
+			action = new AddStoreAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 		}else if (command.equals("/member/SendAuthMail.do")) {
             action = new SendAuthMailAction();
             try {
@@ -241,7 +258,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-		}else if(command.equals("/reserve/ModiRes.do")) {
+		}else if(command.equals("/ModiRes.do")) {
 			action = new ModiResAction();
 			try {
 				forward = action.execute(request, response);
@@ -259,6 +276,43 @@ public class FrontController extends HttpServlet {
 			}
 		}else if(command.equals("/SendMessage.do")) {
 			action = new SendMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ModifySendMessage.do")) {
+			action = new ModifySendMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/ModifyReserve.do")) {
+			action = new ModifyReserveAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/PaidModiRes.do")) {
+			action = new PaidModifyResAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/PaidResModifyReserve.do")) {
+			forward = new ActionForward();
+			forward.setPath("./reserve/paid_modify_reserve.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/PaidReserveModify.do")) {
+			action = new PaidReserveModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

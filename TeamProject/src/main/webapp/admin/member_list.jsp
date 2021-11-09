@@ -27,7 +27,7 @@ int listCount = pageInfo.getListCount();
 		var sendGradeValue = $('form').serialize();
 		
 		var idArr = new Array(); //id를 담을 배열 생성
-		$(':checkbox').each(function(i,item){
+		$(':checkbox').each(function(i,item){ 
 			//체크가 하나 이상일때 체크된 값을 가져옴
 			if(i>0){
 				if($(item).prop('checked')){
