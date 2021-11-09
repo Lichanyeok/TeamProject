@@ -91,6 +91,7 @@ body{
 					<li><p>메뉴 </p><p>${article.getTotal_order_menu()  }</p></li>
 					<li><p>요청사항 </p><p>${article.getCustomerNeeds() }</p></li>
 					<li><p>결제방법 </p><p>${article.getReserve_type() }</p></li>
+					
 				</ul>			
 			</div>			
 				</c:forEach>
