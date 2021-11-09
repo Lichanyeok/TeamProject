@@ -54,9 +54,7 @@
 
 		});
 		
-		$("#business_lisence").on('click',function(){
-			alert('aaa');
-		});
+		
 
 	});
 
@@ -75,15 +73,22 @@
 		var tmp = '';
 
 		tmp += num.substr(0, 3);
-
+		
 		tmp += '-';
-
-		tmp += num.substr(3, 4);
-
-		tmp += '-';
-
-		tmp += num.substr(7);
-
+		if(num.length==10){
+			tmp += num.substr(3,3); 
+			tmp +='-';
+	
+			tmp += num.substr(6);
+			
+		}else if(num.length==11){
+			tmp += num.substr(3,4);
+			tmp +='-';
+			
+			tmp += num.substr(7);
+		}
+	
+		
 		$("#tell_number").val(tmp);
 
 	}
@@ -129,12 +134,12 @@
 	                </tr>	                
 	                <tr>
 	                    <th>*전화번호</th>
-	                    <td><input type="text" name="tell_number" id="tell_number" required="required"></td> 
+	                    <td><input type="text" name="tell_number" id="tell_number" required="required" placeholder="- 제외 전화번호입력" ></td> 
 	                </tr>
 	                <tr>
 	                    <th>*주소</th>
 	                    <td><input type="text" readonly="readonly" id="road_address" name="road_address" required="required" style="width: 300px;"><br>
-	                    <input type="text" id="jibun_address" name="jibun_address" required="required" style="width: 300px;"></td>	                   
+	                    <input type="text" readonly="readonly" id="jibun_address" name="jibun_address" required="required" style="width: 300px;"></td>	                   
 	                </tr>
 	                <tr>
 	                    <th>로고 등록</th>

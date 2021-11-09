@@ -1,20 +1,13 @@
 package action;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import svc.MatzipinfoService;
 import svc.ReservationListService;
-import svc.ReserveListService;
 import vo.ActionForward;
-import vo.PageInfo;
 import vo.ReserveBean;
-import vo.ReviewBean;
-import vo.SearchBean;
 
 public class ReservationListAction implements Action {
 
@@ -22,11 +15,12 @@ public class ReservationListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
 		ActionForward forward = null;
-		String store_name=(String)request.getAttribute("store_name");
-		
+		String store_name=request.getParameter("store_name");
+		String reserve_date=request.getParameter("reserve_date");
+		System.out.println(store_name+reserve_date);
 		ReservationListService service=new ReservationListService();
 		
-		ArrayList<ReserveBean> articleList = service.getReservationList(store_name);
+		ArrayList<ReserveBean> articleList = service.getReservationList(store_name,reserve_date);
 		
 		request.setAttribute("articleList", articleList);
 			
