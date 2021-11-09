@@ -29,6 +29,7 @@ public class BoardListService {
 		ArrayList<BoardBean> articleList = dao.getCommentList(page,limit);
 		close(con);
 		
+		System.out.println("BoardListService");
 		return articleList;
 	}
 	

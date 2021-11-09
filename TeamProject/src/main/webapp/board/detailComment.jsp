@@ -16,7 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -78,6 +78,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<%-- <%String commentId = comment.getId(); %> --%>
+<%-- <%String userId = session.getAttribute("sId").toString(); %> --%>
 
 <input type="hidden" value="<%=request.getParameter("num") %>" name="num" />
 		<h2>글 상세내용 보기</h2>
@@ -97,20 +99,24 @@ $(document).ready(function(){
 			</tr>
 			</table>
 		</section>
-		<%if(session.getAttribute("sId")!=null){ //로그인이 안되어 있다면%> 
+		<%if(session.getAttribute("sId")!=null){ %> 
+			<%if(comment.getId().equals(session.getAttribute("sId").toString()) || session.getAttribute("sId").toString().equals("admin")){ %>
 			<input type="button" value="삭제" id="DeleteComment">
+			<%} %>
 		<%} %>
 		<hr>
-
+<!-- 		로그인 값과 글쓴이의 아이디 값이 같거나 아이디값이 admin일 경우 삭제 버튼이 나타난다 -->
 		<div id= "listData"></div>
 		
 		
 
         	 <input type="hidden" value="<%= session.getAttribute("sId") %>" name="id">
+	         
 	         <table>
 	            <tr><td id="id"><%=session.getAttribute("sId") %></td></tr>
 	            <tr><td>내용 : <input type="text" id="replyContent"></td></tr> 
 	         </table>
+	         
 	            <input type="button" value="등록" id="ReplyButton">&nbsp;&nbsp;
 	            <input type="button" value="취소" onclick="history.back()">
 	            <input type="button" value="목록" onclick="location.href='CustomerCommentList.do'">

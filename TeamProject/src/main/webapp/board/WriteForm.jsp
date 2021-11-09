@@ -6,22 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
-	$(document).ready(function() {
-		$("#chk").on("click", function(){
-// 			alert($("#chk").prop("checked"));
-			$("#ischk").val($("#chk").prop("checked"))  // 체크 값 저장 (true, false)
-		});
-		
-	})
+		$(document).ready(function() {
+			$("#chk").on("click", function(){
+				alert($("#chk").prop("checked")); // chk의 체크 여부를 확인함
+					$("#ischk").val($("#chk").prop("checked"))  // 체크 값 저장 (true, false)
+				// ischk의 value값에 chk의 체크여부 값을 저장함
+			});
+			
+		})
 </script>
 
 <body>
 	 
       <h1>게시판 글 등록</h1>
       <form action="WriteFormPro.do" method="post" name="boardForm">
-      <input type="hidden" id="ischk" name="ischk" value="" >
+      <input type="hidden" id="ischk" name="ischk" value=" " >
          <input type="hidden" value="<%=session.getAttribute("sId") %>" name="id">
          <table>
             <tr><td>아이디 :<%=session.getAttribute("sId") %></td></tr>

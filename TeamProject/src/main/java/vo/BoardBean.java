@@ -9,22 +9,22 @@ import java.sql.Date;
  subject varchar(50) not null,
  content varchar(400) not null,
  readcount int not null,
- check varchar(50), -> 이부분에서 sql 오류가 있다는데?
+ secretCheck varchar(50),
  date date
  );
 
--------itwill에서-----
-+-----------+--------------+------+-----+---------+----------------+
-| Field     | Type         | Null | Key | Default | Extra          |
-+-----------+--------------+------+-----+---------+----------------+
-| num       | int(11)      | NO   | PRI | NULL    | auto_increment |
-| id        | varchar(45)  | YES  |     | NULL    |                |
-| subject   | varchar(45)  | YES  |     | NULL    |                |
-| content   | varchar(400) | YES  |     | NULL    |                |
-| readcount | int(11)      | NO   |     | NULL    |                |
-| check     | varchar(10)  | YES  |     | NULL    |                |
-| date      | date         | YES  |     | NULL    |                |
-+-----------+--------------+------+-----+---------+----------------+
+-------에서-----
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| num         | int          | NO   | PRI | NULL    | auto_increment |
+| id          | varchar(20)  | YES  |     | NULL    |                |
+| subject     | varchar(50)  | NO   |     | NULL    |                |
+| content     | varchar(400) | NO   |     | NULL    |                |
+| readcount   | int          | NO   |     | NULL    |                |
+| secretCheck | varchar(50)  | YES  |     | NULL    |                |
+| date        | date         | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
 
 
  */
@@ -35,7 +35,7 @@ public class BoardBean {
 	private String subject;
 	private String content;
 	private int readcount;
-	private String check; 
+	private String secretCheck; 
 	private Date date;
 	
 	public String getId()
@@ -78,15 +78,13 @@ public class BoardBean {
 	{
 		this.num = num;
 	}
-	public String getCheck()
-	{
-		return check;
+	public String getSecretCheck() {
+		return secretCheck;
 	}
-	public void setCheck(String check)
-	{
-		this.check = check;
+	public void setSecretCheck(String secretCheck) {
+		this.secretCheck = secretCheck;
 	}
-
+	
 	
 	
 }
