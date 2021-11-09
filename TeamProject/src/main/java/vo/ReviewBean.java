@@ -34,6 +34,14 @@ String prev_pic_origin;
 int listCount; // 리뷰 개수 저장
 float totalScore; // 리뷰 평점 저장
 
+int dateDiff;
+public int getDateDiff() {
+	return dateDiff;
+}
+public void setDateDiff(int dateDiff) {
+	this.dateDiff = dateDiff;
+}
+
 public int getRev_num() {
 	return rev_num;
 }

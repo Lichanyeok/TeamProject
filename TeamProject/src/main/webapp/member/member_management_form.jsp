@@ -5,7 +5,7 @@
 <head>
 
     <title>Welcome, is Matzip</title>
-    <link rel="stylesheet" href="./css/management.css">
+    <link rel="stylesheet" href="./css/member_management.css">
 </head>
 <body>
 <!-- 상위 고정 -->

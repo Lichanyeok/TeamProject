@@ -68,14 +68,6 @@ body{
 	width: 155px;
 }
 
-.fail{
-	font-size: 20px;
-	color: #df0404;
-	font-weight: 1000;
-	margin-top: 100px;
-	text-shadow:1px 1px 1px #4830307d;
-	text-align: center
-}
 
 #reserve_date{
 	font-size: 17px;
