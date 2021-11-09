@@ -7,8 +7,6 @@
 	// page, BoardBean 객체 파라미터 가져오기
 	String nowPage = (String)request.getAttribute("page");
 	BoardBean comment = (BoardBean)request.getAttribute("comment");
-// 	ReplyComment Reply = (ReplyComment)request.getAttribute("reply");
-// 	boolean isReplySuccess = (boolean)request.getAttribute("isReplySuccess");
 	
 %> 
 <!DOCTYPE html>
@@ -16,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/detailComment.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -72,36 +71,38 @@ $(document).ready(function(){
 		location.href="DeleteComment.do?num="+num;
 	});
 })
-
+function pleaseLogin(){
+	alert("로그인이 필요합니다")
+	location.href="MemberLoginFormAction.do"
+}
 
 
 </script>
 </head>
 <body>
+<jsp:include page="/inc/header.jsp"></jsp:include>
 <%-- <%String commentId = comment.getId(); %> --%>
 <%-- <%String userId = session.getAttribute("sId").toString(); %> --%>
 
 <input type="hidden" value="<%=request.getParameter("num") %>" name="num" />
-		<h2>글 상세내용 보기</h2>
 		<section id="basicInfoArea">
-			<table border="1">
-			<tr><th width="70">제 목</th><td colspan="3" ><%= comment.getSubject() %></td></tr>
+			<table class="subjectTable">
+			<tr><td colspan="6" class="subject">[제목] <%= comment.getSubject() %></td></tr>
 			<tr>
-				<th width="70">작성자</th><td><%=comment.getId() %></td>
-				<th width="70">작성일</th><td><%=comment.getDate() %></td>
-			</tr>
-			<tr>
-				<th width = "70">내용</th>
-				<td><%=comment.getContent() %></td>
-			</tr>
-			<tr>
-			<th  width="70">조회수</th><td><%=comment.getReadcount() %></td>
+				<td><%=comment.getId() %> | 
+				조회 : <%=comment.getReadcount() %> |
+				<%=comment.getDate() %>  </td>
 			</tr>
 			</table>
+			<hr>
+			
+<!-- 				<th width = "70" colspan="3" >내용</th> -->
+			<div class="content"><%=comment.getContent() %></div>
+			
 		</section>
 		<%if(session.getAttribute("sId")!=null){ %> 
 			<%if(comment.getId().equals(session.getAttribute("sId").toString()) || session.getAttribute("sId").toString().equals("admin")){ %>
-			<input type="button" value="삭제" id="DeleteComment">
+			<input type="button" value="삭제" id="DeleteComment" class="button">
 			<%} %>
 		<%} %>
 		<hr>
@@ -112,13 +113,19 @@ $(document).ready(function(){
 
         	 <input type="hidden" value="<%= session.getAttribute("sId") %>" name="id">
 	         
-	         <table>
-	            <tr><td id="id"><%=session.getAttribute("sId") %></td></tr>
-	            <tr><td>내용 : <input type="text" id="replyContent"></td></tr> 
-	         </table>
-	         
+	         <table class="tablebottom">
+	            <tr><td id="id"><%=session.getAttribute("sId") %></td>
+<tr>
+	            <td><textarea rows="5" id="replyContent" class="textArea"></textarea> 
+	           
+	        <%if(session.getAttribute("sId")!=null){ %> 
 	            <input type="button" value="등록" id="ReplyButton">&nbsp;&nbsp;
-	            <input type="button" value="취소" onclick="history.back()">
+	            <%}else{ %>
+	            <input type="button" value="등록" onclick="pleaseLogin()">&nbsp;&nbsp;
+	            <%} %>
+<!-- 	            <input type="button" value="취소" onclick="history.back()"> -->
 	            <input type="button" value="목록" onclick="location.href='CustomerCommentList.do'">
+	           </td> </tr> 
+	         </table>
 </body>
 </html>
