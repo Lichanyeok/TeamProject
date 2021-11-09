@@ -493,12 +493,16 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				coupon = new CouponBean();
+				
 				coupon.setCoupon_name(rs.getString("coupon_name"));
 				coupon.setCoupon_value(rs.getString("coupon_value"));
 				coupon.setCoupon_price(rs.getInt("coupon_price"));
 				coupon.setCoupon_code(rs.getString("coupon_code"));
 				coupon.setUser_id(id);
 				coupon.setMade_date(rs.getDate("made_date"));
+				coupon.setUsed_coupon(rs.getInt("used_coupon"));
+				coupon.setUsed_code(rs.getString("used_code"));
+				coupon.setUsed_date(rs.getDate("used_date"));
 				couponList.add(coupon);
 			}
 		} catch (SQLException e) {

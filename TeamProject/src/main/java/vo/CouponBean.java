@@ -9,6 +9,9 @@ public class CouponBean {
 	private String coupon_code;
 	private String user_id;
 	private Date made_date;
+	private int used_coupon;
+	private String used_code;
+	private Date used_date;
 	public CouponBean() {};
 	
 	
@@ -60,6 +63,36 @@ public class CouponBean {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+
+	public int getUsed_coupon() {
+		return used_coupon;
+	}
+
+
+	public void setUsed_coupon(int used_coupon) {
+		this.used_coupon = used_coupon;
+	}
+
+
+	public String getUsed_code() {
+		return used_code;
+	}
+
+
+	public void setUsed_code(String used_code) {
+		this.used_code = used_code;
+	}
+
+
+	public Date getUsed_date() {
+		return used_date;
+	}
+
+
+	public void setUsed_date(Date used_date) {
+		this.used_date = used_date;
 	}
 	
 	

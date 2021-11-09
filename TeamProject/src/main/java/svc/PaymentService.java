@@ -14,14 +14,14 @@ public class PaymentService {
 		ReserveDAO dao = ReserveDAO.getInstance();
 		Connection con = getConnection();
 		dao.setConnection(con);
-		isPaySuccess = dao.insertReserve(reserve);
+		String res_code = dao.insertReserve(reserve);
 		
-		if(isPaySuccess) {
-			System.out.println("insertReserve DAO : " + isPaySuccess);
-			boolean isRemoveSuccess = dao.removeCoupon(used_coupon_code);
+		if(res_code!=null) {
+			System.out.println("insertReserve DAO : " + res_code);
+			boolean isUsedSuccess = dao.usedCoupon(used_coupon_code,res_code);
 			commit(con);
-			if(isRemoveSuccess) {
-				System.out.println("removeCoupon - DAO : " + isRemoveSuccess);
+			if(isUsedSuccess) {
+				System.out.println("쿠폰변경완료 - DAO : " + isUsedSuccess);
 				isPaySuccess = true;
 				commit(con);
 				close(con);

@@ -40,11 +40,10 @@
 			$.ajax({
 				type:"get",
 				data:sendData,
-				url:"ModiRes.do",
+				url:"PaidModiRes.do",
 				dataType:"text"
 			}).done(function(data) {
-				alert('예약이 변경되었습니다');
-				location.href='./ModifySendMessage.do?id='+$('#id').text()+'&store_name='+$('#storeName').text()+'&reserve_date='+$('#date').val()+'&reserve_time='+$('#time option:selected').text()+'&people='+$('#people option:selected').text()+'&storeNumber='+$('#storeNumber').text();
+				$('#result').html(data);
 			}).fail(function() {
 				alert('잠시 후에 시도하십시오.')
 			});
@@ -219,5 +218,6 @@
       
         <button id="btnOk" value="확인">변경하기</button>
     </div>
+    <div id="result"></div>
  </body>
 </html>

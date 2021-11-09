@@ -282,8 +282,37 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/ModifySendMessage.do")) {
+			action = new ModifySendMessageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(command.equals("/ModifyReserve.do")) {
 			action = new ModifyReserveAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/PaidModiRes.do")) {
+			action = new PaidModifyResAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/PaidResModifyReserve.do")) {
+			forward = new ActionForward();
+			forward.setPath("./reserve/paid_modify_reserve.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/PaidReserveModify.do")) {
+			action = new PaidReserveModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

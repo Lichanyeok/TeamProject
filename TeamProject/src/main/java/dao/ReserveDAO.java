@@ -36,7 +36,7 @@ private ReserveDAO() {
 		this.con = con;
 	}
 
-	public boolean insertReserve(ReserveBean reserve) {
+	public String insertReserve(ReserveBean reserve) {
 		boolean isInsertSuccess = false;
 		int insertCount=0;
 		String reserve_code = getRandomStr(15);
@@ -73,7 +73,7 @@ private ReserveDAO() {
 			close(pstmt);
 		}
 		
-		return isInsertSuccess;
+		return reserve_code;
 	}
 	
 	public static String getRandomStr(int size) {
@@ -325,6 +325,33 @@ private ReserveDAO() {
 		}
 		return isModiResSuccess;
 	}
+	
+	public boolean paidModiRes(ReserveBean bean,String reserve_code) {
+		boolean isModiResSuccess = false;
+		PreparedStatement pstmt = null;
+		String sql="UPDATE reserve SET reserve_date=?,reserve_time=?,reserve_people=?,reserve_menu=?,customer_request=?,payment_price=? WHERE ran_num=?";
+		try {
+			System.out.println(reserve_code);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getReserve_date());
+			pstmt.setString(2, bean.getReserve_time());
+			pstmt.setInt(3, bean.getPeople());
+			pstmt.setString(4, bean.getTotal_order_menu());
+			pstmt.setString(5, bean.getCustomerNeeds());
+			pstmt.setInt(6, bean.getPayment_price());
+			pstmt.setString(7, reserve_code);
+			int updateCount = pstmt.executeUpdate();
+			if(updateCount > 0 ) {
+				isModiResSuccess = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isModiResSuccess;
+	}
 
 	public boolean reserveCancle(String reserve_code) {
 		boolean isCancleSuccess = false;
@@ -407,5 +434,68 @@ private ReserveDAO() {
 		}
 		return bossMobile;
 	}
+
+	public boolean usedCoupon(String used_coupon_code, String res_code) {
+		System.out.println("usedCoupon - DAO : " + used_coupon_code +","+res_code);
+		boolean isUsedSuccess = false;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "UPDATE coupon SET used_coupon=1,used_code=?,used_date=now() WHERE coupon_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, res_code);
+			pstmt.setString(2, used_coupon_code);
+			int removeCount = pstmt.executeUpdate();
+			if(removeCount>0) {
+				isUsedSuccess = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isUsedSuccess;
+	}
+
+	public boolean couponRestore(String used_coupon_code, String reserve_code) {
+		boolean isRestore = false;
+		int updateCount = 0;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		System.out.println("used_coupon_code : " + used_coupon_code + "reserve_code : " + reserve_code);
+		try {
+			String sql="SELECT used_code FROM coupon WHERE coupon_code=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1, used_coupon_code);	
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(reserve_code)){
+					System.out.println("복구 필요 없음");
+					isRestore=true;
+				}else {
+					close(pstmt);
+					//이전에 선택한 쿠폰 복구
+					sql="UPDATE coupon SET used_coupon=0,used_code=? WHERE used_code=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, "");
+					pstmt.setString(2, reserve_code);
+					updateCount = pstmt.executeUpdate();
+					if(updateCount>0) {
+						System.out.println("복구 성공");
+						isRestore=true;
+					}
+				}
+			}else {
+				System.out.println("정보가 다릅니다");
+			}
+			
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isRestore;
+	}
+
+	
 	
 }
