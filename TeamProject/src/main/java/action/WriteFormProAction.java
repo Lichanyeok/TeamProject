@@ -20,8 +20,11 @@ public class WriteFormProAction implements Action {
 		board.setId(request.getParameter("id"));
 		board.setSubject(request.getParameter("subject"));
 		board.setContent(request.getParameter("content"));
-		board.setCheck(request.getParameter("ischk"));
-		
+		board.setSecretCheck(request.getParameter("ischk")); // true, false값이 넘어감
+		String ischk = request.getParameter("ischk");
+		String id = request.getParameter("id");
+		String subject = request.getParameter("subject");
+		System.out.println("ischk = " +ischk + " id : "+id + " subject =" + subject);
 		WriteFormProService service = new WriteFormProService();
 		
 		boolean isWriteSuccess  = service.registComment(board);

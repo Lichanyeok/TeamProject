@@ -6,7 +6,7 @@ public class ReplyComment
 {
 	/*
 	 create table replycomment(
-	 idx int PRIMARY KEY AUTO_INCREMENT,
+	 idx int,
 	 id varchar(20),
 	 content varchar(500),
 	 date date
