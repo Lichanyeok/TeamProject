@@ -101,6 +101,15 @@
 			alert('수정 권한이 없습니다!');
 		}
 	}
+	function isWriter2(rev_num) {
+		var rev_name = $('input[name=rev_name]').val();
+		var rev_writer = $('input[name=rev_writer]').val();
+		if(rev_name == rev_writer) {
+			location.href='./ReviewDelete.re?rev_num='+ rev_num
+		} else {
+			alert('수정 권한이 없습니다!');
+		}
+	}
 		
 </script>
 </head>
@@ -180,7 +189,7 @@
 					</div>
 					<!-- 수정 / 삭제 --><span class="rev_my_btn">
 					<input type="button" name="rev_modify" value="수정"  onclick="isWriter(<%=myReviewList.get(i).getRev_num() %>)"/>
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=myReviewList.get(i).getRev_num() %>'"/>
+					<input type="button" name="rev_delete" value="삭제" onclick="isWriter2(<%=myReviewList.get(i).getRev_num() %>)"/>
 					</span>
 				</td>
 			</tr>
@@ -193,7 +202,7 @@
 					</div>
 					<!-- 수정 / 삭제 --><span class="rev_my_btn">
 					<input type="button" name="rev_modify" value="수정"  onclick="isWriter(<%=myReviewList.get(i).getRev_num() %>)"/>
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=myReviewList.get(i).getRev_num() %>'"/>
+					<input type="button" name="rev_delete" value="삭제" onclick="isWriter2(<%=myReviewList.get(i).getRev_num() %>)"/>
 					</span>
 				</td>
 			</tr>

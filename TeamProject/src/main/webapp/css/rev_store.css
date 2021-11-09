@@ -121,6 +121,24 @@
 	font-style: bold;
 }
 
+#rev_empty {
+	position: relative;
+	bottom: 80px;
+    left: 100px;
+}
+
+#rev_empty img {
+	width:350px;
+	height:350px;
+	position: relative;
+    left: 50px;
+}
+
+#rev_empty span {
+	font-weight: bold;
+	font-size: 30px;
+}
+
 /* 리뷰 레이아웃 */
 
 .reviewPic div, .reviewText div {
@@ -355,19 +373,25 @@ text-align: center;
 	font-size: 30px;
 }
 
+.modifyStoreName h1 {
+	position: relative;
+    left: 15px;
+}
+
 #modifyTable table {
-	border: 1px solid rgb(195, 188, 188);
-	border-radius: 50px;
 	width: 580px;
 	position: relative;
 	left: 480px;
 }
 
 #modifyTable textarea {
-	width: 280px; 
-	height: 250px;
+	width: 350px; 
+	height: 125px;
 	margin-left: 5px;
-	border-radius: 15px;
+	border-radius: 5px;
+	word-break:break-all;
+	border: none;
+	resize: none;
 }
 
 #modifyTable textarea:hover {
@@ -376,33 +400,43 @@ text-align: center;
 }
 
 .modifyImg {
-	width: 280px;
-	height: 250px;
 	border: 1px solid rgb(195, 188, 188);
-	border-radius: 15px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: 120px;
+	height: 120px;
 }
 
 .modifyImg:hover {
 	border: 2px solid rgb(255, 136, 49);
 }
 
-#modifyTable input[value="수정"] { /* 리뷰 수정의 수정 삭제 버튼 */
+.uploadFile {
 	position: relative;
+    left: 20px;
+    top: 2.9px;
+}
+
+.modifyBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+
+#modifyTable input[value="수정"] { /* 리뷰 수정의 수정 삭제 버튼 */
 	border-radius: 6px;
 	margin-left: 20px;
-	left: 450px;
 	width: 50px;
 	border-radius: 20px;
 	border: 1px solid rgb(195, 188, 188);
 	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
 }
 #modifyTable input[value="취소"] {
-	position: relative;
 	border-radius: 6px;
 	margin-left: 20px;
-	left: 430px;
 	width: 50px;
 	border-radius: 20px;
 	border: 1px solid rgb(195, 188, 188);
@@ -415,17 +449,21 @@ text-align: center;
 	border: 1px solid rgb(195, 188, 188);
 	background-color: rgba(0,0,0,0);
 	position: relative;
-	left: 325px;
+	top: 40px;
+    right: 55px;
 }
 
 .uploaderBtn {
 	position: relative;
-	left: 50px;
+    left: 15px;
+    top: 3px;
 }
 
 .uploaderBtn img {
 	width: 20px;
 	height: 20px;
+	position: relative;
+    top: 6px;
 }
 
 /* 팝업창 */
