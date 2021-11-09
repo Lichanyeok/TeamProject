@@ -19,7 +19,7 @@ public class MatzipMyStoreAction implements Action {
 		ActionForward forward=null;
 		
 		HttpSession session = request.getSession();
-	    String id=(String)session.getAttribute("sNn");
+	    String id=(String)session.getAttribute("sId");
 //	    System.out.println(id);
 		
 		MatzipMyStoreService service =new MatzipMyStoreService();
