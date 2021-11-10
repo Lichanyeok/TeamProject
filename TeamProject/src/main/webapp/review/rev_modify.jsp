@@ -166,7 +166,6 @@
 	               <td>
 						<input type="file" id="uploader" name="uploader" accept="image/jpeg, image/png, image/gif" style="display: none"/>
 						<span class="uploaderBtn" onclick="onclick=document.all.uploader.click()"><img src="<%=request.getContextPath()%>/review/rev_im/upload_img.png" />사진</span><p class="uploadFile"></p>
-						
 	               </td>
 	            </tr>
 	         </table>

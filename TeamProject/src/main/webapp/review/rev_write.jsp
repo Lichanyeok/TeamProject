@@ -34,7 +34,7 @@
 				$('.uploadFile').html('(' + str.split("\\")[2] + ')');
 			}
 		});
-		  
+		 
 	});
 		
 </script>
