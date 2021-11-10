@@ -29,8 +29,11 @@
 		});
 		
 		// 좋아요 갯수 증가를 위한 ajax 정의
+		var rev_writer = $('input[name=rev_writer]').val();
+		if(rev_name == rev_writer){
 		$('#rev_menu_btn button').click(function() {
 			var rev_num = $(this).val(); // 리뷰 번호 전달
+			
 			$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
 				type: "POST",
 				cache: false,
@@ -50,13 +53,13 @@
 							rev_name : rev_name
 						},
 						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
-							var isClick = data.isCheck;
+							var isClick = data.isCheck;			
 							if(isClick > 0){
 								$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_write.png"});
-								alert("'좋아요'가 반영되었습니다!") ;
+								alert("'좋아요'가 반영되었습니다!");
 							} else {
 								$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_empty.png"});
-								alert("'좋아요'가 취소되었습니다!") ;
+								alert("'좋아요'가 취소되었습니다!");
 							}
 						}, 
 						error:
@@ -71,7 +74,9 @@
 				alert("ajax실패") } 
 			}); 
 		}); // 좋아요 ajax 끝		
-		
+		} else {
+			alert('로그인 후 이용해주세요!');
+		}
 		// 이미지 팝업창
 		$(function() {
 		    //----- OPEN
@@ -97,6 +102,15 @@
 		var rev_writer = $('input[name=rev_writer]').val();
 		if(rev_name == rev_writer) {
 			location.href='./ReviewModify.re?rev_num='+ rev_num
+		} else {
+			alert('수정 권한이 없습니다!');
+		}
+	}
+	function isWriter2(rev_num) {
+		var rev_name = $('input[name=rev_name]').val();
+		var rev_writer = $('input[name=rev_writer]').val();
+		if(rev_name == rev_writer) {
+			location.href='./ReviewDelete.re?rev_num='+ rev_num
 		} else {
 			alert('수정 권한이 없습니다!');
 		}
@@ -180,7 +194,7 @@
 					</div>
 					<!-- 수정 / 삭제 --><span class="rev_my_btn">
 					<input type="button" name="rev_modify" value="수정"  onclick="isWriter(<%=myReviewList.get(i).getRev_num() %>)"/>
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=myReviewList.get(i).getRev_num() %>'"/>
+					<input type="button" name="rev_delete" value="삭제" onclick="isWriter2(<%=myReviewList.get(i).getRev_num() %>)"/>
 					</span>
 				</td>
 			</tr>
@@ -193,7 +207,7 @@
 					</div>
 					<!-- 수정 / 삭제 --><span class="rev_my_btn">
 					<input type="button" name="rev_modify" value="수정"  onclick="isWriter(<%=myReviewList.get(i).getRev_num() %>)"/>
-					<input type="button" name="rev_delete" value="삭제" onclick="location.href='./ReviewDelete.re?rev_num=<%=myReviewList.get(i).getRev_num() %>'"/>
+					<input type="button" name="rev_delete" value="삭제" onclick="isWriter2(<%=myReviewList.get(i).getRev_num() %>)"/>
 					</span>
 				</td>
 			</tr>

@@ -9,15 +9,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/detailComment2.css">
 </head>
 <body>
 		<%request.getParameter("Rcomment"); %>
-		<table border="1">
 		<%for(int i=0; i<reply.size(); i++){%>
+		<table class="Detailtable" >
 			<tr>
-				<td>아이디 : </td><td><%=reply.get(i).getId() %></td>
-				<td>내용 : </td><td><%=reply.get(i).getContent() %></td>
-				<td>날짜 : </td><td><%=reply.get(i).getDate()%></td>
+				<td class="id"><%=reply.get(i).getId() %>(<%=reply.get(i).getDate()%>)</td>
+			</tr>
+			<tr>
+				<td> <%=reply.get(i).getContent() %></td>
 			</tr>
 		<%} %>
 		</table>

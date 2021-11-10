@@ -362,7 +362,7 @@ $(document).ready(function() {
 		<div class="rev_store_center">
 		<div id="rev_contents">
 			<div id="rev_empty">
-				<img src="" width="500" height="500"><br>
+				<img src="" ><br>
 				<span></span>
 			</div>
 		</div>
