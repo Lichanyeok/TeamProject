@@ -288,6 +288,45 @@ $(document).ready(function() {
 	select.addEventListener('click',selects);
 	body.addEventListener('click',hideSelect);
 	
+	<!-- =========맨위로버튼JS=================== -->
+    var btt =document.querySelector("#backto_top"),
+    docElem= document.documentElement,
+    offset,
+    scrollPos,
+    docHeight;
+
+    docHeight = Math.max(docElem.scrollHeight,docElem.offsetHeight);
+
+
+    if(docHeight != 'undefinesd'){
+        offset = docHeight / 4;
+    }
+
+    window.addEventListener('scroll',function(){
+        scrollPos = docElem.scrollTop;
+        btt.className = (scrollPos > offset)  ?  'visible' : '';
+    });
+
+    btt.addEventListener('click',function(e){
+        e.preventDefault;
+        // docElem.scrollTop = 0;
+        scrollToTop();
+    });
+
+    function scrollToTop() {
+
+        let scrollInterval = setInterval(function(){
+
+            if(scrollPos != 0) {
+                window.scrollBy(0,-55);
+            }else {
+                clearInterval(scrollInterval);
+            }
+            
+        }, 15);
+
+    } // 스크롤 업 끝
+	
 }); // 제이쿼리 끝
 </script>
 </head>
@@ -368,5 +407,8 @@ $(document).ready(function() {
 		</div>
 		</div>
 	</div> <!-- review_container 끝 -->
+	<!-- =========맨위로버튼=================== -->
+    <div id = "backto_top"></div>
+    <!-- =========맨위로버튼=================== -->
 </body>
 </html>

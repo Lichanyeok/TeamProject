@@ -102,6 +102,48 @@
 		        e.preventDefault();
 		    });
 		}); // 이미지 팝업창 끝
+		
+		
+		<!-- =========맨위로버튼JS=================== -->
+	    var btt =document.querySelector("#backto_top"),
+	    docElem= document.documentElement,
+	    offset,
+	    scrollPos,
+	    docHeight;
+
+	    docHeight = Math.max(docElem.scrollHeight,docElem.offsetHeight);
+
+
+	    if(docHeight != 'undefinesd'){
+	        offset = docHeight / 4;
+	    }
+
+	    window.addEventListener('scroll',function(){
+	        scrollPos = docElem.scrollTop;
+	        btt.className = (scrollPos > offset)  ?  'visible' : '';
+	    });
+
+	    btt.addEventListener('click',function(e){
+	        e.preventDefault;
+	        // docElem.scrollTop = 0;
+	        scrollToTop();
+	    });
+
+	    function scrollToTop() {
+
+	        let scrollInterval = setInterval(function(){
+
+	            if(scrollPos != 0) {
+	                window.scrollBy(0,-55);
+	            }else {
+	                clearInterval(scrollInterval);
+	            }
+	            
+	        }, 15);
+
+	    } // 스크롤 업 끝
+		
+		
 	}); // 제이쿼리 끝
 	
 	function isWriter(rev_num) {
@@ -122,6 +164,7 @@
 			alert('수정 권한이 없습니다!');
 		}
 	}
+
 		
 </script>
 </head>
@@ -231,6 +274,8 @@
 		</div>
 	<%}%>
 	</div>
-	
+	<!-- =========맨위로버튼=================== -->
+    <div id = "backto_top"></div>
+    <!-- =========맨위로버튼=================== -->
 </body>
 </html>

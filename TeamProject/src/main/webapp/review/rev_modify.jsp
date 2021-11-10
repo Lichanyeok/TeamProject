@@ -124,12 +124,12 @@
       	<input type="hidden" name="prev_pic" value="<%=pic %>" />
 		<input type="hidden" name="prev_pic_origin" value="<%=pic_origin %>" />
      	
-		<div class="star-rating space-x-4 mx-auto" id="div1">
-		
 			<!-- 별점마다 이모티콘 변경 -->
+			<div class="star-list" id="div1">
+			<span class="star-rating" id="div1">
 			<img id="img_score" src=" " width="45" height="45" >
 			<input type="hidden" id="starScore" value="" />
-			
+			</span>
 			<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 			<label for="5-stars" class="star" >★</label> <!-- class="star  pr-4" -->
 			<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
@@ -139,9 +139,11 @@
 			<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" />
 			<label for="2-stars" class="star">★</label>
 			<input type="radio" id="1-stars" name="rating" value="1" v-model="ratings" />
-			<label for="1-stars" class="star">★</label>
+			<label for="1-stars" class="star">★</label>	
+		
+		</div>
 			
-		</div><br>
+		<br>
       	<div id="modifyTable">
 	        <table>
 	            <tr>
@@ -155,7 +157,7 @@
 							<input type="submit" value="수정">
 				         	<input type="button" value="취소" onclick="history.back()">
 			        	</span>
-						<p class="modifyP"><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 150자)" maxlength="165"><%=article.getRev_content() %></textarea></p>
+						<p class="modifyP"><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요.&#13;&#10;(최대 150자)" maxlength="165"><%=article.getRev_content() %></textarea></p>
 	               		<p class="modifyMenu">주문메뉴 : <%=article.getRev_menu() %></p>
 	                </div>
 	               </td>
@@ -164,7 +166,6 @@
 	               <td>
 						<input type="file" id="uploader" name="uploader" accept="image/jpeg, image/png, image/gif" style="display: none"/>
 						<span class="uploaderBtn" onclick="onclick=document.all.uploader.click()"><img src="<%=request.getContextPath()%>/review/rev_im/upload_img.png" />사진</span><p class="uploadFile"></p>
-						
 	               </td>
 	            </tr>
 	         </table>
