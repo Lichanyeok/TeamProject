@@ -621,6 +621,7 @@ body {
 	-webkit-text-stroke-width: 2.3px;
 	-webkit-text-stroke-color: #2b2a29;
 	cursor: pointer;
+	
 }
 
 .star-list :checked ~ label {
