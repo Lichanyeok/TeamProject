@@ -1,0 +1,499 @@
+#hr {
+	border-top: 1px solid rgb(195, 188, 188);
+	width: 200px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.store_gap {
+	margin-bottom: 150px;
+}
+
+.review_container {
+	overflow: hidden;
+}
+
+.nav {
+	margin-top: 50px;
+	float: left;
+	width: 200px;
+	margin-left: 45px;
+	margin-right: 50px;
+	margin-top: 143px;
+	position: fixed;
+	border-top: 1px solid rgb(195, 188, 188);
+}
+
+.rev_store_left {
+	list-style: none;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.rev_store_center {
+    margin: 0 auto;
+	width: 600px;
+}
+
+#rev_contents {
+	width: 100%;
+	margin: 0px auto;
+	display: block;
+	gap: 4%;
+}
+
+#rev_store_left .store_name > p {
+	font-size: 1.5rem;
+	color: rgb(112, 112, 112);
+}
+
+#rev_store_left .store_name h2 {
+	width: 90%;
+	text-align: center;
+	font-size: 2.0rem;
+	font-weight: 700;
+	float: left;
+	margin-top: 3%;
+}
+
+#benefit>ul {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.star_score > p {
+	font-size: 50px;
+	padding-bottom: 10px;
+	margin-left: 13%;
+}
+
+.count_score > p {
+	font-size: 20px;
+	margin-left: 18%;
+}
+
+.rev_store_center table { /* 리뷰 본문 */
+	border-radius: 50px;
+	width: 750px;
+	margin-bottom: 140px;
+}
+
+.rev_store_center table:hover {
+	border-radius: 50px;
+	width: 750px;
+}
+
+.table_subject {
+	height: 50px;
+}
+
+.table_subject td > .userName {
+	font-size: 25px;
+    font-weight: bold;
+}
+
+.table_subject td > img {
+	margin-top: 8px;
+}
+
+.table_subject .rev_date {
+	color: rgb(192,192,192);
+}
+
+.table_subject button {
+	position: relative;
+	left: 480px;
+}
+
+#rev_menu_btn > Button {
+	width: 80px;
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+
+#rev_menu_btn span {
+	margin-left: 5px;
+	font-size: 18px;
+	font-style: bold;
+}
+
+#rev_empty {
+	position: relative;
+	bottom: 80px;
+    left: 100px;
+}
+
+#rev_empty img {
+	width:350px;
+	height:350px;
+	position: relative;
+    left: 50px;
+}
+
+#rev_empty span {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+/* 리뷰 레이아웃 */
+
+.reviewPic div, .reviewText div {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+
+.reviewPic div:hover, .reviewText div:hover {
+	border: 1px solid rgb(255, 136, 49);
+}
+
+/* 사진이 없는 리뷰 css */
+.reviewText div > .reviewContent {
+	width: 350px;
+	height: 125px;
+	word-break:break-all;
+}
+
+.reviewText div > .reviewMenu {
+	font-weight: bold;
+	text-align: right;
+	position: relative;
+    bottom: 20px;
+}
+
+/* 사진이 있는 리뷰 css */
+.reviewPic div > img { /* 리뷰 사진 css .reviewPic */
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	width: 120px;
+	height: 120px;
+}
+.reviewPic div > .reviewContent {
+	font-weight: bold;
+    position: relative;
+    bottom: 125px;
+    left: 135px;
+    width: 350px;
+    height: 125px;
+	word-break:break-all;
+}
+
+.reviewPic div > .reviewMenu {
+	position: relative;
+    text-align: right;
+    bottom: 142px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+
+
+/* reset */
+*{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* common */
+body{
+    padding: 30px;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/* 셀렉트 영역 스타일 */
+.select{
+    position: relative;
+    padding: 5px 10px;
+    width: 200px;
+    border-radius: 5px;
+    border:1px solid salmon;
+    background-color: linen;
+    background-image: url("https://img.icons8.com/material-rounded/24/000000/expand-arrow.png");
+    background-repeat: no-repeat;
+    background-position: 96% center;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+/* 옵션 영역 스타일 */
+.select ul{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+/*     border:1px solid salmon; */
+	border:1px solid rgb(255, 136, 49);
+    border-radius: 5px;
+	background-color: rgba(0,0,0,0);
+    cursor: pointer;
+}
+
+.select ul li{
+    padding: 10px;
+}
+
+.select ul li:first-child{
+	background: rgba(0,0,0,0);
+}
+.select ul li:nth-child(2){
+	background: rgba(0,0,0,0);
+}
+.select ul li:nth-child(3){
+	background: rgba(0,0,0,0);
+}
+
+.select ul li:hover{
+    background-color: orange;
+}
+
+/* 체크박스 이미지형태로 변경 */
+.ccheck input[type="checkbox"] {
+	display: none
+}
+
+.ccheck label{
+	width:15px;
+	height:15px;
+}
+
+.ccheck label:before {
+	content:'';
+	display: inline-block;
+	width: 28px;
+	height: 20px;
+	background: url("/TeamProject/review/rev_im/box_test.png");
+	vertical-align: -2px;
+}
+
+.ccheck input[type="checkbox"]:checked + label:before {
+	width: 28px;
+	height: 20px;
+	background: url("/TeamProject/review/rev_im/withColor.png")no-repeat center center;
+	background-size: cover;
+}
+/* 나의 리뷰css */
+#member_title {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.rev_my_btn {
+	position: relative;
+	left: 625px;
+    top: 10px;
+	border-radius: 6px;
+	margin-left: 20px;
+}
+
+.rev_my_btn input[type="button"] {
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+.rev_my_btn input[type="button"]:hover {
+	background-color: blue;
+}
+
+#wrap table { /* 리뷰 본문 */
+	width: 750px;
+	margin-bottom: 10px;
+	position: relative;
+	left: 400px;
+	margin-bottom: 140px;
+}
+
+/* 리뷰 수정 css */
+/*    
+	starting 
+	출처 : https://melthleeth.tistory.com/entry/HTML-CSS%EB%A1%9C-%EB%B3%84%EC%B0%8D%EA%B8%B0-Star-Rating
+*/
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+  margin: auto;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+
+.star-rating space-x-4 mx-auto {
+text-align: center;
+
+}
+
+/* 리뷰 수정 이미지 */
+#img_score {
+	visibility: hidden;
+}
+
+.modifyStoreName {
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.modifyStoreName h1 {
+	position: relative;
+    left: 15px;
+}
+
+#modifyTable table {
+	width: 580px;
+	position: relative;
+	left: 480px;
+}
+
+#modifyTable textarea {
+	width: 350px; 
+	height: 125px;
+	margin-left: 5px;
+	border-radius: 5px;
+	word-break:break-all;
+	border: none;
+	resize: none;
+}
+
+#modifyTable textarea:hover {
+	border: 2px solid rgb(255, 136, 49);
+	
+}
+
+.modifyImg {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	width: 120px;
+	height: 120px;
+}
+
+.modifyImg:hover {
+	border: 2px solid rgb(255, 136, 49);
+}
+
+.uploadFile {
+	position: relative;
+    left: 20px;
+    top: 2.9px;
+}
+
+.modifyBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+
+#modifyTable input[value="수정"] { /* 리뷰 수정의 수정 삭제 버튼 */
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
+}
+#modifyTable input[value="취소"] {
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+#modifyTable input[value="삭제"] {
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+	top: 40px;
+    right: 55px;
+}
+
+.uploaderBtn {
+	position: relative;
+    left: 15px;
+    top: 3px;
+}
+
+.uploaderBtn img {
+	width: 20px;
+	height: 20px;
+	position: relative;
+    top: 6px;
+}
+
+/* 팝업창 */
+.popup {
+  display: none;
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px) grayscale(90%);
+  -webkit-backdrop-filter: blur(4px) grayscale(90%);
+}
+
+.popup-inner {
+  position:absolute;
+  width: 40%;
+  height: 70%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  padding : 10px;
+  background:#fff;
+}
+
+.popup-contents img {
+	width: 750px;
+	height: 650px;
+	position: relative;
+	right: 60px;
+	bottom: 70px;
+}

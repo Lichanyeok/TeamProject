@@ -45,7 +45,7 @@ public class ReviewModifyProAction implements Action {
 		
 		//아이디, 비밀번호 및 리뷰 번호 값 가져오기
 		String rev_name = multi.getParameter("rev_name");
-		String rev_pass = multi.getParameter("rev_pass");
+//		String rev_pass = multi.getParameter("rev_pass");
 		int rev_num = Integer.parseInt(multi.getParameter("rev_num"));
 		
 		// 등록된 사진을 그대로 사용할 경우
@@ -84,7 +84,8 @@ public class ReviewModifyProAction implements Action {
 				
 		// isArticleWrite() 메서드를 호출하여 패스워드 일치 여부 판별(본인 확인)
 		// => 파라미터 : 글번호, 패스워드   리턴타입 : boolean(isRightUser)
-		Boolean isRightUser = svc.isArticleWrite(rev_name, rev_pass);
+//		Boolean isRightUser = svc.isArticleWrite(rev_name, rev_pass);
+		Boolean isRightUser = svc.isReviewWrite(rev_name, rev_num);
 		System.out.println("isRightUser : " + isRightUser);
 				
 		if(!isRightUser) { // 작업 결과가 false 일 경우
