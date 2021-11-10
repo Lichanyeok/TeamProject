@@ -35,14 +35,14 @@ public class ModifySendMessageAction implements Action{
     System.out.println(storeName + " / " + reserveDate + " / " + reserveTime + " / " + people + "명 예약 변경 완료!.");
     
     String content = storeName + " / " + reserveDate + " / " + reserveTime + " / " + people + "명 예약 변경 완료!";
-    //    SendMessage.sendMessage(mobile, content);
+    SendMessage.sendMessage(mobile, content);
     
     GetStoreInfoService service2 = new GetStoreInfoService();
     String bossMobile = service2.getBossMobile(storeNumber);
     String content2 = "예약변경!! 변경사항 : "+reserveDate+" / "+reserveTime+" / "+people + "명 예약되었습니다! 자세한 사항은 마이스토어를 확인하세요";
     System.out.println("bossmobile : " + bossMobile + " contente2 : " +  content2);
     forward.setPath("./ReserveList.do");
-//    SendMessage.sendMessage(bossMobile, content2);
+    SendMessage.sendMessage(bossMobile, content2);
     forward.setRedirect(true);
 	return forward;
    }

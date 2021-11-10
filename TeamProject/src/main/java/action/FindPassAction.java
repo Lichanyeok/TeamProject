@@ -28,7 +28,7 @@ public class FindPassAction implements Action {
 		
 		if(isRightInfo) {
 			request.setAttribute("id", id);
-			forward.setPath("./find_pass_result.jsp");
+			forward.setPath("./member/find_pass_result.jsp");
 			forward.setRedirect(false);
 		}else {
 			  response.setContentType("text/html; charset=UTF-8");

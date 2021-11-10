@@ -177,7 +177,7 @@
                  </c:when>
                  <c:otherwise>
                   <%for(int i =0;i<couponList.size();i++){ 
-                  		if(!couponList.get(i).getUsed_code().equals(reserve.getRan_num())&&couponList.get(i).getUsed_code().equals("")){
+                  		if(couponList.get(i).getUsed_code().equals(reserve.getRan_num())||couponList.get(i).getUsed_coupon()<1){
                   %>
 	                    <tr>
 	                        <td><input type="radio" name="checkCoupon" value="<%=couponList.get(i).getCoupon_price()%>"><a><%=couponList.get(i).getCoupon_code() %></a></td>

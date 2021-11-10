@@ -123,16 +123,16 @@ public class payAction implements Action {
 			PaymentService service = new PaymentService();
 			int isInsertSuccess = service.localPayment(reserve);
 			if(isInsertSuccess>0) {
-				ReserveDAO rDao = ReserveDAO.getInstance();
-				rDao.setConnection(con);
-				MemberBean bean = rDao.getInfo(id);
-				String mobile = bean.getMobile();
-				String content = storeName + " / " + reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다.";
-				
-				SendMessage.sendMessage(mobile, content);
-				content = reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다! 자세한 사항은 마이스토어를 확인하세요.";
-				String bossMobile = rDao.getBossMobile(storeNumber);
-				SendMessage.sendMessage(bossMobile, content);
+//				ReserveDAO rDao = ReserveDAO.getInstance();
+//				rDao.setConnection(con);
+//				MemberBean bean = rDao.getInfo(id);
+//				String mobile = bean.getMobile();
+//				String content = storeName + " / " + reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다.";
+//				
+//				SendMessage.sendMessage(mobile, content);
+//				content = reserve_date + " / " + reserve_time + " / " + people + "명 예약되었습니다! 자세한 사항은 마이스토어를 확인하세요.";
+//				String bossMobile = rDao.getBossMobile(storeNumber);
+//				SendMessage.sendMessage(bossMobile, content);
 				forward.setPath("./reserve/reserve_main.jsp");
 				forward.setRedirect(false);
 			}else {

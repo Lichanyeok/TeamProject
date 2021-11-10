@@ -124,7 +124,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member/FindId.do")) {
+		}else if(command.equals("/FindId.do")) {
 			System.out.println("find Id controller");
 			action = new FindIdAction();
 			try {
@@ -133,7 +133,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member/FindPass.do")) {
+		}else if(command.equals("/FindPass.do")) {
 			action = new FindPassAction();
 			try {
 				forward = action.execute(request, response);
@@ -141,7 +141,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member/UpdatePass.do")) {
+		}else if(command.equals("/UpdatePass.do")) {
 			action = new UpdatePassAction();
 			try {
 				forward = action.execute(request, response);
@@ -193,7 +193,15 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/GoFindPass.do")){
+			forward = new ActionForward();
+			forward.setPath("./member/find_pass2.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/GoFindId.do")){
+			forward = new ActionForward();
+			forward.setPath("./member/find_id2.jsp");
+			forward.setRedirect(false);
+		
 			// -----------------------------예약 관련 컨트롤러 ---------------------------------------
 		}else if (command.equals("/member/SendAuthMail.do")) {
             action = new SendAuthMailAction();
