@@ -11,23 +11,30 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/reservation_list2.css">
+<link rel="stylesheet" href="./css/reservation_list.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <%
 	
 %>
 <script type="text/javascript">
-		 var date = new Date();
-	 	 var yyyy = date.getFullYear();
-	 	 var mm = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + date.getMonth()+1;
-		 var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
-		 var today = yyyy+"-"+mm+"-"+dd;
-	 	alert("aaa");	 	
+		var date = new Date();
+	 	var yyyy = date.getFullYear();
+	 	var mm = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + date.getMonth()+1;
+		var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+		var today = yyyy+"-"+mm+"-"+dd;
+			 		 	
  	$(document).ready(function(){
+ 		
+ 		 $('input[type=button]').click(function() {
+				alert('asdasda : ' + this.value);
+			});
+ 		
 		 $.ajax({
 	         type : "GET",
 	         url : "ReservationList.mz?store_name=<%=request.getParameter("store_name")%>&reserve_date="+today,
 	         success : function(msg) {
+	        	
+	        	$("#reserve_date").val(today);
 	            $("#reservation_list").html(msg);
 	         }
 	      });
@@ -37,12 +44,13 @@
 	            type : "GET",
 	            url : "ReservationList.mz?store_name=<%=request.getParameter("store_name")%>&reserve_date="+$("#reserve_date").val(),
 	            success : function(msg) {
-	               $("#reservation_list").html(msg);
+	               $("#reservation_list").html(msg);	               
 	            }
 	         }).fail(function() {
 	            alert('실패!');
 	         });
 		 });
+		 
 	
 	});
 </script>

@@ -47,7 +47,7 @@
    <!-- 게시판 등록 -->
    <section id="writeForm" >
    
-		<div class="writeStoreName"><h1><%=request.getParameter("rev_store") %></h1></div>
+		<h1><%=request.getParameter("rev_store") %></h1>
 		
 	<form action="ReviewWritePro.re" method="post" enctype="multipart/form-data" name="boardForm">
 	<!-- 예약번호 값 넘기기 --> <input type="hidden" name="ran_num" value="<%=request.getParameter("ran_num") %>" />
