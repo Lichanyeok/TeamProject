@@ -150,7 +150,7 @@
 		<table class="rev_table">
 			<tr class="table_subject">
 				<td>
-					<!-- 닉네임 --><span class="userName"><%=myReviewList.get(i).getRev_name() %>님</span><br>
+					<!-- 매장명--><span class="storeName"><%=myReviewList.get(i).getRev_store() %></span><br>
 					<!-- 별점 --><img src="./review/rev_im/<%=rev_score %>star.png" width="100" height="20" />
 					<!-- 작성일 --> 
 					<span class="rev_date"> 
