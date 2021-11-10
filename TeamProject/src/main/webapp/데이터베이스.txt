@@ -80,6 +80,7 @@ create table CustomerComment(
  secretCheck varchar(50),
  date date
  );
+ 
 
 - 예약 - 
 CREATE TABLE reserve(
