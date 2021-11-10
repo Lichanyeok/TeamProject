@@ -1,0 +1,115 @@
+- 검색 -
+create table business(	
+	id varchar(20) primary key,
+	place_name varchar(30) not null,
+	business_lisence varchar(15) unique not null,
+	category varchar(15) not null,			
+	tell_number varchar(30) unique not null,
+	road_address varchar(50) not null,		
+	jibun_address varchar(50) not null,	
+	logo_img varchar(50),
+	ori_logo_img varchar(100),
+	star_score float,							
+	date DATE not null,
+	recommend int default 0,
+	app_check varchar(2)
+);
+
+- 멤버 -
+CREATE TABLE project_member(
+    idx    int PRIMARY KEY AUTO_INCREMENT,
+    name   VARCHAR(15) NOT NULL,
+    nickname VARCHAR(20) UNIQUE NOT NULL,
+    age    int NOT NULL,
+    id     VARCHAR(20) UNIQUE NOT NULL,
+    pass   VARCHAR(20) NOT NULL,
+    email  VARCHAR(50) UNIQUE NOT NULL,
+    mobile VARCHAR(20) UNIQUE NOT NULL,
+    address VARCHAR(40) NOT NULL,
+    address_detail VARCHAR(50) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    grade  int(5) NOT NULL,
+    member_date DATE,
+    login_date DATE,
+    auth_status varchar(1) default 'N'
+);
+
+- 메일 인증 -
+CREATE TABLE project_auth(
+    id varchar(16) NOT NULL PRIMARY KEY,
+    auth_code varchar(50) NOT NULL
+);
+
+- 리뷰 -
+CREATE TABLE review (
+  rev_num INT AUTO_INCREMENT PRIMARY KEY,
+  ran_num VARCHAR(36) UNIQUE NOT NULL,
+  rev_store VARCHAR(20),
+  rev_name VARCHAR(20),
+  rev_score FLOAT,
+  rev_content VARCHAR(500),
+  rev_pic VARCHAR(250),
+  rev_pic_origin VARCHAR(250),
+  rev_menu VARCHAR(30),
+  rev_date DATE,
+  rev_like INT
+);
+
+- 리뷰 좋아요 - 
+CREATE TABLE rev_isLike (
+  rev_num int NOT NULL,
+  rev_name VARCHAR(20) NOT NULL,
+  rev_isCheck int(1) default 0
+);
+
+- 답글 - 
+create table replycomment(
+	 idx int,
+	 id varchar(20),
+	 content varchar(500),
+	 date date
+	 );
+	 
+- 고객문의 -
+create table CustomerComment(
+ num int PRIMARY KEY AUTO_INCREMENT,
+ id varchar(20),
+ subject varchar(50) not null,
+ content varchar(400) not null,
+ readcount int not null,
+ secretCheck varchar(50),
+ date date
+ );
+
+- 예약 - 
+CREATE TABLE reserve(
+ran_num VARCHAR(15) PRIMARY KEY,
+reserve_user VARCHAR(25) NOT NULL,
+category VARCHAR(15) NOT NULL,
+store_name VARCHAR(25) NOT NULL,
+store_load_adress VARCHAR(40) NOT NULL,
+store_adress VARCHAR(40) NOT NULL,
+store_phone VARCHAR(15) NOT NULL,
+reserve_date VARCHAR(25) NOT NULL,
+reserve_time VARCHAR(25) NOT NULL,
+reserve_people INT NOT NULL,
+reserve_menu VARCHAR(30),
+customer_request VARCHAR(30),
+reserve_type INT(1) NOT NULL,
+payment_price INT(12) default 0,
+check_review INT(1) NOT NULL DEFAULT 0,
+date DATE NOT NULL
+);
+
+- 쿠폰 - 
+CREATE TABLE coupon(
+coupon_name  VARCHAR(20) not null,
+coupon_value VARCHAR(20) not null,
+coupon_price INT not null,
+coupon_code VARCHAR(20) primary key,
+user_id VARCHAR(20),
+made_date DATE,
+used_coupon INT(1) NOT NULL default 0,
+used_code VARCHAR(45) NOT NULL,
+used_date DATE
+);
