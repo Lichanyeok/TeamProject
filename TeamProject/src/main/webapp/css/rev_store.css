@@ -532,7 +532,6 @@ text-align: center;
 
 .writeBtn {
 	position: relative;
-/*     left: 420px; */
 	left: 225px;
     top: 147px;
 }
@@ -573,4 +572,53 @@ text-align: center;
 #writeTable textarea:hover {
 	border: 2px solid rgb(255, 136, 49);
 	
+}
+
+/* 리뷰 삭제 */
+#deleteTable h2 {
+	text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 2%;
+}
+
+.deleteBtn {
+	position: relative;
+	left: 78px;
+    top: 6px;
+}
+#deleteTable input[value="삭제"] { /* 리뷰 작성의 등록 삭제 버튼 */
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
+}
+#deleteTable input[value="취소"] {
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+.deleteBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 50px;
+	padding: 2%;
+	margin-top: 5px;
+}
+.deleteBorder p {
+	margin-top: 3%;
+}
+
+.deleteBorder p > input[type="password"]:hover{
+	border: 2px solid rgb(255, 136, 49);
 }
