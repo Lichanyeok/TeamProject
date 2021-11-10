@@ -335,6 +335,7 @@ body {
 /* 리뷰 수정 이미지 */
 #img_score {
 	visibility: hidden;
+	margin-bottom: 19%;
 }
 
 .modifyStoreName {
@@ -604,12 +605,12 @@ body {
 }
 .star-list{
 		display: flex;
-	font-size: 2.25rem;
-	width: 300px;
-	margin-left:auto;
-	margin-right:38%;
-	justify-content: space-around;
-	flex-direction: row-reverse; 
+		font-size: 2.25rem;
+		width: 300px;
+		margin-left:auto;
+		margin-right: auto;
+		/* justify-content: space-around; */
+		flex-direction: row-reverse;
 }
 .star-list input {
 	display: none;
@@ -621,7 +622,8 @@ body {
 	-webkit-text-stroke-width: 2.3px;
 	-webkit-text-stroke-color: #2b2a29;
 	cursor: pointer;
-	
+	position: relative;
+	right: 5%;
 }
 
 .star-list :checked ~ label {
