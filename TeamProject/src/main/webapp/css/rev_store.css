@@ -308,10 +308,6 @@ body{
 	background-color: rgba(0,0,0,0);
 }
 
-.rev_my_btn input[type="button"]:hover {
-	background-color: blue;
-}
-
 #wrap table { /* 리뷰 본문 */
 	width: 750px;
 	margin-bottom: 10px;
@@ -424,7 +420,7 @@ text-align: center;
 	margin-top: 5px;
 }
 
-#modifyTable input[value="수정"] { /* 리뷰 수정의 수정 삭제 버튼 */
+#modifyTable input[value="수정"], #modifyTable input[value="등록"] { /* 리뷰 수정의 수정 삭제 버튼 */
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -496,4 +492,76 @@ text-align: center;
 	position: relative;
 	right: 60px;
 	bottom: 70px;
+}
+
+/* 리뷰 작성 css */
+#writeForm h1 {
+	text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#writeTable table {
+/* 	width: 580px; */
+/* 	position: relative; */
+/* 	left: 480px; */
+	width: 377px;
+    position: relative;
+    left: 570px;
+}
+.writeBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+.writeBorder P {
+	position: relative;
+    bottom: 16px;
+}
+
+.writeBtn {
+	position: relative;
+/*     left: 420px; */
+	left: 225px;
+    top: 147px;
+}
+#writeTable input[value="등록"] { /* 리뷰 작성의 등록 삭제 버튼 */
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
+}
+#writeTable input[value="취소"] {
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+#writeTable .uploaderBtn {
+	position: relative;
+    left: 3px;
+    top: 3px;
+}
+
+#writeTable textarea {
+	width: 350px; 
+	height: 125px;
+	margin-left: 5px;
+	border-radius: 5px;
+	word-break:break-all;
+	border: none;
+	resize: none;
+}
+#writeTable textarea:hover {
+	border: 2px solid rgb(255, 136, 49);
+	
 }

@@ -10,8 +10,19 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/reservation_list2.css">
+<link rel="stylesheet" href="./css/reservation_list.css">
 <script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$(".clearBtn").on('click',function(){
+			var num = this.value;
+			
+			$("#list0").css('background','linear-gradient(#ccc 5%, #999 100%)');
+			$("#list0").css('border','1px solid black');			
+		});
+	});
+</script>
 
 <%
 	ArrayList<ReserveBean> article= (ArrayList<ReserveBean>)request.getAttribute("articleList");
@@ -21,7 +32,7 @@
 		<div id="reservation_list">
 				<%if(article!=null){ 
 					for(int i=0;i<article.size();i++){%>
-					<div class="list">
+					<div class="list" id="list<%=i %>">
 						<ul class="list_ul">
 							<li><p>예약자 </p><p><%=article.get(i).getId() %></p></li>
 							<li><p>예약날자 </p><p><%=article.get(i).getReserve_date() %></p></li>					
@@ -35,7 +46,9 @@
 							<% }else if(article.get(i).getReserve_type()==1){%>
 							<p>선결제</p>
 							<%} %>
-							</li>					
+							</li>
+							<li><input type="button" id="clearBtn<%=i %>" class="clearBtn" value="결제완료">
+							<input type="button" id="clearResetBtn<%=i %>" class="clearResetBtn" value="결제완료취소"></li>					
 						</ul>				
 					</div>	
 					<%}} %>		

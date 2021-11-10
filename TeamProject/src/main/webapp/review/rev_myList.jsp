@@ -18,6 +18,11 @@
 <script type="text/javascript">	
 	$(document).ready(function() {
 		var rev_name = $('input[name=rev_name]').val(); // 닉네임 전달
+// 		var rev_writer = $('input[name=rev_writer]').val();
+// 		if(rev_name == rev_writer){
+// 		} else {
+// 			alert('로그인 후 이용해주세요!');
+// 		}
 		
 		// 이전 리뷰 작성 시 체크했던 별점 불러오기.
 		$('input[name=rev_score]').each(function() {
@@ -28,49 +33,56 @@
 			}
 		});
 		
-		// 좋아요 갯수 증가를 위한 ajax 정의
-		$('#rev_menu_btn button').click(function() {
-			var rev_num = $(this).val(); // 리뷰 번호 전달
-			$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
-				type: "POST",
-				cache: false,
-				dataType: "json",
-				data: {
-					rev_num : rev_num,
-					rev_name : rev_name
-				},
-				success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
-					// 좋아요 or 취소에 따라 버튼 색상 바꾸기
-					$.ajax({ url: "<%=request.getContextPath()%>/ReviewIsLikeCheked.re",
-						type: "POST",
-						cache: false,
-						dataType: "json",
-						data: {
-							rev_num : rev_num,
-							rev_name : rev_name
-						},
-						success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
-							var isClick = data.isCheck;
-							if(isClick > 0){
-								$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_write.png"});
-								alert("'좋아요'가 반영되었습니다!") ;
-							} else {
-								$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_empty.png"});
-								alert("'좋아요'가 취소되었습니다!") ;
-							}
-						}, 
-						error:
-						function (request, status, error){
-						alert("ajax실패") } 
-					});
-					// 좋아요 or 취소 판단 후 좋아요 수 변경
-					$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
-				}, 
-				error:
-				function (request, status, error){
-				alert("ajax실패") } 
-			}); 
-		}); // 좋아요 ajax 끝		
+		if(rev_name != "null") {
+			// 좋아요 갯수 증가를 위한 ajax 정의
+			$('#rev_menu_btn button').click(function() {
+				var rev_num = $(this).val(); // 리뷰 번호 전달
+				$.ajax({ url: "<%=request.getContextPath()%>/ReviewLikeScore.re",
+					type: "POST",
+					cache: false,
+					dataType: "json",
+					data: {
+						rev_num : rev_num,
+						rev_name : rev_name
+					},
+					success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
+						// 좋아요 or 취소에 따라 버튼 색상 바꾸기
+						$.ajax({ url: "<%=request.getContextPath()%>/ReviewIsLikeCheked.re",
+							type: "POST",
+							cache: false,
+							dataType: "json",
+							data: {
+								rev_num : rev_num,
+								rev_name : rev_name
+							},
+							success: function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data 
+								var isClick = data.isCheck;
+								if(isClick > 0){
+									$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_write.png"});
+									alert("'좋아요'가 반영되었습니다!") ;
+								} else {
+									$('.btnLike' + rev_num + ' img').attr({src:"<%=request.getContextPath()%>/review/rev_im/rev_empty.png"});
+									alert("'좋아요'가 취소되었습니다!") ;
+								}
+							}, 
+							error:
+							function (request, status, error){
+							alert("ajax실패") } 
+						});
+						// 좋아요 or 취소 판단 후 좋아요 수 변경
+						$(".likeScore" + rev_num).html(data.like); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다. 
+					}, 
+					error:
+					function (request, status, error){
+					alert("ajax실패") } 
+				}); 
+			}); // 좋아요 ajax 끝
+		} else {
+			$('#rev_menu_btn button').click(function() {
+				alert('로그인 후 이용해주세요!');
+			});
+		}
+
 		
 		// 이미지 팝업창
 		$(function() {
