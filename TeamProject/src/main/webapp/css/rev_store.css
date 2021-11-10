@@ -91,7 +91,7 @@
 	height: 50px;
 }
 
-.table_subject td > .userName {
+.table_subject td > .storeName {
 	font-size: 25px;
     font-weight: bold;
 }
@@ -370,7 +370,6 @@ text-align: center;
 }
 
 .modifyStoreName h1 {
-	margin-top:200px;
 	width: 500px;
 	text-align:center;
 	margin-left: auto;
@@ -501,7 +500,6 @@ text-align: center;
 
 /* 리뷰 작성 css */
 #writeForm h1 {
-	margin-top:200px;
 	width:700px;
 	text-align: center;
     font-weight: bold;
