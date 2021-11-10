@@ -15,7 +15,7 @@ public class MemberDetailService {
 		Connection con = getConnection();
 		dao.setConnection(con);
 		list = dao.getMemberDetail(id,pass);
-		System.out.println("getMemberinfo : list size :" + list.size());
+//		System.out.println("getMemberinfo : list size :" + list.size());
 		close(con);
 		return list;
 	}

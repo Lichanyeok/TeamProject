@@ -49,7 +49,7 @@ public class MemberJoinProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('ÀÎÁõ¸ŞÀÏ¹ß¼Û')");
+			out.println("alert('ì¸ì¦ë©”ì¼ë°œì†¡')");
 			out.println("</script>");
 			forward.setPath("SendAuthMail.do?id=" + bean.getId() + "&email=" + bean.getEmail());
 			forward.setRedirect(true);
@@ -58,7 +58,7 @@ public class MemberJoinProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 	         PrintWriter out = response.getWriter();
 	         out.println("<script>");
-	         out.println("alert('È¸¿ø°¡ÀÔ ½ÇÆĞ!')");
+	         out.println("alert('íšŒì›ê°€ì… ì‹¤íŒ¨!')");
 	         out.println("history.back()");
 	         out.println("</script>");
 		}

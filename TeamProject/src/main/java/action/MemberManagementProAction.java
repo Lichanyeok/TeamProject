@@ -23,6 +23,8 @@ public class MemberManagementProAction implements Action {
         member.setAge(Integer.parseInt(request.getParameter("age")));
         member.setMobile(request.getParameter("mobile"));
         member.setEmail(request.getParameter("email"));
+        member.setAddress(request.getParameter("address1"));
+        member.setAddressDetail(request.getParameter("addressDetail"));
 
         MemberManagementProService service = new MemberManagementProService();
         service.ManagementMemberPro(member);

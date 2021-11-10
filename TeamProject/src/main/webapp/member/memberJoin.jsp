@@ -205,7 +205,7 @@
         }
 
         window.onload = function () {
-            document.getElementById("address1").addEventListener("click", function () {
+            document.getElementById("address1").addEventListener("focus", function () {
                 new daum.Postcode({
                     oncomplete: function (data) {
                         document.getElementById("address1").value = data.address;
