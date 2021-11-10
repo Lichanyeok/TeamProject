@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#alignBtn').on('click',function(){
@@ -70,7 +70,6 @@
                 <li><a href="AdminManagementFormAction.do">회원관리</a></li>
                 <li><a href="MemberGift.do">쿠폰지급</a></li>
                 <li><a href="RequestAddStore.do">등록신청관리</a></li>
-                <li><a href="#">메뉴4</a></li>
             </ul>
    		</nav>
         <div>

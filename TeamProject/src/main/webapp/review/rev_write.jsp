@@ -85,7 +85,7 @@
 							<input type="submit" value="등록">
 				         	<input type="button" value="취소" onclick="history.back()">
 			        	</span>
-						<p><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 150자)" maxlength="165"></textarea></p>
+						<p><textarea name="rev_content" placeholder='예약에 대한 솔찍한 리뷰를 남겨주세요.&#13;&#10;(최대 150자)' maxlength="165"></textarea></p>
 	                </div>
 	               </td>
 	            </tr>

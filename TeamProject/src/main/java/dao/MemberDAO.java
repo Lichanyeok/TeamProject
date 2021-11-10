@@ -466,7 +466,7 @@ public class MemberDAO {
         int isSuccess = 0;
         PreparedStatement pstmt = null;
         try {
-            String sql = "INSERT INTO coupon VALUES(?,?,?,?,?,now())";
+            String sql = "INSERT INTO coupon VALUES(?,?,?,?,?,now(),0,'',null)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, couponB.getCoupon_name());
             pstmt.setString(2, couponB.getCoupon_value());

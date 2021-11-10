@@ -27,7 +27,7 @@ public class FindIdAction implements Action {
 		bean.setName(name);
 		if(id!=null) {
 			request.setAttribute("bean",bean);
-			forward.setPath("./find_id_result.jsp");
+			forward.setPath("./member/find_id_result.jsp");
 			forward.setRedirect(false);
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

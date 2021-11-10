@@ -15,7 +15,7 @@ public class SendMessage{
     public static void sendMessage(String mobile,String message){
 	
 	String api_key = "NCSW6DIEMST9ITLZ";
-    String api_secret = "api";
+    String api_secret = "UCQQ2UIIK6XPZVTXFHU7YLQLCCKXTYLT";
     Message coolsms = new Message(api_key, api_secret);
 
     // 4 params(to, from, type, text) are mandatory. must be filled

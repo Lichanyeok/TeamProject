@@ -55,7 +55,7 @@ public class PublishAction implements Action {
 		}
 
 
-		Set<String> arrRandom = new HashSet<String>(); // ������ȣ�� �ߺ��� ���� ���� Set ��ü ����
+		Set<String> arrRandom = new HashSet<String>(); 
 		while(arrRandom.size()<list.size()) {
 			arrRandom.add(BoardDAO.getRandomStr(8));
 		}

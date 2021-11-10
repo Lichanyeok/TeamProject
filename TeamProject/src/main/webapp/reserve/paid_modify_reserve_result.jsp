@@ -176,7 +176,9 @@
                     </tr>
                  </c:when>
                  <c:otherwise>
-                  <%for(int i =0;i<couponList.size();i++){ %>
+                  <%for(int i =0;i<couponList.size();i++){ 
+                  		if(couponList.get(i).getUsed_code().equals(reserve.getRan_num())||couponList.get(i).getUsed_coupon()<1){
+                  %>
 	                    <tr>
 	                        <td><input type="radio" name="checkCoupon" value="<%=couponList.get(i).getCoupon_price()%>"><a><%=couponList.get(i).getCoupon_code() %></a></td>
 	                        <td><%=couponList.get(i).getCoupon_name() %></td>
@@ -184,7 +186,8 @@
 	                        <td><%=couponList.get(i).getUser_id()%></td>
 	                        <td><%=couponList.get(i).getMade_date()%></td>
 	                    </tr>
-                   <%}%>
+                   <%}
+                   }%>
                    <tr>
                    <td colspan="5" align="center"><button id="couponBtn">사용</button></td>
                    </tr>
@@ -225,9 +228,9 @@
                         <td id="totalPrice"><%=totalPrice %></td>
                         <td id="discount">0</td>
                         <td id="resultPrice"><%=totalPrice %></td>
-                        <td>
+                        <td class="btnSet">
                         <button id="kakaopay">카카오페이</button>
-                        <button  style="background-color: gray;" value="0" id="paymentBtn2">결제완료</button>
+                        <button disabled="disabled" style="background-color: gray;" value="0" id="paymentBtn2">결제완료</button>
                         </td>
                         
                     </tr>

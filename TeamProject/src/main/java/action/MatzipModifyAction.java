@@ -25,7 +25,6 @@ public class MatzipModifyAction implements Action {
 		ActionForward forward=null;
 		
 		HttpSession session = request.getSession();
-
 	    String id=(String)session.getAttribute("sId");
 
 //	    System.out.println(id);

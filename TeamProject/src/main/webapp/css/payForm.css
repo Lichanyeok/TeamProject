@@ -9,8 +9,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    width: 852px;
-    height: 780px;
+
 }
 
 li {
@@ -179,8 +178,18 @@ table {
     font-weight: 900;
     line-height: 60px;
     color: #1b1b1b;
+    height: 70px;
 }
-
+#couponBtn{
+	margin: 10px 0 10px;
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #FF8831;
+    color: #fff;
+    font-weight: 900;
+}
 .amount table tr td button {
     border: none;
     width: 130px;
@@ -193,4 +202,8 @@ table {
     justify-content: center;
     align-items: center;
     
+}
+.btnSet{
+	vertical-align: middle;
+	margin: 5px 0 5px 0;
 }
