@@ -4,17 +4,21 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+     min-width: 900px;
+}
 .main_banner > img {
     width: 100vw;
     height: 100vh;
     filter:brightness(40%);
+    min-width: 1600px;
 }
 
 
 .main_banner {
     position: relative;
     z-index: 1;
+    
 }
 
 a{
@@ -45,6 +49,7 @@ a{
     font-weight: 500;
     color: #fff;
     padding-bottom: 10px;
+   
 } 
 
 .banner_info h1 span {

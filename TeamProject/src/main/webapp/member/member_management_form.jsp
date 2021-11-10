@@ -28,8 +28,8 @@
             </div>
         </div>
             <div class="management_btn">
-                <input type="submit" value="확인">
-                <input type="button" value="취소" onclick="history.back()">
+                <button type="submit">확인</button>
+                <button type="button" onclick="history.back()">취소</button>
             </div>
     </form>
 </section>

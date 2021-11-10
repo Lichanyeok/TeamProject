@@ -1,3 +1,4 @@
+<%@page import="com.mysql.fabric.proto.xmlrpc.ResultSetParser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,8 @@
 </head>
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">	
+// 	var textarea = document.getElementById("#textContext");
+
 		$(document).ready(function() {
 			$("#chk").on("click", function(){
 // 				alert($("#chk").prop("checked")); // chk의 체크 여부를 확인함
@@ -18,7 +21,19 @@
 				// ischk의 value값에 chk의 체크여부 값을 저장함
 			});
 			
+// 			$("#submit").on("click", function(){
+// 					alert($("#textContext").val())
+// 				if($("#textContext").val()==""){
+// 					alert("내용을 입력하세요");
+// 				}else{
+// 					alert("등록성공");
+// 					location.href='WriteFormPro.do';
+// 				}
+// 			})
+			
 		})
+		
+		
 </script>
 
 <body>
@@ -31,14 +46,15 @@
 	         <input type="hidden" value="<%=session.getAttribute("sId") %>" name="id">
 	         
 	          <h3>작성자 : <%=session.getAttribute("sId") %></h3>  
+	          
 	          <div> 
-	          		 제목  <input type="text" name="subject">
-	           		 <textarea rows="40" cols="40" name="content"></textarea>
+	          		 제목  <input type="text" name="subject" required="required">
+	           		 <textarea rows="40" cols="40" name="content" id="textContext" required="required"></textarea>
 	          </div>
 	         	<label for="secrit">비밀글</label>
 	         	<input type="checkbox" id="chk">
 	         	<div class ="input_item">
-		            <input type="submit" value="등록">&nbsp;&nbsp;
+		            <input type="submit" value="등록" id="submit">&nbsp;&nbsp;
 		            <input type="reset" value="다시쓰기">
 		            <input type="button" value="취소" onclick="history.back()">
 	            </div>
