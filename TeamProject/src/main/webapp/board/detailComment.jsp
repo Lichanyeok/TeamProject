@@ -18,8 +18,8 @@
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-		var id = $("#id").text();
+// 	var id = session.getAttribute("sId");
+		var id = $("#id").val();
 		var replyContent = $("#replyContent").val();
 		var num = $('input[name=num]').val();
 	
@@ -111,10 +111,10 @@ function pleaseLogin(){
 		
 		
 
-        	 <input type="hidden" value="<%= session.getAttribute("sId") %>" name="id">
+        	 <input type="hidden" value="<%= session.getAttribute("sId") %>" name="id" id="id">
 	         
 	         <table class="tablebottom">
-	            <tr><td id="id"><%=session.getAttribute("sId") %></td>
+<%-- 	            <tr><td id="id"><%=session.getAttribute("sId") %></td> --%>
 <tr>
 	            <td><textarea rows="5" id="replyContent" class="textArea"></textarea> 
 	           
