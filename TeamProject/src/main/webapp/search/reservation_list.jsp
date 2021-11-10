@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/reservation_list2.css">
+<link rel="stylesheet" href="./css/reservation_list.css">
 <script src="./js/jquery-3.6.0.js"></script>
 
 <%
@@ -35,7 +35,9 @@
 							<% }else if(article.get(i).getReserve_type()==1){%>
 							<p>선결제</p>
 							<%} %>
-							</li>					
+							</li>
+							<li><input type="button" class="clearBtn" value="결제완료">
+							<input type="button" class="clearResetBtn" value="결제완료취소"></li>					
 						</ul>				
 					</div>	
 					<%}} %>		

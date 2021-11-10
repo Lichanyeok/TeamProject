@@ -22,8 +22,7 @@
 	 	 var mm = date.getMonth()+1 > 9 ? date.getMonth()+1 : '0' + date.getMonth()+1;
 		 var dd = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
 		 var today = yyyy+"-"+mm+"-"+dd;
-	 	
-	 
+	 	alert("aaa");	 	
  	$(document).ready(function(){
 		 $.ajax({
 	         type : "GET",
