@@ -126,21 +126,21 @@
      	
 			<!-- 별점마다 이모티콘 변경 -->
 			<div class="star-list" id="div1">
-				<input type="radio" id="5-stars" name="rating" value="5"
-					v-model="ratings" /> <label for="5-stars" class="star">★</label>
-				<!-- class="star  pr-4" -->
-				<input type="radio" id="4-stars" name="rating" value="4"
-					v-model="ratings" /> <label for="4-stars" class="star">★</label> <input
-					type="radio" id="3-stars" name="rating" value="3" v-model="ratings" />
-				<label for="3-stars" class="star">★</label> <input type="radio"
-					id="2-stars" name="rating" value="2" v-model="ratings" /> <label
-					for="2-stars" class="star">★</label> <input type="radio"
-					id="1-stars" name="rating" value="1" v-model="ratings" /> <label
-					for="1-stars" class="star">★</label>
-			</div>
-			<div class="star-rating" id="div1">
+			<span class="star-rating" id="div1">
 			<img id="img_score" src=" " width="45" height="45" >
 			<input type="hidden" id="starScore" value="" />
+			</span>
+			<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+			<label for="5-stars" class="star" >★</label> <!-- class="star  pr-4" -->
+			<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+			<label for="4-stars" class="star">★</label>
+			<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+			<label for="3-stars" class="star">★</label>
+			<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" />
+			<label for="2-stars" class="star">★</label>
+			<input type="radio" id="1-stars" name="rating" value="1" v-model="ratings" />
+			<label for="1-stars" class="star">★</label>	
+		
 		</div>
 			
 		<br>

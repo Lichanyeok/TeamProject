@@ -624,6 +624,7 @@ body {
 	cursor: pointer;
 	position: relative;
 	right: 5%;
+	margin-top:5%
 }
 
 .star-list :checked ~ label {
