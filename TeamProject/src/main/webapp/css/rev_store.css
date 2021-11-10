@@ -76,7 +76,7 @@
 	margin-left: 18%;
 }
 
-.rev_store_center table { /* 리뷰 본문 */
+.rev_store_center table { /* ë¦¬ë·° ë³¸ë¬¸ */
 	border-radius: 50px;
 	width: 750px;
 	margin-bottom: 140px;
@@ -139,7 +139,7 @@
 	font-size: 30px;
 }
 
-/* 리뷰 레이아웃 */
+/* ë¦¬ë·° ë ˆì´ì•„ì›ƒ */
 .reviewPic div, .reviewText div {
 	border: 1px solid rgb(195, 188, 188);
 	border-radius: 5px 5px 5px 5px;
@@ -152,7 +152,7 @@
 	border: 1px solid rgb(255, 136, 49);
 }
 
-/* 사진이 없는 리뷰 css */
+/* ì‚¬ì§„ì´ ì—†ëŠ” ë¦¬ë·° css */
 .reviewText div>.reviewContent {
 	width: 350px;
 	height: 125px;
@@ -166,8 +166,8 @@
 	bottom: 20px;
 }
 
-/* 사진이 있는 리뷰 css */
-.reviewPic div>img { /* 리뷰 사진 css .reviewPic */
+/* ì‚¬ì§„ì´ ìžˆëŠ” ë¦¬ë·° css */
+.reviewPic div>img { /* ë¦¬ë·° ì‚¬ì§„ css .reviewPic */
 	border: 1px solid rgb(195, 188, 188);
 	border-radius: 5px 5px 5px 5px;
 	width: 120px;
@@ -215,7 +215,7 @@ body {
 	display: block;
 }
 
-/* 셀렉트 영역 스타일 */
+/* ì…€ë ‰íŠ¸ ì˜ì—­ ìŠ¤íƒ€ì¼ */
 .select {
 	position: relative;
 	padding: 5px 10px;
@@ -231,7 +231,7 @@ body {
 	margin-top: 5px;
 }
 
-/* 옵션 영역 스타일 */
+/* ì˜µì…˜ ì˜ì—­ ìŠ¤íƒ€ì¼ */
 .select ul {
 	position: absolute;
 	top: 30px;
@@ -264,7 +264,7 @@ body {
 	background-color: orange;
 }
 
-/* 체크박스 이미지형태로 변경 */
+/* ì²´í¬ë°•ìŠ¤ ì´ë¯¸ì§€í˜•íƒœë¡œ ë³€ê²½ */
 .ccheck input[type="checkbox"] {
 	display: none
 }
@@ -290,7 +290,7 @@ body {
 		center center;
 	background-size: cover;
 }
-/* 나의 리뷰css */
+/* ë‚˜ì˜ ë¦¬ë·°css */
 #member_title {
 	text-align: center;
 	font-size: 30px;
@@ -313,7 +313,7 @@ body {
 	background-color: rgba(0, 0, 0, 0);
 }
 
-#wrap table { /* 리뷰 본문 */
+#wrap table { /* ë¦¬ë·° ë³¸ë¬¸ */
 	width: 750px;
 	margin-bottom: 10px;
 	margin-left: auto;
@@ -322,17 +322,17 @@ body {
 	margin-bottom: 140px;
 }
 
-/* 리뷰 수정 css */
+/* ë¦¬ë·° ìˆ˜ì • css */
 /*    
 	starting 
-	출처 : https://melthleeth.tistory.com/entry/HTML-CSS%EB%A1%9C-%EB%B3%84%EC%B0%8D%EA%B8%B0-Star-Rating
+	ì¶œì²˜ : https://melthleeth.tistory.com/entry/HTML-CSS%EB%A1%9C-%EB%B3%84%EC%B0%8D%EA%B8%B0-Star-Rating
 */
 .star-rating {
 	margin-top: 15px;
 	text-align:center;
 }
 
-/* 리뷰 수정 이미지 */
+/* ë¦¬ë·° ìˆ˜ì • ì´ë¯¸ì§€ */
 #img_score {
 	visibility: hidden;
 	margin-bottom: 19%;
@@ -397,8 +397,8 @@ body {
 	margin-top: 5px;
 }
 
-#modifyTable input[value="수정"], #modifyTable input[value="등록"] {
-	/* 리뷰 수정의 수정 삭제 버튼 */
+#modifyTable input[value="ìˆ˜ì •"], #modifyTable input[value="ë“±ë¡"] {
+	/* ë¦¬ë·° ìˆ˜ì •ì˜ ìˆ˜ì • ì‚­ì œ ë²„íŠ¼ */
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -409,7 +409,7 @@ body {
 	left: 20px;
 }
 
-#modifyTable input[value="취소"] {
+#modifyTable input[value="ì·¨ì†Œ"] {
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -418,7 +418,7 @@ body {
 	background-color: rgba(0, 0, 0, 0);
 }
 
-#modifyTable input[value="삭제"] {
+#modifyTable input[value="ì‚­ì œ"] {
 	width: 50px;
 	border-radius: 20px;
 	border: 1px solid rgb(195, 188, 188);
@@ -441,7 +441,7 @@ body {
 	top: 6px;
 }
 
-/* 팝업창 */
+/* íŒì—…ì°½ */
 .popup {
 	display: none;
 	position: fixed;
@@ -473,7 +473,7 @@ body {
 	bottom: 70px;
 }
 
-/* 리뷰 작성 css */
+/* ë¦¬ë·° ìž‘ì„± css */
 #writeForm h1 {
 	width: 700px;
 	text-align: center;
@@ -512,7 +512,7 @@ body {
 	top: 147px;
 }
 
-#writeTable input[value="등록"] { /* 리뷰 작성의 등록 삭제 버튼 */
+#writeTable input[value="ë“±ë¡"] { /* ë¦¬ë·° ìž‘ì„±ì˜ ë“±ë¡ ì‚­ì œ ë²„íŠ¼ */
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -523,7 +523,7 @@ body {
 	left: 20px;
 }
 
-#writeTable input[value="취소"] {
+#writeTable input[value="ì·¨ì†Œ"] {
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -552,7 +552,7 @@ body {
 	border: 2px solid rgb(255, 136, 49);
 }
 
-/* 리뷰 삭제 */
+/* ë¦¬ë·° ì‚­ì œ */
 #deleteTable h2 {
 	text-align: center;
 	font-weight: bold;
@@ -568,7 +568,7 @@ body {
 	top: 6px;
 }
 
-#deleteTable input[value="삭제"] { /* 리뷰 작성의 등록 삭제 버튼 */
+#deleteTable input[value="ì‚­ì œ"] { /* ë¦¬ë·° ìž‘ì„±ì˜ ë“±ë¡ ì‚­ì œ ë²„íŠ¼ */
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -579,7 +579,7 @@ body {
 	left: 20px;
 }
 
-#deleteTable input[value="취소"] {
+#deleteTable input[value="ì·¨ì†Œ"] {
 	border-radius: 6px;
 	margin-left: 20px;
 	width: 50px;
@@ -634,3 +634,27 @@ body {
 .star-list label:hover, .star-list label:hover ~ label {
 	-webkit-text-fill-color: #fff58c;
 }
+
+ /* =============ë§¨ìœ„ë¡œë²„íŠ¼ css ========*/
+#backto_top {
+    position: fixed;
+    right: 3%;
+    bottom: 3%;
+    width: 50px;
+    height: 50px;
+    background: url("/TeamProject/review/rev_im/upButton.png") no-repeat center;
+    background-size: contain;
+    background-color: aqua;
+    opacity: 0;
+    transition: all 0.4s;
+}
+
+#backto_top:hover {
+    transform: scale(1.4);
+    background-color: #FF8831;
+}
+
+#backto_top.visible {
+    opacity: 1;
+}
+ /* =============ë§¨ìœ„ë¡œë²„íŠ¼ css ========*/

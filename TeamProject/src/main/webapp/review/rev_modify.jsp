@@ -157,7 +157,7 @@
 							<input type="submit" value="수정">
 				         	<input type="button" value="취소" onclick="history.back()">
 			        	</span>
-						<p class="modifyP"><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 150자)" maxlength="165"><%=article.getRev_content() %></textarea></p>
+						<p class="modifyP"><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요.&#13;&#10;(최대 150자)" maxlength="165"><%=article.getRev_content() %></textarea></p>
 	               		<p class="modifyMenu">주문메뉴 : <%=article.getRev_menu() %></p>
 	                </div>
 	               </td>
