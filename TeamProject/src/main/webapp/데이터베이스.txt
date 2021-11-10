@@ -101,6 +101,7 @@ check_review INT(1) NOT NULL DEFAULT 0,
 date DATE NOT NULL
 );
 
+
 - 쿠폰 - 
 CREATE TABLE coupon(
 coupon_name  VARCHAR(20) not null,
