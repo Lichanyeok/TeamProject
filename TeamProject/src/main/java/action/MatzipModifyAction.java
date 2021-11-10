@@ -25,11 +25,9 @@ public class MatzipModifyAction implements Action {
 		ActionForward forward=null;
 		
 		HttpSession session = request.getSession();
-<<<<<<< HEAD
+
 	    String id=(String)session.getAttribute("sId");
-=======
-		String id=(String)session.getAttribute("sId");
->>>>>>> branch 'main' of https://github.com/Lichanyeok/TeamProject.git
+
 //	    System.out.println(id);
 		//-----------로고 이미지 업로드
 		String savePath="/upload";
