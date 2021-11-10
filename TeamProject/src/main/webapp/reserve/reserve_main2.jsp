@@ -243,7 +243,7 @@
 
         <div class = "add_info">
             <h2>추가사항</h2>
-            <textarea name="customer_needs" id="customer_needs" cols="30" rows="10" maxlength="10"></textarea>
+            <textarea name="customer_needs" id="customer_needs" cols="30" rows="10"></textarea>
         </div>
 
         <h2 class = "menu_font">메뉴</h2>

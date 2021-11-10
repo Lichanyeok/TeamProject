@@ -46,7 +46,6 @@
 							<li><p>예약시간 </p><p><%=article.get(i).getReserve_time() %></p></li>
 							<li><p>인원수 </p><p><%=article.get(i).getPeople() %></p></li>
 							<li><p>메뉴 </p><p><%=article.get(i).getTotal_order_menu() %></p></li>
-							<li><p>요청사항 </p><p><%=article.get(i).getCustomerNeeds() %></p></li>
 							<li><p>결제방법 </p>
 							<%if(article.get(i).getReserve_type()==0) {%>
 							<p>현장결제</p>
@@ -54,6 +53,7 @@
 							<p>선결제</p>
 							<%} %>
 							</li>
+							<li><p>요청사항 </p><p><%=article.get(i).getCustomerNeeds() %></p></li>
 							<li><Button id="clearBtn<%=i %>" class="clearBtn" value="<%=i%>">결제완료</Button>
 							<Button id="clearResetBtn<%=i %>" class="clearResetBtn" value="<%=i%>">결제완료 취소</Button></li>					
 						</ul>				

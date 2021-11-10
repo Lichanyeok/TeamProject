@@ -7,7 +7,7 @@
 <title>Matzip</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
-<link rel="stylesheet" href="./css/search_insert.css">
+<link rel="stylesheet" href="./css/search_insert2.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

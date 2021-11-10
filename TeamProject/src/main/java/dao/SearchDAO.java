@@ -357,6 +357,49 @@ public class SearchDAO {
 		return updateCount;
 	}
 
+	public ArrayList<SearchBean> TestArticleList() {
+		ArrayList<SearchBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;		
+		
+		try {
+			String sql = "SELECT * FROM business";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			articleList = new ArrayList<SearchBean>();
+			
+			while(rs.next()) {
+				SearchBean search = new SearchBean();
+				search.setId(rs.getString("id"));
+				search.setPlace_name(rs.getString("place_name"));
+				search.setBusiness_lisence(rs.getString("business_lisence"));
+				search.setCategory(rs.getString("category"));
+				search.setTell_number(rs.getString("tell_number"));
+				search.setRoad_address(rs.getString("road_address"));
+				search.setJibun_address(rs.getString("jibun_address"));
+				search.setLogo_img(rs.getString("logo_img"));
+				search.setOri_logo_img(rs.getString("ori_logo_img"));
+				search.setStar_score(rs.getFloat("star_score"));
+				search.setDate(rs.getDate("date"));
+				search.setRecommend(rs.getInt("recommend"));			
+				
+				// 1개 레코드가 저장된 BoardBean 객체를 List 객체에 추가
+				articleList.add(search);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+ 		} finally {
+			// 자원 반환
+ 			close(rs);
+ 			close(pstmt);
+		}
+		
+		return articleList;
+	}
+
 }
 
 
