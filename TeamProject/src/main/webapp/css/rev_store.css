@@ -370,13 +370,17 @@ text-align: center;
 }
 
 .modifyStoreName h1 {
-	position: relative;
-    left: 15px;
+	margin-top:200px;
+	width: 500px;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #modifyTable table {
 	width: 580px;
-	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 	left: 480px;
 }
 
@@ -496,9 +500,13 @@ text-align: center;
 
 /* 리뷰 작성 css */
 #writeForm h1 {
+	margin-top:200px;
+	width:700px;
 	text-align: center;
     font-weight: bold;
     font-size: 30px;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 #writeTable table {
@@ -506,7 +514,8 @@ text-align: center;
 /* 	position: relative; */
 /* 	left: 480px; */
 	width: 377px;
-    position: relative;
+	margin-left:auto;
+	margin-right:auto;
     left: 570px;
 }
 .writeBorder {

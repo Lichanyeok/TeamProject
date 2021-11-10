@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/header.css">
 <link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/reserve_main.css">
+<link rel="stylesheet" href="./css/reserve_main2.css">
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function(){
