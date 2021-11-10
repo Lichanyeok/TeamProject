@@ -91,7 +91,7 @@
 	height: 50px;
 }
 
-.table_subject td > .userName {
+.table_subject td > .storeName {
 	font-size: 25px;
     font-weight: bold;
 }
@@ -119,6 +119,24 @@
 	margin-left: 5px;
 	font-size: 18px;
 	font-style: bold;
+}
+
+#rev_empty {
+	position: relative;
+	bottom: 80px;
+    left: 100px;
+}
+
+#rev_empty img {
+	width:350px;
+	height:350px;
+	position: relative;
+    left: 50px;
+}
+
+#rev_empty span {
+	font-weight: bold;
+	font-size: 30px;
 }
 
 /* 리뷰 레이아웃 */
@@ -290,14 +308,11 @@ body{
 	background-color: rgba(0,0,0,0);
 }
 
-.rev_my_btn input[type="button"]:hover {
-	background-color: blue;
-}
-
 #wrap table { /* 리뷰 본문 */
 	width: 750px;
 	margin-bottom: 10px;
-	position: relative;
+	margin-left:auto;
+	margin-right:auto;
 	left: 400px;
 	margin-bottom: 140px;
 }
@@ -355,19 +370,28 @@ text-align: center;
 	font-size: 30px;
 }
 
+.modifyStoreName h1 {
+	width: 500px;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #modifyTable table {
-	border: 1px solid rgb(195, 188, 188);
-	border-radius: 50px;
 	width: 580px;
-	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 	left: 480px;
 }
 
 #modifyTable textarea {
-	width: 280px; 
-	height: 250px;
+	width: 350px; 
+	height: 125px;
 	margin-left: 5px;
-	border-radius: 15px;
+	border-radius: 5px;
+	word-break:break-all;
+	border: none;
+	resize: none;
 }
 
 #modifyTable textarea:hover {
@@ -376,33 +400,43 @@ text-align: center;
 }
 
 .modifyImg {
-	width: 280px;
-	height: 250px;
 	border: 1px solid rgb(195, 188, 188);
-	border-radius: 15px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: 120px;
+	height: 120px;
 }
 
 .modifyImg:hover {
 	border: 2px solid rgb(255, 136, 49);
 }
 
-#modifyTable input[value="수정"] { /* 리뷰 수정의 수정 삭제 버튼 */
+.uploadFile {
 	position: relative;
+    left: 20px;
+    top: 2.9px;
+}
+
+.modifyBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+
+#modifyTable input[value="수정"], #modifyTable input[value="등록"] { /* 리뷰 수정의 수정 삭제 버튼 */
 	border-radius: 6px;
 	margin-left: 20px;
-	left: 450px;
 	width: 50px;
 	border-radius: 20px;
 	border: 1px solid rgb(195, 188, 188);
 	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
 }
 #modifyTable input[value="취소"] {
-	position: relative;
 	border-radius: 6px;
 	margin-left: 20px;
-	left: 430px;
 	width: 50px;
 	border-radius: 20px;
 	border: 1px solid rgb(195, 188, 188);
@@ -415,17 +449,21 @@ text-align: center;
 	border: 1px solid rgb(195, 188, 188);
 	background-color: rgba(0,0,0,0);
 	position: relative;
-	left: 325px;
+	top: 40px;
+    right: 55px;
 }
 
 .uploaderBtn {
 	position: relative;
-	left: 50px;
+    left: 15px;
+    top: 3px;
 }
 
 .uploaderBtn img {
 	width: 20px;
 	height: 20px;
+	position: relative;
+    top: 6px;
 }
 
 /* 팝업창 */
@@ -458,4 +496,129 @@ text-align: center;
 	position: relative;
 	right: 60px;
 	bottom: 70px;
+}
+
+
+/* 리뷰 작성 css */
+#writeForm h1 {
+	width:700px;
+	text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#writeTable table {
+/* 	width: 580px; */
+/* 	position: relative; */
+/* 	left: 480px; */
+	width: 377px;
+	margin-left:auto;
+	margin-right:auto;
+    left: 570px;
+}
+.writeBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 150px;
+	padding: 2%;
+	margin-top: 5px;
+}
+.writeBorder P {
+	position: relative;
+    bottom: 16px;
+}
+
+.writeBtn {
+	position: relative;
+	left: 225px;
+    top: 147px;
+}
+#writeTable input[value="등록"] { /* 리뷰 작성의 등록 삭제 버튼 */
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
+}
+#writeTable input[value="취소"] {
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+#writeTable .uploaderBtn {
+	position: relative;
+    left: 3px;
+    top: 3px;
+}
+
+#writeTable textarea {
+	width: 350px; 
+	height: 125px;
+	margin-left: 5px;
+	border-radius: 5px;
+	word-break:break-all;
+	border: none;
+	resize: none;
+}
+#writeTable textarea:hover {
+	border: 2px solid rgb(255, 136, 49);
+	
+}
+
+/* 리뷰 삭제 */
+#deleteTable h2 {
+	text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 2%;
+}
+
+.deleteBtn {
+	position: relative;
+	left: 78px;
+    top: 6px;
+}
+#deleteTable input[value="삭제"] { /* 리뷰 작성의 등록 삭제 버튼 */
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+	position: relative;
+    left: 20px;
+}
+#deleteTable input[value="취소"] {
+	border-radius: 6px;
+	margin-left: 20px;
+	width: 50px;
+	border-radius: 20px;
+	border: 1px solid rgb(195, 188, 188);
+	background-color: rgba(0,0,0,0);
+}
+
+.deleteBorder {
+	border: 1px solid rgb(195, 188, 188);
+	border-radius: 5px 5px 5px 5px;
+	height: 50px;
+	padding: 2%;
+	margin-top: 5px;
+}
+.deleteBorder p {
+	margin-top: 3%;
+}
+
+.deleteBorder p > input[type="password"]:hover{
+	border: 2px solid rgb(255, 136, 49);
 }

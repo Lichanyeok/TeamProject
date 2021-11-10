@@ -108,7 +108,7 @@
 	            <table>	              	
 	                <tr>
 	                    <th>*매장명</th>
-	                    <td><input type="text" id="place_name" name="place_name" required="required"></td>
+	                    <td><input type="text" id="place_name" name="place_name" required="required" maxlength="10"></td>
 	                </tr>
 	                <tr>
 	                    <th>*사업자 등록번호</th>

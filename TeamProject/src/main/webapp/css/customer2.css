@@ -1,0 +1,71 @@
+@charset "EUC-KR";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* text-align: center;
+font-size: 24px;
+font-weight: 900; */
+
+.customer_write {
+    width: 788px;
+    margin: 200px auto;
+}
+
+
+.customer_write h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
+.write h3 {
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.write div {
+    padding-bottom: 10px;
+}
+
+.write div input {
+    height: 27px;
+    width: 226px;
+}
+
+.write textarea {
+    width: 788px;
+    height: 170px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.write .input_item {
+    float: right;
+    margin-top: 20px;
+}
+
+.write .input_item input {
+    width: 144px;
+    height: 31px;
+    border: none;
+}
+
+.write .input_item input:nth-child(1) {
+    background-color: #FF8831;
+    color: #fff;
+}
+
+.write .input_item input:nth-child(2) {
+    background-color: #000;
+    color: #fff;
+} 
+
+.write > label {
+    font-size: 16px;
+    margin-right: 8px;
+}

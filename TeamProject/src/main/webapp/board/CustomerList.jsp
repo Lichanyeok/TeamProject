@@ -23,18 +23,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/customer.css">
 <title>CustomerCommentList</title>
-<style type="text/css">
- table{ 
- border: 1px solid; 
- } 
-</style>
 <script src="./js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 function twosend(num, id, ck) {
 	if(ck==true){
 		if(id=="<%=session.getAttribute("sId")%>" || '<%=session.getAttribute("sId")%>'=="admin"){
-			alert("돼!");
+// 			alert("돼!");
 	//     // 동적 form - post 처리
 	     var form = document.createElement("form");
 	      form.setAttribute("charset", "UTF-8"); // post 한글처리
@@ -86,37 +84,49 @@ function twosend(num, id, ck) {
 	<!-- 상위 고정 -->
     <jsp:include page="/inc/header.jsp"></jsp:include>
     <!-- 상위 고정 -->
-
-	<h1>CustomerCommentlist</h1>
+<div class="customer">
+	<h2>CustomerCommentList</h2>
 	
 	<form name="send" action="#">
 	<table>
+		<colgroup>
+                <col style= "width:20%">
+                <col style= "width:20%">
+                <col style= "width:20%">
+                <col style= "width:20%">
+                <col style= "width:20%">
+        </colgroup>
+	<thead>
 	<%if(articleList != null && listCount > 0) {%>
 		<tr id="tr_top">
-			<td>번호</td>
-			<td>제목</td>
-			<td width="150px">아이디</td>
-			<td width="150px">날짜</td>
-			<td width="100px">조회수</td>
+			<th>번호</th>
+			<th>제목</th>
+			<th width="150px">아이디</th>
+			<th width="150px">날짜</th>
+			<th width="100px">조회수</th>
 		</tr>
-		
-		<%for(int i = (nowPage*10)-10; i < a; i++) {%>
-		<tr id="twosend" onclick="twosend(<%=articleList.get(i).getNum()%>, '<%=articleList.get(i).getId()%>', <%=articleList.get(i).getSecretCheck()%>)">
-			<td class="getNum"><%=articleList.get(i).getNum()%></td>
-			<td id="subject">
-			<%if(articleList.get(i).getSecretCheck().equals("true")) {%>
-				 	🔒비밀글입니다.		
-			<%} else {%>
-			<%=articleList.get(i).getSubject() %>
-			<%} %>
-			</td>
-			<td><%=articleList.get(i).getId() %></td>
-			<td><%=articleList.get(i).getDate()%></td>
-			<td><%=articleList.get(i).getReadcount() %></td>
-		</tr>
+		</thead>
+		<tbody>
+			<%for(int i = (nowPage*10)-10; i < a; i++) {%>
+			<tr id="twosend" onclick="twosend(<%=articleList.get(i).getNum()%>, '<%=articleList.get(i).getId()%>', <%=articleList.get(i).getSecretCheck()%>)">
+				<td class="getNum"><%=articleList.get(i).getNum()%></td>
+				<td id="subject">
+				<%if(articleList.get(i).getSecretCheck().equals("true")) {%>
+					 	🔒비밀글입니다.		
+				<%} else {%>
+				<%=articleList.get(i).getSubject() %>
+				<%} %>
+				</td>
+				<td><%=articleList.get(i).getId() %></td>
+				<td><%=articleList.get(i).getDate()%></td>
+				<td><%=articleList.get(i).getReadcount() %></td>
+			</tr>
+		</tbody>
 		<%} %>
 	</table>
 	</form>
+	
+	<div class="page">
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전">&nbsp;
 	<%} else {%>
@@ -139,10 +149,15 @@ function twosend(num, id, ck) {
 	<%} else{%>
 	<section id="emptyArea">등록된 글이 없습니다</section>
 	<%}%>
-	<%if(session.getAttribute("sId")!=null){ //로그인이 안되어 있다면%> 
-	<input type="button" value="글쓰기" onclick="location.href='WriteForm.do'">
-	<%}else{ %>
-	<input type="button" value="글쓰기" onclick="location.href='MemberLoginFormAction.do'">
-	<%} %>
+	</div>
+	
+	<div class = btn_right>
+		<%if(session.getAttribute("sId")!=null){ //로그인이 안되어 있다면%> 
+		<input type="button" value="글쓰기" onclick="location.href='WriteForm.do'">
+		<%}else{ %>
+		<input type="button" value="글쓰기" onclick="location.href='MemberLoginFormAction.do'">
+		<%} %>
+	</div>
+</div>
 </body>
 </html>

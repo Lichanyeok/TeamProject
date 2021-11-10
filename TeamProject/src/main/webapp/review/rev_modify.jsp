@@ -21,11 +21,23 @@
 <script type="text/javascript">	
 	$(document).ready(function() {
 		
+		if($('input[name=prev_pic]').val() != "null") { // 수정(사진이 있는 리뷰 css)
+			$('.modifyP').css({'position':'relative', 'bottom':'126px','left':'126px'});
+			$('.modifyMenu').css({'font-weight':'bold', 'text-align':'right', 'position':'relative', 'bottom':'146px'});
+			$('.modifyBtn').css({'position':'relative', 'left':'240px', 'top':'40px'});
+		}		
+		if($('input[name=prev_pic]').val() == "null") { // 수정(사진이 없는 리뷰 css)
+			$('.modifyP').css({'position':'relative', 'bottom':'20px'});
+			$('.modifyMenu').css({'font-weight':'bold', 'text-align':'right', 'position':'relative', 'bottom':'38px'});
+			$('.modifyBtn').css({'position':'relative', 'left':'422px', 'top':'148px'});
+		}
+		
+		// 업로드된 파일명 표기하기
 		$('#uploader').change(function() {
 			var str = this.value;
-			alert(str.split("\\")[3]);
 			if(this.value != null) {
 				$('.uploaderBtn img').attr({src:"<%=request.getContextPath()%>/review/rev_im/upload_img_color.png"});
+				$('.uploadFile').html('(' + str.split("\\")[2] + ')');
 			}
 		});
 		
@@ -55,6 +67,11 @@
 			    $('input[value=삭제]').remove();
 			    $('input[name=prev_pic]').remove();
 			    $('input[name=prev_pic_origin]').remove();
+// 			    $('.modifyP').css({'position':'relative', 'bottom':'0px','left':'0px'});
+// 			    $('.modifyMenu').css({'font-weight':'bold', 'text-align':'right', 'position':'relative', 'bottom':'18px'});
+			    $('.modifyP textarea').css({'position':'relative', 'top':'105px','right':'125px'});
+				$('.modifyMenu').css({'font-weight':'bold', 'text-align':'right', 'position':'relative', 'bottom':'43px'});
+			    $('.modifyBtn').css({'position':'relative', 'left':'422px', 'top':'142px'});
 			}else{   //취소
 			    return;
 			}
@@ -127,28 +144,27 @@
 		</div><br>
       	<div id="modifyTable">
 	        <table>
-	         	<tr>
-					<td>
-						<span>
-							<input type="submit" value="수정">
-	            			<input type="button" value="취소" onclick="history.back()">
-            			</span>
-					</td>
-				</tr>
 	            <tr>
 	               <td>
-	                  <textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 250자)" maxlength="250"><%=article.getRev_content() %></textarea>
-	                  <%if(pic != null) {%>
-						<img src="./upload/<%=pic_origin %>" name="prev_pic" data-popup-open="photo_popup" class="modifyImg"/><br>
+	               	<div class="modifyBorder">
+	                	<%if(pic != null) {%>
+						<img src="./upload/<%=pic_origin %>" name="prev_pic" data-popup-open="photo_popup" class="modifyImg"/>
+						<input type="button" value="삭제"/>
 						<%} %>
+						<span class="modifyBtn">
+							<input type="submit" value="수정">
+				         	<input type="button" value="취소" onclick="history.back()">
+			        	</span>
+						<p class="modifyP"><textarea name="rev_content" placeholder="예약에 대한 솔찍한 리뷰를 남겨주세요. (최대 150자)" maxlength="165"><%=article.getRev_content() %></textarea></p>
+	               		<p class="modifyMenu">주문메뉴 : <%=article.getRev_menu() %></p>
+	                </div>
 	               </td>
 	            </tr>
 	            <tr>
 	               <td>
-	               	주문메뉴 : <%=article.getRev_menu() %>
 						<input type="file" id="uploader" name="uploader" accept="image/jpeg, image/png, image/gif" style="display: none"/>
-						<span class="uploaderBtn" onclick="onclick=document.all.uploader.click()"><img src="<%=request.getContextPath()%>/review/rev_im/upload_img.png" />사진</span>
-						<input type="button" value="삭제"/>
+						<span class="uploaderBtn" onclick="onclick=document.all.uploader.click()"><img src="<%=request.getContextPath()%>/review/rev_im/upload_img.png" />사진</span><p class="uploadFile"></p>
+						
 	               </td>
 	            </tr>
 	         </table>

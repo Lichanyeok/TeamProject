@@ -1,0 +1,10 @@
+@charset "EUC-KR";
+
+
+.Detailtable{
+	table-layout: fixed;
+	padding: 20em;
+	border-bottom: dotted #d3d3d3;
+	height:100px;
+	width: 100%;
+}

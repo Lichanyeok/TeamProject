@@ -504,7 +504,7 @@ private ReserveDAO() {
 		ResultSet rs = null;		
 		
 		try {
-			String sql = "SELECT * FROM reserve WHERE store_name=? AND reserve_date=?";
+			String sql = "SELECT * FROM reserve WHERE store_name=? AND reserve_date=? order by reserve_time ASC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, store_name);
 			pstmt.setString(2, reserve_date);

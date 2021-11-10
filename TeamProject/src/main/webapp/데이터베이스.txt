@@ -1,0 +1,189 @@
+- 검색 -
+create table business(	
+	id varchar(20) primary key,
+	place_name varchar(30) not null,
+	business_lisence varchar(15) unique not null,
+	category varchar(15) not null,			
+	tell_number varchar(30) unique not null,
+	road_address varchar(50) not null,		
+	jibun_address varchar(50) not null,	
+	logo_img varchar(50),
+	ori_logo_img varchar(100),
+	star_score float,							
+	date DATE not null,
+	recommend int default 0,
+	app_check varchar(2)
+);
+
+- 멤버 -
+CREATE TABLE project_member(
+    idx    int PRIMARY KEY AUTO_INCREMENT,
+    name   VARCHAR(15) NOT NULL,
+    nickname VARCHAR(20) UNIQUE NOT NULL,
+    age    int NOT NULL,
+    id     VARCHAR(20) UNIQUE NOT NULL,
+    pass   VARCHAR(20) NOT NULL,
+    email  VARCHAR(50) UNIQUE NOT NULL,
+    mobile VARCHAR(20) UNIQUE NOT NULL,
+    address VARCHAR(40) NOT NULL,
+    address_detail VARCHAR(50) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    grade  int(5) NOT NULL,
+    member_date DATE,
+    login_date DATE,
+    auth_status varchar(1) default 'N'
+);
+
+- 메일 인증 -
+CREATE TABLE project_auth(
+    id varchar(16) NOT NULL PRIMARY KEY,
+    auth_code varchar(50) NOT NULL
+);
+
+- 리뷰 -
+CREATE TABLE review (
+  rev_num INT AUTO_INCREMENT PRIMARY KEY,
+  ran_num VARCHAR(36) UNIQUE NOT NULL,
+  rev_store VARCHAR(20),
+  rev_name VARCHAR(20),
+  rev_score FLOAT,
+  rev_content VARCHAR(500),
+  rev_pic VARCHAR(250),
+  rev_pic_origin VARCHAR(250),
+  rev_menu VARCHAR(30),
+  rev_date DATE,
+  rev_like INT
+);
+
+- 리뷰 좋아요 - 
+CREATE TABLE rev_isLike (
+  rev_num int NOT NULL,
+  rev_name VARCHAR(20) NOT NULL,
+  rev_isCheck int(1) default 0
+);
+
+- 답글 - 
+create table replycomment(
+	 idx int,
+	 id varchar(20),
+	 content varchar(500),
+	 date date
+	 );
+	 
+- 고객문의 -
+create table CustomerComment(
+ num int PRIMARY KEY AUTO_INCREMENT,
+ id varchar(20),
+ subject varchar(50) not null,
+ content varchar(400) not null,
+ readcount int not null,
+ secretCheck varchar(50),
+ date date
+ );
+
+- 예약 - 
+CREATE TABLE reserve(
+ran_num VARCHAR(15) PRIMARY KEY,
+reserve_user VARCHAR(25) NOT NULL,
+category VARCHAR(15) NOT NULL,
+store_name VARCHAR(25) NOT NULL,
+store_load_adress VARCHAR(40) NOT NULL,
+store_adress VARCHAR(40) NOT NULL,
+store_phone VARCHAR(15) NOT NULL,
+reserve_date VARCHAR(25) NOT NULL,
+reserve_time VARCHAR(25) NOT NULL,
+reserve_people INT NOT NULL,
+reserve_menu VARCHAR(30),
+customer_request VARCHAR(30),
+reserve_type INT(1) NOT NULL,
+payment_price INT(12) default 0,
+check_review INT(1) NOT NULL DEFAULT 0,
+date DATE NOT NULL
+);
+
+
+- 쿠폰 - 
+CREATE TABLE coupon(
+coupon_name  VARCHAR(20) not null,
+coupon_value VARCHAR(20) not null,
+coupon_price INT not null,
+coupon_code VARCHAR(20) primary key,
+user_id VARCHAR(20),
+made_date DATE,
+used_coupon INT(1) NOT NULL default 0,
+used_code VARCHAR(45) NOT NULL,
+used_date DATE
+);
+
+
+- project_member 값 -
+insert into project_member values (null,'정영훈','정영훈1',30,'wjddudgns1','1234','wjddudgns1@naver.com','010-111-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈2',30,'wjddudgns2','1234','wjddudgns2@naver.com','010-112-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈3',30,'wjddudgns3','1234','wjddudgns3@naver.com','010-113-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈4',30,'wjddudgns4','1234','wjddudgns4@naver.com','010-114-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈5',30,'wjddudgns5','1234','wjddudgns5@naver.com','010-115-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈6',30,'wjddudgns6','1234','wjddudgns6@naver.com','010-116-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈7',30,'wjddudgns7','1234','wjddudgns7@naver.com','010-117-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈8',30,'wjddudgns8','1234','wjddudgns8@naver.com','010-118-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈9',30,'wjddudgns9','1234','wjddudgns9@naver.com','010-119-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈10',30,'wjddudgns10','1234','wjddudgns10@naver.com','010-1110-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈11',30,'wjddudgns11','1234','wjddudgns11@naver.com','010-1111-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈12',30,'wjddudgns12','1234','wjddudgns12@naver.com','010-1112-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈13',30,'wjddudgns13','1234','wjddudgns13@naver.com','010-1113-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈14',30,'wjddudgns14','1234','wjddudgns14@naver.com','010-1114-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈15',30,'wjddudgns15','1234','wjddudgns15@naver.com','010-1115-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈16',30,'wjddudgns16','1234','wjddudgns16@naver.com','010-1116-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈17',30,'wjddudgns17','1234','wjddudgns17@naver.com','010-1117-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈18',30,'wjddudgns18','1234','wjddudgns18@naver.com','010-1118-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈19',30,'wjddudgns19','1234','wjddudgns19@naver.com','010-1119-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈20',30,'wjddudgns20','1234','wjddudgns20@naver.com','010-1120-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈21',30,'wjddudgns21','1234','wjddudgns21@naver.com','010-1121-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈22',30,'wjddudgns22','1234','wjddudgns22@naver.com','010-1122-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈23',30,'wjddudgns23','1234','wjddudgns23@naver.com','010-1123-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈24',30,'wjddudgns24','1234','wjddudgns24@naver.com','010-1124-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈25',30,'wjddudgns25','1234','wjddudgns25@naver.com','010-1125-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈26',30,'wjddudgns26','1234','wjddudgns26@naver.com','010-1126-1111','부산','아파트','남',4,now(),now(),'Y');
+insert into project_member values (null,'정영훈','정영훈27',30,'wjddudgns27','1234','wjddudgns27@naver.com','010-1127-1111','부산','아파트','남',4,now(),now(),'Y');	
+
+
+-business 값
+insert into business values ('wjddudgns1','송정삼대국밥','1111111112','한식','051-806-5722','부산 부산진구 서면로68번길 29','부산 부산진구 부전동 255-15','송정삼대국밥.jpg','송정삼대국밥.jpg','4.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns10','곱테랑&소통','1111111121','한식','051-819-3039','부산 부산진구 중앙대로680번가길 55-18','부산 부산진구 부전동 168-108','곱테랑&소통.jpg','곱테랑&소통.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns11','로위버거','1111111101','양식','070-4467-4090','부산 부산진구 서전로10번길 31-4','부산 부산진구 부전동 168-144','로위버거.jpg','로위버거.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns12','버거샵','1111111102','양식','051-911-4960','부산 부산진구 동천로108번길 11','부산 부산진구 전포동 662-6','버거샵.jpg','버거샵.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns13','1984나폴리','1111111103','양식','051-816-1984','부산 부산진구 전포대로209번길 17-6','부산 부산진구 전포동 687-18','1984나폴리.jpg','1984나폴리.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns14','미미루','1111111104','중식','051-817-8881','부산 부산진구 중앙대로691번가길 24-5','부산 부산진구 부전동 516-71','미미루.jpg','미미루.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns15','태백관','1111111105','중식','051-806-9197','부산 부산진구 서전로9번길 52','부산 부산진구 부전동 98-10','태백관.jpg','태백관.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns16','갓파스시 서면점','1111111106','일식','051-804-4377','부산 부산진구 중앙대로702번길 43','부산 부산진구 부전동 168-451','갓파스시 서면점.jpg','갓파스시 서면점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns17','용이초밥','1111111107','일식','051-804-1292','부산 부산진구 중앙대로702번길 46-5','부산 부산진구 부전동 170-6','용이초밥.jpg','용이초밥.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns18','교촌치킨 서면점 ','1111111108','치킨','051-808-9981','부산 부산진구 중앙대로 745-1','부산 부산진구 부전동 266-24','교촌치킨 서면점.jpg','교촌치킨 서면점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns19','가마치통닭 부산부전점','1111111109','한식','051-804-7988','부산 부산진구 새싹로8번길 37','부산 부산진구 부전동 265-2','가마치통닭 부산부전점.jpg','가마치통닭 부산부전점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns2','그집곱도리탕','1111111113','한식','051-816-4186','부산 부산진구 동천로107번길 17','부산 부산진구 부전동 142-4','그집곱도리탕.jpg','그집곱도리탕.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns20','피자몰 부산서면NC백화점','1111111200','피자','051-794-7304','부산 부산진구 동천로 92','부산 부산진구 전포동 668-1','피자몰 부산서면NC백화점.jpg','피자몰 부산서면NC백화점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns21','돕피','1111111221','피자','051-808-2333','부산 부산진구 전포대로210번길 45','부산 부산진구 전포동 233-5','돕피1.jpg','돕피.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns22','먹방퓨전포차','1111111122','퓨전','051-642-4566','부산 부산진구 중앙대로680번가길 61','부산 부산진구 부전동 168-76','no_img.jpg','no_img.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns23','부산원조해물탕찜','1111111123','찜','051-803-1236','부산 부산진구 서면문화로 33','부산 부산진구 부전동 474-1','부산원조해물탕찜.jpg','부산원조해물탕찜.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns24','고기굽는남자','1111111124','고깃집','051-804-3809','부산 부산진구 동천로95번길 13','부산 부산진구 부전동 168-367','no_img.jpg','no_img.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns25','나성족박','1111111125','족발','051-805-9266','부산 부산진구 부전로 120','부산 부산진구 부전동 406-21','나성족발.jpg','나성족발.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns26','롯데호텔부산 라세느','1111111126','뷔페','051-810-6390','부산 부산진구 가야대로 772','부산 부산진구 부전동 503-15','롯데호텔부산 라세느.jpg','롯데호텔부산 라세느.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns27','아라한정식','2221111127','코스요리','051-851-1212','부산 부산진구 가야대로 785','부산 부산진구 부전동 486-27','아리한정식.jpg','아리한정식.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns3','기장손칼국수','1111111114','한식','051-806-6832','부산 부산진구 서면로 56','부산 부산진구 부전동 256-6','기장손칼국수.jpg','기장손칼국수.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns4','사미헌','1111111115','한식','051-819-6677','부산 부산진구 서면문화로 19','부산 부산진구 부전동 474-26','사미헌.jpg','사미헌.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns5','개미집 서면점','1111111116','한식','051-819-8809','부산 부산진구 신천대로62번길 73','부산 부산진구 부전동 240-5','개미집 서면점.jpg','개미집 서면점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns6','갈비곳간','1111111117','한식','051-714-4457','부산 부산진구 서면문화로 32','부산 부산진구 부전동 400-10','갈비곳간.jpg','갈비곳간.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns7','춘하추동밀면 서면본점','1111111118','한식','051-809-8659','부산 부산진구 서면문화로 48-1','부산 부산진구 부전동 404-3','춘하추동밀면 서면본점.jpg','춘하추동밀면 서면본점.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns8','서면개금밀면','1111111119','한식','051-802-0456','부산 부산진구 서면로68번길 39','부산 부산진구 부전동 254-3','서면개금밀면.jpg','서면개금밀면.jpg','0.0','2021-11-10','0','Y');
+insert into business values ('wjddudgns9','삼오정','1111111120','한식','051-808-3533','부산 부산진구 서면로68번길 11','부산 부산진구 부전동 257-15','삼오정.jpg','삼오정.jpg','0.0','2021-11-10','0','Y');
+
+
+
+
+
+
+
+
+
+
+
+
+

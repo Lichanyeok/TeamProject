@@ -1,0 +1,50 @@
+@charset "EUC-KR";
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+    padding-bottom: 40px;
+}
+
+table {
+    width: 1200px;
+    border-collapse: collapse;
+}
+
+.content{
+	width: 500px;
+	height: 500px;
+	font-size: 20px;
+}
+
+.button{
+	float: inherit;
+}
+
+.subject{
+	font-size: 30px;
+	height: 50px;
+}
+
+.id{
+	font-size: 20px;
+}
+
+.textArea{
+	width: 100%;
+}
+
+.subjectIdTable{
+	float: left;
+	width: 100%;
+}
+
+.subjectTable{
+	width: 100%;
+}
+
+.tablebottom{
+	width:100%;
+	margin-right: 0;
+}
