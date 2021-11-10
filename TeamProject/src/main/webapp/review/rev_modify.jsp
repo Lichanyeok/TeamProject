@@ -32,6 +32,7 @@
 			$('.modifyBtn').css({'position':'relative', 'left':'422px', 'top':'148px'});
 		}
 		
+		// 업로드된 파일명 표기하기
 		$('#uploader').change(function() {
 			var str = this.value;
 			if(this.value != null) {
