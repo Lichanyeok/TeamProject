@@ -14,7 +14,7 @@
 <body>
 	<%if(article!=null){ 
 		for(int i=0;i<article.size();i++){%>
-			insert into business values ('<%=article.get(i).getId() %>','<%=article.get(i).getPlace_name() %>','<%=article.get(i).getBusiness_lisence() %>','<%=article.get(i).getCategory() %>','<%=article.get(i).getTell_number() %>','<%=article.get(i).getRoad_address() %>','<%=article.get(i).getJibun_address() %>','<%=article.get(i).getLogo_img() %>','<%=article.get(i).getOri_logo_img() %>','<%=article.get(i).getStar_score() %>','<%=article.get(i).getDate() %>','<%=article.get(i).getRecommend() %>','<%=article.get(i).getId() %>','Y');<br>
+			insert into business values ('<%=article.get(i).getId() %>','<%=article.get(i).getPlace_name() %>','<%=article.get(i).getBusiness_lisence() %>','<%=article.get(i).getCategory() %>','<%=article.get(i).getTell_number() %>','<%=article.get(i).getRoad_address() %>','<%=article.get(i).getJibun_address() %>','<%=article.get(i).getLogo_img() %>','<%=article.get(i).getOri_logo_img() %>','<%=article.get(i).getStar_score() %>','<%=article.get(i).getDate() %>','<%=article.get(i).getRecommend() %>','Y');<br>
 	<%}}%>
 </body>
 </html>
