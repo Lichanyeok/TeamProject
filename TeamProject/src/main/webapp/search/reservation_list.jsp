@@ -16,10 +16,17 @@
 	$(document).ready(function(){
 		
 		$(".clearBtn").on('click',function(){
-			var num = this.value;
-			
-			$("#list0").css('background','linear-gradient(#ccc 5%, #999 100%)');
-			$("#list0").css('border','1px solid black');			
+			var num = $(this).val();
+// 			alert(num);
+			$("#list"+num).css('background','linear-gradient(#ccc 5%, #999 100%)');
+			$("#list"+num).css('border','1px solid black');			
+		});
+		
+		$(".clearResetBtn").on('click',function(){
+			var num = $(this).val();
+// 			alert(num);
+			$("#list"+num).css('background','linear-gradient(rgb(255 237 215) 5%, rgb(247 194 124) 100%)');
+			$("#list"+num).css('border','1px solid rgb(238, 180, 79)');			
 		});
 	});
 </script>
@@ -47,8 +54,8 @@
 							<p>선결제</p>
 							<%} %>
 							</li>
-							<li><input type="button" id="clearBtn<%=i %>" class="clearBtn" value="결제완료">
-							<input type="button" id="clearResetBtn<%=i %>" class="clearResetBtn" value="결제완료취소"></li>					
+							<li><Button id="clearBtn<%=i %>" class="clearBtn" value="<%=i%>">결제완료</Button>
+							<Button id="clearResetBtn<%=i %>" class="clearResetBtn" value="<%=i%>">결제완료 취소</Button></li>					
 						</ul>				
 					</div>	
 					<%}} %>		
