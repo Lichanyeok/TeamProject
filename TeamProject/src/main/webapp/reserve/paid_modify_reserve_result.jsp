@@ -228,7 +228,7 @@
                         <td id="totalPrice"><%=totalPrice %></td>
                         <td id="discount">0</td>
                         <td id="resultPrice"><%=totalPrice %></td>
-                        <td>
+                        <td class="btnSet">
                         <button id="kakaopay">카카오페이</button>
                         <button disabled="disabled" style="background-color: gray;" value="0" id="paymentBtn2">결제완료</button>
                         </td>

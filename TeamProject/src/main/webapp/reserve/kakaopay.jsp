@@ -26,6 +26,21 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<style type="text/css">
+#payBtn{
+	display: block;
+	margin: auto;
+	transform: translateY(-50%);
+    margin-top: 50%;
+	border: none;
+    width: 188px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #FF8831;
+    color: #fff;
+    font-weight: 900;
+}
+</style>
 </head>
 <body>
     <script>
@@ -97,6 +112,7 @@
         
     });
     </script>
+    
 <button id="payBtn" value="0">결제완료</button>
 </body>
 </html>
