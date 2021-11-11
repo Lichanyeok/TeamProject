@@ -20,7 +20,7 @@ public class MemberJoinProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberJoinProAction - Aciton");
 		ActionForward forward = new ActionForward();
-		
+
 		String name = request.getParameter("name");
 		String nickName = request.getParameter("nickName");
 		int age = Integer.parseInt(request.getParameter("age"));
@@ -33,14 +33,14 @@ public class MemberJoinProAction implements Action {
 		String gender = request.getParameter("gender");
 		Date date = null;
 
-		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, addressDetail, gender );
+		MemberBean bean = new MemberBean(name, nickName, age, id, pass, email, mobile, address, addressDetail, gender);
 		System.out.println(bean.toString());
 		MemberJoinService service = new MemberJoinService();
 
 		Connection con = getConnection();
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.setConnection(con);
-		
+
 		boolean isJoinSuccess = service.joinMember(bean);
 
 		if(isJoinSuccess) {

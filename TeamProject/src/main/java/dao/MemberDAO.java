@@ -83,7 +83,7 @@ public class MemberDAO {
         PreparedStatement pstmt = null;
 
         try {
-            String sql = "INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,?,now(),null,'N','NULL')";
+            String sql = "INSERT INTO project_member VALUES(null,?,?,?,?,?,?,?,?,?,?,?,now(),null,'N')";
 
             pstmt = con.prepareStatement(sql);
 
@@ -100,7 +100,6 @@ public class MemberDAO {
             pstmt.setInt(11, 1);
 
             int result = pstmt.executeUpdate();
-//			System.out.println(result);
             if (result > 0) {
                 isInsertSuccess = true;
             }

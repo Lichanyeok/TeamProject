@@ -17,6 +17,7 @@ public class MemberBean {
 	private String gender;
 	private int grade;
 	private Date date;
+
 	public MemberBean() {};
 	public MemberBean(String name, String nickName, int age, String id, String pass, String email,
 			String mobile, String address, String addressDetail,String gender) {
@@ -35,8 +36,7 @@ public class MemberBean {
 		this.grade = grade;
 		this.date = date;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "MemberBean [idx=" + idx + ", name=" + name + ", nickName=" + nickName + ", age=" + age + ", id=" + id

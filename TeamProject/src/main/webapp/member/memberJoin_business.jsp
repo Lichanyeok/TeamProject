@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>join</title>
-    <link rel="stylesheet" href="./css/join.css">
+    <link rel="stylesheet" href="../css/join.css">
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
@@ -235,7 +235,7 @@
     <div class="join_container">
         <form action="MemberJoinProAction.do" method="POST" onsubmit="return checkForm()">
 
-<!-- 			<h1><a href="/TeamProject/"><img class ="logo"src="../images/LOGO.png" alt="logo"></a></h1> -->
+            <!-- 			<h1><a href="/TeamProject/"><img class ="logo"src="../images/LOGO.png" alt="logo"></a></h1> -->
 
             <ul class="ingo_top">
                 <li>STEP1.약관동의</li>
@@ -273,10 +273,6 @@
                     <th>비밀번호확인</th>
                     <td><input type="password" id="pass2" name="pass2" onkeyup="checkIdentical()"></td>
                     <td><span id="isIdentical"></span></td> <!-- 경고메세지 -->
-                </tr>
-                <tr>
-                    <th>사업자번호</th>
-                    <td><input type="text" name="business" id="business"></td>
                 </tr>
                 <tr>
                     <th>이메일</th>
