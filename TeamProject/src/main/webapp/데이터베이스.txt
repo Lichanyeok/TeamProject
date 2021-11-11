@@ -50,7 +50,7 @@ CREATE TABLE review (
   rev_content VARCHAR(500),
   rev_pic VARCHAR(250),
   rev_pic_origin VARCHAR(250),
-  rev_menu VARCHAR(30),
+  rev_menu VARCHAR(50),
   rev_date DATE,
   rev_like INT
 );
