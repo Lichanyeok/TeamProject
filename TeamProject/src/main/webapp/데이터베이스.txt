@@ -177,5 +177,35 @@ insert into business values ('wjddudgns8','서면개금밀면','1111111119','한
 insert into business values ('wjddudgns9','삼오정','1111111120','한식','051-808-3533','부산 부산진구 서면로68번길 11','부산 부산진구 부전동 257-15','삼오정.jpg','삼오정.jpg','0.0','2021-11-10','0','Y');
 
 
+// 리뷰 데이터
+insert into review values (1, "1QTH6KB1ROW000X", "테스트 매장", "유저1", 1, "테스트 리뷰입니다.", null, null, "제육덮밥:1, 김치찌개:0, 삼겹살:0", now(), 20);
+insert into review values (2, "1QTH6KB1ROW001X", "테스트 매장", "유저1", 2, "테스트 리뷰입니다.", null, null, "주문메뉴 : set A : 1, set B : 1", now(), 10);
+insert into review values (3, "1QTH6KB1ROW002X", "테스트 매장", "유저1", 3, "테스트 리뷰입니다.", null, null, "런치 샐러드바 1인:0, 런치 샐러드바&스테이크 2인:3, 디너 샐러드바 1인:0", now(), 0);
+insert into review values (4, "1QTH6KB1ROW003X", "테스트 매장", "유저1", 4, "테스트 리뷰입니다.", null, null, "돼지국밥:1, 순대국밥:1, 섞어국밥:1", now(), 1);
+insert into review values (5, "1QTH6KB1ROW004X", "테스트 매장", "유저1", 5, "테스트 리뷰입니다.", null, null, "떡볶이:1, 튀김:3, 순대:1", now(), 3);
+
+insert into review values (6, "1QTH6KB1ROW005X", "테스트 매장", "유저2", 1, "테스트 리뷰입니다.", null, null, "제육덮밥:1, 김치찌개:0, 삼겹살:0", now(), 5);
+insert into review values (7, "1QTH6KB1ROW006X", "테스트 매장", "유저2", 2, "테스트 리뷰입니다.", null, null, "주문메뉴 : set A : 1, set B : 1", now(), 7);
+insert into review values (8, "1QTH6KB1ROW007X", "테스트 매장", "유저2", 3, "테스트 리뷰입니다.", null, null, "런치 샐러드바 1인:0, 런치 샐러드바&스테이크 2인:3, 디너 샐러드바 1인:0", now(), 0);
+insert into review values (9, "1QTH6KB1ROW008X", "테스트 매장", "유저2", 4, "테스트 리뷰입니다.", null, null, "돼지국밥:1, 순대국밥:1, 섞어국밥:1", now(), 0);
+insert into review values (10, "1QTH6KB1ROW009X", "테스트 매장", "유저2", 5, "테스트 리뷰입니다.", null, null, "떡볶이:1, 튀김:3, 순대:1", now(), 0);
+
+insert into review values (11, "1QTH6KB1ROW010X", "테스트 매장", "유저3", 1, "테스트 리뷰입니다.", null, null, "제육덮밥:1, 김치찌개:0, 삼겹살:0", now(), 1);
+insert into review values (12, "1QTH6KB1ROW011X", "테스트 매장", "유저3", 3, "테스트 리뷰입니다.", null, null, "주문메뉴 : set A : 1, set B : 1", now(), 1);
+insert into review values (13, "1QTH6KB1ROW012X", "테스트 매장", "유저3", 3, "테스트 리뷰입니다.", null, null, "런치 샐러드바 1인:0, 런치 샐러드바&스테이크 2인:3, 디너 샐러드바 1인:0", now(), 0);
+insert into review values (14, "1QTH6KB1ROW013X", "테스트 매장", "유저3", 4, "테스트 리뷰입니다.", null, null, "돼지국밥:1, 순대국밥:1, 섞어국밥:1", now(), 3);
+insert into review values (15, "1QTH6KB1ROW014X", "테스트 매장", "유저3", 5, "테스트 리뷰입니다.", null, null, "떡볶이:1, 튀김:3, 순대:1", now(), 4);
+
+insert into review values (16, "1QTH6KB1ROW015X", "테스트 매장", "유저4", 2, "테스트 리뷰입니다.", null, null, "제육덮밥:1, 김치찌개:0, 삼겹살:0", now(), 7);
+insert into review values (17, "1QTH6KB1ROW016X", "테스트 매장", "유저4", 2, "테스트 리뷰입니다.", null, null, "주문메뉴 : set A : 1, set B : 1", now(), 15);
+insert into review values (18, "1QTH6KB1ROW017X", "테스트 매장", "유저4", 3, "테스트 리뷰입니다.", null, null, "런치 샐러드바 1인:0, 런치 샐러드바&스테이크 2인:3, 디너 샐러드바 1인:0", now(), 0);
+insert into review values (19, "1QTH6KB1ROW018X", "테스트 매장", "유저4", 4, "테스트 리뷰입니다.", null, null, "돼지국밥:1, 순대국밥:1, 섞어국밥:1", now(), 30);
+insert into review values (20, "1QTH6KB1ROW019X", "테스트 매장", "유저4", 5, "테스트 리뷰입니다.", null, null, "떡볶이:1, 튀김:3, 순대:1", now(), 33);
+
+insert into review values (21, "1QTH6KB1ROW020X", "테스트 매장", "유저5", 2, "테스트 리뷰입니다.", null, null, "제육덮밥:1, 김치찌개:0, 삼겹살:0", now(), 25);
+insert into review values (22, "1QTH6KB1ROW021X", "테스트 매장", "유저5", 2, "테스트 리뷰입니다.", null, null, "주문메뉴 : set A : 1, set B : 1", now(), 9);
+insert into review values (23, "1QTH6KB1ROW022X", "테스트 매장", "유저5", 3, "테스트 리뷰입니다.", null, null, "런치 샐러드바 1인:0, 런치 샐러드바&스테이크 2인:3, 디너 샐러드바 1인:0", now(), 0);
+insert into review values (24, "1QTH6KB1ROW023X", "테스트 매장", "유저5", 4, "테스트 리뷰입니다.", null, null, "돼지국밥:1, 순대국밥:1, 섞어국밥:1", now(), 3);
+insert into review values (25, "1QTH6KB1ROW024X", "테스트 매장", "유저5", 5, "테스트 리뷰입니다.", null, null, "떡볶이:1, 튀김:3, 순대:1", now(), 0);
 
 
