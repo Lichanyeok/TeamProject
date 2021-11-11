@@ -47,7 +47,7 @@ public class MemberAuthAction implements Action {
 					out.println("</script>");
 
 					forward = new ActionForward();
-					forward.setPath("/MemberLoginFormAction.do");
+					forward.setPath("./MemberLoginFormAction.do");
 					forward.setRedirect(true);
 
 					jdbcUtil.commit(con);
