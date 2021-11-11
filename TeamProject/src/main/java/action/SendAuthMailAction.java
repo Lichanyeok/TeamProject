@@ -45,7 +45,7 @@ public class SendAuthMailAction implements Action {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
+	
 		try {
 			Properties properties = System.getProperties();
 			properties.put("mail.smtp.starttls.enable", true);
