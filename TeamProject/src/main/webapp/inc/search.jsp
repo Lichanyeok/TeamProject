@@ -221,8 +221,28 @@ function displayPlaces(places) {
     $(".item").on("click",function(){		
 		var tell_number= $(".tel",this).text();
 		var place_name= $(".placeName",this).text();
-		location.href="MatzipInfo.mz?tell_number="+tell_number
-				+"&place_name="+place_name;
+		
+		$.ajax({
+			type : "GET",
+			url : "./MatzipInfoSelect.mz",
+			data : {
+				tell_number			
+			}
+		})
+		.done(function(data){
+			if(data=="true"){
+				location.href="MatzipInfo.mz?tell_number="+tell_number
+				+"&place_name="+place_name;			
+			}else{
+				alert("예약할 수 없는 매장입니다.");	
+			}
+			
+	
+		})
+		.fail(function(){
+			alert("서버오류!");
+		});
+		
 	});	
 		//리스트 db 저장용 		  
 //     $(".item").on("click",function(){		

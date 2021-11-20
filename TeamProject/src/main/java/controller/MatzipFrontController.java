@@ -18,6 +18,7 @@ import action.MatzipMyStoreAction;
 import action.ReservationListAction;
 import action.Test;
 import action.MatzipInfoAction;
+import action.MatzipInfoSelectAction;
 import vo.ActionForward;
 
 /**
@@ -98,6 +99,13 @@ public class MatzipFrontController extends HttpServlet {
 			forward=new ActionForward();
 			forward.setPath("./search/reservation.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/MatzipInfoSelect.mz")) {
+			action = new MatzipInfoSelectAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//-------------------------------------------

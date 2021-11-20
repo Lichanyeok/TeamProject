@@ -9,10 +9,11 @@ create table business(
 	jibun_address varchar(50) not null,	
 	logo_img varchar(50),
 	ori_logo_img varchar(100),
-	star_score float,							
+	star_score float,					
 	date DATE not null,
 	recommend int default 0,
-	app_check varchar(2)
+	app_check varchar(2),
+	review_count int	
 );
 
 - 멤버 -
@@ -95,7 +96,7 @@ reserve_date VARCHAR(25) NOT NULL,
 reserve_time VARCHAR(25) NOT NULL,
 reserve_people INT NOT NULL,
 reserve_menu VARCHAR(100),
-customer_request VARCHAR(30),
+customer_request VARCHAR(300),
 reserve_type INT(1) NOT NULL,
 payment_price INT(12) default 0,
 check_review INT(1) NOT NULL DEFAULT 0,

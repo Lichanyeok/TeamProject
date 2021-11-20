@@ -15,6 +15,8 @@ public class SearchBean {
 	private String ori_logo_img;
 	private Date date;
 	private int recommend;
+	private int review_count;
+	
 	public SearchBean() {};
 	public SearchBean(String road_address, String jibun_address, String place_name, String tell_number) {
 		super();
@@ -23,14 +25,21 @@ public class SearchBean {
 		this.place_name = place_name;
 		this.tell_number = tell_number;
 	}
+	
 	@Override
 	public String toString() {
 		return "SearchBean [id=" + id + ", business_lisence=" + business_lisence + ", road_address=" + road_address
 				+ ", jibun_address=" + jibun_address + ", category=" + category + ", place_name=" + place_name
 				+ ", star_score=" + star_score + ", tell_number=" + tell_number + ", logo_img=" + logo_img
-				+ ", ori_logo_img=" + ori_logo_img + ", date=" + date + ", recommend=" + recommend + "]";
-	}	
-	
+				+ ", ori_logo_img=" + ori_logo_img + ", date=" + date + ", recommend=" + recommend + ", review_count="
+				+ review_count + "]";
+	}
+	public int getReview_count() {
+		return review_count;
+	}
+	public void setReview_count(int review_count) {
+		this.review_count = review_count;
+	}
 	public String getOri_logo_img() {
 		return ori_logo_img;
 	}
